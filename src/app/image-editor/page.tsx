@@ -11,12 +11,19 @@ import {
   Download,
   Upload,
   RefreshCw,
+  Loader2,
 } from 'lucide-react';
 import ReactCrop, { type Crop as CropType } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { rotateImage, flipImage, resizeImage, cropImage } from '@/services/imageEditor';
 import { optimizeImage } from '@/services/imageConverter';
 import { saveAs } from 'file-saver';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
+import { Checkbox } from '@/components/ui/checkbox';
 
 type EditMode = 'crop' | 'rotate' | 'resize' | 'optimize' | null;
 
@@ -27,16 +34,13 @@ export default function ImageEditorPage() {
   const [editMode, setEditMode] = useState<EditMode>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Crop state
   const [crop, setCrop] = useState<CropType>();
   const imgRef = useRef<HTMLImageElement>(null);
 
-  // Resize state
   const [resizeWidth, setResizeWidth] = useState(800);
   const [resizeHeight, setResizeHeight] = useState(600);
   const [maintainRatio, setMaintainRatio] = useState(true);
 
-  // Optimize state
   const [optimizeQuality, setOptimizeQuality] = useState(80);
   const [maxSize, setMaxSize] = useState(1);
 
@@ -50,7 +54,6 @@ export default function ImageEditorPage() {
       setEditMode(null);
       setCrop(undefined);
 
-      // 이미지 로드 후 크기 설정
       const img = new Image();
       img.onload = () => {
         setResizeWidth(img.width);
@@ -200,260 +203,232 @@ export default function ImageEditorPage() {
     }
   };
 
+  const toolbarButtons = [
+    { mode: 'crop' as const, icon: Crop, label: '자르기', action: () => setEditMode(editMode === 'crop' ? null : 'crop') },
+    { icon: RotateCcw, label: '왼쪽', action: () => handleRotate(-90) },
+    { icon: RotateCw, label: '오른쪽', action: () => handleRotate(90) },
+    { icon: FlipHorizontal, label: '좌우', action: () => handleFlip('horizontal') },
+    { icon: FlipVertical, label: '상하', action: () => handleFlip('vertical') },
+    { mode: 'resize' as const, icon: Minimize2, label: '리사이즈', action: () => setEditMode(editMode === 'resize' ? null : 'resize') },
+    { mode: 'optimize' as const, icon: RefreshCw, label: '최적화', action: () => setEditMode(editMode === 'optimize' ? null : 'optimize') },
+  ];
+
   return (
-    <div className="min-h-full bg-gray-50 py-8">
+    <div className="min-h-full bg-slate-50 py-8">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-500 rounded-2xl mb-4">
-            <Crop className="w-8 h-8 text-white" />
+        <div className="mb-8">
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-violet-500 rounded-lg mb-4">
+            <Crop className="w-6 h-6 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">이미지 편집</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-2xl font-bold text-slate-900">이미지 편집</h1>
+          <p className="mt-1 text-slate-600">
             자르기, 회전, 뒤집기, 리사이즈, 최적화
           </p>
         </div>
 
         {/* Upload Area */}
         {!preview && (
-          <div className="bg-white rounded-2xl p-8 shadow-sm">
-            <label
-              onDragOver={handleDragOver}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-xl cursor-pointer transition-colors ${
-                isDragging
-                  ? 'border-purple-500 bg-purple-50'
-                  : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
-              }`}
-            >
-              <Upload className={`w-12 h-12 mb-4 ${isDragging ? 'text-purple-500' : 'text-gray-400'}`} />
-              <span className={`text-lg font-medium ${isDragging ? 'text-purple-600' : 'text-gray-700'}`}>
-                {isDragging ? '여기에 놓으세요' : '이미지를 선택하거나 드래그하세요'}
-              </span>
-              <span className="text-sm text-gray-500 mt-1">PNG, JPG, WebP 지원</span>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileSelect}
-                className="hidden"
-              />
-            </label>
-          </div>
+          <Card className="border-slate-200">
+            <CardContent className="p-8">
+              <label
+                onDragOver={handleDragOver}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
+                  isDragging
+                    ? 'border-violet-500 bg-violet-50'
+                    : 'border-slate-300 hover:border-slate-400 hover:bg-slate-50'
+                }`}
+              >
+                <Upload className={`w-12 h-12 mb-4 ${isDragging ? 'text-violet-500' : 'text-slate-400'}`} />
+                <span className={`text-lg font-medium ${isDragging ? 'text-violet-600' : 'text-slate-700'}`}>
+                  {isDragging ? '여기에 놓으세요' : '이미지를 선택하거나 드래그하세요'}
+                </span>
+                <span className="text-sm text-slate-500 mt-1">PNG, JPG, WebP 지원</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                />
+              </label>
+            </CardContent>
+          </Card>
         )}
 
         {/* Editor */}
         {preview && (
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Toolbar */}
-            <div className="bg-white rounded-2xl p-4 shadow-sm">
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                <button
-                  onClick={() => setEditMode(editMode === 'crop' ? null : 'crop')}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-                    editMode === 'crop' ? 'bg-purple-500 text-white' : 'bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  <Crop className="w-4 h-4" />
-                  자르기
-                </button>
-                <button
-                  onClick={() => handleRotate(-90)}
-                  disabled={isProcessing}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-gray-100 hover:bg-gray-200 transition-colors disabled:opacity-50"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  왼쪽 회전
-                </button>
-                <button
-                  onClick={() => handleRotate(90)}
-                  disabled={isProcessing}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-gray-100 hover:bg-gray-200 transition-colors disabled:opacity-50"
-                >
-                  <RotateCw className="w-4 h-4" />
-                  오른쪽 회전
-                </button>
-                <button
-                  onClick={() => handleFlip('horizontal')}
-                  disabled={isProcessing}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-gray-100 hover:bg-gray-200 transition-colors disabled:opacity-50"
-                >
-                  <FlipHorizontal className="w-4 h-4" />
-                  좌우 뒤집기
-                </button>
-                <button
-                  onClick={() => handleFlip('vertical')}
-                  disabled={isProcessing}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-gray-100 hover:bg-gray-200 transition-colors disabled:opacity-50"
-                >
-                  <FlipVertical className="w-4 h-4" />
-                  상하 뒤집기
-                </button>
-                <button
-                  onClick={() => setEditMode(editMode === 'resize' ? null : 'resize')}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-                    editMode === 'resize' ? 'bg-purple-500 text-white' : 'bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  <Minimize2 className="w-4 h-4" />
-                  리사이즈
-                </button>
-                <button
-                  onClick={() => setEditMode(editMode === 'optimize' ? null : 'optimize')}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-                    editMode === 'optimize' ? 'bg-purple-500 text-white' : 'bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  최적화
-                </button>
-              </div>
-            </div>
+            <Card className="border-slate-200">
+              <CardContent className="p-3">
+                <div className="flex flex-wrap items-center justify-center gap-1">
+                  {toolbarButtons.map((btn, idx) => {
+                    const Icon = btn.icon;
+                    const isActive = btn.mode && editMode === btn.mode;
+                    return (
+                      <Button
+                        key={idx}
+                        variant={isActive ? "default" : "ghost"}
+                        size="sm"
+                        onClick={btn.action}
+                        disabled={isProcessing && !btn.mode}
+                        className={isActive ? "bg-violet-600 hover:bg-violet-700" : ""}
+                      >
+                        <Icon className="w-4 h-4 mr-1.5" />
+                        {btn.label}
+                      </Button>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
 
             {/* Edit Panels */}
             {editMode === 'crop' && (
-              <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm text-gray-600">드래그하여 자를 영역을 선택하세요</p>
-                  <button
-                    onClick={handleCropApply}
-                    disabled={!crop || isProcessing}
-                    className="px-4 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors disabled:opacity-50"
-                  >
-                    자르기 적용
-                  </button>
-                </div>
-              </div>
+              <Card className="border-slate-200">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-slate-600">드래그하여 자를 영역을 선택하세요</p>
+                    <Button
+                      onClick={handleCropApply}
+                      disabled={!crop || isProcessing}
+                      className="bg-violet-600 hover:bg-violet-700"
+                    >
+                      자르기 적용
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             )}
 
             {editMode === 'resize' && (
-              <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <div className="flex flex-wrap items-center gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">너비</label>
-                    <input
-                      type="number"
-                      value={resizeWidth}
-                      onChange={(e) => setResizeWidth(Number(e.target.value))}
-                      className="w-24 px-3 py-2 border rounded-lg"
-                    />
+              <Card className="border-slate-200">
+                <CardContent className="p-4">
+                  <div className="flex flex-wrap items-end gap-4">
+                    <div className="w-28">
+                      <Label className="text-slate-700 mb-2 block">너비</Label>
+                      <Input
+                        type="number"
+                        value={resizeWidth}
+                        onChange={(e) => setResizeWidth(Number(e.target.value))}
+                      />
+                    </div>
+                    <div className="w-28">
+                      <Label className="text-slate-700 mb-2 block">높이</Label>
+                      <Input
+                        type="number"
+                        value={resizeHeight}
+                        onChange={(e) => setResizeHeight(Number(e.target.value))}
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 h-9">
+                      <Checkbox
+                        checked={maintainRatio}
+                        onChange={(e) => setMaintainRatio(e.target.checked)}
+                      />
+                      <span className="text-sm text-slate-700">비율 유지</span>
+                    </label>
+                    <Button
+                      onClick={handleResize}
+                      disabled={isProcessing}
+                      className="bg-violet-600 hover:bg-violet-700"
+                    >
+                      리사이즈 적용
+                    </Button>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">높이</label>
-                    <input
-                      type="number"
-                      value={resizeHeight}
-                      onChange={(e) => setResizeHeight(Number(e.target.value))}
-                      className="w-24 px-3 py-2 border rounded-lg"
-                    />
-                  </div>
-                  <label className="flex items-center gap-2 mt-6">
-                    <input
-                      type="checkbox"
-                      checked={maintainRatio}
-                      onChange={(e) => setMaintainRatio(e.target.checked)}
-                      className="w-4 h-4"
-                    />
-                    <span className="text-sm text-gray-700">비율 유지</span>
-                  </label>
-                  <button
-                    onClick={handleResize}
-                    disabled={isProcessing}
-                    className="mt-6 px-4 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors disabled:opacity-50"
-                  >
-                    리사이즈 적용
-                  </button>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             )}
 
             {editMode === 'optimize' && (
-              <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <div className="flex flex-wrap items-center gap-6">
-                  <div className="flex-1 min-w-[200px]">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      품질: {optimizeQuality}%
-                    </label>
-                    <input
-                      type="range"
-                      min="10"
-                      max="100"
-                      value={optimizeQuality}
-                      onChange={(e) => setOptimizeQuality(Number(e.target.value))}
-                      className="w-full"
-                    />
+              <Card className="border-slate-200">
+                <CardContent className="p-4">
+                  <div className="flex flex-wrap items-end gap-6">
+                    <div className="flex-1 min-w-[180px]">
+                      <Label className="text-slate-700 mb-2 block">품질: {optimizeQuality}%</Label>
+                      <Slider
+                        min={10}
+                        max={100}
+                        value={optimizeQuality}
+                        onChange={(e) => setOptimizeQuality(Number(e.target.value))}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-[180px]">
+                      <Label className="text-slate-700 mb-2 block">최대 크기: {maxSize}MB</Label>
+                      <Slider
+                        min={0.1}
+                        max={10}
+                        step={0.1}
+                        value={maxSize}
+                        onChange={(e) => setMaxSize(Number(e.target.value))}
+                      />
+                    </div>
+                    <Button
+                      onClick={handleOptimize}
+                      disabled={isProcessing}
+                      className="bg-violet-600 hover:bg-violet-700"
+                    >
+                      최적화 적용
+                    </Button>
                   </div>
-                  <div className="flex-1 min-w-[200px]">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      최대 크기: {maxSize}MB
-                    </label>
-                    <input
-                      type="range"
-                      min="0.1"
-                      max="10"
-                      step="0.1"
-                      value={maxSize}
-                      onChange={(e) => setMaxSize(Number(e.target.value))}
-                      className="w-full"
-                    />
-                  </div>
-                  <button
-                    onClick={handleOptimize}
-                    disabled={isProcessing}
-                    className="px-4 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors disabled:opacity-50"
-                  >
-                    최적화 적용
-                  </button>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             )}
 
             {/* Image Preview */}
-            <div className="bg-white rounded-2xl p-4 shadow-sm">
-              <div className="relative flex items-center justify-center min-h-[400px] bg-gray-100 rounded-xl overflow-hidden">
-                {isProcessing && (
-                  <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
-                    <RefreshCw className="w-8 h-8 text-purple-500 animate-spin" />
-                  </div>
-                )}
-                {editMode === 'crop' ? (
-                  <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
+            <Card className="border-slate-200">
+              <CardContent className="p-4">
+                <div className="relative flex items-center justify-center min-h-[400px] bg-slate-100 rounded-lg overflow-hidden">
+                  {isProcessing && (
+                    <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
+                      <Loader2 className="w-8 h-8 text-violet-500 animate-spin" />
+                    </div>
+                  )}
+                  {editMode === 'crop' ? (
+                    <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
+                      <img
+                        ref={imgRef}
+                        src={preview}
+                        alt="Edit preview"
+                        className="max-h-[600px] object-contain"
+                      />
+                    </ReactCrop>
+                  ) : (
                     <img
                       ref={imgRef}
                       src={preview}
                       alt="Edit preview"
                       className="max-h-[600px] object-contain"
                     />
-                  </ReactCrop>
-                ) : (
-                  <img
-                    ref={imgRef}
-                    src={preview}
-                    alt="Edit preview"
-                    className="max-h-[600px] object-contain"
-                  />
-                )}
-              </div>
+                  )}
+                </div>
 
-              {/* File info */}
-              <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
-                <span>
-                  원본: {file?.name} ({((file?.size || 0) / 1024).toFixed(1)} KB)
-                </span>
-                {editedBlob && (
-                  <span className="text-green-600">
-                    편집 후: {(editedBlob.size / 1024).toFixed(1)} KB
+                {/* File info */}
+                <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
+                  <span>
+                    원본: {file?.name} ({((file?.size || 0) / 1024).toFixed(1)} KB)
                   </span>
-                )}
-              </div>
-            </div>
+                  {editedBlob && (
+                    <span className="text-emerald-600 font-medium">
+                      편집 후: {(editedBlob.size / 1024).toFixed(1)} KB
+                    </span>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <label className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-semibold hover:bg-gray-300 transition-colors cursor-pointer">
-                <Upload className="w-5 h-5" />
-                다른 이미지 선택
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <label>
+                <Button variant="outline" className="cursor-pointer" asChild>
+                  <span>
+                    <Upload className="w-4 h-4 mr-2" />
+                    다른 이미지 선택
+                  </span>
+                </Button>
                 <input
                   type="file"
                   accept="image/*"
@@ -462,21 +437,18 @@ export default function ImageEditorPage() {
                 />
               </label>
               {editedBlob && (
-                <button
-                  onClick={handleReset}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-semibold hover:bg-gray-300 transition-colors"
-                >
-                  <RefreshCw className="w-5 h-5" />
+                <Button variant="outline" onClick={handleReset}>
+                  <RefreshCw className="w-4 h-4 mr-2" />
                   원본으로 되돌리기
-                </button>
+                </Button>
               )}
-              <button
+              <Button
                 onClick={handleDownload}
-                className="flex items-center justify-center gap-2 px-8 py-3 bg-purple-500 text-white rounded-full font-semibold hover:bg-purple-600 transition-colors"
+                className="bg-violet-600 hover:bg-violet-700"
               >
-                <Download className="w-5 h-5" />
+                <Download className="w-4 h-4 mr-2" />
                 다운로드
-              </button>
+              </Button>
             </div>
           </div>
         )}
