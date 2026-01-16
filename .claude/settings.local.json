@@ -14,7 +14,19 @@
       "Bash(tar:*)",
       "Bash(git remote add:*)",
       "Bash(git checkout:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\n원격 저장소와 병합 충돌 해결\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(bash:*)",
+      "Bash(docker build:*)",
+      "Bash(docker run:*)",
+      "Bash(docker rm:*)",
+      "Bash(docker logs:*)",
+      "WebFetch(domain:demodev-convert.base44.app)",
+      "Skill(vs-design-diverge:frontend-for-opus-4.5)"
     ]
   },
   "enableAllProjectMcpServers": true,

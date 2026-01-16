@@ -31,8 +31,8 @@ export default function DownloadButton({
       disabled={disabled}
       className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
         downloaded
-          ? 'bg-green-500 text-white'
-          : 'bg-blue-500 hover:bg-blue-600 text-white'
+          ? 'bg-[oklch(0.72_0.17_160)] text-[oklch(0.08_0.01_240)]'
+          : 'bg-[oklch(0.75_0.18_195)] hover:bg-[oklch(0.80_0.20_195)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_20px_oklch(0.75_0.18_195/0.4)]'
       } disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
     >
       {downloaded ? (

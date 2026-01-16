@@ -2,58 +2,100 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import {
-  Image,
-  Crop,
-  Film,
-  Video,
-  Link2,
-  Menu,
-  X
-} from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
 import { useState } from 'react';
+import {
+  ImageConverterIcon,
+  ImageEditorIcon,
+  GifMakerIcon,
+  VideoConverterIcon,
+  UrlGeneratorIcon,
+} from '@/components/icons/FeatureIcons';
 
 const navigation = [
-  { name: '이미지 변환', href: '/image-converter', icon: Image },
-  { name: '이미지 편집', href: '/image-editor', icon: Crop },
-  { name: 'GIF 만들기', href: '/gif-maker', icon: Film },
-  { name: '비디오 변환', href: '/video-converter', icon: Video },
-  { name: 'URL 생성', href: '/url-generator', icon: Link2 },
+  { name: '이미지 변환', href: '/image-converter', icon: ImageConverterIcon, accent: 'cyan' },
+  { name: '이미지 편집', href: '/image-editor', icon: ImageEditorIcon, accent: 'violet' },
+  { name: 'GIF 만들기', href: '/gif-maker', icon: GifMakerIcon, accent: 'emerald' },
+  { name: '비디오 변환', href: '/video-converter', icon: VideoConverterIcon, accent: 'amber' },
+  { name: 'URL 생성', href: '/url-generator', icon: UrlGeneratorIcon, accent: 'magenta' },
 ];
+
+const accentStyles = {
+  cyan: {
+    active: 'bg-[oklch(0.75_0.18_195/0.15)] text-[oklch(0.80_0.20_195)] border-[oklch(0.75_0.18_195/0.3)]',
+    hover: 'hover:text-[oklch(0.80_0.20_195)] hover:bg-[oklch(0.75_0.18_195/0.08)]',
+    glow: 'shadow-[0_0_20px_oklch(0.75_0.18_195/0.3)]',
+  },
+  violet: {
+    active: 'bg-[oklch(0.65_0.22_290/0.15)] text-[oklch(0.70_0.26_290)] border-[oklch(0.65_0.22_290/0.3)]',
+    hover: 'hover:text-[oklch(0.70_0.26_290)] hover:bg-[oklch(0.65_0.22_290/0.08)]',
+    glow: 'shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)]',
+  },
+  emerald: {
+    active: 'bg-[oklch(0.72_0.17_160/0.15)] text-[oklch(0.78_0.20_160)] border-[oklch(0.72_0.17_160/0.3)]',
+    hover: 'hover:text-[oklch(0.78_0.20_160)] hover:bg-[oklch(0.72_0.17_160/0.08)]',
+    glow: 'shadow-[0_0_20px_oklch(0.72_0.17_160/0.3)]',
+  },
+  amber: {
+    active: 'bg-[oklch(0.80_0.18_80/0.15)] text-[oklch(0.85_0.22_80)] border-[oklch(0.80_0.18_80/0.3)]',
+    hover: 'hover:text-[oklch(0.85_0.22_80)] hover:bg-[oklch(0.80_0.18_80/0.08)]',
+    glow: 'shadow-[0_0_20px_oklch(0.80_0.18_80/0.3)]',
+  },
+  magenta: {
+    active: 'bg-[oklch(0.70_0.20_330/0.15)] text-[oklch(0.75_0.25_330)] border-[oklch(0.70_0.20_330/0.3)]',
+    hover: 'hover:text-[oklch(0.75_0.25_330)] hover:bg-[oklch(0.70_0.20_330/0.08)]',
+    glow: 'shadow-[0_0_20px_oklch(0.70_0.20_330/0.3)]',
+  },
+};
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header className="glass sticky top-0 z-50 border-b border-[oklch(1_0_0/0.06)]">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">M</span>
+          <Link href="/" className="group flex items-center gap-3">
+            <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-[oklch(0.75_0.18_195)] transition-transform group-hover:scale-105">
+              <Zap className="w-5 h-5 text-[oklch(0.08_0.01_240)]" strokeWidth={2.5} />
             </div>
-            <span className="font-bold text-xl text-gray-900">Media Utility</span>
+            <div className="flex flex-col">
+              <span className="font-semibold text-[15px] tracking-tight text-[oklch(0.95_0.01_80)]">
+                Media Utility
+              </span>
+              <span className="text-[10px] font-mono text-[oklch(0.50_0.02_240)] uppercase tracking-widest">
+                Browser Tools
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:gap-1">
+          <div className="hidden lg:flex lg:items-center lg:gap-1">
             {navigation.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href;
+              const accent = accentStyles[item.accent as keyof typeof accentStyles];
+
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                    isActive
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                  }`}
+                  className={`
+                    relative flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg
+                    transition-all duration-300 border border-transparent
+                    ${isActive
+                      ? `${accent.active} ${accent.glow}`
+                      : `text-[oklch(0.60_0.02_240)] ${accent.hover}`
+                    }
+                  `}
                 >
-                  <Icon className="w-4 h-4" />
-                  {item.name}
+                  <Icon size={16} />
+                  <span>{item.name}</span>
+                  {isActive && (
+                    <span className="absolute -bottom-px left-3 right-3 h-px bg-gradient-to-r from-transparent via-current to-transparent" />
+                  )}
                 </Link>
               );
             })}
@@ -62,7 +104,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+            className="lg:hidden p-2 rounded-lg text-[oklch(0.70_0.02_240)] hover:text-[oklch(0.95_0.01_80)] hover:bg-[oklch(1_0_0/0.05)] transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -75,24 +117,32 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100">
+          <div className="lg:hidden py-4 border-t border-[oklch(1_0_0/0.06)] animate-fade-up">
             <div className="flex flex-col gap-1">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href;
+                const accent = accentStyles[item.accent as keyof typeof accentStyles];
+
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center gap-2 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                      isActive
-                        ? 'bg-blue-50 text-blue-600'
-                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                    }`}
+                    className={`
+                      flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg
+                      transition-all duration-300 border border-transparent
+                      ${isActive
+                        ? `${accent.active}`
+                        : `text-[oklch(0.60_0.02_240)] ${accent.hover}`
+                      }
+                    `}
                   >
-                    <Icon className="w-5 h-5" />
-                    {item.name}
+                    <Icon size={20} />
+                    <span>{item.name}</span>
+                    {isActive && (
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                    )}
                   </Link>
                 );
               })}

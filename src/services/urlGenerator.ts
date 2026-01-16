@@ -100,3 +100,98 @@ export function getDataUrlSize(dataUrl: string): number {
   const base64 = dataUrl.split(',')[1] || dataUrl;
   return Math.round((base64.length * 3) / 4);
 }
+
+export interface UploadOptions {
+  expiresInDays?: number;
+  password?: string;
+  onProgress?: (progress: number) => void;
+}
+
+export interface UploadResult {
+  url: string;
+  viewUrl: string;
+  key: string;
+  expiresAt?: string;
+  hasPassword: boolean;
+}
+
+/**
+ * R2에 파일 업로드
+ */
+export async function uploadToR2(
+  file: File,
+  options?: UploadOptions
+): Promise<UploadResult> {
+  const { expiresInDays = 30, password, onProgress } = options || {};
+
+  // 1. Presigned URL 요청
+  onProgress?.(10);
+
+  const presignResponse = await fetch('/api/upload', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      fileName: file.name,
+      contentType: file.type,
+      fileSize: file.size,
+      expiresInDays,
+      password,
+    }),
+  });
+
+  if (!presignResponse.ok) {
+    const error = await presignResponse.json();
+    throw new Error(error.error || 'Presigned URL 생성 실패');
+  }
+
+  const { signedUrl, key, expiresAt } = await presignResponse.json();
+  onProgress?.(30);
+
+  // 2. R2에 직접 업로드
+  const uploadResponse = await fetch(signedUrl, {
+    method: 'PUT',
+    headers: { 'Content-Type': file.type },
+    body: file,
+  });
+
+  if (!uploadResponse.ok) {
+    throw new Error('R2 업로드 실패');
+  }
+  onProgress?.(80);
+
+  // 3. 업로드 완료 확인 및 공개 URL 받기
+  const completeResponse = await fetch('/api/upload/complete', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ key }),
+  });
+
+  if (!completeResponse.ok) {
+    const error = await completeResponse.json();
+    throw new Error(error.error || '업로드 완료 처리 실패');
+  }
+
+  const { url, viewUrl } = await completeResponse.json();
+  onProgress?.(100);
+
+  return { url, viewUrl, key, expiresAt, hasPassword: !!password };
+}
+
+/**
+ * 저장소 정보 조회
+ */
+export async function getStorageInfo(): Promise<{
+  usedBytes: number;
+  maxBytes: number;
+  usedPercent: number;
+  fileCount: number;
+}> {
+  const response = await fetch('/api/storage');
+
+  if (!response.ok) {
+    throw new Error('저장소 정보 조회 실패');
+  }
+
+  return response.json();
+}
+

@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useRef } from 'react';
 import {
-  Crop,
   RotateCw,
   RotateCcw,
   FlipHorizontal,
@@ -12,18 +11,15 @@ import {
   Upload,
   RefreshCw,
   Loader2,
+  Crop,
 } from 'lucide-react';
+import { ImageEditorIcon } from '@/components/icons/FeatureIcons';
 import ReactCrop, { type Crop as CropType } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { rotateImage, flipImage, resizeImage, cropImage } from '@/services/imageEditor';
 import { optimizeImage } from '@/services/imageConverter';
 import { saveAs } from 'file-saver';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Slider } from '@/components/ui/slider';
-import { Checkbox } from '@/components/ui/checkbox';
+import HowToUse from '@/components/common/HowToUse';
 
 type EditMode = 'crop' | 'rotate' | 'resize' | 'optimize' | null;
 
@@ -214,39 +210,45 @@ export default function ImageEditorPage() {
   ];
 
   return (
-    <div className="min-h-full bg-slate-50 py-8">
+    <div className="min-h-full bg-[oklch(0.08_0.01_240)] py-8 lg:py-12">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-violet-500 rounded-lg mb-4">
-            <Crop className="w-6 h-6 text-white" />
+        <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[oklch(0.65_0.22_290)] flex items-center justify-center shadow-[0_0_30px_oklch(0.65_0.22_290/0.3)]">
+              <ImageEditorIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">이미지 편집</h1>
+              <p className="mt-1 text-[oklch(0.55_0.02_240)]">
+                자르기, 회전, 뒤집기, 리사이즈, 최적화
+              </p>
+            </div>
           </div>
-          <h1 className="text-2xl font-bold text-slate-900">이미지 편집</h1>
-          <p className="mt-1 text-slate-600">
-            자르기, 회전, 뒤집기, 리사이즈, 최적화
-          </p>
         </div>
 
         {/* Upload Area */}
         {!preview && (
-          <Card className="border-slate-200">
-            <CardContent className="p-8">
+          <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
+            <div className="p-8 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
               <label
                 onDragOver={handleDragOver}
                 onDragEnter={handleDragEnter}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
-                className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
-                  isDragging
-                    ? 'border-violet-500 bg-violet-50'
-                    : 'border-slate-300 hover:border-slate-400 hover:bg-slate-50'
-                }`}
+                className={`
+                  flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-xl cursor-pointer transition-all
+                  ${isDragging
+                    ? 'border-[oklch(0.65_0.22_290)] bg-[oklch(0.65_0.22_290/0.05)]'
+                    : 'border-[oklch(1_0_0/0.1)] hover:border-[oklch(0.65_0.22_290/0.5)] hover:bg-[oklch(0.65_0.22_290/0.02)]'
+                  }
+                `}
               >
-                <Upload className={`w-12 h-12 mb-4 ${isDragging ? 'text-violet-500' : 'text-slate-400'}`} />
-                <span className={`text-lg font-medium ${isDragging ? 'text-violet-600' : 'text-slate-700'}`}>
+                <Upload className={`w-12 h-12 mb-4 ${isDragging ? 'text-[oklch(0.65_0.22_290)]' : 'text-[oklch(0.40_0.02_240)]'}`} />
+                <span className={`text-lg font-medium ${isDragging ? 'text-[oklch(0.70_0.26_290)]' : 'text-[oklch(0.70_0.02_240)]'}`}>
                   {isDragging ? '여기에 놓으세요' : '이미지를 선택하거나 드래그하세요'}
                 </span>
-                <span className="text-sm text-slate-500 mt-1">PNG, JPG, WebP 지원</span>
+                <span className="text-sm text-[oklch(0.50_0.02_240)] mt-2">PNG, JPG, WebP 지원</span>
                 <input
                   type="file"
                   accept="image/*"
@@ -254,181 +256,190 @@ export default function ImageEditorPage() {
                   className="hidden"
                 />
               </label>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
         {/* Editor */}
         {preview && (
           <div className="space-y-4">
             {/* Toolbar */}
-            <Card className="border-slate-200">
-              <CardContent className="p-3">
-                <div className="flex flex-wrap items-center justify-center gap-1">
-                  {toolbarButtons.map((btn, idx) => {
-                    const Icon = btn.icon;
-                    const isActive = btn.mode && editMode === btn.mode;
-                    return (
-                      <Button
-                        key={idx}
-                        variant={isActive ? "default" : "ghost"}
-                        size="sm"
-                        onClick={btn.action}
-                        disabled={isProcessing && !btn.mode}
-                        className={isActive ? "bg-violet-600 hover:bg-violet-700" : ""}
-                      >
-                        <Icon className="w-4 h-4 mr-1.5" />
-                        {btn.label}
-                      </Button>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
+            <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {toolbarButtons.map((btn, idx) => {
+                  const Icon = btn.icon;
+                  const isActive = btn.mode && editMode === btn.mode;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={btn.action}
+                      disabled={isProcessing && !btn.mode}
+                      className={`
+                        flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
+                        ${isActive
+                          ? 'bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)]'
+                          : 'bg-[oklch(0.16_0.02_245)] text-[oklch(0.70_0.02_240)] hover:bg-[oklch(0.20_0.025_240)] hover:text-[oklch(0.85_0.02_240)]'
+                        }
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                      `}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {btn.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
             {/* Edit Panels */}
             {editMode === 'crop' && (
-              <Card className="border-slate-200">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm text-slate-600">드래그하여 자를 영역을 선택하세요</p>
-                    <Button
-                      onClick={handleCropApply}
-                      disabled={!crop || isProcessing}
-                      className="bg-violet-600 hover:bg-violet-700"
-                    >
-                      자르기 적용
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-[oklch(0.60_0.02_240)]">드래그하여 자를 영역을 선택하세요</p>
+                  <button
+                    onClick={handleCropApply}
+                    disabled={!crop || isProcessing}
+                    className="px-4 py-2 rounded-lg text-sm font-medium bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)] transition-all disabled:opacity-50"
+                  >
+                    자르기 적용
+                  </button>
+                </div>
+              </div>
             )}
 
             {editMode === 'resize' && (
-              <Card className="border-slate-200">
-                <CardContent className="p-4">
-                  <div className="flex flex-wrap items-end gap-4">
-                    <div className="w-28">
-                      <Label className="text-slate-700 mb-2 block">너비</Label>
-                      <Input
-                        type="number"
-                        value={resizeWidth}
-                        onChange={(e) => setResizeWidth(Number(e.target.value))}
-                      />
-                    </div>
-                    <div className="w-28">
-                      <Label className="text-slate-700 mb-2 block">높이</Label>
-                      <Input
-                        type="number"
-                        value={resizeHeight}
-                        onChange={(e) => setResizeHeight(Number(e.target.value))}
-                      />
-                    </div>
-                    <label className="flex items-center gap-2 h-9">
-                      <Checkbox
-                        checked={maintainRatio}
-                        onChange={(e) => setMaintainRatio(e.target.checked)}
-                      />
-                      <span className="text-sm text-slate-700">비율 유지</span>
-                    </label>
-                    <Button
-                      onClick={handleResize}
-                      disabled={isProcessing}
-                      className="bg-violet-600 hover:bg-violet-700"
-                    >
-                      리사이즈 적용
-                    </Button>
+              <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+                <div className="flex flex-wrap items-end gap-4">
+                  <div className="w-28">
+                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">너비</label>
+                    <input
+                      type="number"
+                      value={resizeWidth}
+                      onChange={(e) => setResizeWidth(Number(e.target.value))}
+                      className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.65_0.22_290)]"
+                    />
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="w-28">
+                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">높이</label>
+                    <input
+                      type="number"
+                      value={resizeHeight}
+                      onChange={(e) => setResizeHeight(Number(e.target.value))}
+                      className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.65_0.22_290)]"
+                    />
+                  </div>
+                  <label className="flex items-center gap-2 h-10 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={maintainRatio}
+                      onChange={(e) => setMaintainRatio(e.target.checked)}
+                      className="w-4 h-4 rounded bg-[oklch(0.16_0.02_245)] border-[oklch(1_0_0/0.2)] text-[oklch(0.65_0.22_290)] focus:ring-[oklch(0.65_0.22_290)]"
+                    />
+                    <span className="text-sm text-[oklch(0.70_0.02_240)]">비율 유지</span>
+                  </label>
+                  <button
+                    onClick={handleResize}
+                    disabled={isProcessing}
+                    className="px-4 py-2 rounded-lg text-sm font-medium bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)] transition-all disabled:opacity-50"
+                  >
+                    리사이즈 적용
+                  </button>
+                </div>
+              </div>
             )}
 
             {editMode === 'optimize' && (
-              <Card className="border-slate-200">
-                <CardContent className="p-4">
-                  <div className="flex flex-wrap items-end gap-6">
-                    <div className="flex-1 min-w-[180px]">
-                      <Label className="text-slate-700 mb-2 block">품질: {optimizeQuality}%</Label>
-                      <Slider
-                        min={10}
-                        max={100}
-                        value={optimizeQuality}
-                        onChange={(e) => setOptimizeQuality(Number(e.target.value))}
-                      />
-                    </div>
-                    <div className="flex-1 min-w-[180px]">
-                      <Label className="text-slate-700 mb-2 block">최대 크기: {maxSize}MB</Label>
-                      <Slider
-                        min={0.1}
-                        max={10}
-                        step={0.1}
-                        value={maxSize}
-                        onChange={(e) => setMaxSize(Number(e.target.value))}
-                      />
-                    </div>
-                    <Button
-                      onClick={handleOptimize}
-                      disabled={isProcessing}
-                      className="bg-violet-600 hover:bg-violet-700"
-                    >
-                      최적화 적용
-                    </Button>
+              <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+                <div className="flex flex-wrap items-end gap-6">
+                  <div className="flex-1 min-w-[180px]">
+                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">
+                      품질: <span className="text-[oklch(0.65_0.22_290)]">{optimizeQuality}%</span>
+                    </label>
+                    <input
+                      type="range"
+                      min={10}
+                      max={100}
+                      value={optimizeQuality}
+                      onChange={(e) => setOptimizeQuality(Number(e.target.value))}
+                      className="w-full h-2 bg-[oklch(0.20_0.025_240)] rounded-full appearance-none cursor-pointer
+                        [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
+                        [&::-webkit-slider-thumb]:bg-[oklch(0.65_0.22_290)] [&::-webkit-slider-thumb]:rounded-full
+                        [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_10px_oklch(0.65_0.22_290/0.5)]"
+                    />
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="flex-1 min-w-[180px]">
+                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">
+                      최대 크기: <span className="text-[oklch(0.65_0.22_290)]">{maxSize}MB</span>
+                    </label>
+                    <input
+                      type="range"
+                      min={0.1}
+                      max={10}
+                      step={0.1}
+                      value={maxSize}
+                      onChange={(e) => setMaxSize(Number(e.target.value))}
+                      className="w-full h-2 bg-[oklch(0.20_0.025_240)] rounded-full appearance-none cursor-pointer
+                        [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
+                        [&::-webkit-slider-thumb]:bg-[oklch(0.65_0.22_290)] [&::-webkit-slider-thumb]:rounded-full
+                        [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_10px_oklch(0.65_0.22_290/0.5)]"
+                    />
+                  </div>
+                  <button
+                    onClick={handleOptimize}
+                    disabled={isProcessing}
+                    className="px-4 py-2 rounded-lg text-sm font-medium bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)] transition-all disabled:opacity-50"
+                  >
+                    최적화 적용
+                  </button>
+                </div>
+              </div>
             )}
 
             {/* Image Preview */}
-            <Card className="border-slate-200">
-              <CardContent className="p-4">
-                <div className="relative flex items-center justify-center min-h-[400px] bg-slate-100 rounded-lg overflow-hidden">
-                  {isProcessing && (
-                    <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
-                      <Loader2 className="w-8 h-8 text-violet-500 animate-spin" />
-                    </div>
-                  )}
-                  {editMode === 'crop' ? (
-                    <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
-                      <img
-                        ref={imgRef}
-                        src={preview}
-                        alt="Edit preview"
-                        className="max-h-[600px] object-contain"
-                      />
-                    </ReactCrop>
-                  ) : (
+            <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
+              <div className="relative flex items-center justify-center min-h-[400px] bg-[oklch(0.12_0.015_250)] rounded-xl overflow-hidden">
+                {isProcessing && (
+                  <div className="absolute inset-0 bg-[oklch(0.08_0.01_240/0.8)] flex items-center justify-center z-10">
+                    <Loader2 className="w-8 h-8 text-[oklch(0.65_0.22_290)] animate-spin" />
+                  </div>
+                )}
+                {editMode === 'crop' ? (
+                  <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
                     <img
                       ref={imgRef}
                       src={preview}
                       alt="Edit preview"
                       className="max-h-[600px] object-contain"
                     />
-                  )}
-                </div>
+                  </ReactCrop>
+                ) : (
+                  <img
+                    ref={imgRef}
+                    src={preview}
+                    alt="Edit preview"
+                    className="max-h-[600px] object-contain"
+                  />
+                )}
+              </div>
 
-                {/* File info */}
-                <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
-                  <span>
-                    원본: {file?.name} ({((file?.size || 0) / 1024).toFixed(1)} KB)
+              {/* File info */}
+              <div className="mt-4 flex items-center justify-between text-sm text-[oklch(0.50_0.02_240)]">
+                <span>
+                  원본: {file?.name} ({((file?.size || 0) / 1024).toFixed(1)} KB)
+                </span>
+                {editedBlob && (
+                  <span className="text-[oklch(0.72_0.17_160)] font-medium">
+                    편집 후: {(editedBlob.size / 1024).toFixed(1)} KB
                   </span>
-                  {editedBlob && (
-                    <span className="text-emerald-600 font-medium">
-                      편집 후: {(editedBlob.size / 1024).toFixed(1)} KB
-                    </span>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                )}
+              </div>
+            </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <label>
-                <Button variant="outline" className="cursor-pointer" asChild>
-                  <span>
-                    <Upload className="w-4 h-4 mr-2" />
-                    다른 이미지 선택
-                  </span>
-                </Button>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+              <label className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-[oklch(1_0_0/0.1)] text-[oklch(0.70_0.02_240)] font-medium cursor-pointer hover:bg-[oklch(1_0_0/0.05)] hover:border-[oklch(1_0_0/0.2)] transition-all">
+                <Upload className="w-4 h-4" />
+                다른 이미지 선택
                 <input
                   type="file"
                   accept="image/*"
@@ -437,21 +448,82 @@ export default function ImageEditorPage() {
                 />
               </label>
               {editedBlob && (
-                <Button variant="outline" onClick={handleReset}>
-                  <RefreshCw className="w-4 h-4 mr-2" />
+                <button
+                  onClick={handleReset}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-[oklch(1_0_0/0.1)] text-[oklch(0.70_0.02_240)] font-medium hover:bg-[oklch(1_0_0/0.05)] hover:border-[oklch(1_0_0/0.2)] transition-all"
+                >
+                  <RefreshCw className="w-4 h-4" />
                   원본으로 되돌리기
-                </Button>
+                </button>
               )}
-              <Button
+              <button
                 onClick={handleDownload}
-                className="bg-violet-600 hover:bg-violet-700"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] font-semibold hover:shadow-[0_0_30px_oklch(0.65_0.22_290/0.4)] transition-all"
               >
-                <Download className="w-4 h-4 mr-2" />
+                <Download className="w-4 h-4" />
                 다운로드
-              </Button>
+              </button>
             </div>
           </div>
         )}
+
+        {/* How To Use */}
+        <div className="mt-12">
+          <HowToUse
+            title="이미지 편집기"
+            description="이미지 자르기, 회전, 뒤집기, 리사이즈, 최적화를 한 곳에서. 브라우저에서 바로 편집하고 다운로드하세요."
+            accentColor="violet"
+            steps={[
+              {
+                number: 1,
+                title: '이미지 업로드',
+                description: '편집할 이미지를 드래그하거나 클릭하여 업로드하세요.',
+              },
+              {
+                number: 2,
+                title: '편집 도구 선택',
+                description: '자르기, 회전, 뒤집기, 리사이즈, 최적화 중 원하는 기능을 선택하세요.',
+              },
+              {
+                number: 3,
+                title: '적용 및 다운로드',
+                description: '편집을 적용하고 완성된 이미지를 다운로드하세요.',
+              },
+            ]}
+            features={[
+              {
+                title: '자유 자르기',
+                description: '원하는 영역을 마우스로 드래그하여 이미지를 자유롭게 잘라낼 수 있습니다.',
+              },
+              {
+                title: '회전 및 뒤집기',
+                description: '90도 단위 회전과 가로/세로 뒤집기를 지원합니다.',
+              },
+              {
+                title: '리사이즈',
+                description: '원하는 크기로 이미지를 조절할 수 있으며, 비율 유지 옵션을 제공합니다.',
+              },
+              {
+                title: '이미지 최적화',
+                description: '품질과 최대 파일 크기를 설정하여 웹에 최적화된 이미지를 만들 수 있습니다.',
+              },
+            ]}
+            faqs={[
+              {
+                question: '여러 편집을 연속으로 적용할 수 있나요?',
+                answer: '네, 하나의 편집을 적용한 후 다른 편집 도구를 선택하여 연속으로 편집할 수 있습니다.',
+              },
+              {
+                question: '원본 이미지는 어떻게 되나요?',
+                answer: '원본 이미지는 변경되지 않습니다. 편집된 이미지는 새로운 파일로 다운로드됩니다.',
+              },
+              {
+                question: '어떤 이미지 포맷을 지원하나요?',
+                answer: 'JPG, PNG, WebP, GIF, BMP 등 대부분의 이미지 포맷을 지원합니다.',
+              },
+            ]}
+          />
+        </div>
       </div>
     </div>
   );

@@ -85,8 +85,8 @@ export default function FileUploader({
       <div
         className={`relative border-2 border-dashed rounded-xl p-8 transition-all cursor-pointer ${
           isDragging
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
+            ? 'border-[oklch(0.75_0.18_195)] bg-[oklch(0.75_0.18_195/0.05)]'
+            : 'border-[oklch(1_0_0/0.1)] hover:border-[oklch(0.75_0.18_195/0.5)] hover:bg-[oklch(0.75_0.18_195/0.02)]'
         }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -103,20 +103,20 @@ export default function FileUploader({
         />
 
         <div className="flex flex-col items-center justify-center gap-4">
-          <div className={`p-4 rounded-full ${isDragging ? 'bg-blue-100' : 'bg-gray-100'}`}>
-            <Upload className={`w-8 h-8 ${isDragging ? 'text-blue-500' : 'text-gray-400'}`} />
+          <div className={`p-4 rounded-full transition-colors ${isDragging ? 'bg-[oklch(0.75_0.18_195/0.15)]' : 'bg-[oklch(0.16_0.02_245)]'}`}>
+            <Upload className={`w-8 h-8 transition-colors ${isDragging ? 'text-[oklch(0.75_0.18_195)]' : 'text-[oklch(0.45_0.02_240)]'}`} />
           </div>
 
           <div className="text-center">
-            <p className="text-lg font-medium text-gray-700">
+            <p className={`text-lg font-medium transition-colors ${isDragging ? 'text-[oklch(0.80_0.20_195)]' : 'text-[oklch(0.85_0.02_240)]'}`}>
               파일을 드래그하거나 클릭하여 업로드
             </p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-[oklch(0.55_0.02_240)] mt-1">
               최대 {maxFiles}개, 파일당 {maxSize}MB까지
             </p>
           </div>
 
-          <div className="flex items-center gap-4 text-xs text-gray-400">
+          <div className="flex items-center gap-4 text-xs text-[oklch(0.45_0.02_240)]">
             <span className="flex items-center gap-1">
               <FileImage className="w-4 h-4" />
               이미지
@@ -130,7 +130,7 @@ export default function FileUploader({
       </div>
 
       {error && (
-        <div className="mt-3 flex items-center gap-2 text-red-500 text-sm">
+        <div className="mt-3 flex items-center gap-2 text-[oklch(0.65_0.22_25)] text-sm">
           <X className="w-4 h-4" />
           {error}
         </div>

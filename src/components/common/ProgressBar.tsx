@@ -10,15 +10,15 @@ export default function ProgressBar({ progress, status, showLabel = true }: Prog
   const getStatusColor = () => {
     switch (status) {
       case 'pending':
-        return 'bg-gray-200';
+        return 'bg-[oklch(0.30_0.02_240)]';
       case 'processing':
-        return 'bg-blue-500';
+        return 'bg-[oklch(0.75_0.18_195)]';
       case 'completed':
-        return 'bg-green-500';
+        return 'bg-[oklch(0.72_0.17_160)]';
       case 'error':
-        return 'bg-red-500';
+        return 'bg-[oklch(0.65_0.22_25)]';
       default:
-        return 'bg-gray-200';
+        return 'bg-[oklch(0.30_0.02_240)]';
     }
   };
 
@@ -42,12 +42,12 @@ export default function ProgressBar({ progress, status, showLabel = true }: Prog
       <div className="flex items-center justify-between mb-1">
         {showLabel && (
           <>
-            <span className="text-xs text-gray-500">{getStatusText()}</span>
-            <span className="text-xs font-medium text-gray-700">{Math.round(progress)}%</span>
+            <span className="text-xs text-[oklch(0.55_0.02_240)]">{getStatusText()}</span>
+            <span className="text-xs font-medium text-[oklch(0.75_0.02_240)]">{Math.round(progress)}%</span>
           </>
         )}
       </div>
-      <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+      <div className="w-full h-2 bg-[oklch(0.20_0.025_240)] rounded-full overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-300 ${getStatusColor()}`}
           style={{ width: `${progress}%` }}
