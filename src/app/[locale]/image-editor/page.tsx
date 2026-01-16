@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   RotateCw,
   RotateCcw,
@@ -24,6 +25,8 @@ import HowToUse from '@/components/common/HowToUse';
 type EditMode = 'crop' | 'rotate' | 'resize' | 'optimize' | null;
 
 export default function ImageEditorPage() {
+  const t = useTranslations();
+
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [editedBlob, setEditedBlob] = useState<Blob | null>(null);
@@ -106,7 +109,7 @@ export default function ImageEditorPage() {
       setEditedBlob(result);
       setPreview(URL.createObjectURL(result));
     } catch (error) {
-      console.error('회전 오류:', error);
+      console.error('Rotate error:', error);
     }
     setIsProcessing(false);
   };
@@ -119,7 +122,7 @@ export default function ImageEditorPage() {
       setEditedBlob(result);
       setPreview(URL.createObjectURL(result));
     } catch (error) {
-      console.error('뒤집기 오류:', error);
+      console.error('Flip error:', error);
     }
     setIsProcessing(false);
   };
@@ -143,7 +146,7 @@ export default function ImageEditorPage() {
       setEditMode(null);
       setCrop(undefined);
     } catch (error) {
-      console.error('자르기 오류:', error);
+      console.error('Crop error:', error);
     }
     setIsProcessing(false);
   };
@@ -157,7 +160,7 @@ export default function ImageEditorPage() {
       setPreview(URL.createObjectURL(result));
       setEditMode(null);
     } catch (error) {
-      console.error('리사이즈 오류:', error);
+      console.error('Resize error:', error);
     }
     setIsProcessing(false);
   };
@@ -176,7 +179,7 @@ export default function ImageEditorPage() {
       setPreview(URL.createObjectURL(result));
       setEditMode(null);
     } catch (error) {
-      console.error('최적화 오류:', error);
+      console.error('Optimize error:', error);
     }
     setIsProcessing(false);
   };
@@ -200,13 +203,13 @@ export default function ImageEditorPage() {
   };
 
   const toolbarButtons = [
-    { mode: 'crop' as const, icon: Crop, label: '자르기', action: () => setEditMode(editMode === 'crop' ? null : 'crop') },
-    { icon: RotateCcw, label: '왼쪽', action: () => handleRotate(-90) },
-    { icon: RotateCw, label: '오른쪽', action: () => handleRotate(90) },
-    { icon: FlipHorizontal, label: '좌우', action: () => handleFlip('horizontal') },
-    { icon: FlipVertical, label: '상하', action: () => handleFlip('vertical') },
-    { mode: 'resize' as const, icon: Minimize2, label: '리사이즈', action: () => setEditMode(editMode === 'resize' ? null : 'resize') },
-    { mode: 'optimize' as const, icon: RefreshCw, label: '최적화', action: () => setEditMode(editMode === 'optimize' ? null : 'optimize') },
+    { mode: 'crop' as const, icon: Crop, label: t('imageEditor.toolbar.crop'), action: () => setEditMode(editMode === 'crop' ? null : 'crop') },
+    { icon: RotateCcw, label: t('imageEditor.rotate.left'), action: () => handleRotate(-90) },
+    { icon: RotateCw, label: t('imageEditor.rotate.right'), action: () => handleRotate(90) },
+    { icon: FlipHorizontal, label: t('imageEditor.flip.horizontal'), action: () => handleFlip('horizontal') },
+    { icon: FlipVertical, label: t('imageEditor.flip.vertical'), action: () => handleFlip('vertical') },
+    { mode: 'resize' as const, icon: Minimize2, label: t('imageEditor.toolbar.resize'), action: () => setEditMode(editMode === 'resize' ? null : 'resize') },
+    { mode: 'optimize' as const, icon: RefreshCw, label: t('imageEditor.toolbar.optimize'), action: () => setEditMode(editMode === 'optimize' ? null : 'optimize') },
   ];
 
   return (
@@ -219,9 +222,9 @@ export default function ImageEditorPage() {
               <ImageEditorIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">이미지 편집</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('imageEditor.title')}</h1>
               <p className="mt-1 text-[oklch(0.55_0.02_240)]">
-                자르기, 회전, 뒤집기, 리사이즈, 최적화
+                {t('imageEditor.description')}
               </p>
             </div>
           </div>
@@ -246,9 +249,9 @@ export default function ImageEditorPage() {
               >
                 <Upload className={`w-12 h-12 mb-4 ${isDragging ? 'text-[oklch(0.65_0.22_290)]' : 'text-[oklch(0.40_0.02_240)]'}`} />
                 <span className={`text-lg font-medium ${isDragging ? 'text-[oklch(0.70_0.26_290)]' : 'text-[oklch(0.70_0.02_240)]'}`}>
-                  {isDragging ? '여기에 놓으세요' : '이미지를 선택하거나 드래그하세요'}
+                  {t('common.dragOrClick')}
                 </span>
-                <span className="text-sm text-[oklch(0.50_0.02_240)] mt-2">PNG, JPG, WebP 지원</span>
+                <span className="text-sm text-[oklch(0.50_0.02_240)] mt-2">PNG, JPG, WebP</span>
                 <input
                   type="file"
                   accept="image/*"
@@ -295,13 +298,13 @@ export default function ImageEditorPage() {
             {editMode === 'crop' && (
               <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-[oklch(0.60_0.02_240)]">드래그하여 자를 영역을 선택하세요</p>
+                  <p className="text-sm text-[oklch(0.60_0.02_240)]">{t('imageEditor.crop.freeform')}</p>
                   <button
                     onClick={handleCropApply}
                     disabled={!crop || isProcessing}
                     className="px-4 py-2 rounded-lg text-sm font-medium bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)] transition-all disabled:opacity-50"
                   >
-                    자르기 적용
+                    {t('imageEditor.crop.apply')}
                   </button>
                 </div>
               </div>
@@ -311,7 +314,7 @@ export default function ImageEditorPage() {
               <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
                 <div className="flex flex-wrap items-end gap-4">
                   <div className="w-28">
-                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">너비</label>
+                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">{t('imageEditor.resize.width')}</label>
                     <input
                       type="number"
                       value={resizeWidth}
@@ -320,7 +323,7 @@ export default function ImageEditorPage() {
                     />
                   </div>
                   <div className="w-28">
-                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">높이</label>
+                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">{t('imageEditor.resize.height')}</label>
                     <input
                       type="number"
                       value={resizeHeight}
@@ -335,14 +338,14 @@ export default function ImageEditorPage() {
                       onChange={(e) => setMaintainRatio(e.target.checked)}
                       className="w-4 h-4 rounded bg-[oklch(0.16_0.02_245)] border-[oklch(1_0_0/0.2)] text-[oklch(0.65_0.22_290)] focus:ring-[oklch(0.65_0.22_290)]"
                     />
-                    <span className="text-sm text-[oklch(0.70_0.02_240)]">비율 유지</span>
+                    <span className="text-sm text-[oklch(0.70_0.02_240)]">{t('imageEditor.resize.keepRatio')}</span>
                   </label>
                   <button
                     onClick={handleResize}
                     disabled={isProcessing}
                     className="px-4 py-2 rounded-lg text-sm font-medium bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)] transition-all disabled:opacity-50"
                   >
-                    리사이즈 적용
+                    {t('imageEditor.resize.apply')}
                   </button>
                 </div>
               </div>
@@ -353,7 +356,7 @@ export default function ImageEditorPage() {
                 <div className="flex flex-wrap items-end gap-6">
                   <div className="flex-1 min-w-[180px]">
                     <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">
-                      품질: <span className="text-[oklch(0.65_0.22_290)]">{optimizeQuality}%</span>
+                      {t('imageEditor.optimize.quality')}: <span className="text-[oklch(0.65_0.22_290)]">{optimizeQuality}%</span>
                     </label>
                     <input
                       type="range"
@@ -367,29 +370,12 @@ export default function ImageEditorPage() {
                         [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_10px_oklch(0.65_0.22_290/0.5)]"
                     />
                   </div>
-                  <div className="flex-1 min-w-[180px]">
-                    <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">
-                      최대 크기: <span className="text-[oklch(0.65_0.22_290)]">{maxSize}MB</span>
-                    </label>
-                    <input
-                      type="range"
-                      min={0.1}
-                      max={10}
-                      step={0.1}
-                      value={maxSize}
-                      onChange={(e) => setMaxSize(Number(e.target.value))}
-                      className="w-full h-2 bg-[oklch(0.20_0.025_240)] rounded-full appearance-none cursor-pointer
-                        [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
-                        [&::-webkit-slider-thumb]:bg-[oklch(0.65_0.22_290)] [&::-webkit-slider-thumb]:rounded-full
-                        [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_10px_oklch(0.65_0.22_290/0.5)]"
-                    />
-                  </div>
                   <button
                     onClick={handleOptimize}
                     disabled={isProcessing}
                     className="px-4 py-2 rounded-lg text-sm font-medium bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)] transition-all disabled:opacity-50"
                   >
-                    최적화 적용
+                    {t('imageEditor.optimize.apply')}
                   </button>
                 </div>
               </div>
@@ -425,11 +411,11 @@ export default function ImageEditorPage() {
               {/* File info */}
               <div className="mt-4 flex items-center justify-between text-sm text-[oklch(0.50_0.02_240)]">
                 <span>
-                  원본: {file?.name} ({((file?.size || 0) / 1024).toFixed(1)} KB)
+                  {file?.name} ({((file?.size || 0) / 1024).toFixed(1)} KB)
                 </span>
                 {editedBlob && (
                   <span className="text-[oklch(0.72_0.17_160)] font-medium">
-                    편집 후: {(editedBlob.size / 1024).toFixed(1)} KB
+                    → {(editedBlob.size / 1024).toFixed(1)} KB
                   </span>
                 )}
               </div>
@@ -439,7 +425,7 @@ export default function ImageEditorPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               <label className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-[oklch(1_0_0/0.1)] text-[oklch(0.70_0.02_240)] font-medium cursor-pointer hover:bg-[oklch(1_0_0/0.05)] hover:border-[oklch(1_0_0/0.2)] transition-all">
                 <Upload className="w-4 h-4" />
-                다른 이미지 선택
+                {t('common.upload')}
                 <input
                   type="file"
                   accept="image/*"
@@ -453,7 +439,7 @@ export default function ImageEditorPage() {
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-[oklch(1_0_0/0.1)] text-[oklch(0.70_0.02_240)] font-medium hover:bg-[oklch(1_0_0/0.05)] hover:border-[oklch(1_0_0/0.2)] transition-all"
                 >
                   <RefreshCw className="w-4 h-4" />
-                  원본으로 되돌리기
+                  {t('common.cancel')}
                 </button>
               )}
               <button
@@ -461,7 +447,7 @@ export default function ImageEditorPage() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] font-semibold hover:shadow-[0_0_30px_oklch(0.65_0.22_290/0.4)] transition-all"
               >
                 <Download className="w-4 h-4" />
-                다운로드
+                {t('common.download')}
               </button>
             </div>
           </div>
@@ -470,56 +456,24 @@ export default function ImageEditorPage() {
         {/* How To Use */}
         <div className="mt-12">
           <HowToUse
-            title="이미지 편집기"
-            description="이미지 자르기, 회전, 뒤집기, 리사이즈, 최적화를 한 곳에서. 브라우저에서 바로 편집하고 다운로드하세요."
+            title={t('imageEditor.howToUse.title')}
+            description={t('imageEditor.howToUse.description')}
             accentColor="violet"
             steps={[
               {
                 number: 1,
-                title: '이미지 업로드',
-                description: '편집할 이미지를 드래그하거나 클릭하여 업로드하세요.',
+                title: t('imageEditor.howToUse.step1Title'),
+                description: t('imageEditor.howToUse.step1Desc'),
               },
               {
                 number: 2,
-                title: '편집 도구 선택',
-                description: '자르기, 회전, 뒤집기, 리사이즈, 최적화 중 원하는 기능을 선택하세요.',
+                title: t('imageEditor.howToUse.step2Title'),
+                description: t('imageEditor.howToUse.step2Desc'),
               },
               {
                 number: 3,
-                title: '적용 및 다운로드',
-                description: '편집을 적용하고 완성된 이미지를 다운로드하세요.',
-              },
-            ]}
-            features={[
-              {
-                title: '자유 자르기',
-                description: '원하는 영역을 마우스로 드래그하여 이미지를 자유롭게 잘라낼 수 있습니다.',
-              },
-              {
-                title: '회전 및 뒤집기',
-                description: '90도 단위 회전과 가로/세로 뒤집기를 지원합니다.',
-              },
-              {
-                title: '리사이즈',
-                description: '원하는 크기로 이미지를 조절할 수 있으며, 비율 유지 옵션을 제공합니다.',
-              },
-              {
-                title: '이미지 최적화',
-                description: '품질과 최대 파일 크기를 설정하여 웹에 최적화된 이미지를 만들 수 있습니다.',
-              },
-            ]}
-            faqs={[
-              {
-                question: '여러 편집을 연속으로 적용할 수 있나요?',
-                answer: '네, 하나의 편집을 적용한 후 다른 편집 도구를 선택하여 연속으로 편집할 수 있습니다.',
-              },
-              {
-                question: '원본 이미지는 어떻게 되나요?',
-                answer: '원본 이미지는 변경되지 않습니다. 편집된 이미지는 새로운 파일로 다운로드됩니다.',
-              },
-              {
-                question: '어떤 이미지 포맷을 지원하나요?',
-                answer: 'JPG, PNG, WebP, GIF, BMP 등 대부분의 이미지 포맷을 지원합니다.',
+                title: t('imageEditor.howToUse.step3Title'),
+                description: t('imageEditor.howToUse.step3Desc'),
               },
             ]}
           />

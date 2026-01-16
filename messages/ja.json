@@ -1,0 +1,246 @@
+{
+  "common": {
+    "siteName": "Media Utility",
+    "tagline": "ブラウザツール",
+    "browserProcessing": "100% ブラウザ処理",
+    "noServerUpload": "サーバーアップロードなし",
+    "startNow": "今すぐ始める",
+    "exploreFunctions": "機能を見る",
+    "download": "ダウンロード",
+    "downloadAll": "すべてダウンロード",
+    "delete": "削除",
+    "deleteAll": "すべて削除",
+    "convert": "変換",
+    "converting": "変換中...",
+    "upload": "アップロード",
+    "dragOrClick": "ファイルをドラッグまたはクリックしてアップロード",
+    "maxFiles": "最大 {count} ファイル、各 {size}MB まで",
+    "image": "画像",
+    "video": "動画",
+    "pending": "待機中",
+    "processing": "処理中...",
+    "completed": "完了",
+    "error": "エラー",
+    "close": "閉じる",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "settings": "設定",
+    "language": "言語",
+    "selectLanguage": "言語を選択",
+    "maxFilesError": "最大 {count} ファイルまで選択できます。",
+    "fileSizeError": "ファイルサイズは {size}MB 以下にしてください。",
+    "ffmpegLoading": "FFmpeg を読み込み中...",
+    "storage": "ストレージ",
+    "files": "ファイル"
+  },
+  "home": {
+    "title": "Media Utility",
+    "subtitle": "ブラウザベースのメディア変換ツール",
+    "description": "画像、動画、GIF をブラウザで変換。ファイルはサーバーに送信されません。",
+    "tools": "ツール",
+    "selectTool": "ツールを選択",
+    "privacyTitle": "完全なプライバシー",
+    "privacyDesc": "すべてのファイルはブラウザ内でのみ処理されます。サーバーにアップロードされません。",
+    "speedTitle": "高速処理",
+    "speedDesc": "WebAssembly 技術によりネイティブに近い処理速度を実現。",
+    "freeTitle": "無料・無制限",
+    "freeDesc": "すべての機能を無料で、ファイル数制限なしで利用できます。",
+    "ctaTitle": "今すぐ使う",
+    "ctaDesc": "登録やインストール不要で、ブラウザですぐに使えます。",
+    "noInstall": "インストール不要"
+  },
+  "imageConverter": {
+    "title": "画像変換",
+    "description": "PNG、JPG、WebP、HEIC など様々な画像形式を変換",
+    "outputFormat": "出力形式",
+    "quality": "品質",
+    "fileList": "ファイル一覧",
+    "files": "{count} ファイル",
+    "convertCount": "{count} ファイルを変換",
+    "downloadCount": "{count} ファイルをダウンロード",
+    "features": {
+      "heic": "HEIC 変換対応",
+      "heicDesc": "iPhone の HEIC ファイルを JPG や PNG に簡単に変換できます。",
+      "quality": "品質調整",
+      "qualityDesc": "1-100% の範囲で画像品質を調整し、ファイルサイズと画質のバランスを取れます。",
+      "batch": "一括変換",
+      "batchDesc": "複数の画像を一度にアップロードし、同じ設定で一括変換できます。",
+      "webp": "WebP 対応",
+      "webpDesc": "最新の WebP 形式に変換して、ウェブサイトのパフォーマンスを最適化。"
+    },
+    "howToUse": {
+      "title": "画像フォーマット変換",
+      "description": "PNG、JPG、WebP、HEIC など様々な画像形式を簡単に変換。すべての処理はブラウザで行われ、プライバシーが保護されます。",
+      "step1Title": "画像をアップロード",
+      "step1Desc": "変換する画像ファイルをドラッグまたはクリックして選択。複数ファイルを一度にアップロードできます。",
+      "step2Title": "形式と品質を設定",
+      "step2Desc": "出力形式（JPG、PNG、WebP）と画像品質を選択します。",
+      "step3Title": "変換してダウンロード",
+      "step3Desc": "変換をクリックし、完了後に個別または一括でダウンロード。"
+    },
+    "faq": {
+      "q1": "HEIC ファイルとは？",
+      "a1": "HEIC は Apple が iOS 11 から採用した高効率画像形式です。JPG より小さいファイルサイズで同等の画質を維持します。",
+      "q2": "品質設定はどう選べばいい？",
+      "a2": "ウェブ用画像は 70-80%、印刷用や原本保存が必要な場合は 90-100% をお勧めします。",
+      "q3": "ファイルサイズ制限はある？",
+      "a3": "ファイルあたり最大 100MB、一度に最大 10 ファイルまでアップロードできます。"
+    }
+  },
+  "imageEditor": {
+    "title": "画像編集",
+    "description": "画像の切り抜き、回転、反転、リサイズ、最適化",
+    "toolbar": {
+      "crop": "切り抜き",
+      "rotate": "回転",
+      "flip": "反転",
+      "resize": "リサイズ",
+      "optimize": "最適化"
+    },
+    "crop": {
+      "freeform": "フリーフォーム",
+      "square": "正方形 (1:1)",
+      "landscape": "横長 (16:9)",
+      "portrait": "縦長 (9:16)",
+      "apply": "切り抜き適用"
+    },
+    "rotate": {
+      "left": "左に 90°",
+      "right": "右に 90°"
+    },
+    "flip": {
+      "horizontal": "左右反転",
+      "vertical": "上下反転"
+    },
+    "resize": {
+      "width": "幅",
+      "height": "高さ",
+      "keepRatio": "縦横比を維持",
+      "apply": "適用"
+    },
+    "optimize": {
+      "quality": "品質",
+      "apply": "最適化"
+    },
+    "howToUse": {
+      "title": "画像エディタ",
+      "description": "切り抜き、回転、反転、リサイズ、最適化をサポートする無料オンライン画像エディタ。すべての処理はブラウザで行われます。",
+      "step1Title": "画像をアップロード",
+      "step1Desc": "編集する画像ファイルをドラッグまたはクリックして選択。",
+      "step2Title": "画像を編集",
+      "step2Desc": "ツールバーで切り抜き、回転、反転、リサイズ、最適化を行います。",
+      "step3Title": "ダウンロード",
+      "step3Desc": "編集完了後、結果画像をダウンロード。"
+    }
+  },
+  "gifMaker": {
+    "title": "GIF 作成",
+    "description": "複数の画像を組み合わせてアニメーション GIF を作成",
+    "images": "画像",
+    "noImages": "画像が追加されていません",
+    "addImages": "画像を追加",
+    "options": "オプション",
+    "frameDelay": "フレーム間隔",
+    "seconds": "秒",
+    "outputSize": "出力サイズ",
+    "original": "オリジナル",
+    "preview": "プレビュー",
+    "createGif": "GIF を作成",
+    "creating": "GIF 作成中...",
+    "result": "結果",
+    "howToUse": {
+      "title": "GIF メーカー",
+      "description": "複数の画像からアニメーション GIF を作成。速度とサイズを調整して簡単に GIF アニメーションを作れます。",
+      "step1Title": "画像を追加",
+      "step1Desc": "アニメーションを作成する画像を順番に追加。ドラッグで順序変更可能。",
+      "step2Title": "設定を調整",
+      "step2Desc": "フレーム間隔（速度）と出力サイズを設定。",
+      "step3Title": "作成してダウンロード",
+      "step3Desc": "作成をクリックし、アニメーション GIF をダウンロード。"
+    }
+  },
+  "videoConverter": {
+    "title": "動画変換",
+    "description": "動画を GIF に、GIF を MP4 に、フレーム抽出",
+    "mode": {
+      "videoToGif": "動画 → GIF",
+      "gifToVideo": "GIF → 動画",
+      "extractFrames": "フレーム抽出"
+    },
+    "options": {
+      "fps": "FPS",
+      "scale": "スケール",
+      "original": "オリジナル",
+      "format": "形式",
+      "interval": "間隔"
+    },
+    "preview": "プレビュー",
+    "result": "結果",
+    "extractedFrames": "抽出されたフレーム",
+    "howToUse": {
+      "title": "動画コンバーター",
+      "description": "動画を GIF に、GIF を MP4 動画に、動画からフレームを抽出。FFmpeg WebAssembly を使用してブラウザですべての処理を行います。",
+      "step1Title": "モードを選択",
+      "step1Desc": "動画→GIF、GIF→動画、フレーム抽出から選択。",
+      "step2Title": "ファイルをアップロード",
+      "step2Desc": "変換する動画または GIF ファイルをアップロード。",
+      "step3Title": "オプション設定と変換",
+      "step3Desc": "FPS、スケール、形式を調整し、変換してダウンロード。"
+    }
+  },
+  "urlGenerator": {
+    "title": "URL 生成",
+    "description": "画像/動画を共有可能な URL に変換",
+    "urlType": "URL タイプ",
+    "types": {
+      "base64": "Base64 URL",
+      "base64Desc": "HTML/CSS に直接埋め込み可能。サーバー不要。",
+      "blob": "Blob URL",
+      "blobDesc": "このブラウザセッションでのみ有効な一時 URL。",
+      "r2": "クラウドストレージ",
+      "r2Desc": "クラウドにアップロードして永続的な共有リンクを生成。"
+    },
+    "cloudOptions": {
+      "expiry": "有効期限",
+      "hour": "{count} 時間",
+      "hours": "{count} 時間",
+      "day": "{count} 日",
+      "days": "{count} 日",
+      "week": "{count} 週間",
+      "permanent": "永久",
+      "password": "パスワード保護",
+      "passwordPlaceholder": "オプション",
+      "upload": "アップロード"
+    },
+    "result": {
+      "title": "生成された URL",
+      "copy": "コピー",
+      "copied": "コピーしました！",
+      "newTab": "新しいタブで開く",
+      "warning": "Blob URL はこのブラウザセッションでのみ有効です。"
+    },
+    "howToUse": {
+      "title": "URL ジェネレーター",
+      "description": "画像と動画を共有可能な URL に変換。Base64 は埋め込み用、Blob は一時使用、クラウドは永続共有用。",
+      "step1Title": "ファイルをアップロード",
+      "step1Desc": "URL を生成する画像または動画ファイルをアップロード。",
+      "step2Title": "URL タイプを選択",
+      "step2Desc": "必要に応じて Base64、Blob、クラウドストレージから選択。",
+      "step3Title": "生成して使用",
+      "step3Desc": "URL を生成し、HTML、CSS、または共有にコピーして使用。"
+    }
+  },
+  "howToUse": {
+    "howToUse": "使い方",
+    "supportedFormats": "対応形式",
+    "keyFeatures": "主な機能",
+    "faq": "よくある質問",
+    "privacyNotice": "すべてのファイルはブラウザで処理され、サーバーにアップロードされません。プライバシーは完全に保護されます。"
+  },
+  "footer": {
+    "copyright": "© {year} Media Utility. All rights reserved.",
+    "privacyNote": "ブラウザで安全にファイルを変換。サーバーにアップロードされません。",
+    "clientSide": "クライアントサイド処理",
+    "freeUse": "無料で使用"
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "common": {
+    "siteName": "Media Utility",
+    "tagline": "Alat Browser",
+    "browserProcessing": "100% Pemrosesan di Browser",
+    "noServerUpload": "Tanpa Unggah ke Server",
+    "startNow": "Mulai Sekarang",
+    "exploreFunctions": "Jelajahi Fungsi",
+    "download": "Unduh",
+    "downloadAll": "Unduh Semua",
+    "delete": "Hapus",
+    "deleteAll": "Hapus Semua",
+    "convert": "Konversi",
+    "converting": "Mengonversi...",
+    "upload": "Unggah",
+    "dragOrClick": "Seret file atau klik untuk mengunggah",
+    "maxFiles": "Hingga {count} file, maks {size}MB per file",
+    "image": "Gambar",
+    "video": "Video",
+    "pending": "Menunggu",
+    "processing": "Memproses...",
+    "completed": "Selesai",
+    "error": "Error",
+    "close": "Tutup",
+    "cancel": "Batal",
+    "confirm": "Konfirmasi",
+    "settings": "Pengaturan",
+    "language": "Bahasa",
+    "selectLanguage": "Pilih Bahasa",
+    "maxFilesError": "Maksimal {count} file dapat dipilih.",
+    "fileSizeError": "Ukuran file harus kurang dari {size}MB.",
+    "ffmpegLoading": "Memuat FFmpeg...",
+    "storage": "Penyimpanan",
+    "files": "file"
+  },
+  "home": {
+    "title": "Media Utility",
+    "subtitle": "Alat konversi media berbasis browser",
+    "description": "Konversi gambar, video, dan GIF di browser Anda. File tidak dikirim ke server.",
+    "tools": "Alat",
+    "selectTool": "Pilih alat",
+    "privacyTitle": "Privasi Lengkap",
+    "privacyDesc": "Semua file diproses hanya di browser Anda. Tidak ada yang diunggah ke server.",
+    "speedTitle": "Pemrosesan Cepat",
+    "speedDesc": "Teknologi WebAssembly memberikan kecepatan pemrosesan mendekati native.",
+    "freeTitle": "Gratis & Tanpa Batas",
+    "freeDesc": "Gunakan semua fitur secara gratis tanpa batas file.",
+    "ctaTitle": "Mulai",
+    "ctaDesc": "Gunakan langsung di browser Anda tanpa pendaftaran atau instalasi.",
+    "noInstall": "Tanpa Instalasi"
+  },
+  "imageConverter": {
+    "title": "Konverter Gambar",
+    "description": "Konversi berbagai format gambar termasuk PNG, JPG, WebP, HEIC",
+    "outputFormat": "Format Output",
+    "quality": "Kualitas",
+    "fileList": "Daftar File",
+    "files": "{count} file",
+    "convertCount": "Konversi {count} file",
+    "downloadCount": "Unduh {count} file",
+    "features": {
+      "heic": "Dukungan Konversi HEIC",
+      "heicDesc": "Konversi file HEIC dari iPhone ke JPG atau PNG dengan mudah.",
+      "quality": "Kontrol Kualitas",
+      "qualityDesc": "Sesuaikan kualitas gambar dari 1-100% untuk menyeimbangkan ukuran dan kualitas.",
+      "batch": "Konversi Massal",
+      "batchDesc": "Unggah beberapa gambar dan konversi semuanya dengan pengaturan yang sama.",
+      "webp": "Dukungan WebP",
+      "webpDesc": "Konversi ke format WebP modern untuk mengoptimalkan performa web."
+    },
+    "howToUse": {
+      "title": "Konverter Format Gambar",
+      "description": "Konversi berbagai format gambar termasuk PNG, JPG, WebP, HEIC dengan mudah. Semua pemrosesan dilakukan di browser Anda untuk privasi.",
+      "step1Title": "Unggah Gambar",
+      "step1Desc": "Seret atau klik untuk memilih file gambar. Anda dapat mengunggah beberapa file sekaligus.",
+      "step2Title": "Atur Format & Kualitas",
+      "step2Desc": "Pilih format output (JPG, PNG, WebP) dan kualitas gambar.",
+      "step3Title": "Konversi & Unduh",
+      "step3Desc": "Klik konversi dan unduh satu per satu atau sekaligus."
+    },
+    "faq": {
+      "q1": "Apa itu file HEIC?",
+      "a1": "HEIC adalah format gambar efisiensi tinggi yang digunakan Apple sejak iOS 11. Ukuran filenya lebih kecil dari JPG dengan kualitas yang sama.",
+      "q2": "Bagaimana memilih pengaturan kualitas?",
+      "a2": "Untuk gambar web, 70-80% direkomendasikan. Untuk cetak atau menyimpan asli, gunakan 90-100%.",
+      "q3": "Apakah ada batas ukuran file?",
+      "a3": "Maksimum 100MB per file, hingga 10 file sekaligus."
+    }
+  },
+  "imageEditor": {
+    "title": "Editor Gambar",
+    "description": "Pangkas, putar, balik, ubah ukuran, dan optimalkan gambar",
+    "toolbar": {
+      "crop": "Pangkas",
+      "rotate": "Putar",
+      "flip": "Balik",
+      "resize": "Ubah Ukuran",
+      "optimize": "Optimalkan"
+    },
+    "crop": {
+      "freeform": "Bebas",
+      "square": "Persegi (1:1)",
+      "landscape": "Lanskap (16:9)",
+      "portrait": "Potret (9:16)",
+      "apply": "Terapkan Pangkas"
+    },
+    "rotate": {
+      "left": "Kiri 90°",
+      "right": "Kanan 90°"
+    },
+    "flip": {
+      "horizontal": "Horizontal",
+      "vertical": "Vertikal"
+    },
+    "resize": {
+      "width": "Lebar",
+      "height": "Tinggi",
+      "keepRatio": "Pertahankan Rasio",
+      "apply": "Terapkan"
+    },
+    "optimize": {
+      "quality": "Kualitas",
+      "apply": "Optimalkan"
+    },
+    "howToUse": {
+      "title": "Editor Gambar",
+      "description": "Editor gambar online gratis yang mendukung pangkas, putar, balik, ubah ukuran, dan optimasi. Semua pemrosesan dilakukan di browser Anda.",
+      "step1Title": "Unggah Gambar",
+      "step1Desc": "Seret atau klik untuk memilih file gambar untuk diedit.",
+      "step2Title": "Edit Gambar",
+      "step2Desc": "Gunakan toolbar untuk memangkas, memutar, membalik, mengubah ukuran, atau mengoptimalkan.",
+      "step3Title": "Unduh",
+      "step3Desc": "Setelah selesai mengedit, unduh gambar hasilnya."
+    }
+  },
+  "gifMaker": {
+    "title": "Pembuat GIF",
+    "description": "Gabungkan beberapa gambar untuk membuat GIF animasi",
+    "images": "Gambar",
+    "noImages": "Belum ada gambar ditambahkan",
+    "addImages": "Tambah Gambar",
+    "options": "Opsi",
+    "frameDelay": "Jeda Frame",
+    "seconds": "detik",
+    "outputSize": "Ukuran Output",
+    "original": "Asli",
+    "preview": "Pratinjau",
+    "createGif": "Buat GIF",
+    "creating": "Membuat GIF...",
+    "result": "Hasil",
+    "howToUse": {
+      "title": "Pembuat GIF",
+      "description": "Buat GIF animasi dari beberapa gambar. Sesuaikan kecepatan dan ukuran dengan mudah.",
+      "step1Title": "Tambah Gambar",
+      "step1Desc": "Tambahkan gambar secara berurutan untuk membuat animasi. Seret untuk menyusun ulang.",
+      "step2Title": "Sesuaikan Pengaturan",
+      "step2Desc": "Atur jeda frame (kecepatan) dan ukuran output.",
+      "step3Title": "Buat & Unduh",
+      "step3Desc": "Klik buat dan unduh GIF animasi Anda."
+    }
+  },
+  "videoConverter": {
+    "title": "Konverter Video",
+    "description": "Konversi video ke GIF, GIF ke MP4, ekstrak frame",
+    "mode": {
+      "videoToGif": "Video ke GIF",
+      "gifToVideo": "GIF ke Video",
+      "extractFrames": "Ekstrak Frame"
+    },
+    "options": {
+      "fps": "FPS",
+      "scale": "Skala",
+      "original": "Asli",
+      "format": "Format",
+      "interval": "Interval"
+    },
+    "preview": "Pratinjau",
+    "result": "Hasil",
+    "extractedFrames": "Frame yang Diekstrak",
+    "howToUse": {
+      "title": "Konverter Video",
+      "description": "Konversi video ke GIF, GIF ke video MP4, atau ekstrak frame. Semua pemrosesan dilakukan di browser Anda menggunakan FFmpeg WebAssembly.",
+      "step1Title": "Pilih Mode",
+      "step1Desc": "Pilih Video ke GIF, GIF ke Video, atau Ekstrak Frame.",
+      "step2Title": "Unggah File",
+      "step2Desc": "Unggah file video atau GIF untuk dikonversi.",
+      "step3Title": "Atur & Konversi",
+      "step3Desc": "Sesuaikan FPS, skala, format, lalu konversi dan unduh."
+    }
+  },
+  "urlGenerator": {
+    "title": "Generator URL",
+    "description": "Konversi gambar/video ke URL yang dapat dibagikan",
+    "urlType": "Jenis URL",
+    "types": {
+      "base64": "URL Base64",
+      "base64Desc": "Sisipkan langsung di HTML/CSS. Bekerja tanpa server.",
+      "blob": "URL Blob",
+      "blobDesc": "URL sementara yang hanya valid di sesi browser ini.",
+      "r2": "Penyimpanan Cloud",
+      "r2Desc": "Unggah ke cloud untuk tautan berbagi permanen."
+    },
+    "cloudOptions": {
+      "expiry": "Kedaluwarsa",
+      "hour": "{count} jam",
+      "hours": "{count} jam",
+      "day": "{count} hari",
+      "days": "{count} hari",
+      "week": "{count} minggu",
+      "permanent": "Permanen",
+      "password": "Perlindungan Kata Sandi",
+      "passwordPlaceholder": "Opsional",
+      "upload": "Unggah"
+    },
+    "result": {
+      "title": "URL yang Dihasilkan",
+      "copy": "Salin",
+      "copied": "Disalin!",
+      "newTab": "Buka di Tab Baru",
+      "warning": "URL Blob hanya valid di sesi browser ini."
+    },
+    "howToUse": {
+      "title": "Generator URL",
+      "description": "Konversi gambar dan video ke URL yang dapat dibagikan. Base64 untuk penyisipan, Blob untuk penggunaan sementara, Cloud untuk berbagi permanen.",
+      "step1Title": "Unggah File",
+      "step1Desc": "Unggah file gambar atau video untuk menghasilkan URL.",
+      "step2Title": "Pilih Jenis URL",
+      "step2Desc": "Pilih Base64, Blob, atau Penyimpanan Cloud sesuai kebutuhan.",
+      "step3Title": "Hasilkan & Gunakan",
+      "step3Desc": "Hasilkan URL dan salin untuk digunakan di HTML, CSS, atau berbagi."
+    }
+  },
+  "howToUse": {
+    "howToUse": "Cara Penggunaan",
+    "supportedFormats": "Format yang Didukung",
+    "keyFeatures": "Fitur Utama",
+    "faq": "FAQ",
+    "privacyNotice": "Semua file diproses di browser Anda dan tidak diunggah ke server. Privasi Anda sepenuhnya dilindungi."
+  },
+  "footer": {
+    "copyright": "© {year} Media Utility. Hak cipta dilindungi.",
+    "privacyNote": "Konversi file dengan aman di browser Anda. Tidak ada yang diunggah ke server.",
+    "clientSide": "Pemrosesan Sisi Klien",
+    "freeUse": "Gratis untuk Digunakan"
+  }
+}

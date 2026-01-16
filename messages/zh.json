@@ -1,0 +1,246 @@
+{
+  "common": {
+    "siteName": "Media Utility",
+    "tagline": "浏览器工具",
+    "browserProcessing": "100% 浏览器处理",
+    "noServerUpload": "无服务器上传",
+    "startNow": "立即开始",
+    "exploreFunctions": "浏览功能",
+    "download": "下载",
+    "downloadAll": "全部下载",
+    "delete": "删除",
+    "deleteAll": "全部删除",
+    "convert": "转换",
+    "converting": "转换中...",
+    "upload": "上传",
+    "dragOrClick": "拖放文件或点击上传",
+    "maxFiles": "最多 {count} 个文件，每个最大 {size}MB",
+    "image": "图片",
+    "video": "视频",
+    "pending": "等待中",
+    "processing": "处理中...",
+    "completed": "完成",
+    "error": "错误",
+    "close": "关闭",
+    "cancel": "取消",
+    "confirm": "确认",
+    "settings": "设置",
+    "language": "语言",
+    "selectLanguage": "选择语言",
+    "maxFilesError": "最多只能选择 {count} 个文件。",
+    "fileSizeError": "文件大小必须小于 {size}MB。",
+    "ffmpegLoading": "正在加载 FFmpeg...",
+    "storage": "存储",
+    "files": "个文件"
+  },
+  "home": {
+    "title": "Media Utility",
+    "subtitle": "基于浏览器的媒体转换工具",
+    "description": "在浏览器中转换图片、视频和 GIF。文件不会发送到服务器。",
+    "tools": "工具",
+    "selectTool": "选择工具",
+    "privacyTitle": "完全隐私",
+    "privacyDesc": "所有文件仅在浏览器中处理，不会上传到服务器。",
+    "speedTitle": "快速处理",
+    "speedDesc": "WebAssembly 技术提供接近原生的处理速度。",
+    "freeTitle": "免费无限制",
+    "freeDesc": "免费使用所有功能，无文件数量限制。",
+    "ctaTitle": "开始使用",
+    "ctaDesc": "无需注册或安装，直接在浏览器中使用。",
+    "noInstall": "无需安装"
+  },
+  "imageConverter": {
+    "title": "图片转换",
+    "description": "转换 PNG、JPG、WebP、HEIC 等多种图片格式",
+    "outputFormat": "输出格式",
+    "quality": "质量",
+    "fileList": "文件列表",
+    "files": "{count} 个文件",
+    "convertCount": "转换 {count} 个文件",
+    "downloadCount": "下载 {count} 个文件",
+    "features": {
+      "heic": "HEIC 转换支持",
+      "heicDesc": "轻松将 iPhone 的 HEIC 文件转换为 JPG 或 PNG。",
+      "quality": "质量控制",
+      "qualityDesc": "在 1-100% 范围内调整图片质量，平衡文件大小和画质。",
+      "batch": "批量转换",
+      "batchDesc": "上传多张图片，使用相同设置批量转换。",
+      "webp": "WebP 支持",
+      "webpDesc": "转换为现代 WebP 格式，优化网站性能。"
+    },
+    "howToUse": {
+      "title": "图片格式转换器",
+      "description": "轻松转换 PNG、JPG、WebP、HEIC 等多种图片格式。所有处理在浏览器中完成，保护隐私。",
+      "step1Title": "上传图片",
+      "step1Desc": "拖放或点击选择要转换的图片文件。可同时上传多个文件。",
+      "step2Title": "设置格式和质量",
+      "step2Desc": "选择输出格式（JPG、PNG、WebP）和图片质量。",
+      "step3Title": "转换并下载",
+      "step3Desc": "点击转换，完成后单独或批量下载。"
+    },
+    "faq": {
+      "q1": "什么是 HEIC 文件？",
+      "a1": "HEIC 是 Apple 从 iOS 11 开始使用的高效图片格式。文件大小比 JPG 小，但质量相同。",
+      "q2": "如何选择质量设置？",
+      "a2": "网页图片建议 70-80%，打印或需要保留原始质量时建议 90-100%。",
+      "q3": "有文件大小限制吗？",
+      "a3": "每个文件最大 100MB，一次最多上传 10 个文件。"
+    }
+  },
+  "imageEditor": {
+    "title": "图片编辑",
+    "description": "裁剪、旋转、翻转、调整大小、优化图片",
+    "toolbar": {
+      "crop": "裁剪",
+      "rotate": "旋转",
+      "flip": "翻转",
+      "resize": "调整大小",
+      "optimize": "优化"
+    },
+    "crop": {
+      "freeform": "自由形式",
+      "square": "正方形 (1:1)",
+      "landscape": "横向 (16:9)",
+      "portrait": "纵向 (9:16)",
+      "apply": "应用裁剪"
+    },
+    "rotate": {
+      "left": "左旋 90°",
+      "right": "右旋 90°"
+    },
+    "flip": {
+      "horizontal": "水平翻转",
+      "vertical": "垂直翻转"
+    },
+    "resize": {
+      "width": "宽度",
+      "height": "高度",
+      "keepRatio": "保持比例",
+      "apply": "应用"
+    },
+    "optimize": {
+      "quality": "质量",
+      "apply": "优化"
+    },
+    "howToUse": {
+      "title": "图片编辑器",
+      "description": "免费在线图片编辑器，支持裁剪、旋转、翻转、调整大小和优化。所有处理在浏览器中完成。",
+      "step1Title": "上传图片",
+      "step1Desc": "拖放或点击选择要编辑的图片文件。",
+      "step2Title": "编辑图片",
+      "step2Desc": "使用工具栏裁剪、旋转、翻转、调整大小或优化图片。",
+      "step3Title": "下载",
+      "step3Desc": "编辑完成后，下载结果图片。"
+    }
+  },
+  "gifMaker": {
+    "title": "GIF 制作",
+    "description": "将多张图片合并创建动画 GIF",
+    "images": "图片",
+    "noImages": "未添加图片",
+    "addImages": "添加图片",
+    "options": "选项",
+    "frameDelay": "帧间隔",
+    "seconds": "秒",
+    "outputSize": "输出大小",
+    "original": "原始",
+    "preview": "预览",
+    "createGif": "创建 GIF",
+    "creating": "创建 GIF 中...",
+    "result": "结果",
+    "howToUse": {
+      "title": "GIF 制作器",
+      "description": "用多张图片创建动画 GIF。可调整速度和大小，轻松制作 GIF 动画。",
+      "step1Title": "添加图片",
+      "step1Desc": "按顺序添加图片来创建动画。可拖动调整顺序。",
+      "step2Title": "调整设置",
+      "step2Desc": "设置帧间隔（速度）和输出大小。",
+      "step3Title": "创建并下载",
+      "step3Desc": "点击创建，下载动画 GIF。"
+    }
+  },
+  "videoConverter": {
+    "title": "视频转换",
+    "description": "视频转 GIF、GIF 转 MP4、提取帧",
+    "mode": {
+      "videoToGif": "视频转 GIF",
+      "gifToVideo": "GIF 转视频",
+      "extractFrames": "提取帧"
+    },
+    "options": {
+      "fps": "帧率",
+      "scale": "缩放",
+      "original": "原始",
+      "format": "格式",
+      "interval": "间隔"
+    },
+    "preview": "预览",
+    "result": "结果",
+    "extractedFrames": "提取的帧",
+    "howToUse": {
+      "title": "视频转换器",
+      "description": "将视频转换为 GIF、GIF 转换为 MP4 视频或从视频中提取帧。使用 FFmpeg WebAssembly 在浏览器中完成所有处理。",
+      "step1Title": "选择模式",
+      "step1Desc": "选择视频转 GIF、GIF 转视频或提取帧。",
+      "step2Title": "上传文件",
+      "step2Desc": "上传要转换的视频或 GIF 文件。",
+      "step3Title": "设置选项并转换",
+      "step3Desc": "调整帧率、缩放、格式，然后转换并下载。"
+    }
+  },
+  "urlGenerator": {
+    "title": "URL 生成",
+    "description": "将图片/视频转换为可分享的 URL",
+    "urlType": "URL 类型",
+    "types": {
+      "base64": "Base64 URL",
+      "base64Desc": "可直接嵌入 HTML/CSS。无需服务器。",
+      "blob": "Blob URL",
+      "blobDesc": "仅在当前浏览器会话中有效的临时 URL。",
+      "r2": "云存储",
+      "r2Desc": "上传到云存储，生成永久分享链接。"
+    },
+    "cloudOptions": {
+      "expiry": "过期时间",
+      "hour": "{count} 小时",
+      "hours": "{count} 小时",
+      "day": "{count} 天",
+      "days": "{count} 天",
+      "week": "{count} 周",
+      "permanent": "永久",
+      "password": "密码保护",
+      "passwordPlaceholder": "可选",
+      "upload": "上传"
+    },
+    "result": {
+      "title": "生成的 URL",
+      "copy": "复制",
+      "copied": "已复制！",
+      "newTab": "在新标签页中打开",
+      "warning": "Blob URL 仅在当前浏览器会话中有效。"
+    },
+    "howToUse": {
+      "title": "URL 生成器",
+      "description": "将图片和视频转换为可分享的 URL。Base64 用于嵌入，Blob 用于临时使用，云存储用于永久分享。",
+      "step1Title": "上传文件",
+      "step1Desc": "上传要生成 URL 的图片或视频文件。",
+      "step2Title": "选择 URL 类型",
+      "step2Desc": "根据需要选择 Base64、Blob 或云存储。",
+      "step3Title": "生成并使用",
+      "step3Desc": "生成 URL 并复制用于 HTML、CSS 或分享。"
+    }
+  },
+  "howToUse": {
+    "howToUse": "使用方法",
+    "supportedFormats": "支持的格式",
+    "keyFeatures": "主要功能",
+    "faq": "常见问题",
+    "privacyNotice": "所有文件在浏览器中处理，不会上传到服务器。您的隐私得到完全保护。"
+  },
+  "footer": {
+    "copyright": "© {year} Media Utility. 保留所有权利。",
+    "privacyNote": "在浏览器中安全转换文件。不会上传到服务器。",
+    "clientSide": "客户端处理",
+    "freeUse": "免费使用"
+  }
+}

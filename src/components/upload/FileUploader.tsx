@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Upload, X, FileImage, FileVideo } from 'lucide-react';
 
 interface FileUploaderProps {
@@ -18,6 +19,7 @@ export default function FileUploader({
   maxSize = 100, // 100MB
   onFilesSelected,
 }: FileUploaderProps) {
+  const t = useTranslations('common');
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,14 +28,14 @@ export default function FileUploader({
       setError(null);
 
       if (files.length > maxFiles) {
-        setError(`최대 ${maxFiles}개의 파일만 선택할 수 있습니다.`);
+        setError(t('maxFilesError', { count: maxFiles }));
         return files.slice(0, maxFiles);
       }
 
       const validFiles = files.filter((file) => {
         const sizeMB = file.size / (1024 * 1024);
         if (sizeMB > maxSize) {
-          setError(`파일 크기는 ${maxSize}MB 이하여야 합니다.`);
+          setError(t('fileSizeError', { size: maxSize }));
           return false;
         }
         return true;
@@ -41,7 +43,7 @@ export default function FileUploader({
 
       return validFiles;
     },
-    [maxFiles, maxSize]
+    [maxFiles, maxSize, t]
   );
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -109,21 +111,21 @@ export default function FileUploader({
 
           <div className="text-center">
             <p className={`text-lg font-medium transition-colors ${isDragging ? 'text-[oklch(0.80_0.20_195)]' : 'text-[oklch(0.85_0.02_240)]'}`}>
-              파일을 드래그하거나 클릭하여 업로드
+              {t('dragOrClick')}
             </p>
             <p className="text-sm text-[oklch(0.55_0.02_240)] mt-1">
-              최대 {maxFiles}개, 파일당 {maxSize}MB까지
+              {t('maxFiles', { count: maxFiles, size: maxSize })}
             </p>
           </div>
 
           <div className="flex items-center gap-4 text-xs text-[oklch(0.45_0.02_240)]">
             <span className="flex items-center gap-1">
               <FileImage className="w-4 h-4" />
-              이미지
+              {t('image')}
             </span>
             <span className="flex items-center gap-1">
               <FileVideo className="w-4 h-4" />
-              비디오
+              {t('video')}
             </span>
           </div>
         </div>

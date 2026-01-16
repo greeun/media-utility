@@ -1,0 +1,246 @@
+{
+  "common": {
+    "siteName": "Media Utility",
+    "tagline": "브라우저 도구",
+    "browserProcessing": "100% 브라우저 처리",
+    "noServerUpload": "서버 업로드 없음",
+    "startNow": "시작하기",
+    "exploreFunctions": "기능 둘러보기",
+    "download": "다운로드",
+    "downloadAll": "모두 다운로드",
+    "delete": "삭제",
+    "deleteAll": "전체 삭제",
+    "convert": "변환",
+    "converting": "변환 중...",
+    "upload": "업로드",
+    "dragOrClick": "파일을 드래그하거나 클릭하여 업로드",
+    "maxFiles": "최대 {count}개, 파일당 {size}MB까지",
+    "maxFilesError": "최대 {count}개의 파일만 선택할 수 있습니다.",
+    "fileSizeError": "파일 크기는 {size}MB 이하여야 합니다.",
+    "image": "이미지",
+    "video": "비디오",
+    "pending": "대기 중",
+    "processing": "처리 중...",
+    "completed": "완료",
+    "error": "오류",
+    "close": "닫기",
+    "cancel": "취소",
+    "confirm": "확인",
+    "settings": "설정",
+    "language": "언어",
+    "selectLanguage": "언어 선택",
+    "ffmpegLoading": "FFmpeg 로딩 중...",
+    "storage": "저장소",
+    "files": "개 파일"
+  },
+  "home": {
+    "title": "Media Utility",
+    "subtitle": "브라우저 기반 미디어 변환 도구",
+    "description": "이미지, 비디오, GIF 파일을 브라우저에서 변환합니다. 파일이 서버로 전송되지 않습니다.",
+    "tools": "도구 모음",
+    "selectTool": "필요한 기능을 선택하세요",
+    "privacyTitle": "완전한 프라이버시",
+    "privacyDesc": "모든 파일은 브라우저에서만 처리됩니다. 서버에 업로드되지 않습니다.",
+    "speedTitle": "빠른 처리 속도",
+    "speedDesc": "WebAssembly 기술로 네이티브에 가까운 처리 속도를 제공합니다.",
+    "freeTitle": "무료 & 무제한",
+    "freeDesc": "모든 기능을 무료로, 파일 개수 제한 없이 사용할 수 있습니다.",
+    "ctaTitle": "바로 사용하기",
+    "ctaDesc": "가입이나 설치 없이 브라우저에서 사용할 수 있습니다.",
+    "noInstall": "설치 불필요"
+  },
+  "imageConverter": {
+    "title": "이미지 변환",
+    "description": "PNG, JPG, WebP, HEIC 등 다양한 이미지 포맷을 변환하세요",
+    "outputFormat": "출력 포맷",
+    "quality": "품질",
+    "fileList": "파일 목록",
+    "files": "{count}개",
+    "convertCount": "{count}개 변환하기",
+    "downloadCount": "{count}개 모두 다운로드",
+    "features": {
+      "heic": "HEIC 변환 지원",
+      "heicDesc": "iPhone에서 촬영한 HEIC 파일을 JPG나 PNG로 간편하게 변환할 수 있습니다.",
+      "quality": "품질 조절",
+      "qualityDesc": "이미지 품질을 1-100% 범위에서 조절하여 파일 크기와 화질의 균형을 맞출 수 있습니다.",
+      "batch": "일괄 변환",
+      "batchDesc": "여러 이미지를 한 번에 업로드하고 동일한 설정으로 일괄 변환할 수 있습니다.",
+      "webp": "WebP 지원",
+      "webpDesc": "최신 WebP 포맷으로 변환하여 웹사이트 성능을 최적화하세요."
+    },
+    "howToUse": {
+      "title": "이미지 포맷 변환기",
+      "description": "PNG, JPG, WebP, HEIC 등 다양한 이미지 포맷을 손쉽게 변환하세요. 모든 처리는 브라우저에서 이루어져 개인정보가 보호됩니다.",
+      "step1Title": "이미지 업로드",
+      "step1Desc": "변환할 이미지 파일을 드래그하거나 클릭하여 선택하세요. 여러 파일을 한 번에 업로드할 수 있습니다.",
+      "step2Title": "포맷 및 품질 설정",
+      "step2Desc": "원하는 출력 포맷(JPG, PNG, WebP)과 이미지 품질을 선택하세요.",
+      "step3Title": "변환 및 다운로드",
+      "step3Desc": "변환 버튼을 클릭하고, 완료되면 개별 또는 일괄 다운로드하세요."
+    },
+    "faq": {
+      "q1": "HEIC 파일이란 무엇인가요?",
+      "a1": "HEIC는 Apple이 iOS 11부터 사용하는 고효율 이미지 포맷입니다. JPG보다 파일 크기가 작으면서 화질은 동일합니다.",
+      "q2": "품질 설정은 어떻게 선택하나요?",
+      "a2": "웹용 이미지는 70-80%, 인쇄용이나 원본 보존이 필요한 경우 90-100%를 추천합니다.",
+      "q3": "파일 크기 제한이 있나요?",
+      "a3": "파일당 최대 100MB까지 지원하며, 한 번에 최대 10개 파일을 업로드할 수 있습니다."
+    }
+  },
+  "imageEditor": {
+    "title": "이미지 편집",
+    "description": "이미지 자르기, 회전, 뒤집기, 리사이즈, 최적화",
+    "toolbar": {
+      "crop": "자르기",
+      "rotate": "회전",
+      "flip": "뒤집기",
+      "resize": "크기 조절",
+      "optimize": "최적화"
+    },
+    "crop": {
+      "freeform": "자유 형식",
+      "square": "정사각형 (1:1)",
+      "landscape": "가로 (16:9)",
+      "portrait": "세로 (9:16)",
+      "apply": "자르기 적용"
+    },
+    "rotate": {
+      "left": "왼쪽 90°",
+      "right": "오른쪽 90°"
+    },
+    "flip": {
+      "horizontal": "좌우 반전",
+      "vertical": "상하 반전"
+    },
+    "resize": {
+      "width": "너비",
+      "height": "높이",
+      "keepRatio": "비율 유지",
+      "apply": "적용"
+    },
+    "optimize": {
+      "quality": "품질",
+      "apply": "최적화"
+    },
+    "howToUse": {
+      "title": "이미지 편집기",
+      "description": "자르기, 회전, 뒤집기, 크기 조절, 최적화를 지원하는 무료 온라인 이미지 편집기입니다. 모든 처리는 브라우저에서 이루어집니다.",
+      "step1Title": "이미지 업로드",
+      "step1Desc": "편집할 이미지 파일을 드래그하거나 클릭하여 선택하세요.",
+      "step2Title": "이미지 편집",
+      "step2Desc": "도구 모음을 사용하여 자르기, 회전, 뒤집기, 크기 조절 또는 최적화하세요.",
+      "step3Title": "다운로드",
+      "step3Desc": "편집이 완료되면 결과 이미지를 다운로드하세요."
+    }
+  },
+  "gifMaker": {
+    "title": "GIF 만들기",
+    "description": "여러 이미지를 합쳐서 애니메이션 GIF 생성",
+    "images": "이미지",
+    "noImages": "추가된 이미지가 없습니다",
+    "addImages": "이미지 추가",
+    "options": "옵션",
+    "frameDelay": "프레임 간격",
+    "seconds": "초",
+    "outputSize": "출력 크기",
+    "original": "원본",
+    "preview": "미리보기",
+    "createGif": "GIF 생성",
+    "creating": "GIF 생성 중...",
+    "result": "결과",
+    "howToUse": {
+      "title": "GIF 메이커",
+      "description": "여러 이미지로 애니메이션 GIF를 만들 수 있습니다. 속도와 크기를 조절하여 쉽게 GIF 애니메이션을 만드세요.",
+      "step1Title": "이미지 추가",
+      "step1Desc": "애니메이션을 만들 이미지를 순서대로 추가하세요. 드래그로 순서를 변경할 수 있습니다.",
+      "step2Title": "설정 조정",
+      "step2Desc": "프레임 간격(속도)과 출력 크기를 설정하세요.",
+      "step3Title": "생성 및 다운로드",
+      "step3Desc": "생성 버튼을 클릭하고 완성된 애니메이션 GIF를 다운로드하세요."
+    }
+  },
+  "videoConverter": {
+    "title": "비디오 변환",
+    "description": "비디오를 GIF로, GIF를 MP4로, 프레임 추출",
+    "mode": {
+      "videoToGif": "비디오 → GIF",
+      "gifToVideo": "GIF → 비디오",
+      "extractFrames": "프레임 추출"
+    },
+    "options": {
+      "fps": "FPS",
+      "scale": "크기",
+      "original": "원본",
+      "format": "포맷",
+      "interval": "간격"
+    },
+    "preview": "미리보기",
+    "result": "결과",
+    "extractedFrames": "추출된 프레임",
+    "howToUse": {
+      "title": "비디오 변환기",
+      "description": "비디오를 GIF로, GIF를 MP4 비디오로, 비디오에서 프레임을 추출합니다. FFmpeg WebAssembly를 사용하여 브라우저에서 모든 처리가 이루어집니다.",
+      "step1Title": "모드 선택",
+      "step1Desc": "비디오→GIF, GIF→비디오, 프레임 추출 중 선택하세요.",
+      "step2Title": "파일 업로드",
+      "step2Desc": "변환할 비디오 또는 GIF 파일을 업로드하세요.",
+      "step3Title": "옵션 설정 및 변환",
+      "step3Desc": "FPS, 크기, 포맷을 조정한 후 변환하고 다운로드하세요."
+    }
+  },
+  "urlGenerator": {
+    "title": "URL 생성",
+    "description": "이미지/비디오를 공유 가능한 URL로 변환",
+    "urlType": "URL 유형",
+    "types": {
+      "base64": "Base64 URL",
+      "base64Desc": "HTML/CSS에 직접 삽입 가능. 서버 없이 작동합니다.",
+      "blob": "Blob URL",
+      "blobDesc": "이 브라우저 세션에서만 유효한 임시 URL입니다.",
+      "r2": "클라우드 저장소",
+      "r2Desc": "클라우드에 업로드하여 영구적인 공유 링크를 생성합니다."
+    },
+    "cloudOptions": {
+      "expiry": "만료 기간",
+      "hour": "{count}시간",
+      "hours": "{count}시간",
+      "day": "{count}일",
+      "days": "{count}일",
+      "week": "{count}주",
+      "permanent": "영구",
+      "password": "비밀번호 보호",
+      "passwordPlaceholder": "선택 사항",
+      "upload": "업로드"
+    },
+    "result": {
+      "title": "생성된 URL",
+      "copy": "복사",
+      "copied": "복사됨!",
+      "newTab": "새 탭에서 열기",
+      "warning": "Blob URL은 이 브라우저 세션에서만 유효합니다."
+    },
+    "howToUse": {
+      "title": "URL 생성기",
+      "description": "이미지와 비디오를 공유 가능한 URL로 변환합니다. Base64는 임베딩용, Blob은 임시 사용, 클라우드는 영구 공유용입니다.",
+      "step1Title": "파일 업로드",
+      "step1Desc": "URL을 생성할 이미지 또는 비디오 파일을 업로드하세요.",
+      "step2Title": "URL 유형 선택",
+      "step2Desc": "필요에 따라 Base64, Blob, 클라우드 저장소 중 선택하세요.",
+      "step3Title": "생성 및 사용",
+      "step3Desc": "URL을 생성하고 HTML, CSS 또는 공유에 사용하세요."
+    }
+  },
+  "howToUse": {
+    "howToUse": "사용 방법",
+    "supportedFormats": "지원 포맷",
+    "keyFeatures": "주요 기능",
+    "faq": "자주 묻는 질문",
+    "privacyNotice": "모든 파일은 브라우저에서 처리되며, 서버에 업로드되지 않습니다. 개인정보가 완전히 보호됩니다."
+  },
+  "footer": {
+    "copyright": "© {year} Media Utility. All rights reserved.",
+    "privacyNote": "브라우저에서 안전하게 파일을 변환하세요. 서버에 업로드되지 않습니다.",
+    "clientSide": "클라이언트 측 처리",
+    "freeUse": "무료 사용"
+  }
+}

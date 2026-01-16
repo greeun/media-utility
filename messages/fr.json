@@ -1,0 +1,246 @@
+{
+  "common": {
+    "siteName": "Media Utility",
+    "tagline": "Outils de navigateur",
+    "browserProcessing": "100% Traitement dans le navigateur",
+    "noServerUpload": "Pas de téléchargement serveur",
+    "startNow": "Commencer",
+    "exploreFunctions": "Explorer les fonctions",
+    "download": "Télécharger",
+    "downloadAll": "Tout télécharger",
+    "delete": "Supprimer",
+    "deleteAll": "Tout supprimer",
+    "convert": "Convertir",
+    "converting": "Conversion...",
+    "upload": "Téléverser",
+    "dragOrClick": "Glissez des fichiers ou cliquez pour téléverser",
+    "maxFiles": "Jusqu'à {count} fichiers, max {size}Mo chacun",
+    "image": "Image",
+    "video": "Vidéo",
+    "pending": "En attente",
+    "processing": "Traitement...",
+    "completed": "Terminé",
+    "error": "Erreur",
+    "close": "Fermer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "settings": "Paramètres",
+    "language": "Langue",
+    "selectLanguage": "Sélectionner la langue",
+    "maxFilesError": "Maximum {count} fichiers peuvent être sélectionnés.",
+    "fileSizeError": "La taille du fichier doit être inférieure à {size}Mo.",
+    "ffmpegLoading": "Chargement de FFmpeg...",
+    "storage": "Stockage",
+    "files": "fichiers"
+  },
+  "home": {
+    "title": "Media Utility",
+    "subtitle": "Outils de conversion média basés sur navigateur",
+    "description": "Convertissez images, vidéos et GIFs dans votre navigateur. Les fichiers ne sont pas envoyés aux serveurs.",
+    "tools": "Outils",
+    "selectTool": "Sélectionnez un outil",
+    "privacyTitle": "Confidentialité totale",
+    "privacyDesc": "Tous les fichiers sont traités uniquement dans votre navigateur. Rien n'est téléchargé sur les serveurs.",
+    "speedTitle": "Traitement rapide",
+    "speedDesc": "La technologie WebAssembly offre une vitesse de traitement proche du natif.",
+    "freeTitle": "Gratuit et illimité",
+    "freeDesc": "Utilisez toutes les fonctionnalités gratuitement sans limite de fichiers.",
+    "ctaTitle": "Commencer",
+    "ctaDesc": "Utilisez directement dans votre navigateur sans inscription ni installation.",
+    "noInstall": "Pas d'installation requise"
+  },
+  "imageConverter": {
+    "title": "Convertisseur d'images",
+    "description": "Convertissez divers formats d'image incluant PNG, JPG, WebP, HEIC",
+    "outputFormat": "Format de sortie",
+    "quality": "Qualité",
+    "fileList": "Liste des fichiers",
+    "files": "{count} fichiers",
+    "convertCount": "Convertir {count} fichiers",
+    "downloadCount": "Télécharger {count} fichiers",
+    "features": {
+      "heic": "Support de conversion HEIC",
+      "heicDesc": "Convertissez facilement les fichiers HEIC d'iPhone en JPG ou PNG.",
+      "quality": "Contrôle de qualité",
+      "qualityDesc": "Ajustez la qualité d'image de 1-100% pour équilibrer taille et qualité.",
+      "batch": "Conversion par lots",
+      "batchDesc": "Téléchargez plusieurs images et convertissez-les toutes avec les mêmes paramètres.",
+      "webp": "Support WebP",
+      "webpDesc": "Convertissez au format moderne WebP pour optimiser les performances web."
+    },
+    "howToUse": {
+      "title": "Convertisseur de format d'image",
+      "description": "Convertissez facilement divers formats d'image incluant PNG, JPG, WebP, HEIC. Tout le traitement est fait dans votre navigateur pour la confidentialité.",
+      "step1Title": "Téléverser des images",
+      "step1Desc": "Glissez ou cliquez pour sélectionner des fichiers image. Vous pouvez téléverser plusieurs fichiers à la fois.",
+      "step2Title": "Définir format et qualité",
+      "step2Desc": "Choisissez le format de sortie (JPG, PNG, WebP) et la qualité d'image.",
+      "step3Title": "Convertir et télécharger",
+      "step3Desc": "Cliquez sur convertir et téléchargez individuellement ou tout à la fois."
+    },
+    "faq": {
+      "q1": "Qu'est-ce qu'un fichier HEIC?",
+      "a1": "HEIC est un format d'image haute efficacité utilisé par Apple depuis iOS 11. Il a des tailles de fichier plus petites que JPG avec la même qualité.",
+      "q2": "Comment choisir les paramètres de qualité?",
+      "a2": "Pour les images web, 70-80% est recommandé. Pour l'impression ou la préservation des originaux, utilisez 90-100%.",
+      "q3": "Y a-t-il des limites de taille de fichier?",
+      "a3": "Maximum 100Mo par fichier, jusqu'à 10 fichiers à la fois."
+    }
+  },
+  "imageEditor": {
+    "title": "Éditeur d'images",
+    "description": "Recadrez, pivotez, retournez, redimensionnez et optimisez les images",
+    "toolbar": {
+      "crop": "Recadrer",
+      "rotate": "Pivoter",
+      "flip": "Retourner",
+      "resize": "Redimensionner",
+      "optimize": "Optimiser"
+    },
+    "crop": {
+      "freeform": "Libre",
+      "square": "Carré (1:1)",
+      "landscape": "Paysage (16:9)",
+      "portrait": "Portrait (9:16)",
+      "apply": "Appliquer le recadrage"
+    },
+    "rotate": {
+      "left": "Gauche 90°",
+      "right": "Droite 90°"
+    },
+    "flip": {
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
+    },
+    "resize": {
+      "width": "Largeur",
+      "height": "Hauteur",
+      "keepRatio": "Garder les proportions",
+      "apply": "Appliquer"
+    },
+    "optimize": {
+      "quality": "Qualité",
+      "apply": "Optimiser"
+    },
+    "howToUse": {
+      "title": "Éditeur d'images",
+      "description": "Éditeur d'images en ligne gratuit supportant recadrage, rotation, retournement, redimensionnement et optimisation. Tout le traitement est fait dans votre navigateur.",
+      "step1Title": "Téléverser une image",
+      "step1Desc": "Glissez ou cliquez pour sélectionner un fichier image à éditer.",
+      "step2Title": "Éditer l'image",
+      "step2Desc": "Utilisez la barre d'outils pour recadrer, pivoter, retourner, redimensionner ou optimiser.",
+      "step3Title": "Télécharger",
+      "step3Desc": "Une fois l'édition terminée, téléchargez l'image résultante."
+    }
+  },
+  "gifMaker": {
+    "title": "Créateur de GIF",
+    "description": "Combinez plusieurs images pour créer des GIFs animés",
+    "images": "Images",
+    "noImages": "Aucune image ajoutée",
+    "addImages": "Ajouter des images",
+    "options": "Options",
+    "frameDelay": "Délai de trame",
+    "seconds": "secondes",
+    "outputSize": "Taille de sortie",
+    "original": "Original",
+    "preview": "Aperçu",
+    "createGif": "Créer GIF",
+    "creating": "Création du GIF...",
+    "result": "Résultat",
+    "howToUse": {
+      "title": "Créateur de GIF",
+      "description": "Créez des GIFs animés à partir de plusieurs images. Ajustez facilement la vitesse et la taille.",
+      "step1Title": "Ajouter des images",
+      "step1Desc": "Ajoutez des images en séquence pour créer une animation. Glissez pour réorganiser.",
+      "step2Title": "Ajuster les paramètres",
+      "step2Desc": "Définissez le délai de trame (vitesse) et la taille de sortie.",
+      "step3Title": "Créer et télécharger",
+      "step3Desc": "Cliquez sur créer et téléchargez votre GIF animé."
+    }
+  },
+  "videoConverter": {
+    "title": "Convertisseur vidéo",
+    "description": "Convertir vidéo en GIF, GIF en MP4, extraire des images",
+    "mode": {
+      "videoToGif": "Vidéo vers GIF",
+      "gifToVideo": "GIF vers Vidéo",
+      "extractFrames": "Extraire des images"
+    },
+    "options": {
+      "fps": "IPS",
+      "scale": "Échelle",
+      "original": "Original",
+      "format": "Format",
+      "interval": "Intervalle"
+    },
+    "preview": "Aperçu",
+    "result": "Résultat",
+    "extractedFrames": "Images extraites",
+    "howToUse": {
+      "title": "Convertisseur vidéo",
+      "description": "Convertissez des vidéos en GIF, GIF en vidéo MP4 ou extrayez des images. Tout le traitement est fait dans votre navigateur avec FFmpeg WebAssembly.",
+      "step1Title": "Sélectionner le mode",
+      "step1Desc": "Choisissez Vidéo vers GIF, GIF vers Vidéo ou Extraire des images.",
+      "step2Title": "Téléverser le fichier",
+      "step2Desc": "Téléversez un fichier vidéo ou GIF à convertir.",
+      "step3Title": "Configurer et convertir",
+      "step3Desc": "Ajustez IPS, échelle, format, puis convertissez et téléchargez."
+    }
+  },
+  "urlGenerator": {
+    "title": "Générateur d'URL",
+    "description": "Convertir images/vidéos en URLs partageables",
+    "urlType": "Type d'URL",
+    "types": {
+      "base64": "URL Base64",
+      "base64Desc": "Intégrer directement dans HTML/CSS. Fonctionne sans serveur.",
+      "blob": "URL Blob",
+      "blobDesc": "URL temporaire valide uniquement dans cette session de navigateur.",
+      "r2": "Stockage cloud",
+      "r2Desc": "Téléversez vers le cloud pour un lien partageable permanent."
+    },
+    "cloudOptions": {
+      "expiry": "Expiration",
+      "hour": "{count} heure",
+      "hours": "{count} heures",
+      "day": "{count} jour",
+      "days": "{count} jours",
+      "week": "{count} semaine",
+      "permanent": "Permanent",
+      "password": "Protection par mot de passe",
+      "passwordPlaceholder": "Optionnel",
+      "upload": "Téléverser"
+    },
+    "result": {
+      "title": "URL générée",
+      "copy": "Copier",
+      "copied": "Copié!",
+      "newTab": "Ouvrir dans un nouvel onglet",
+      "warning": "Les URLs Blob ne sont valides que dans cette session de navigateur."
+    },
+    "howToUse": {
+      "title": "Générateur d'URL",
+      "description": "Convertissez images et vidéos en URLs partageables. Base64 pour intégrer, Blob pour usage temporaire, Cloud pour partage permanent.",
+      "step1Title": "Téléverser le fichier",
+      "step1Desc": "Téléversez un fichier image ou vidéo pour générer une URL.",
+      "step2Title": "Sélectionner le type d'URL",
+      "step2Desc": "Choisissez Base64, Blob ou Stockage cloud selon vos besoins.",
+      "step3Title": "Générer et utiliser",
+      "step3Desc": "Générez l'URL et copiez-la pour l'utiliser dans HTML, CSS ou pour partager."
+    }
+  },
+  "howToUse": {
+    "howToUse": "Comment utiliser",
+    "supportedFormats": "Formats supportés",
+    "keyFeatures": "Fonctionnalités clés",
+    "faq": "FAQ",
+    "privacyNotice": "Tous les fichiers sont traités dans votre navigateur et ne sont pas téléchargés sur les serveurs. Votre vie privée est entièrement protégée."
+  },
+  "footer": {
+    "copyright": "© {year} Media Utility. Tous droits réservés.",
+    "privacyNote": "Convertissez les fichiers en toute sécurité dans votre navigateur. Rien n'est téléchargé sur les serveurs.",
+    "clientSide": "Traitement côté client",
+    "freeUse": "Utilisation gratuite"
+  }
+}

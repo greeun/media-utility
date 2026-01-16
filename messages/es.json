@@ -1,0 +1,246 @@
+{
+  "common": {
+    "siteName": "Media Utility",
+    "tagline": "Herramientas del navegador",
+    "browserProcessing": "100% Procesamiento en navegador",
+    "noServerUpload": "Sin subida al servidor",
+    "startNow": "Comenzar ahora",
+    "exploreFunctions": "Explorar funciones",
+    "download": "Descargar",
+    "downloadAll": "Descargar todo",
+    "delete": "Eliminar",
+    "deleteAll": "Eliminar todo",
+    "convert": "Convertir",
+    "converting": "Convirtiendo...",
+    "upload": "Subir",
+    "dragOrClick": "Arrastra archivos o haz clic para subir",
+    "maxFiles": "Hasta {count} archivos, máximo {size}MB cada uno",
+    "image": "Imagen",
+    "video": "Video",
+    "pending": "Pendiente",
+    "processing": "Procesando...",
+    "completed": "Completado",
+    "error": "Error",
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "settings": "Configuración",
+    "language": "Idioma",
+    "selectLanguage": "Seleccionar idioma",
+    "maxFilesError": "Se pueden seleccionar máximo {count} archivos.",
+    "fileSizeError": "El tamaño del archivo debe ser menor a {size}MB.",
+    "ffmpegLoading": "Cargando FFmpeg...",
+    "storage": "Almacenamiento",
+    "files": "archivos"
+  },
+  "home": {
+    "title": "Media Utility",
+    "subtitle": "Herramientas de conversión de medios basadas en navegador",
+    "description": "Convierte imágenes, videos y GIFs en tu navegador. Los archivos no se envían a servidores.",
+    "tools": "Herramientas",
+    "selectTool": "Selecciona una herramienta",
+    "privacyTitle": "Privacidad completa",
+    "privacyDesc": "Todos los archivos se procesan solo en tu navegador. Nada se sube a servidores.",
+    "speedTitle": "Procesamiento rápido",
+    "speedDesc": "La tecnología WebAssembly proporciona velocidad de procesamiento casi nativa.",
+    "freeTitle": "Gratis e ilimitado",
+    "freeDesc": "Usa todas las funciones gratis sin límites de archivos.",
+    "ctaTitle": "Comenzar",
+    "ctaDesc": "Usa directamente en tu navegador sin registro ni instalación.",
+    "noInstall": "Sin instalación"
+  },
+  "imageConverter": {
+    "title": "Convertidor de imágenes",
+    "description": "Convierte varios formatos de imagen incluyendo PNG, JPG, WebP, HEIC",
+    "outputFormat": "Formato de salida",
+    "quality": "Calidad",
+    "fileList": "Lista de archivos",
+    "files": "{count} archivos",
+    "convertCount": "Convertir {count} archivos",
+    "downloadCount": "Descargar {count} archivos",
+    "features": {
+      "heic": "Soporte de conversión HEIC",
+      "heicDesc": "Convierte fácilmente archivos HEIC de iPhone a JPG o PNG.",
+      "quality": "Control de calidad",
+      "qualityDesc": "Ajusta la calidad de imagen del 1-100% para equilibrar tamaño y calidad.",
+      "batch": "Conversión por lotes",
+      "batchDesc": "Sube múltiples imágenes y conviértelas todas con la misma configuración.",
+      "webp": "Soporte WebP",
+      "webpDesc": "Convierte al formato moderno WebP para optimizar el rendimiento web."
+    },
+    "howToUse": {
+      "title": "Convertidor de formato de imagen",
+      "description": "Convierte fácilmente varios formatos de imagen incluyendo PNG, JPG, WebP, HEIC. Todo el procesamiento se realiza en tu navegador para privacidad.",
+      "step1Title": "Subir imágenes",
+      "step1Desc": "Arrastra o haz clic para seleccionar archivos de imagen. Puedes subir múltiples archivos a la vez.",
+      "step2Title": "Configurar formato y calidad",
+      "step2Desc": "Elige el formato de salida (JPG, PNG, WebP) y la calidad de imagen.",
+      "step3Title": "Convertir y descargar",
+      "step3Desc": "Haz clic en convertir y descarga individualmente o todo a la vez."
+    },
+    "faq": {
+      "q1": "¿Qué es un archivo HEIC?",
+      "a1": "HEIC es un formato de imagen de alta eficiencia usado por Apple desde iOS 11. Tiene tamaños de archivo más pequeños que JPG con la misma calidad.",
+      "q2": "¿Cómo elegir la configuración de calidad?",
+      "a2": "Para imágenes web, se recomienda 70-80%. Para impresión o preservar originales, usa 90-100%.",
+      "q3": "¿Hay límites de tamaño de archivo?",
+      "a3": "Máximo 100MB por archivo, hasta 10 archivos a la vez."
+    }
+  },
+  "imageEditor": {
+    "title": "Editor de imágenes",
+    "description": "Recorta, rota, voltea, redimensiona y optimiza imágenes",
+    "toolbar": {
+      "crop": "Recortar",
+      "rotate": "Rotar",
+      "flip": "Voltear",
+      "resize": "Redimensionar",
+      "optimize": "Optimizar"
+    },
+    "crop": {
+      "freeform": "Libre",
+      "square": "Cuadrado (1:1)",
+      "landscape": "Horizontal (16:9)",
+      "portrait": "Vertical (9:16)",
+      "apply": "Aplicar recorte"
+    },
+    "rotate": {
+      "left": "Izquierda 90°",
+      "right": "Derecha 90°"
+    },
+    "flip": {
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
+    },
+    "resize": {
+      "width": "Ancho",
+      "height": "Alto",
+      "keepRatio": "Mantener proporción",
+      "apply": "Aplicar"
+    },
+    "optimize": {
+      "quality": "Calidad",
+      "apply": "Optimizar"
+    },
+    "howToUse": {
+      "title": "Editor de imágenes",
+      "description": "Editor de imágenes en línea gratuito que soporta recorte, rotación, volteo, redimensionado y optimización. Todo el procesamiento se realiza en tu navegador.",
+      "step1Title": "Subir imagen",
+      "step1Desc": "Arrastra o haz clic para seleccionar un archivo de imagen para editar.",
+      "step2Title": "Editar imagen",
+      "step2Desc": "Usa la barra de herramientas para recortar, rotar, voltear, redimensionar u optimizar.",
+      "step3Title": "Descargar",
+      "step3Desc": "Cuando termines de editar, descarga la imagen resultante."
+    }
+  },
+  "gifMaker": {
+    "title": "Creador de GIF",
+    "description": "Combina múltiples imágenes para crear GIFs animados",
+    "images": "Imágenes",
+    "noImages": "No hay imágenes añadidas",
+    "addImages": "Añadir imágenes",
+    "options": "Opciones",
+    "frameDelay": "Retraso de fotograma",
+    "seconds": "segundos",
+    "outputSize": "Tamaño de salida",
+    "original": "Original",
+    "preview": "Vista previa",
+    "createGif": "Crear GIF",
+    "creating": "Creando GIF...",
+    "result": "Resultado",
+    "howToUse": {
+      "title": "Creador de GIF",
+      "description": "Crea GIFs animados a partir de múltiples imágenes. Ajusta la velocidad y el tamaño fácilmente.",
+      "step1Title": "Añadir imágenes",
+      "step1Desc": "Añade imágenes en secuencia para crear una animación. Arrastra para reordenar.",
+      "step2Title": "Ajustar configuración",
+      "step2Desc": "Configura el retraso de fotograma (velocidad) y el tamaño de salida.",
+      "step3Title": "Crear y descargar",
+      "step3Desc": "Haz clic en crear y descarga tu GIF animado."
+    }
+  },
+  "videoConverter": {
+    "title": "Convertidor de video",
+    "description": "Convierte video a GIF, GIF a MP4, extrae fotogramas",
+    "mode": {
+      "videoToGif": "Video a GIF",
+      "gifToVideo": "GIF a Video",
+      "extractFrames": "Extraer fotogramas"
+    },
+    "options": {
+      "fps": "FPS",
+      "scale": "Escala",
+      "original": "Original",
+      "format": "Formato",
+      "interval": "Intervalo"
+    },
+    "preview": "Vista previa",
+    "result": "Resultado",
+    "extractedFrames": "Fotogramas extraídos",
+    "howToUse": {
+      "title": "Convertidor de video",
+      "description": "Convierte videos a GIF, GIF a video MP4 o extrae fotogramas. Todo el procesamiento se realiza en tu navegador usando FFmpeg WebAssembly.",
+      "step1Title": "Seleccionar modo",
+      "step1Desc": "Elige Video a GIF, GIF a Video o Extraer fotogramas.",
+      "step2Title": "Subir archivo",
+      "step2Desc": "Sube un archivo de video o GIF para convertir.",
+      "step3Title": "Configurar y convertir",
+      "step3Desc": "Ajusta FPS, escala, formato, luego convierte y descarga."
+    }
+  },
+  "urlGenerator": {
+    "title": "Generador de URL",
+    "description": "Convierte imágenes/videos a URLs compartibles",
+    "urlType": "Tipo de URL",
+    "types": {
+      "base64": "URL Base64",
+      "base64Desc": "Incrusta directamente en HTML/CSS. Funciona sin servidor.",
+      "blob": "URL Blob",
+      "blobDesc": "URL temporal válida solo en esta sesión del navegador.",
+      "r2": "Almacenamiento en la nube",
+      "r2Desc": "Sube a la nube para un enlace compartible permanente."
+    },
+    "cloudOptions": {
+      "expiry": "Expiración",
+      "hour": "{count} hora",
+      "hours": "{count} horas",
+      "day": "{count} día",
+      "days": "{count} días",
+      "week": "{count} semana",
+      "permanent": "Permanente",
+      "password": "Protección con contraseña",
+      "passwordPlaceholder": "Opcional",
+      "upload": "Subir"
+    },
+    "result": {
+      "title": "URL generada",
+      "copy": "Copiar",
+      "copied": "¡Copiado!",
+      "newTab": "Abrir en nueva pestaña",
+      "warning": "Las URLs Blob solo son válidas en esta sesión del navegador."
+    },
+    "howToUse": {
+      "title": "Generador de URL",
+      "description": "Convierte imágenes y videos a URLs compartibles. Base64 para incrustar, Blob para uso temporal, Nube para compartir permanente.",
+      "step1Title": "Subir archivo",
+      "step1Desc": "Sube un archivo de imagen o video para generar una URL.",
+      "step2Title": "Seleccionar tipo de URL",
+      "step2Desc": "Elige Base64, Blob o Almacenamiento en la nube según tus necesidades.",
+      "step3Title": "Generar y usar",
+      "step3Desc": "Genera la URL y cópiala para usar en HTML, CSS o compartir."
+    }
+  },
+  "howToUse": {
+    "howToUse": "Cómo usar",
+    "supportedFormats": "Formatos soportados",
+    "keyFeatures": "Características principales",
+    "faq": "Preguntas frecuentes",
+    "privacyNotice": "Todos los archivos se procesan en tu navegador y no se suben a servidores. Tu privacidad está completamente protegida."
+  },
+  "footer": {
+    "copyright": "© {year} Media Utility. Todos los derechos reservados.",
+    "privacyNote": "Convierte archivos de forma segura en tu navegador. Nada se sube a servidores.",
+    "clientSide": "Procesamiento del lado del cliente",
+    "freeUse": "Uso gratuito"
+  }
+}

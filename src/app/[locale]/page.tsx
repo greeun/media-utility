@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { ArrowRight, Shield, Zap, Globe, ChevronRight } from 'lucide-react';
 import {
   ImageConverterIcon,
@@ -9,54 +10,6 @@ import {
   VideoConverterIcon,
   UrlGeneratorIcon,
 } from '@/components/icons/FeatureIcons';
-
-const tools = [
-  {
-    id: 'image-converter',
-    name: '이미지 변환',
-    description: 'PNG, JPG, WebP, HEIC 등 다양한 이미지 포맷 간 변환',
-    icon: ImageConverterIcon,
-    href: '/image-converter',
-    accent: 'cyan',
-    features: ['HEIC → JPG', 'PNG → WebP', '품질 조절'],
-  },
-  {
-    id: 'image-editor',
-    name: '이미지 편집',
-    description: '이미지 자르기, 회전, 뒤집기, 리사이즈, 최적화',
-    icon: ImageEditorIcon,
-    href: '/image-editor',
-    accent: 'violet',
-    features: ['자르기', '회전', '최적화'],
-  },
-  {
-    id: 'gif-maker',
-    name: 'GIF 만들기',
-    description: '여러 이미지를 합쳐서 애니메이션 GIF 생성',
-    icon: GifMakerIcon,
-    href: '/gif-maker',
-    accent: 'emerald',
-    features: ['이미지 → GIF', '속도 조절', '크기 조절'],
-  },
-  {
-    id: 'video-converter',
-    name: '비디오 변환',
-    description: '비디오를 GIF로, GIF를 MP4로, 프레임 추출',
-    icon: VideoConverterIcon,
-    href: '/video-converter',
-    accent: 'amber',
-    features: ['비디오 → GIF', 'GIF → MP4', '프레임 추출'],
-  },
-  {
-    id: 'url-generator',
-    name: 'URL 생성',
-    description: '이미지/비디오를 공유 가능한 URL로 변환',
-    icon: UrlGeneratorIcon,
-    href: '/url-generator',
-    accent: 'magenta',
-    features: ['Base64 URL', 'Blob URL', '클라우드 저장'],
-  },
-];
 
 const accentConfig = {
   cyan: {
@@ -106,25 +59,75 @@ const accentConfig = {
   },
 };
 
-const features = [
-  {
-    icon: Shield,
-    title: '완전한 프라이버시',
-    description: '모든 파일은 브라우저에서만 처리됩니다. 서버에 업로드되지 않습니다.',
-  },
-  {
-    icon: Zap,
-    title: '빠른 처리 속도',
-    description: 'WebAssembly 기술로 네이티브에 가까운 처리 속도를 제공합니다.',
-  },
-  {
-    icon: Globe,
-    title: '무료 & 무제한',
-    description: '모든 기능을 무료로, 파일 개수 제한 없이 사용할 수 있습니다.',
-  },
-];
-
 export default function Home() {
+  const t = useTranslations();
+
+  const tools = [
+    {
+      id: 'image-converter',
+      nameKey: 'imageConverter.title',
+      descKey: 'imageConverter.description',
+      icon: ImageConverterIcon,
+      href: '/image-converter',
+      accent: 'cyan',
+      features: ['HEIC → JPG', 'PNG → WebP', t('imageConverter.quality')],
+    },
+    {
+      id: 'image-editor',
+      nameKey: 'imageEditor.title',
+      descKey: 'imageEditor.description',
+      icon: ImageEditorIcon,
+      href: '/image-editor',
+      accent: 'violet',
+      features: [t('imageEditor.toolbar.crop'), t('imageEditor.toolbar.rotate'), t('imageEditor.toolbar.optimize')],
+    },
+    {
+      id: 'gif-maker',
+      nameKey: 'gifMaker.title',
+      descKey: 'gifMaker.description',
+      icon: GifMakerIcon,
+      href: '/gif-maker',
+      accent: 'emerald',
+      features: ['Image → GIF', t('gifMaker.frameDelay'), t('gifMaker.outputSize')],
+    },
+    {
+      id: 'video-converter',
+      nameKey: 'videoConverter.title',
+      descKey: 'videoConverter.description',
+      icon: VideoConverterIcon,
+      href: '/video-converter',
+      accent: 'amber',
+      features: [t('videoConverter.mode.videoToGif'), t('videoConverter.mode.gifToVideo'), t('videoConverter.mode.extractFrames')],
+    },
+    {
+      id: 'url-generator',
+      nameKey: 'urlGenerator.title',
+      descKey: 'urlGenerator.description',
+      icon: UrlGeneratorIcon,
+      href: '/url-generator',
+      accent: 'magenta',
+      features: ['Base64 URL', 'Blob URL', t('urlGenerator.types.r2')],
+    },
+  ];
+
+  const features = [
+    {
+      icon: Shield,
+      titleKey: 'home.privacyTitle',
+      descKey: 'home.privacyDesc',
+    },
+    {
+      icon: Zap,
+      titleKey: 'home.speedTitle',
+      descKey: 'home.speedDesc',
+    },
+    {
+      icon: Globe,
+      titleKey: 'home.freeTitle',
+      descKey: 'home.freeDesc',
+    },
+  ];
+
   return (
     <div className="min-h-full">
       {/* Hero Section - Editorial Style */}
@@ -143,9 +146,9 @@ export default function Home() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[oklch(1_0_0/0.1)] bg-[oklch(1_0_0/0.03)]">
                 <Shield className="w-4 h-4 text-[oklch(0.72_0.17_160)]" />
-                <span className="text-sm text-[oklch(0.70_0.02_240)]">100% 브라우저 처리</span>
+                <span className="text-sm text-[oklch(0.70_0.02_240)]">{t('common.browserProcessing')}</span>
                 <span className="text-[oklch(0.50_0.02_240)]">·</span>
-                <span className="text-sm text-[oklch(0.70_0.02_240)]">서버 업로드 없음</span>
+                <span className="text-sm text-[oklch(0.70_0.02_240)]">{t('common.noServerUpload')}</span>
               </div>
 
               {/* Headline */}
@@ -155,14 +158,13 @@ export default function Home() {
                   <span className="text-[oklch(0.75_0.18_195)]">Utility</span>
                 </h1>
                 <p className="text-xl sm:text-2xl text-[oklch(0.60_0.02_240)] max-w-lg leading-relaxed">
-                  브라우저 기반 미디어 변환 도구
+                  {t('home.subtitle')}
                 </p>
               </div>
 
               {/* Description */}
               <p className="text-[oklch(0.55_0.02_240)] max-w-xl leading-relaxed">
-                이미지, 비디오, GIF 파일을 브라우저에서 변환합니다.
-                파일이 서버로 전송되지 않습니다.
+                {t('home.description')}
               </p>
 
               {/* CTA Buttons */}
@@ -171,7 +173,7 @@ export default function Home() {
                   href="/image-converter"
                   className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[oklch(0.75_0.18_195)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:shadow-[0_0_40px_oklch(0.75_0.18_195/0.4)]"
                 >
-                  시작하기
+                  {t('common.startNow')}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-[oklch(1_0_0/0.2)] to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer" />
                 </Link>
@@ -179,7 +181,7 @@ export default function Home() {
                   href="#tools"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[oklch(1_0_0/0.1)] text-[oklch(0.80_0.02_240)] font-medium hover:bg-[oklch(1_0_0/0.05)] hover:border-[oklch(1_0_0/0.2)] transition-all"
                 >
-                  기능 둘러보기
+                  {t('common.exploreFunctions')}
                   <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -191,7 +193,7 @@ export default function Home() {
                 const Icon = feature.icon;
                 return (
                   <div
-                    key={feature.title}
+                    key={feature.titleKey}
                     className={`
                       group p-5 rounded-xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.12_0.015_250/0.5)]
                       hover:border-[oklch(1_0_0/0.12)] hover:bg-[oklch(0.14_0.02_250/0.6)]
@@ -205,8 +207,8 @@ export default function Home() {
                         <Icon className="w-5 h-5 text-[oklch(0.75_0.18_195)]" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[oklch(0.95_0.01_80)] mb-1">{feature.title}</h3>
-                        <p className="text-sm text-[oklch(0.55_0.02_240)] leading-relaxed">{feature.description}</p>
+                        <h3 className="font-semibold text-[oklch(0.95_0.01_80)] mb-1">{t(feature.titleKey)}</h3>
+                        <p className="text-sm text-[oklch(0.55_0.02_240)] leading-relaxed">{t(feature.descKey)}</p>
                       </div>
                     </div>
                   </div>
@@ -222,11 +224,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header - Left Aligned Editorial */}
           <div className="max-w-xl mb-16">
-            <span className="font-mono text-xs text-[oklch(0.75_0.18_195)] uppercase tracking-widest">도구 모음</span>
+            <span className="font-mono text-xs text-[oklch(0.75_0.18_195)] uppercase tracking-widest">{t('home.tools')}</span>
             <h2 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tighter text-[oklch(0.95_0.01_80)]">
-              필요한 기능을
-              <br />
-              <span className="text-[oklch(0.55_0.02_240)]">선택하세요</span>
+              {t('home.selectTool')}
             </h2>
           </div>
 
@@ -265,10 +265,10 @@ export default function Home() {
                     {/* Content */}
                     <div>
                       <h3 className="text-xl font-semibold text-[oklch(0.95_0.01_80)] mb-2 group-hover:text-[oklch(1_0.01_80)] transition-colors">
-                        {tool.name}
+                        {t(tool.nameKey)}
                       </h3>
                       <p className="text-sm text-[oklch(0.55_0.02_240)] leading-relaxed mb-4">
-                        {tool.description}
+                        {t(tool.descKey)}
                       </p>
                     </div>
 
@@ -289,7 +289,7 @@ export default function Home() {
 
                     {/* Arrow */}
                     <div className={`flex items-center gap-1 text-sm font-medium ${accent.text} mt-4`}>
-                      <span>사용하기</span>
+                      <span>{t('common.startNow')}</span>
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
@@ -313,22 +313,22 @@ export default function Home() {
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[oklch(0.72_0.17_160/0.3)] bg-[oklch(0.72_0.17_160/0.1)]">
               <Zap className="w-4 h-4 text-[oklch(0.78_0.20_160)]" />
-              <span className="text-sm font-medium text-[oklch(0.78_0.20_160)]">설치 불필요</span>
+              <span className="text-sm font-medium text-[oklch(0.78_0.20_160)]">{t('home.noInstall')}</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter text-[oklch(0.95_0.01_80)]">
-              바로 사용하기
+              {t('home.ctaTitle')}
             </h2>
 
             <p className="text-[oklch(0.55_0.02_240)] max-w-xl mx-auto">
-              가입이나 설치 없이 브라우저에서 사용할 수 있습니다.
+              {t('home.ctaDesc')}
             </p>
 
             <Link
               href="/image-converter"
               className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-[oklch(0.95_0.01_80)] text-[oklch(0.08_0.01_240)] font-semibold text-lg transition-all hover:shadow-[0_0_50px_oklch(0.95_0.01_80/0.3)]"
             >
-              시작하기
+              {t('common.startNow')}
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

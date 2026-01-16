@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import { Upload, Download, RefreshCw, Film, Image as ImageIcon, Loader2, Video, Sparkles } from 'lucide-react';
 import { VideoConverterIcon } from '@/components/icons/FeatureIcons';
 import { videoToGif, gifToMp4, extractFrames } from '@/services/videoProcessor';
@@ -10,6 +11,8 @@ import HowToUse from '@/components/common/HowToUse';
 type ConversionMode = 'video-to-gif' | 'gif-to-mp4' | 'video-to-frames';
 
 export default function VideoConverterPage() {
+  const t = useTranslations();
+
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [mode, setMode] = useState<ConversionMode>('video-to-gif');
@@ -129,8 +132,7 @@ export default function VideoConverterPage() {
           break;
       }
     } catch (error) {
-      console.error('변환 오류:', error);
-      alert('변환 중 오류가 발생했습니다. 다시 시도해주세요.');
+      console.error('Conversion error:', error);
     }
 
     setIsProcessing(false);
@@ -170,9 +172,9 @@ export default function VideoConverterPage() {
               <VideoConverterIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">비디오 변환</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('videoConverter.title')}</h1>
               <p className="mt-1 text-[oklch(0.55_0.02_240)]">
-                비디오를 GIF로, GIF를 MP4로, 비디오에서 프레임 추출
+                {t('videoConverter.description')}
               </p>
             </div>
           </div>
@@ -197,9 +199,9 @@ export default function VideoConverterPage() {
               >
                 <Upload className={`w-12 h-12 mb-4 ${isDragging ? 'text-[oklch(0.80_0.18_80)]' : 'text-[oklch(0.40_0.02_240)]'}`} />
                 <span className={`text-lg font-medium ${isDragging ? 'text-[oklch(0.85_0.22_80)]' : 'text-[oklch(0.70_0.02_240)]'}`}>
-                  {isDragging ? '여기에 놓으세요' : '비디오 또는 GIF를 선택하거나 드래그하세요'}
+                  {t('common.dragOrClick')}
                 </span>
-                <span className="text-sm text-[oklch(0.50_0.02_240)] mt-2">MP4, WebM, MOV, GIF 지원</span>
+                <span className="text-sm text-[oklch(0.50_0.02_240)] mt-2">MP4, WebM, MOV, GIF</span>
                 <input
                   type="file"
                   accept="video/*,image/gif"
@@ -218,7 +220,7 @@ export default function VideoConverterPage() {
             <div className="space-y-4">
               {/* Preview */}
               <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-                <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">원본</h3>
+                <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('videoConverter.preview')}</h3>
                 <div className="bg-[oklch(0.12_0.015_250)] rounded-xl overflow-hidden">
                   {isVideo ? (
                     <video
@@ -238,7 +240,7 @@ export default function VideoConverterPage() {
 
               {/* Mode Selection */}
               <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
-                <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">변환 모드</h3>
+                <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('common.settings')}</h3>
                 <div className="flex flex-wrap gap-2">
                   {isVideo && (
                     <>
@@ -251,7 +253,7 @@ export default function VideoConverterPage() {
                         }`}
                       >
                         <Film className="w-4 h-4" />
-                        비디오 → GIF
+                        {t('videoConverter.mode.videoToGif')}
                       </button>
                       <button
                         onClick={() => setMode('video-to-frames')}
@@ -262,7 +264,7 @@ export default function VideoConverterPage() {
                         }`}
                       >
                         <ImageIcon className="w-4 h-4" />
-                        프레임 추출
+                        {t('videoConverter.mode.extractFrames')}
                       </button>
                     </>
                   )}
@@ -271,7 +273,7 @@ export default function VideoConverterPage() {
                       className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-[oklch(0.80_0.18_80)] text-[oklch(0.08_0.01_240)] shadow-[0_0_20px_oklch(0.80_0.18_80/0.3)]"
                     >
                       <Video className="w-4 h-4" />
-                      GIF → MP4
+                      {t('videoConverter.mode.gifToVideo')}
                     </button>
                   )}
                 </div>
@@ -282,35 +284,12 @@ export default function VideoConverterPage() {
                 <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                   <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
                     <Sparkles className="w-4 h-4 text-[oklch(0.80_0.18_80)]" />
-                    GIF 옵션
+                    {t('gifMaker.options')}
                   </h3>
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">시작 시간 (초)</label>
-                        <input
-                          type="number"
-                          value={startTime}
-                          onChange={(e) => setStartTime(Number(e.target.value))}
-                          min="0"
-                          className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.80_0.18_80)]"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">길이 (초)</label>
-                        <input
-                          type="number"
-                          value={duration}
-                          onChange={(e) => setDuration(Number(e.target.value))}
-                          min="1"
-                          max="30"
-                          className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.80_0.18_80)]"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">FPS</label>
+                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">{t('videoConverter.options.fps')}</label>
                         <input
                           type="number"
                           value={fps}
@@ -321,70 +300,13 @@ export default function VideoConverterPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">너비 (px)</label>
+                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">{t('videoConverter.options.scale')}</label>
                         <input
                           type="number"
                           value={outputWidth}
                           onChange={(e) => setOutputWidth(Number(e.target.value))}
                           min="100"
                           max="1000"
-                          className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.80_0.18_80)]"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {mode === 'video-to-frames' && (
-                <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-                  <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[oklch(0.80_0.18_80)]" />
-                    프레임 추출 옵션
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">시작 시간 (초)</label>
-                        <input
-                          type="number"
-                          value={startTime}
-                          onChange={(e) => setStartTime(Number(e.target.value))}
-                          min="0"
-                          className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.80_0.18_80)]"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">길이 (초)</label>
-                        <input
-                          type="number"
-                          value={duration}
-                          onChange={(e) => setDuration(Number(e.target.value))}
-                          min="1"
-                          className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.80_0.18_80)]"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">초당 프레임 수</label>
-                        <input
-                          type="number"
-                          value={framesFps}
-                          onChange={(e) => setFramesFps(Number(e.target.value))}
-                          min="1"
-                          max="10"
-                          className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.80_0.18_80)]"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">최대 프레임 수</label>
-                        <input
-                          type="number"
-                          value={maxFrames}
-                          onChange={(e) => setMaxFrames(Number(e.target.value))}
-                          min="1"
-                          max="100"
                           className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.80_0.18_80)]"
                         />
                       </div>
@@ -403,12 +325,12 @@ export default function VideoConverterPage() {
                 {isProcessing ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    {loadingFFmpeg ? 'FFmpeg 로딩 중...' : `변환 중... ${progress}%`}
+                    {loadingFFmpeg ? t('common.ffmpegLoading') : `${t('common.converting')} ${progress}%`}
                   </>
                 ) : (
                   <>
                     <RefreshCw className="w-4 h-4" />
-                    변환하기
+                    {t('common.convert')}
                   </>
                 )}
               </button>
@@ -427,7 +349,7 @@ export default function VideoConverterPage() {
               <label className="block">
                 <div className="w-full py-2.5 rounded-xl border border-[oklch(1_0_0/0.1)] text-[oklch(0.70_0.02_240)] font-medium flex items-center justify-center gap-2 cursor-pointer hover:bg-[oklch(1_0_0/0.05)] hover:border-[oklch(1_0_0/0.2)] transition-all">
                   <Upload className="w-4 h-4" />
-                  다른 파일 선택
+                  {t('common.upload')}
                 </div>
                 <input
                   type="file"
@@ -443,7 +365,7 @@ export default function VideoConverterPage() {
               {/* Single Result (GIF or MP4) */}
               {resultPreview && result instanceof Blob && (
                 <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-scale-in" style={{ animationFillMode: 'forwards' }}>
-                  <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">결과</h3>
+                  <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('videoConverter.result')}</h3>
                   <div className="bg-[oklch(0.12_0.015_250)] rounded-xl overflow-hidden">
                     {mode === 'gif-to-mp4' ? (
                       <video src={resultPreview} controls className="w-full max-h-[280px]" />
@@ -453,14 +375,14 @@ export default function VideoConverterPage() {
                   </div>
                   <div className="mt-4 flex items-center justify-between">
                     <span className="text-sm text-[oklch(0.50_0.02_240)]">
-                      크기: {((result.size) / (1024 * 1024)).toFixed(2)} MB
+                      {((result.size) / (1024 * 1024)).toFixed(2)} MB
                     </span>
                     <button
                       onClick={handleDownload}
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[oklch(0.80_0.18_80)] text-[oklch(0.08_0.01_240)] font-semibold hover:shadow-[0_0_20px_oklch(0.80_0.18_80/0.4)] transition-all"
                     >
                       <Download className="w-4 h-4" />
-                      다운로드
+                      {t('common.download')}
                     </button>
                   </div>
                 </div>
@@ -471,14 +393,14 @@ export default function VideoConverterPage() {
                 <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-scale-in" style={{ animationFillMode: 'forwards' }}>
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)]">
-                      추출된 프레임 <span className="text-[oklch(0.55_0.02_240)] font-normal">({result.length}개)</span>
+                      {t('videoConverter.extractedFrames')} <span className="text-[oklch(0.55_0.02_240)] font-normal">({result.length})</span>
                     </h3>
                     <button
                       onClick={handleDownloadAllFrames}
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[oklch(0.80_0.18_80)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_15px_oklch(0.80_0.18_80/0.3)] transition-all"
                     >
                       <Download className="w-3.5 h-3.5" />
-                      모두 다운로드
+                      {t('common.downloadAll')}
                     </button>
                   </div>
                   <div className="grid grid-cols-3 gap-2 max-h-[450px] overflow-y-auto">
@@ -510,59 +432,27 @@ export default function VideoConverterPage() {
         {/* How To Use */}
         <div className="mt-12">
           <HowToUse
-            title="비디오 변환기"
-            description="비디오를 GIF로, GIF를 MP4로 변환하거나 비디오에서 프레임을 추출하세요. FFmpeg WebAssembly로 브라우저에서 직접 처리합니다."
+            title={t('videoConverter.howToUse.title')}
+            description={t('videoConverter.howToUse.description')}
             accentColor="amber"
             steps={[
               {
                 number: 1,
-                title: '파일 업로드',
-                description: '비디오(MP4, WebM, MOV) 또는 GIF 파일을 업로드하세요.',
+                title: t('videoConverter.howToUse.step1Title'),
+                description: t('videoConverter.howToUse.step1Desc'),
               },
               {
                 number: 2,
-                title: '변환 모드 선택',
-                description: '비디오→GIF, GIF→MP4, 프레임 추출 중 원하는 모드를 선택하세요.',
+                title: t('videoConverter.howToUse.step2Title'),
+                description: t('videoConverter.howToUse.step2Desc'),
               },
               {
                 number: 3,
-                title: '설정 및 변환',
-                description: '옵션을 설정하고 변환 버튼을 클릭하세요. 완료 후 다운로드합니다.',
+                title: t('videoConverter.howToUse.step3Title'),
+                description: t('videoConverter.howToUse.step3Desc'),
               },
             ]}
             supportedFormats={['MP4', 'WebM', 'MOV', 'AVI', 'GIF']}
-            features={[
-              {
-                title: '비디오 → GIF',
-                description: '비디오의 일부 구간을 GIF 애니메이션으로 변환합니다. 시작 시간, 길이, FPS를 설정할 수 있습니다.',
-              },
-              {
-                title: 'GIF → MP4',
-                description: 'GIF 파일을 MP4 비디오로 변환합니다. 소셜 미디어 업로드에 적합합니다.',
-              },
-              {
-                title: '프레임 추출',
-                description: '비디오에서 원하는 간격으로 프레임을 이미지로 추출합니다.',
-              },
-              {
-                title: 'FFmpeg WebAssembly',
-                description: '브라우저에서 FFmpeg를 실행하여 서버 업로드 없이 변환합니다.',
-              },
-            ]}
-            faqs={[
-              {
-                question: '처음 사용 시 로딩이 오래 걸리나요?',
-                answer: '처음 사용 시 FFmpeg 라이브러리(약 30MB)를 로드합니다. 이후에는 캐시되어 빠르게 시작됩니다.',
-              },
-              {
-                question: '긴 비디오도 변환할 수 있나요?',
-                answer: '파일 크기 100MB, 길이 제한은 없지만, 긴 비디오는 처리 시간이 오래 걸릴 수 있습니다.',
-              },
-              {
-                question: 'GIF로 변환하면 파일이 너무 커지는데요?',
-                answer: 'GIF는 압축 효율이 낮습니다. FPS를 낮추거나, 출력 크기를 줄이거나, 짧은 구간만 선택하세요.',
-              },
-            ]}
           />
         </div>
       </div>

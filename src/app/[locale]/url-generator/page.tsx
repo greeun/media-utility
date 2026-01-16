@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { Upload, Copy, Check, Trash2, Image as ImageIcon, Video, Info, Cloud, Loader2, HardDrive, Calendar, Lock, Eye, EyeOff } from 'lucide-react';
 import { UrlGeneratorIcon } from '@/components/icons/FeatureIcons';
 import {
@@ -37,6 +38,8 @@ interface StorageInfo {
 }
 
 export default function UrlGeneratorPage() {
+  const t = useTranslations();
+
   const [files, setFiles] = useState<GeneratedUrl[]>([]);
   const [urlType, setUrlType] = useState<'base64' | 'blob' | 'r2'>('base64');
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -57,7 +60,7 @@ export default function UrlGeneratorPage() {
         const info = await getStorageInfo();
         setStorageInfo(info);
       } catch (error) {
-        console.error('저장소 정보 조회 실패:', error);
+        console.error('Storage info fetch failed:', error);
       }
     };
 
@@ -85,7 +88,7 @@ export default function UrlGeneratorPage() {
         try {
           item.dataUrl = await fileToDataUrl(file);
         } catch (error) {
-          console.error('Data URL 생성 오류:', error);
+          console.error('Data URL creation error:', error);
         }
 
         item.blobUrl = fileToBlobUrl(file);
@@ -129,11 +132,11 @@ export default function UrlGeneratorPage() {
       const info = await getStorageInfo();
       setStorageInfo(info);
     } catch (error) {
-      console.error('R2 업로드 오류:', error);
+      console.error('R2 upload error:', error);
       setFiles((prev) =>
         prev.map((f) =>
           f.id === item.id
-            ? { ...f, r2Uploading: false, r2Error: error instanceof Error ? error.message : '업로드 실패' }
+            ? { ...f, r2Uploading: false, r2Error: error instanceof Error ? error.message : 'Upload failed' }
             : f
         )
       );
@@ -218,9 +221,9 @@ export default function UrlGeneratorPage() {
               <UrlGeneratorIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">URL 생성</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('urlGenerator.title')}</h1>
               <p className="mt-1 text-[oklch(0.55_0.02_240)]">
-                이미지나 비디오를 공유 가능한 URL로 변환하세요
+                {t('urlGenerator.description')}
               </p>
             </div>
           </div>
@@ -233,7 +236,7 @@ export default function UrlGeneratorPage() {
               <HardDrive className="w-5 h-5 text-[oklch(0.50_0.02_240)]" />
               <div className="flex-1">
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-[oklch(0.60_0.02_240)]">저장소 사용량</span>
+                  <span className="text-[oklch(0.60_0.02_240)]">{t('common.storage')}</span>
                   <span className="text-[oklch(0.95_0.01_80)] font-medium">
                     {formatFileSize(storageInfo.usedBytes)} / {formatFileSize(storageInfo.maxBytes)}
                   </span>
@@ -251,7 +254,7 @@ export default function UrlGeneratorPage() {
                   />
                 </div>
                 <p className="text-xs text-[oklch(0.50_0.02_240)] mt-1">
-                  {storageInfo.fileCount}개 파일 | {storageInfo.usedPercent.toFixed(1)}% 사용
+                  {storageInfo.fileCount} {t('common.files')} | {storageInfo.usedPercent.toFixed(1)}%
                 </p>
               </div>
             </div>
@@ -262,8 +265,8 @@ export default function UrlGeneratorPage() {
         <div className="mb-6 p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
           <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-[oklch(1_0_0/0.1)] rounded-xl cursor-pointer hover:border-[oklch(0.70_0.20_330/0.5)] hover:bg-[oklch(0.70_0.20_330/0.02)] transition-all">
             <Upload className="w-8 h-8 text-[oklch(0.40_0.02_240)] mb-2" />
-            <span className="text-sm font-medium text-[oklch(0.70_0.02_240)]">파일 선택</span>
-            <span className="text-xs text-[oklch(0.50_0.02_240)] mt-1">이미지 또는 비디오</span>
+            <span className="text-sm font-medium text-[oklch(0.70_0.02_240)]">{t('common.upload')}</span>
+            <span className="text-xs text-[oklch(0.50_0.02_240)] mt-1">{t('common.image')} / {t('common.video')}</span>
             <input
               type="file"
               accept="image/*,video/*"
@@ -277,12 +280,12 @@ export default function UrlGeneratorPage() {
         {/* URL Type Selection */}
         {files.length > 0 && (
           <div className="mb-6 p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
-            <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">URL 유형</h3>
+            <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('urlGenerator.urlType')}</h3>
             <div className="grid sm:grid-cols-3 gap-3">
               {[
-                { key: 'base64', title: 'Base64 Data URL', desc: '파일 데이터가 URL에 포함됨' },
-                { key: 'blob', title: 'Blob URL', desc: '현재 세션에서만 유효' },
-                { key: 'r2', title: 'R2 클라우드', desc: '영구 저장, 빠른 CDN 제공', icon: Cloud },
+                { key: 'base64', title: t('urlGenerator.types.base64'), desc: t('urlGenerator.types.base64Desc') },
+                { key: 'blob', title: t('urlGenerator.types.blob'), desc: t('urlGenerator.types.blobDesc') },
+                { key: 'r2', title: t('urlGenerator.types.r2'), desc: t('urlGenerator.types.r2Desc'), icon: Cloud },
               ].map((type) => (
                 <button
                   key={type.key}
@@ -311,7 +314,7 @@ export default function UrlGeneratorPage() {
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-[oklch(0.70_0.02_240)] mb-2">
                     <Calendar className="w-4 h-4" />
-                    파일 유효기간
+                    {t('urlGenerator.cloudOptions.expiry')}
                   </label>
                   <div className="grid grid-cols-4 gap-2">
                     {[7, 30, 90, 365].map((days) => (
@@ -324,7 +327,10 @@ export default function UrlGeneratorPage() {
                             : 'bg-[oklch(0.16_0.02_245)] text-[oklch(0.70_0.02_240)] hover:bg-[oklch(0.20_0.025_240)]'
                         }`}
                       >
-                        {days === 365 ? '1년' : `${days}일`}
+                        {days === 7 ? t('urlGenerator.cloudOptions.week', { count: 1 }) :
+                         days === 30 ? t('urlGenerator.cloudOptions.day', { count: 30 }) :
+                         days === 90 ? t('urlGenerator.cloudOptions.days', { count: 90 }) :
+                         t('urlGenerator.cloudOptions.permanent')}
                       </button>
                     ))}
                   </div>
@@ -334,7 +340,7 @@ export default function UrlGeneratorPage() {
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-[oklch(0.70_0.02_240)] mb-2">
                     <Lock className="w-4 h-4" />
-                    접근 제한
+                    {t('urlGenerator.cloudOptions.password')}
                   </label>
                   <div className="space-y-3">
                     <label className="flex items-center gap-2 cursor-pointer">
@@ -344,7 +350,7 @@ export default function UrlGeneratorPage() {
                         onChange={(e) => setUsePassword(e.target.checked)}
                         className="w-4 h-4 rounded bg-[oklch(0.16_0.02_245)] border-[oklch(1_0_0/0.2)] text-[oklch(0.75_0.18_195)] focus:ring-[oklch(0.75_0.18_195)]"
                       />
-                      <span className="text-sm text-[oklch(0.70_0.02_240)]">비밀번호로 보호</span>
+                      <span className="text-sm text-[oklch(0.70_0.02_240)]">{t('urlGenerator.cloudOptions.password')}</span>
                     </label>
                     {usePassword && (
                       <div className="relative">
@@ -352,7 +358,7 @@ export default function UrlGeneratorPage() {
                           type={showPassword ? 'text' : 'password'}
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
-                          placeholder="비밀번호 입력"
+                          placeholder={t('urlGenerator.cloudOptions.passwordPlaceholder')}
                           className="w-full px-4 py-2 pr-10 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] text-sm focus:outline-none focus:border-[oklch(0.75_0.18_195)]"
                         />
                         <button
@@ -375,7 +381,7 @@ export default function UrlGeneratorPage() {
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[oklch(0.75_0.18_195)] text-[oklch(0.08_0.01_240)] font-medium hover:shadow-[0_0_20px_oklch(0.75_0.18_195/0.4)] transition-all disabled:opacity-50"
                   >
                     <Cloud className="w-4 h-4" />
-                    전체 파일 업로드
+                    {t('urlGenerator.cloudOptions.upload')}
                   </button>
                 )}
               </div>
@@ -388,14 +394,14 @@ export default function UrlGeneratorPage() {
           <div className="mb-6 p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)]">
-                생성된 URL <span className="text-[oklch(0.55_0.02_240)] font-normal">({files.length}개)</span>
+                {t('urlGenerator.result.title')} <span className="text-[oklch(0.55_0.02_240)] font-normal">({files.length})</span>
               </h3>
               <button
                 onClick={clearAll}
                 className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[oklch(0.65_0.22_25)] hover:text-[oklch(0.75_0.25_25)] hover:bg-[oklch(0.65_0.22_25/0.1)] rounded-lg transition-colors"
               >
                 <Trash2 className="w-3.5 h-3.5" />
-                전체 삭제
+                {t('common.deleteAll')}
               </button>
             </div>
 
@@ -435,22 +441,14 @@ export default function UrlGeneratorPage() {
                         )}
                       </div>
                       <p className="text-xs text-[oklch(0.50_0.02_240)]">
-                        원본: {formatFileSize(item.file.size)}
+                        {formatFileSize(item.file.size)}
                         {urlType === 'base64' && (
-                          <span className="ml-2">| URL 크기: {getUrlSize(item)}</span>
+                          <span className="ml-2">| URL: {getUrlSize(item)}</span>
                         )}
                         {urlType === 'r2' && item.r2Url && (
-                          <span className="ml-2 text-[oklch(0.72_0.17_160)]">| 업로드 완료</span>
+                          <span className="ml-2 text-[oklch(0.72_0.17_160)]">| {t('common.completed')}</span>
                         )}
                       </p>
-
-                      {/* R2 Expiry */}
-                      {urlType === 'r2' && item.r2ExpiresAt && (
-                        <p className="text-xs text-[oklch(0.50_0.02_240)] mt-1">
-                          만료: {new Date(item.r2ExpiresAt).toLocaleDateString('ko-KR')}
-                          {item.r2HasPassword && ' | 비밀번호 보호됨'}
-                        </p>
-                      )}
 
                       {/* R2 Upload Progress */}
                       {urlType === 'r2' && item.r2Uploading && (
@@ -458,7 +456,7 @@ export default function UrlGeneratorPage() {
                           <div className="flex items-center gap-2 mb-1">
                             <Loader2 className="w-3 h-3 animate-spin text-[oklch(0.75_0.18_195)]" />
                             <span className="text-xs text-[oklch(0.75_0.18_195)]">
-                              업로드 중... {item.r2Progress}%
+                              {t('common.processing')} {item.r2Progress}%
                             </span>
                           </div>
                           <div className="w-full h-1 bg-[oklch(0.20_0.025_240)] rounded-full overflow-hidden">
@@ -472,7 +470,7 @@ export default function UrlGeneratorPage() {
 
                       {/* R2 Error */}
                       {urlType === 'r2' && item.r2Error && (
-                        <p className="mt-2 text-xs text-[oklch(0.65_0.22_25)]">오류: {item.r2Error}</p>
+                        <p className="mt-2 text-xs text-[oklch(0.65_0.22_25)]">{t('common.error')}: {item.r2Error}</p>
                       )}
 
                       {/* URL Preview */}
@@ -482,17 +480,6 @@ export default function UrlGeneratorPage() {
                             {getUrl(item)?.substring(0, 180)}
                             {(getUrl(item)?.length || 0) > 180 && '...'}
                           </code>
-                        </div>
-                      )}
-
-                      {/* R2 Not Uploaded */}
-                      {urlType === 'r2' && !item.r2Url && !item.r2Uploading && !item.r2Error && (
-                        <div className="mt-2 p-2 bg-[oklch(0.16_0.02_245)] rounded-lg">
-                          <p className="text-xs text-[oklch(0.50_0.02_240)]">
-                            {usePassword && !password
-                              ? '비밀번호를 입력한 후 업로드하세요'
-                              : '업로드 버튼을 클릭하면 R2에 업로드됩니다'}
-                          </p>
                         </div>
                       )}
                     </div>
@@ -513,22 +500,22 @@ export default function UrlGeneratorPage() {
                         {item.r2Uploading ? (
                           <>
                             <Loader2 className="w-4 h-4 animate-spin" />
-                            업로드 중
+                            {t('common.processing')}
                           </>
                         ) : copiedId === item.id ? (
                           <>
                             <Check className="w-4 h-4" />
-                            복사됨
+                            {t('urlGenerator.result.copied')}
                           </>
                         ) : urlType === 'r2' && !item.r2Url ? (
                           <>
                             <Cloud className="w-4 h-4" />
-                            업로드
+                            {t('common.upload')}
                           </>
                         ) : (
                           <>
                             <Copy className="w-4 h-4" />
-                            복사
+                            {t('urlGenerator.result.copy')}
                           </>
                         )}
                       </button>
@@ -537,7 +524,7 @@ export default function UrlGeneratorPage() {
                         className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border border-[oklch(1_0_0/0.1)] text-[oklch(0.60_0.02_240)] hover:text-[oklch(0.65_0.22_25)] hover:border-[oklch(0.65_0.22_25/0.3)] transition-colors"
                       >
                         <Trash2 className="w-4 h-4" />
-                        삭제
+                        {t('common.delete')}
                       </button>
                     </div>
                   </div>
@@ -552,19 +539,16 @@ export default function UrlGeneratorPage() {
           <div className="flex gap-3">
             <Info className="w-5 h-5 text-[oklch(0.75_0.18_195)] flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-semibold text-[oklch(0.80_0.20_195)] mb-2 text-sm">URL 유형 설명</h3>
+              <h3 className="font-semibold text-[oklch(0.80_0.20_195)] mb-2 text-sm">{t('urlGenerator.urlType')}</h3>
               <ul className="text-sm text-[oklch(0.70_0.02_240)] space-y-1.5">
                 <li>
-                  <strong className="text-[oklch(0.80_0.20_195)]">Base64 Data URL:</strong> 파일 데이터가 URL에 직접 포함됩니다.
-                  HTML, CSS, 이메일 등 어디서든 사용 가능하지만 파일 크기가 커집니다.
+                  <strong className="text-[oklch(0.80_0.20_195)]">{t('urlGenerator.types.base64')}:</strong> {t('urlGenerator.types.base64Desc')}
                 </li>
                 <li>
-                  <strong className="text-[oklch(0.80_0.20_195)]">Blob URL:</strong> 브라우저가 생성하는 임시 URL입니다.
-                  현재 브라우저 세션에서만 유효하며, 탭을 닫으면 무효화됩니다.
+                  <strong className="text-[oklch(0.80_0.20_195)]">{t('urlGenerator.types.blob')}:</strong> {t('urlGenerator.types.blobDesc')}
                 </li>
                 <li>
-                  <strong className="text-[oklch(0.80_0.20_195)]">R2 클라우드:</strong> Cloudflare R2에 파일을 저장합니다.
-                  설정한 유효기간 동안 전 세계 CDN을 통해 빠르게 제공됩니다.
+                  <strong className="text-[oklch(0.80_0.20_195)]">{t('urlGenerator.types.r2')}:</strong> {t('urlGenerator.types.r2Desc')}
                 </li>
               </ul>
             </div>
@@ -573,59 +557,27 @@ export default function UrlGeneratorPage() {
 
         {/* How To Use */}
         <HowToUse
-          title="URL 생성기"
-          description="이미지와 비디오 파일을 공유 가능한 URL로 변환하세요. Base64, Blob URL, 또는 클라우드 저장 중 선택할 수 있습니다."
+          title={t('urlGenerator.howToUse.title')}
+          description={t('urlGenerator.howToUse.description')}
           accentColor="rose"
           steps={[
             {
               number: 1,
-              title: '파일 업로드',
-              description: '이미지 또는 비디오 파일을 업로드하세요. 여러 파일을 한 번에 업로드할 수 있습니다.',
+              title: t('urlGenerator.howToUse.step1Title'),
+              description: t('urlGenerator.howToUse.step1Desc'),
             },
             {
               number: 2,
-              title: 'URL 유형 선택',
-              description: 'Base64 Data URL, Blob URL, 또는 R2 클라우드 중 원하는 방식을 선택하세요.',
+              title: t('urlGenerator.howToUse.step2Title'),
+              description: t('urlGenerator.howToUse.step2Desc'),
             },
             {
               number: 3,
-              title: 'URL 복사',
-              description: '생성된 URL을 클립보드에 복사하여 원하는 곳에 사용하세요.',
+              title: t('urlGenerator.howToUse.step3Title'),
+              description: t('urlGenerator.howToUse.step3Desc'),
             },
           ]}
           supportedFormats={['JPG/JPEG', 'PNG', 'WebP', 'GIF', 'MP4', 'WebM']}
-          features={[
-            {
-              title: 'Base64 Data URL',
-              description: '파일 데이터가 URL에 직접 포함됩니다. HTML, CSS, 이메일 등 어디서든 사용 가능합니다.',
-            },
-            {
-              title: 'Blob URL',
-              description: '브라우저가 생성하는 임시 URL입니다. 현재 세션에서만 유효하며 빠르게 생성됩니다.',
-            },
-            {
-              title: 'R2 클라우드 저장',
-              description: 'Cloudflare R2에 파일을 저장하여 영구적인 URL을 생성합니다. 전 세계 CDN을 통해 빠르게 제공됩니다.',
-            },
-            {
-              title: '비밀번호 보호',
-              description: 'R2 클라우드 저장 시 비밀번호를 설정하여 파일 접근을 제한할 수 있습니다.',
-            },
-          ]}
-          faqs={[
-            {
-              question: '어떤 URL 유형을 선택해야 하나요?',
-              answer: 'HTML/CSS에 직접 삽입: Base64, 임시 미리보기: Blob URL, 영구 공유: R2 클라우드를 추천합니다.',
-            },
-            {
-              question: 'Base64 URL이 너무 긴데요?',
-              answer: 'Base64는 파일 데이터를 텍스트로 인코딩하여 원본보다 약 33% 커집니다. 큰 파일은 R2 클라우드를 사용하세요.',
-            },
-            {
-              question: 'R2 클라우드에 저장된 파일은 얼마나 유지되나요?',
-              answer: '설정한 유효기간(1시간~영구) 동안 유지됩니다. 유효기간이 지나면 자동 삭제됩니다.',
-            },
-          ]}
         />
       </div>
     </div>

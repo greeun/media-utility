@@ -1,3 +1,6 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface Step {
@@ -35,6 +38,8 @@ export default function HowToUse({
   faqs,
   accentColor = 'cyan',
 }: HowToUseProps) {
+  const t = useTranslations('howToUse');
+
   // OKLCH 색상 시스템 - 다크 테마에 최적화
   const colorClasses: Record<string, {
     bg: string;
@@ -107,7 +112,7 @@ export default function HowToUse({
       {/* 사용 방법 */}
       <Card className="border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
         <CardHeader>
-          <CardTitle className="text-lg text-[oklch(0.95_0.01_80)]">사용 방법</CardTitle>
+          <CardTitle className="text-lg text-[oklch(0.95_0.01_80)]">{t('howToUse')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3">
@@ -132,7 +137,7 @@ export default function HowToUse({
       {supportedFormats && supportedFormats.length > 0 && (
         <Card className="border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
           <CardHeader>
-            <CardTitle className="text-lg text-[oklch(0.95_0.01_80)]">지원 포맷</CardTitle>
+            <CardTitle className="text-lg text-[oklch(0.95_0.01_80)]">{t('supportedFormats')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
@@ -153,7 +158,7 @@ export default function HowToUse({
       {features && features.length > 0 && (
         <Card className="border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
           <CardHeader>
-            <CardTitle className="text-lg text-[oklch(0.95_0.01_80)]">주요 기능</CardTitle>
+            <CardTitle className="text-lg text-[oklch(0.95_0.01_80)]">{t('keyFeatures')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-2">
@@ -172,7 +177,7 @@ export default function HowToUse({
       {faqs && faqs.length > 0 && (
         <Card className="border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
           <CardHeader>
-            <CardTitle className="text-lg text-[oklch(0.95_0.01_80)]">자주 묻는 질문</CardTitle>
+            <CardTitle className="text-lg text-[oklch(0.95_0.01_80)]">{t('faq')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -189,11 +194,7 @@ export default function HowToUse({
 
       {/* 개인정보 안내 */}
       <div className="text-center text-sm text-[oklch(0.50_0.02_240)] py-4">
-        <p>
-          모든 파일은 브라우저에서 처리되며, 서버에 업로드되지 않습니다.
-          <br />
-          개인정보가 완전히 보호됩니다.
-        </p>
+        <p>{t('privacyNotice')}</p>
       </div>
     </div>
   );

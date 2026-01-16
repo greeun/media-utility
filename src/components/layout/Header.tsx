@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Zap } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import {
   ImageConverterIcon,
   ImageEditorIcon,
@@ -11,13 +12,14 @@ import {
   VideoConverterIcon,
   UrlGeneratorIcon,
 } from '@/components/icons/FeatureIcons';
+import LanguageSelector from '@/components/common/LanguageSelector';
 
-const navigation = [
-  { name: '이미지 변환', href: '/image-converter', icon: ImageConverterIcon, accent: 'cyan' },
-  { name: '이미지 편집', href: '/image-editor', icon: ImageEditorIcon, accent: 'violet' },
-  { name: 'GIF 만들기', href: '/gif-maker', icon: GifMakerIcon, accent: 'emerald' },
-  { name: '비디오 변환', href: '/video-converter', icon: VideoConverterIcon, accent: 'amber' },
-  { name: 'URL 생성', href: '/url-generator', icon: UrlGeneratorIcon, accent: 'magenta' },
+const navigationItems = [
+  { key: 'imageConverter', href: '/image-converter', icon: ImageConverterIcon, accent: 'cyan' },
+  { key: 'imageEditor', href: '/image-editor', icon: ImageEditorIcon, accent: 'violet' },
+  { key: 'gifMaker', href: '/gif-maker', icon: GifMakerIcon, accent: 'emerald' },
+  { key: 'videoConverter', href: '/video-converter', icon: VideoConverterIcon, accent: 'amber' },
+  { key: 'urlGenerator', href: '/url-generator', icon: UrlGeneratorIcon, accent: 'magenta' },
 ];
 
 const accentStyles = {
@@ -49,24 +51,44 @@ const accentStyles = {
 };
 
 export default function Header() {
+  const t = useTranslations();
+  const locale = useLocale();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Build localized href
+  const getLocalizedHref = (href: string) => {
+    if (locale === 'en') return href;
+    return `/${locale}${href}`;
+  };
+
+  // Check if path is active
+  const isPathActive = (href: string) => {
+    const localizedHref = getLocalizedHref(href);
+    return pathname === localizedHref || pathname === href;
+  };
+
+  const navigation = navigationItems.map((item) => ({
+    ...item,
+    name: t(`${item.key}.title`),
+    localizedHref: getLocalizedHref(item.href),
+  }));
 
   return (
     <header className="glass sticky top-0 z-50 border-b border-[oklch(1_0_0/0.06)]">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex items-center gap-3">
+          <Link href={getLocalizedHref('/')} className="group flex items-center gap-3">
             <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-[oklch(0.75_0.18_195)] transition-transform group-hover:scale-105">
               <Zap className="w-5 h-5 text-[oklch(0.08_0.01_240)]" strokeWidth={2.5} />
             </div>
             <div className="flex flex-col">
               <span className="font-semibold text-[15px] tracking-tight text-[oklch(0.95_0.01_80)]">
-                Media Utility
+                {t('common.siteName')}
               </span>
               <span className="text-[10px] font-mono text-[oklch(0.50_0.02_240)] uppercase tracking-widest">
-                Browser Tools
+                {t('common.tagline')}
               </span>
             </div>
           </Link>
@@ -75,13 +97,13 @@ export default function Header() {
           <div className="hidden lg:flex lg:items-center lg:gap-1">
             {navigation.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const isActive = isPathActive(item.href);
               const accent = accentStyles[item.accent as keyof typeof accentStyles];
 
               return (
                 <Link
-                  key={item.name}
-                  href={item.href}
+                  key={item.key}
+                  href={item.localizedHref}
                   className={`
                     relative flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg
                     transition-all duration-300 border border-transparent
@@ -101,18 +123,23 @@ export default function Header() {
             })}
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="lg:hidden p-2 rounded-lg text-[oklch(0.70_0.02_240)] hover:text-[oklch(0.95_0.01_80)] hover:bg-[oklch(1_0_0/0.05)] transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+          {/* Right Side: Language Selector + Mobile Menu */}
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+
+            {/* Mobile menu button */}
+            <button
+              type="button"
+              className="lg:hidden p-2 rounded-lg text-[oklch(0.70_0.02_240)] hover:text-[oklch(0.95_0.01_80)] hover:bg-[oklch(1_0_0/0.05)] transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -121,13 +148,13 @@ export default function Header() {
             <div className="flex flex-col gap-1">
               {navigation.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname === item.href;
+                const isActive = isPathActive(item.href);
                 const accent = accentStyles[item.accent as keyof typeof accentStyles];
 
                 return (
                   <Link
-                    key={item.name}
-                    href={item.href}
+                    key={item.key}
+                    href={item.localizedHref}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`
                       flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg

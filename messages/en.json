@@ -1,0 +1,246 @@
+{
+  "common": {
+    "siteName": "Media Utility",
+    "tagline": "Browser Tools",
+    "browserProcessing": "100% Browser Processing",
+    "noServerUpload": "No Server Upload",
+    "startNow": "Start Now",
+    "exploreFunctions": "Explore Functions",
+    "download": "Download",
+    "downloadAll": "Download All",
+    "delete": "Delete",
+    "deleteAll": "Delete All",
+    "convert": "Convert",
+    "converting": "Converting...",
+    "upload": "Upload",
+    "dragOrClick": "Drag files or click to upload",
+    "maxFiles": "Up to {count} files, max {size}MB each",
+    "maxFilesError": "Maximum {count} files can be selected.",
+    "fileSizeError": "File size must be less than {size}MB.",
+    "image": "Image",
+    "video": "Video",
+    "pending": "Pending",
+    "processing": "Processing...",
+    "completed": "Completed",
+    "error": "Error",
+    "close": "Close",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "settings": "Settings",
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "ffmpegLoading": "Loading FFmpeg...",
+    "storage": "Storage",
+    "files": "files"
+  },
+  "home": {
+    "title": "Media Utility",
+    "subtitle": "Browser-based media conversion tools",
+    "description": "Convert images, videos, and GIFs in your browser. Files are not sent to servers.",
+    "tools": "Tools",
+    "selectTool": "Select a tool",
+    "privacyTitle": "Complete Privacy",
+    "privacyDesc": "All files are processed only in your browser. Nothing is uploaded to servers.",
+    "speedTitle": "Fast Processing",
+    "speedDesc": "WebAssembly technology provides near-native processing speed.",
+    "freeTitle": "Free & Unlimited",
+    "freeDesc": "Use all features for free with no file limits.",
+    "ctaTitle": "Get Started",
+    "ctaDesc": "Use directly in your browser without signup or installation.",
+    "noInstall": "No Installation Required"
+  },
+  "imageConverter": {
+    "title": "Image Converter",
+    "description": "Convert various image formats including PNG, JPG, WebP, HEIC",
+    "outputFormat": "Output Format",
+    "quality": "Quality",
+    "fileList": "File List",
+    "files": "{count} files",
+    "convertCount": "Convert {count} files",
+    "downloadCount": "Download {count} files",
+    "features": {
+      "heic": "HEIC Conversion Support",
+      "heicDesc": "Easily convert HEIC files from iPhone to JPG or PNG.",
+      "quality": "Quality Control",
+      "qualityDesc": "Adjust image quality from 1-100% to balance file size and quality.",
+      "batch": "Batch Conversion",
+      "batchDesc": "Upload multiple images and convert them all with the same settings.",
+      "webp": "WebP Support",
+      "webpDesc": "Convert to modern WebP format to optimize website performance."
+    },
+    "howToUse": {
+      "title": "Image Format Converter",
+      "description": "Easily convert various image formats including PNG, JPG, WebP, HEIC. All processing is done in your browser for privacy.",
+      "step1Title": "Upload Images",
+      "step1Desc": "Drag or click to select image files to convert. You can upload multiple files at once.",
+      "step2Title": "Set Format & Quality",
+      "step2Desc": "Choose the output format (JPG, PNG, WebP) and image quality.",
+      "step3Title": "Convert & Download",
+      "step3Desc": "Click convert and download individually or all at once when complete."
+    },
+    "faq": {
+      "q1": "What is a HEIC file?",
+      "a1": "HEIC is a high-efficiency image format used by Apple since iOS 11. It has smaller file sizes than JPG with the same quality.",
+      "q2": "How should I choose quality settings?",
+      "a2": "For web images, 70-80% is recommended. For printing or preserving originals, use 90-100%.",
+      "q3": "Are there file size limits?",
+      "a3": "Maximum 100MB per file, up to 10 files at once."
+    }
+  },
+  "imageEditor": {
+    "title": "Image Editor",
+    "description": "Crop, rotate, flip, resize, and optimize images",
+    "toolbar": {
+      "crop": "Crop",
+      "rotate": "Rotate",
+      "flip": "Flip",
+      "resize": "Resize",
+      "optimize": "Optimize"
+    },
+    "crop": {
+      "freeform": "Freeform",
+      "square": "Square (1:1)",
+      "landscape": "Landscape (16:9)",
+      "portrait": "Portrait (9:16)",
+      "apply": "Apply Crop"
+    },
+    "rotate": {
+      "left": "Left 90°",
+      "right": "Right 90°"
+    },
+    "flip": {
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
+    },
+    "resize": {
+      "width": "Width",
+      "height": "Height",
+      "keepRatio": "Keep Aspect Ratio",
+      "apply": "Apply"
+    },
+    "optimize": {
+      "quality": "Quality",
+      "apply": "Optimize"
+    },
+    "howToUse": {
+      "title": "Image Editor",
+      "description": "A free online image editor supporting crop, rotate, flip, resize, and optimize. All processing is done in your browser.",
+      "step1Title": "Upload Image",
+      "step1Desc": "Drag or click to select an image file to edit.",
+      "step2Title": "Edit Image",
+      "step2Desc": "Use the toolbar to crop, rotate, flip, resize, or optimize your image.",
+      "step3Title": "Download",
+      "step3Desc": "When done editing, download the result image."
+    }
+  },
+  "gifMaker": {
+    "title": "GIF Maker",
+    "description": "Combine multiple images to create animated GIFs",
+    "images": "Images",
+    "noImages": "No images added",
+    "addImages": "Add Images",
+    "options": "Options",
+    "frameDelay": "Frame Delay",
+    "seconds": "seconds",
+    "outputSize": "Output Size",
+    "original": "Original",
+    "preview": "Preview",
+    "createGif": "Create GIF",
+    "creating": "Creating GIF...",
+    "result": "Result",
+    "howToUse": {
+      "title": "GIF Maker",
+      "description": "Create animated GIFs from multiple images. Easily make GIF animations with adjustable speed and size.",
+      "step1Title": "Add Images",
+      "step1Desc": "Add images in sequence to create an animation. Drag to reorder.",
+      "step2Title": "Adjust Settings",
+      "step2Desc": "Set frame delay (speed) and output size.",
+      "step3Title": "Create & Download",
+      "step3Desc": "Click create and download your animated GIF."
+    }
+  },
+  "videoConverter": {
+    "title": "Video Converter",
+    "description": "Convert video to GIF, GIF to MP4, extract frames",
+    "mode": {
+      "videoToGif": "Video to GIF",
+      "gifToVideo": "GIF to Video",
+      "extractFrames": "Extract Frames"
+    },
+    "options": {
+      "fps": "FPS",
+      "scale": "Scale",
+      "original": "Original",
+      "format": "Format",
+      "interval": "Interval"
+    },
+    "preview": "Preview",
+    "result": "Result",
+    "extractedFrames": "Extracted Frames",
+    "howToUse": {
+      "title": "Video Converter",
+      "description": "Convert videos to GIF, GIF to MP4 video, or extract frames from videos. All processing is done in your browser using FFmpeg WebAssembly.",
+      "step1Title": "Select Mode",
+      "step1Desc": "Choose Video to GIF, GIF to Video, or Extract Frames.",
+      "step2Title": "Upload File",
+      "step2Desc": "Upload a video or GIF file to convert.",
+      "step3Title": "Set Options & Convert",
+      "step3Desc": "Adjust FPS, scale, format, then convert and download."
+    }
+  },
+  "urlGenerator": {
+    "title": "URL Generator",
+    "description": "Convert images/videos to shareable URLs",
+    "urlType": "URL Type",
+    "types": {
+      "base64": "Base64 URL",
+      "base64Desc": "Embed directly in HTML/CSS. Works without a server.",
+      "blob": "Blob URL",
+      "blobDesc": "Temporary URL valid only in this browser session.",
+      "r2": "Cloud Storage",
+      "r2Desc": "Upload to cloud storage for a permanent shareable link."
+    },
+    "cloudOptions": {
+      "expiry": "Expiration",
+      "hour": "{count} hour",
+      "hours": "{count} hours",
+      "day": "{count} day",
+      "days": "{count} days",
+      "week": "{count} week",
+      "permanent": "Permanent",
+      "password": "Password Protection",
+      "passwordPlaceholder": "Optional",
+      "upload": "Upload"
+    },
+    "result": {
+      "title": "Generated URL",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "newTab": "Open in New Tab",
+      "warning": "Blob URLs are only valid in this browser session."
+    },
+    "howToUse": {
+      "title": "URL Generator",
+      "description": "Convert images and videos to shareable URLs. Choose Base64 for embedding, Blob for temporary use, or Cloud for permanent sharing.",
+      "step1Title": "Upload File",
+      "step1Desc": "Upload an image or video file to generate a URL.",
+      "step2Title": "Select URL Type",
+      "step2Desc": "Choose Base64, Blob, or Cloud Storage based on your needs.",
+      "step3Title": "Generate & Use",
+      "step3Desc": "Generate the URL and copy it for use in HTML, CSS, or sharing."
+    }
+  },
+  "howToUse": {
+    "howToUse": "How to Use",
+    "supportedFormats": "Supported Formats",
+    "keyFeatures": "Key Features",
+    "faq": "FAQ",
+    "privacyNotice": "All files are processed in your browser and are not uploaded to servers. Your privacy is fully protected."
+  },
+  "footer": {
+    "copyright": "© {year} Media Utility. All rights reserved.",
+    "privacyNote": "Convert files safely in your browser. Nothing is uploaded to servers.",
+    "clientSide": "Client-side Processing",
+    "freeUse": "Free to Use"
+  }
+}

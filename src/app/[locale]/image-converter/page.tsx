@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { Download, Trash2, RefreshCw, CheckCircle, AlertCircle, Upload, Sparkles } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { Download, Trash2, RefreshCw, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 import { ImageConverterIcon } from '@/components/icons/FeatureIcons';
 import FileUploader from '@/components/upload/FileUploader';
 import { convertImage, generateNewFilename } from '@/services/imageConverter';
@@ -28,6 +29,8 @@ const OUTPUT_FORMATS = [
 ];
 
 export default function ImageConverterPage() {
+  const t = useTranslations();
+
   const [files, setFiles] = useState<ConvertedFile[]>([]);
   const [targetFormat, setTargetFormat] = useState('jpg');
   const [quality, setQuality] = useState(90);
@@ -154,9 +157,9 @@ export default function ImageConverterPage() {
               <ImageConverterIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">이미지 변환</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('imageConverter.title')}</h1>
               <p className="mt-1 text-[oklch(0.55_0.02_240)]">
-                PNG, JPG, WebP, HEIC 등 다양한 이미지 포맷을 변환하세요
+                {t('imageConverter.description')}
               </p>
             </div>
           </div>
@@ -181,12 +184,12 @@ export default function ImageConverterPage() {
             <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
               <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[oklch(0.75_0.18_195)]" />
-                변환 옵션
+                {t('common.settings')}
               </h3>
               <div className="grid sm:grid-cols-2 gap-6">
                 {/* Format Selection */}
                 <div>
-                  <label className="block text-sm text-[oklch(0.70_0.02_240)] mb-3">출력 포맷</label>
+                  <label className="block text-sm text-[oklch(0.70_0.02_240)] mb-3">{t('imageConverter.outputFormat')}</label>
                   <div className="flex gap-2">
                     {OUTPUT_FORMATS.map((format) => (
                       <button
@@ -209,7 +212,7 @@ export default function ImageConverterPage() {
                 {/* Quality Slider */}
                 <div>
                   <label className="block text-sm text-[oklch(0.70_0.02_240)] mb-3">
-                    품질: <span className="text-[oklch(0.75_0.18_195)] font-semibold">{quality}%</span>
+                    {t('imageConverter.quality')}: <span className="text-[oklch(0.75_0.18_195)] font-semibold">{quality}%</span>
                   </label>
                   <input
                     type="range"
@@ -234,14 +237,14 @@ export default function ImageConverterPage() {
             <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)]">
-                  파일 목록 <span className="text-[oklch(0.55_0.02_240)] font-normal">({files.length}개)</span>
+                  {t('imageConverter.fileList')} <span className="text-[oklch(0.55_0.02_240)] font-normal">({files.length})</span>
                 </h3>
                 <button
                   onClick={clearAll}
                   className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[oklch(0.65_0.22_25)] hover:text-[oklch(0.75_0.25_25)] hover:bg-[oklch(0.65_0.22_25/0.1)] rounded-lg transition-colors"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
-                  전체 삭제
+                  {t('common.deleteAll')}
                 </button>
               </div>
 
@@ -338,12 +341,12 @@ export default function ImageConverterPage() {
                 {isConverting ? (
                   <>
                     <RefreshCw className="w-4 h-4 animate-spin" />
-                    변환 중...
+                    {t('common.converting')}
                   </>
                 ) : (
                   <>
                     <RefreshCw className="w-4 h-4" />
-                    {pendingCount}개 변환하기
+                    {t('imageConverter.convertCount', { count: pendingCount })}
                   </>
                 )}
               </button>
@@ -354,7 +357,7 @@ export default function ImageConverterPage() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.72_0.17_160)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:shadow-[0_0_30px_oklch(0.72_0.17_160/0.4)]"
               >
                 <Download className="w-4 h-4" />
-                {completedCount}개 모두 다운로드
+                {t('imageConverter.downloadCount', { count: completedCount })}
               </button>
             )}
           </div>
@@ -363,57 +366,57 @@ export default function ImageConverterPage() {
         {/* How To Use */}
         <div className="mt-12">
           <HowToUse
-            title="이미지 포맷 변환기"
-            description="PNG, JPG, WebP, HEIC 등 다양한 이미지 포맷을 손쉽게 변환하세요. 모든 처리는 브라우저에서 이루어져 개인정보가 보호됩니다."
+            title={t('imageConverter.howToUse.title')}
+            description={t('imageConverter.howToUse.description')}
             accentColor="sky"
             steps={[
               {
                 number: 1,
-                title: '이미지 업로드',
-                description: '변환할 이미지 파일을 드래그하거나 클릭하여 선택하세요. 여러 파일을 한 번에 업로드할 수 있습니다.',
+                title: t('imageConverter.howToUse.step1Title'),
+                description: t('imageConverter.howToUse.step1Desc'),
               },
               {
                 number: 2,
-                title: '포맷 및 품질 설정',
-                description: '원하는 출력 포맷(JPG, PNG, WebP)과 이미지 품질을 선택하세요.',
+                title: t('imageConverter.howToUse.step2Title'),
+                description: t('imageConverter.howToUse.step2Desc'),
               },
               {
                 number: 3,
-                title: '변환 및 다운로드',
-                description: '변환 버튼을 클릭하고, 완료되면 개별 또는 일괄 다운로드하세요.',
+                title: t('imageConverter.howToUse.step3Title'),
+                description: t('imageConverter.howToUse.step3Desc'),
               },
             ]}
             supportedFormats={['JPG/JPEG', 'PNG', 'WebP', 'HEIC/HEIF', 'GIF', 'BMP', 'TIFF']}
             features={[
               {
-                title: 'HEIC 변환 지원',
-                description: 'iPhone에서 촬영한 HEIC 파일을 JPG나 PNG로 간편하게 변환할 수 있습니다.',
+                title: t('imageConverter.features.heic'),
+                description: t('imageConverter.features.heicDesc'),
               },
               {
-                title: '품질 조절',
-                description: '이미지 품질을 1-100% 범위에서 조절하여 파일 크기와 화질의 균형을 맞출 수 있습니다.',
+                title: t('imageConverter.features.quality'),
+                description: t('imageConverter.features.qualityDesc'),
               },
               {
-                title: '일괄 변환',
-                description: '여러 이미지를 한 번에 업로드하고 동일한 설정으로 일괄 변환할 수 있습니다.',
+                title: t('imageConverter.features.batch'),
+                description: t('imageConverter.features.batchDesc'),
               },
               {
-                title: 'WebP 지원',
-                description: '최신 WebP 포맷으로 변환하여 웹사이트 성능을 최적화하세요.',
+                title: t('imageConverter.features.webp'),
+                description: t('imageConverter.features.webpDesc'),
               },
             ]}
             faqs={[
               {
-                question: 'HEIC 파일이란 무엇인가요?',
-                answer: 'HEIC는 Apple이 iOS 11부터 사용하는 고효율 이미지 포맷입니다. JPG보다 파일 크기가 작으면서 화질은 동일합니다.',
+                question: t('imageConverter.faq.q1'),
+                answer: t('imageConverter.faq.a1'),
               },
               {
-                question: '품질 설정은 어떻게 선택하나요?',
-                answer: '웹용 이미지는 70-80%, 인쇄용이나 원본 보존이 필요한 경우 90-100%를 추천합니다.',
+                question: t('imageConverter.faq.q2'),
+                answer: t('imageConverter.faq.a2'),
               },
               {
-                question: '파일 크기 제한이 있나요?',
-                answer: '파일당 최대 100MB까지 지원하며, 한 번에 최대 10개 파일을 업로드할 수 있습니다.',
+                question: t('imageConverter.faq.q3'),
+                answer: t('imageConverter.faq.a3'),
               },
             ]}
           />
