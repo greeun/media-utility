@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(git -C /Users/uni4love/project/workspace/211-withwiz/tlog.net/media-utility log --oneline -5)",
+      "Bash(npm show:*)",
+      "Bash(npm search:*)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(npm run build:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(chmod:*)",
+      "Bash(curl:*)",
+      "Bash(tar:*)",
+      "Bash(git remote add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "n8n"
+  ]
+}
