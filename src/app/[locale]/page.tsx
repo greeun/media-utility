@@ -9,6 +9,7 @@ import {
   GifMakerIcon,
   VideoConverterIcon,
   UrlGeneratorIcon,
+  BackgroundRemoverIcon,
 } from '@/components/icons/FeatureIcons';
 
 const accentConfig = {
@@ -57,6 +58,15 @@ const accentConfig = {
     glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.20_330/0.25)]',
     badge: 'bg-[oklch(0.70_0.20_330/0.1)] text-[oklch(0.75_0.25_330)]',
   },
+  purple: {
+    bg: 'bg-[oklch(0.70_0.20_290)]',
+    bgHover: 'group-hover:bg-[oklch(0.75_0.25_290)]',
+    border: 'border-[oklch(0.70_0.20_290/0.2)]',
+    borderHover: 'group-hover:border-[oklch(0.70_0.20_290/0.4)]',
+    text: 'text-[oklch(0.75_0.25_290)]',
+    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.20_290/0.25)]',
+    badge: 'bg-[oklch(0.70_0.20_290/0.1)] text-[oklch(0.75_0.25_290)]',
+  },
 };
 
 export default function Home() {
@@ -80,6 +90,15 @@ export default function Home() {
       href: '/image-editor',
       accent: 'violet',
       features: [t('imageEditor.toolbar.crop'), t('imageEditor.toolbar.rotate'), t('imageEditor.toolbar.optimize')],
+    },
+    {
+      id: 'background-remover',
+      nameKey: 'backgroundRemover.title',
+      descKey: 'backgroundRemover.description',
+      icon: BackgroundRemoverIcon,
+      href: '/background-remover',
+      accent: 'purple',
+      features: ['AI ' + t('backgroundRemover.features.ai').split(' ')[0], 'PNG', t('backgroundRemover.features.batch')],
     },
     {
       id: 'gif-maker',

@@ -118,15 +118,20 @@ export default function FileUploader({
             </p>
           </div>
 
+          {/* File type indicators based on accept prop */}
           <div className="flex items-center gap-4 text-xs text-[oklch(0.45_0.02_240)]">
-            <span className="flex items-center gap-1">
-              <FileImage className="w-4 h-4" />
-              {t('image')}
-            </span>
-            <span className="flex items-center gap-1">
-              <FileVideo className="w-4 h-4" />
-              {t('video')}
-            </span>
+            {accept.includes('image') && (
+              <span className="flex items-center gap-1">
+                <FileImage className="w-4 h-4" />
+                {t('image')}
+              </span>
+            )}
+            {accept.includes('video') && (
+              <span className="flex items-center gap-1">
+                <FileVideo className="w-4 h-4" />
+                {t('video')}
+              </span>
+            )}
           </div>
         </div>
       </div>

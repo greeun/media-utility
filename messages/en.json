@@ -188,6 +188,43 @@
       "step3Desc": "Adjust FPS, scale, format, then convert and download."
     }
   },
+  "backgroundRemover": {
+    "title": "Background Remover",
+    "description": "Automatically remove image backgrounds using AI",
+    "fileList": "File List",
+    "processCount": "Process {count} files",
+    "downloadCount": "Download {count} files",
+    "aiNotice": "AI-powered Background Removal",
+    "aiNoticeDesc": "The AI model (~30MB) will be downloaded on first use. All processing is done in your browser for complete privacy.",
+    "features": {
+      "ai": "AI Auto Detection",
+      "aiDesc": "Deep learning AI model automatically detects objects and precisely removes backgrounds.",
+      "privacy": "Complete Privacy",
+      "privacyDesc": "All processing is done in your browser. Images are never uploaded to external servers.",
+      "transparent": "Transparent PNG Output",
+      "transparentDesc": "Saves as transparent PNG files ready for various uses.",
+      "batch": "Batch Processing",
+      "batchDesc": "Upload multiple images and automatically remove backgrounds from all at once."
+    },
+    "howToUse": {
+      "title": "AI Background Removal Tool",
+      "description": "Automatically remove backgrounds from images using AI technology. All processing is done in your browser for complete privacy.",
+      "step1Title": "Upload Images",
+      "step1Desc": "Select images to remove backgrounds from. You can upload multiple files at once.",
+      "step2Title": "Automatic Processing",
+      "step2Desc": "Click process and AI will automatically detect objects and remove backgrounds.",
+      "step3Title": "Download",
+      "step3Desc": "Download the completed transparent PNG files."
+    },
+    "faq": {
+      "q1": "What types of images work best?",
+      "a1": "Most effective for images with clear subjects like people, products, or animals. Complex backgrounds or transparent objects may vary in results.",
+      "q2": "Why is the first run slow?",
+      "a2": "The AI model (about 30MB) is downloaded on first use. After that, it's cached in your browser for fast processing.",
+      "q3": "Are there file size limits?",
+      "a3": "For optimal performance, we recommend maximum 10MB per file and up to 5 files at once."
+    }
+  },
   "urlGenerator": {
     "title": "URL Generator",
     "description": "Convert images/videos to shareable URLs",

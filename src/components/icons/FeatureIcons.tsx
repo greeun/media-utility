@@ -207,6 +207,54 @@ export function UrlGeneratorIcon({ className = '', size = 24 }: IconProps) {
   );
 }
 
+// 배경 제거 - 이미지 레이어 분리
+export function BackgroundRemoverIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 배경 레이어 (점선) */}
+      <rect
+        x="3"
+        y="5"
+        width="12"
+        height="14"
+        rx="2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeDasharray="3 3"
+        opacity="0.3"
+      />
+      
+      {/* 전경 이미지 (사람 실루엣) */}
+      <path
+        d="M17 8a2 2 0 100-4 2 2 0 000 4z"
+        fill="currentColor"
+      />
+      <path
+        d="M13 11c0-1.5 1.5-2 2.5-2h3c1 0 2.5.5 2.5 2v8H13v-8z"
+        fill="currentColor"
+        opacity="0.8"
+      />
+      
+      {/* 지우개/분리 효과 */}
+      <path
+        d="M8 9l-3 3m0 0l3 3m-3-3h8"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.5"
+      />
+    </svg>
+  );
+}
+
 // === 특징 섹션 아이콘 ===
 
 // 프라이버시/보안

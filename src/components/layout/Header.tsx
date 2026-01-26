@@ -11,12 +11,14 @@ import {
   GifMakerIcon,
   VideoConverterIcon,
   UrlGeneratorIcon,
+  BackgroundRemoverIcon,
 } from '@/components/icons/FeatureIcons';
 import LanguageSelector from '@/components/common/LanguageSelector';
 
 const navigationItems = [
   { key: 'imageConverter', href: '/image-converter', icon: ImageConverterIcon, accent: 'cyan' },
   { key: 'imageEditor', href: '/image-editor', icon: ImageEditorIcon, accent: 'violet' },
+  { key: 'backgroundRemover', href: '/background-remover', icon: BackgroundRemoverIcon, accent: 'purple' },
   { key: 'gifMaker', href: '/gif-maker', icon: GifMakerIcon, accent: 'emerald' },
   { key: 'videoConverter', href: '/video-converter', icon: VideoConverterIcon, accent: 'amber' },
   { key: 'urlGenerator', href: '/url-generator', icon: UrlGeneratorIcon, accent: 'magenta' },
@@ -32,6 +34,11 @@ const accentStyles = {
     active: 'bg-[oklch(0.65_0.22_290/0.15)] text-[oklch(0.70_0.26_290)] border-[oklch(0.65_0.22_290/0.3)]',
     hover: 'hover:text-[oklch(0.70_0.26_290)] hover:bg-[oklch(0.65_0.22_290/0.08)]',
     glow: 'shadow-[0_0_20px_oklch(0.65_0.22_290/0.3)]',
+  },
+  purple: {
+    active: 'bg-[oklch(0.70_0.20_290/0.15)] text-[oklch(0.75_0.25_290)] border-[oklch(0.70_0.20_290/0.3)]',
+    hover: 'hover:text-[oklch(0.75_0.25_290)] hover:bg-[oklch(0.70_0.20_290/0.08)]',
+    glow: 'shadow-[0_0_20px_oklch(0.70_0.20_290/0.3)]',
   },
   emerald: {
     active: 'bg-[oklch(0.72_0.17_160/0.15)] text-[oklch(0.78_0.20_160)] border-[oklch(0.72_0.17_160/0.3)]',
@@ -83,14 +90,9 @@ export default function Header() {
             <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-[oklch(0.75_0.18_195)] transition-transform group-hover:scale-105">
               <Zap className="w-5 h-5 text-[oklch(0.08_0.01_240)]" strokeWidth={2.5} />
             </div>
-            <div className="flex flex-col">
-              <span className="font-semibold text-[15px] tracking-tight text-[oklch(0.95_0.01_80)]">
-                {t('common.siteName')}
-              </span>
-              <span className="text-[10px] font-mono text-[oklch(0.50_0.02_240)] uppercase tracking-widest">
-                {t('common.tagline')}
-              </span>
-            </div>
+            <span className="font-semibold text-[15px] tracking-tight text-[oklch(0.95_0.01_80)]">
+              {t('common.siteName')}
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

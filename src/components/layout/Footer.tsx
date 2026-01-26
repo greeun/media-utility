@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl';
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const year = new Date().getFullYear();
+  const version = process.env.NEXT_PUBLIC_VERSION;
 
   return (
     <footer className="bg-[oklch(0.06_0.01_240)] border-t border-[oklch(1_0_0/0.06)]">
@@ -11,7 +13,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
             <p className="text-sm text-[oklch(0.55_0.02_240)]">
-              {t('copyright', { year: new Date().getFullYear() })}
+              {t('copyright', { year })}<span className="text-transparent selection:text-[oklch(0.55_0.02_240)]"> v{version}</span>
             </p>
             <p className="text-xs text-[oklch(0.45_0.02_240)] mt-1">
               {t('privacyNote')}
