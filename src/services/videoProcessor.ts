@@ -22,13 +22,33 @@ export async function initFFmpeg(onProgress?: (message: string) => void): Promis
     onProgress?.(`처리 중... ${Math.round(progress * 100)}%`);
   });
 
-  // FFmpeg WASM 로드
-  const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
+  // FFmpeg WASM 로드 (로컬 파일 사용)
+  const baseURL = '/ffmpeg';
 
-  await ffmpeg.load({
-    coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-  });
+  try {
+    console.log('[FFmpeg] Loading from local files...');
+    await ffmpeg.load({
+      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+      wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+    });
+    console.log('[FFmpeg] Successfully loaded from local files');
+  } catch (error) {
+    console.error('[FFmpeg] Local load error:', error);
+    
+    // Fallback: CDN에서 로드 시도
+    try {
+      console.log('[FFmpeg] Trying CDN fallback...');
+      const cdnURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
+      await ffmpeg.load({
+        coreURL: await toBlobURL(`${cdnURL}/ffmpeg-core.js`, 'text/javascript'),
+        wasmURL: await toBlobURL(`${cdnURL}/ffmpeg-core.wasm`, 'application/wasm'),
+      });
+      console.log('[FFmpeg] Successfully loaded from CDN');
+    } catch (cdnError) {
+      console.error('[FFmpeg] CDN fallback error:', cdnError);
+      throw cdnError;
+    }
+  }
 
   return ffmpeg;
 }

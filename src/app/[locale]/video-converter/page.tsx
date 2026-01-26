@@ -89,6 +89,20 @@ export default function VideoConverterPage() {
   const handleConvert = async () => {
     if (!file) return;
 
+    // SharedArrayBuffer 지원 확인
+    if (typeof SharedArrayBuffer === 'undefined') {
+      console.error('SharedArrayBuffer is not supported. FFmpeg WASM requires SharedArrayBuffer.');
+      alert('브라우저가 SharedArrayBuffer를 지원하지 않습니다. 최신 브라우저를 사용하거나 HTTPS로 접속해주세요.');
+      return;
+    }
+
+    console.log('Starting conversion...', {
+      mode,
+      file: file.name,
+      size: file.size,
+      type: file.type,
+    });
+
     setIsProcessing(true);
     setLoadingFFmpeg(true);
     setProgress(0);
@@ -98,41 +112,55 @@ export default function VideoConverterPage() {
 
       switch (mode) {
         case 'video-to-gif':
+          console.log('Converting video to GIF...');
           output = await videoToGif(
             file,
             { fps, startTime, duration, width: outputWidth },
             (p) => {
               setLoadingFFmpeg(false);
               setProgress(p);
+              console.log('Progress:', p);
             }
           );
           setResult(output);
           setResultPreview(URL.createObjectURL(output));
+          console.log('Video to GIF conversion completed');
           break;
 
         case 'gif-to-mp4':
+          console.log('Converting GIF to MP4...');
           output = await gifToMp4(file, {}, (p) => {
             setLoadingFFmpeg(false);
             setProgress(p);
+            console.log('Progress:', p);
           });
           setResult(output);
           setResultPreview(URL.createObjectURL(output));
+          console.log('GIF to MP4 conversion completed');
           break;
 
         case 'video-to-frames':
+          console.log('Extracting frames...');
           output = await extractFrames(
             file,
             { fps: framesFps, startTime, duration, maxFrames },
             (p) => {
               setLoadingFFmpeg(false);
               setProgress(p);
+              console.log('Progress:', p);
             }
           );
           setResult(output);
+          console.log('Frame extraction completed:', output.length, 'frames');
           break;
       }
     } catch (error) {
       console.error('Conversion error:', error);
+      console.error('Error details:', {
+        message: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+      });
+      alert(`변환 중 오류가 발생했습니다: ${error instanceof Error ? error.message : String(error)}`);
     }
 
     setIsProcessing(false);
