@@ -1,6 +1,6 @@
 {
   "name": "media-utility",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
@@ -24,6 +24,7 @@
     "@aws-sdk/s3-request-presigner": "^3.970.0",
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
+    "@imgly/background-removal": "^1.7.0",
     "@radix-ui/react-slot": "^1.2.4",
     "browser-image-compression": "^2.0.2",
     "class-variance-authority": "^0.7.1",
