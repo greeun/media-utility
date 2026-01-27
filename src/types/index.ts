@@ -76,7 +76,8 @@ export type ToolType =
   | 'watermark'
   | 'meme-generator'
   | 'face-blur'
-  | 'html-to-image';
+  | 'html-to-image'
+  | 'image-upscaler';
 
 // 도구 정보
 export interface Tool {

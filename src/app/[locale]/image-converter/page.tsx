@@ -8,6 +8,7 @@ import FileUploader from '@/components/upload/FileUploader';
 import { convertImage, convertSvgToRaster, isSvgFile, generateNewFilename } from '@/services/imageConverter';
 import { convertHeicToJpg, isHeicFile } from '@/services/heicConverter';
 import { convertPsdToImage, isPsdFile } from '@/services/psdConverter';
+import { convertRawToImage, isRawFile } from '@/services/rawConverter';
 import { saveAs } from 'file-saver';
 import HowToUse from '@/components/common/HowToUse';
 
@@ -39,7 +40,7 @@ export default function ImageConverterPage() {
 
   const handleFilesSelected = useCallback((selectedFiles: File[]) => {
     const newFiles: ConvertedFile[] = selectedFiles
-      .filter((file) => file.type.startsWith('image/') || isHeicFile(file) || isSvgFile(file) || isPsdFile(file))
+      .filter((file) => file.type.startsWith('image/') || isHeicFile(file) || isSvgFile(file) || isPsdFile(file) || isRawFile(file))
       .map((file) => ({
         id: crypto.randomUUID(),
         originalFile: file,
@@ -108,6 +109,19 @@ export default function ImageConverterPage() {
           );
         }
       );
+    }
+
+    if (isRawFile(file.originalFile)) {
+      const result = await convertRawToImage(
+        file.originalFile,
+        { format: targetFormat as 'png' | 'jpg' | 'webp', quality: quality / 100 },
+        (progress) => {
+          setFiles((prev) =>
+            prev.map((f) => (f.id === file.id ? { ...f, progress } : f))
+          );
+        }
+      );
+      return result.blob;
     }
 
     return convertImage(
@@ -195,7 +209,7 @@ export default function ImageConverterPage() {
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
           <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
             <FileUploader
-              accept="image/*,.heic,.heif,.svg,.psd"
+              accept="image/*,.heic,.heif,.svg,.psd,.cr2,.cr3,.nef,.arw,.dng,.orf,.rw2,.raf,.raw"
               multiple={true}
               maxFiles={20}
               maxSize={50}
@@ -412,7 +426,7 @@ export default function ImageConverterPage() {
                 description: t('imageConverter.howToUse.step3Desc'),
               },
             ]}
-            supportedFormats={['JPG/JPEG', 'PNG', 'WebP', 'HEIC/HEIF', 'SVG', 'GIF', 'BMP', 'TIFF']}
+            supportedFormats={['JPG/JPEG', 'PNG', 'WebP', 'HEIC/HEIF', 'SVG', 'PSD', 'RAW (CR2/NEF/ARW/DNG)', 'GIF', 'BMP', 'TIFF']}
             features={[
               {
                 title: t('imageConverter.features.heic'),

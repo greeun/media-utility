@@ -15,6 +15,7 @@ import {
   MemeGeneratorIcon,
   FaceBlurIcon,
   HtmlToImageIcon,
+  UpscalerIcon,
 } from '@/components/icons/FeatureIcons';
 
 const accentConfig = {
@@ -117,6 +118,15 @@ const accentConfig = {
     glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.17_145/0.25)]',
     badge: 'bg-[oklch(0.70_0.17_145/0.1)] text-[oklch(0.75_0.20_145)]',
   },
+  sky: {
+    bg: 'bg-[oklch(0.70_0.18_280)]',
+    bgHover: 'group-hover:bg-[oklch(0.75_0.20_280)]',
+    border: 'border-[oklch(0.70_0.18_280/0.2)]',
+    borderHover: 'group-hover:border-[oklch(0.70_0.18_280/0.4)]',
+    text: 'text-[oklch(0.75_0.20_280)]',
+    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.18_280/0.25)]',
+    badge: 'bg-[oklch(0.70_0.18_280/0.1)] text-[oklch(0.75_0.20_280)]',
+  },
 };
 
 export default function Home() {
@@ -194,6 +204,15 @@ export default function Home() {
       href: '/html-to-image',
       accent: 'lime',
       features: ['HTML/CSS', t('htmlToImage.features.preview'), 'PNG/JPG/SVG'],
+    },
+    {
+      id: 'image-upscaler',
+      nameKey: 'imageUpscaler.title',
+      descKey: 'imageUpscaler.description',
+      icon: UpscalerIcon,
+      href: '/image-upscaler',
+      accent: 'sky',
+      features: ['AI', '2x/3x/4x', t('imageUpscaler.features.compare')],
     },
     {
       id: 'gif-maker',

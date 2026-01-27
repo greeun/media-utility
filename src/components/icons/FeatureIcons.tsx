@@ -419,6 +419,61 @@ export function HtmlToImageIcon({ className = '', size = 24 }: IconProps) {
   );
 }
 
+// 이미지 업스케일 - AI 기반 확대
+export function UpscalerIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 작은 이미지 (원본) */}
+      <rect x="2" y="10" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="4.5" cy="12.5" r="0.8" fill="currentColor" fillOpacity="0.5" />
+      <path d="M3 16l2-2 1 1 2-2v3H3z" fill="currentColor" fillOpacity="0.3" />
+      {/* 확대 화살표 */}
+      <path d="M12 14h3m0 0l-1.5-1.5M15 14l-1.5 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* 큰 이미지 (결과) */}
+      <rect x="11" y="2" width="11" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="14" cy="5" r="1.2" fill="currentColor" fillOpacity="0.5" />
+      <path d="M12 10l3-3 2 2 3-3v4h-8z" fill="currentColor" fillOpacity="0.3" />
+      {/* AI 배지 */}
+      <circle cx="19" cy="18" r="4" fill="currentColor" />
+      <text x="19" y="20" fontSize="5" fontWeight="700" fontFamily="system-ui, sans-serif" fill="white" textAnchor="middle">AI</text>
+    </svg>
+  );
+}
+
+// RAW 변환 - 카메라 RAW 파일
+export function RawConverterIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 카메라 본체 */}
+      <rect x="2" y="6" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      {/* 렌즈 */}
+      <circle cx="9" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="9" cy="12" r="1.5" fill="currentColor" fillOpacity="0.4" />
+      {/* 플래시 */}
+      <rect x="5" y="7.5" width="3" height="1.5" rx="0.5" fill="currentColor" fillOpacity="0.3" />
+      {/* 변환 화살표 */}
+      <path d="M18 12h4m0 0l-1.5-1.5M22 12l-1.5 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* RAW 배지 */}
+      <rect x="14" y="17" width="9" height="5" rx="1.5" fill="currentColor" />
+      <text x="18.5" y="21" fontSize="4" fontWeight="700" fontFamily="system-ui, sans-serif" fill="white" textAnchor="middle">RAW</text>
+    </svg>
+  );
+}
+
 // === 특징 섹션 아이콘 ===
 
 // 프라이버시/보안

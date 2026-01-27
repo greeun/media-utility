@@ -431,5 +431,41 @@
       "step3Title": "Convert & Download",
       "step3Desc": "Click convert and download the result image."
     }
+  },
+  "imageUpscaler": {
+    "title": "Image Upscaler",
+    "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "desktopNotice": "Desktop recommended",
+    "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
+    "settings": "Upscale Settings",
+    "scale": "Scale Factor",
+    "format": "Output Format",
+    "outputSize": "Expected Output Size",
+    "compare": "Original vs Result Comparison",
+    "original": "Original",
+    "upscaled": "Upscaled",
+    "fileList": "File List",
+    "upscaleCount": "Upscale {count}",
+    "downloadCount": "Download {count}",
+    "howToUse": {
+      "title": "How to Use Image Upscaler",
+      "description": "Enhance image resolution using AI-powered super-resolution technology.",
+      "step1Title": "Upload Image",
+      "step1Desc": "Select the image file to upscale.",
+      "step2Title": "Select Scale & Format",
+      "step2Desc": "Choose 2x, 3x, or 4x scale and output format.",
+      "step3Title": "Upscale & Download",
+      "step3Desc": "AI analyzes and upscales the image to high resolution."
+    },
+    "features": {
+      "ai": "AI Super-Resolution",
+      "aiDesc": "ESRGAN model-based AI image upscaling",
+      "compare": "Compare View",
+      "compareDesc": "Compare original and upscaled results with slider",
+      "multi": "Multiple Scales",
+      "multiDesc": "Choose from 2x, 3x, and 4x scale factors",
+      "format": "Multiple Formats",
+      "formatDesc": "Support PNG, JPG, WebP output formats"
+    }
   }
 }

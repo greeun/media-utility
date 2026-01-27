@@ -17,6 +17,7 @@ import {
   MemeGeneratorIcon,
   FaceBlurIcon,
   HtmlToImageIcon,
+  UpscalerIcon,
 } from '@/components/icons/FeatureIcons';
 import LanguageSelector from '@/components/common/LanguageSelector';
 
@@ -29,6 +30,7 @@ const navigationItems = [
   { key: 'backgroundRemover', href: '/background-remover', icon: BackgroundRemoverIcon, accent: 'purple' },
   { key: 'faceBlur', href: '/face-blur', icon: FaceBlurIcon, accent: 'rose' },
   { key: 'htmlToImage', href: '/html-to-image', icon: HtmlToImageIcon, accent: 'lime' },
+  { key: 'imageUpscaler', href: '/image-upscaler', icon: UpscalerIcon, accent: 'sky' },
   { key: 'gifMaker', href: '/gif-maker', icon: GifMakerIcon, accent: 'emerald' },
   { key: 'videoConverter', href: '/video-converter', icon: VideoConverterIcon, accent: 'amber' },
   { key: 'urlGenerator', href: '/url-generator', icon: UrlGeneratorIcon, accent: 'magenta' },
@@ -89,6 +91,11 @@ const accentStyles = {
     active: 'bg-[oklch(0.70_0.17_145/0.15)] text-[oklch(0.75_0.20_145)] border-[oklch(0.70_0.17_145/0.3)]',
     hover: 'hover:text-[oklch(0.75_0.20_145)] hover:bg-[oklch(0.70_0.17_145/0.08)]',
     glow: 'shadow-[0_0_20px_oklch(0.70_0.17_145/0.3)]',
+  },
+  sky: {
+    active: 'bg-[oklch(0.70_0.18_280/0.15)] text-[oklch(0.75_0.20_280)] border-[oklch(0.70_0.18_280/0.3)]',
+    hover: 'hover:text-[oklch(0.75_0.20_280)] hover:bg-[oklch(0.70_0.18_280/0.08)]',
+    glow: 'shadow-[0_0_20px_oklch(0.70_0.18_280/0.3)]',
   },
 };
 

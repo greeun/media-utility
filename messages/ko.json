@@ -463,6 +463,42 @@
     "faq": "자주 묻는 질문",
     "privacyNotice": "모든 파일은 브라우저에서 처리되며, 서버에 업로드되지 않습니다. 개인정보가 완전히 보호됩니다."
   },
+  "imageUpscaler": {
+    "title": "이미지 업스케일",
+    "description": "AI 모델을 사용하여 저해상도 이미지를 고해상도로 확대합니다.",
+    "desktopNotice": "데스크톱 환경을 권장합니다",
+    "desktopNoticeDesc": "AI 업스케일은 높은 연산 자원을 필요로 합니다. 데스크톱 브라우저에서 최적의 성능을 발휘합니다.",
+    "settings": "업스케일 설정",
+    "scale": "확대 배율",
+    "format": "출력 형식",
+    "outputSize": "예상 출력 크기",
+    "compare": "원본 vs 결과 비교",
+    "original": "원본",
+    "upscaled": "확대",
+    "fileList": "파일 목록",
+    "upscaleCount": "{count}개 업스케일",
+    "downloadCount": "{count}개 다운로드",
+    "howToUse": {
+      "title": "이미지 업스케일 사용 방법",
+      "description": "AI 기반 초해상도 기술로 이미지를 선명하게 확대합니다.",
+      "step1Title": "이미지 업로드",
+      "step1Desc": "확대할 이미지 파일을 선택합니다.",
+      "step2Title": "배율 및 형식 선택",
+      "step2Desc": "2x, 3x, 4x 배율과 출력 형식을 선택합니다.",
+      "step3Title": "업스케일 실행 및 다운로드",
+      "step3Desc": "AI가 이미지를 분석하여 고해상도로 확대합니다."
+    },
+    "features": {
+      "ai": "AI 초해상도",
+      "aiDesc": "ESRGAN 모델 기반 AI 이미지 확대",
+      "compare": "비교 뷰",
+      "compareDesc": "원본과 확대 결과를 슬라이더로 비교",
+      "multi": "다중 배율",
+      "multiDesc": "2x, 3x, 4x 배율 선택 가능",
+      "format": "다중 형식",
+      "formatDesc": "PNG, JPG, WebP 출력 형식 지원"
+    }
+  },
   "footer": {
     "copyright": "© {year} Media Utility. All rights reserved.",
     "privacyNote": "브라우저에서 안전하게 파일을 변환하세요. 서버에 업로드되지 않습니다.",
