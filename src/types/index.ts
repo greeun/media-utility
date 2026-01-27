@@ -59,7 +59,7 @@ export interface UrlOptions {
 }
 
 // 지원 포맷
-export const SUPPORTED_IMAGE_FORMATS = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'heic', 'heif'] as const;
+export const SUPPORTED_IMAGE_FORMATS = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg', 'heic', 'heif'] as const;
 export const SUPPORTED_VIDEO_FORMATS = ['mp4', 'webm', 'mov', 'avi'] as const;
 
 export type ImageFormat = typeof SUPPORTED_IMAGE_FORMATS[number];
@@ -68,6 +68,7 @@ export type VideoFormat = typeof SUPPORTED_VIDEO_FORMATS[number];
 // 도구 타입
 export type ToolType =
   | 'image-converter'
+  | 'image-compressor'
   | 'image-editor'
   | 'gif-maker'
   | 'video-converter'

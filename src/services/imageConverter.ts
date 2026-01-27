@@ -129,6 +129,86 @@ function getMimeType(format: string): string {
 }
 
 /**
+ * SVG 파일을 래스터 이미지로 변환
+ */
+export async function convertSvgToRaster(
+  file: File,
+  options: ConversionOptions,
+  onProgress?: (progress: number) => void
+): Promise<Blob> {
+  const { format, quality = 0.9, width, height } = options;
+
+  onProgress?.(10);
+
+  const svgText = await file.text();
+  const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+  const svgUrl = URL.createObjectURL(svgBlob);
+
+  try {
+    const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error('SVG 이미지를 로드할 수 없습니다.'));
+      image.src = svgUrl;
+    });
+
+    onProgress?.(40);
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    if (!ctx) {
+      throw new Error('Canvas context를 생성할 수 없습니다.');
+    }
+
+    // SVG는 벡터이므로 기본 크기가 없을 수 있음. 사용자 지정 또는 SVG 원본 크기 사용
+    const targetWidth = width || img.naturalWidth || 1024;
+    const targetHeight = height || img.naturalHeight || 1024;
+
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+
+    // PNG가 아닌 경우 흰색 배경 채우기 (JPG는 투명 배경 미지원)
+    if (format !== 'png') {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, targetWidth, targetHeight);
+    }
+
+    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+    onProgress?.(70);
+
+    const mimeType = getMimeType(format);
+    const blob = await new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error('SVG 변환에 실패했습니다.'));
+          }
+        },
+        mimeType,
+        quality
+      );
+    });
+
+    onProgress?.(100);
+
+    return blob;
+  } finally {
+    URL.revokeObjectURL(svgUrl);
+  }
+}
+
+/**
+ * SVG 파일 여부 확인
+ */
+export function isSvgFile(file: File): boolean {
+  return file.type === 'image/svg+xml' || file.name.toLowerCase().endsWith('.svg');
+}
+
+/**
  * 파일 확장자 추출
  */
 export function getFileExtension(filename: string): string {

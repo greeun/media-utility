@@ -230,6 +230,48 @@
       "step3Desc": "Hasilkan URL dan salin untuk digunakan di HTML, CSS, atau berbagi."
     }
   },
+  "imageCompressor": {
+    "title": "Image Compressor",
+    "description": "Reduce image file size for web optimization and save storage space",
+    "quality": "Compression Quality",
+    "smallFile": "Smaller file",
+    "highQuality": "Higher quality",
+    "useMaxSize": "Set maximum file size",
+    "fileList": "File List",
+    "originalSize": "Original",
+    "compressedSize": "Compressed",
+    "compressing": "Compressing...",
+    "compressCount": "Compress {count} files",
+    "downloadCount": "Download {count} files",
+    "features": {
+      "quality": "Quality Control",
+      "qualityDesc": "Adjust compression quality from 10-100% to balance file size and image quality.",
+      "maxSize": "Target Size",
+      "maxSizeDesc": "Specify a maximum file size in MB and images will be automatically compressed to fit.",
+      "batch": "Batch Compression",
+      "batchDesc": "Upload up to 20 images and compress them all with the same settings.",
+      "privacy": "Complete Privacy",
+      "privacyDesc": "All compression is done in your browser. Images are never uploaded to servers."
+    },
+    "howToUse": {
+      "title": "Image Compression Tool",
+      "description": "Reduce image file sizes to improve website loading speed and save storage space. All processing is done in your browser.",
+      "step1Title": "Upload Images",
+      "step1Desc": "Drag or click to select images to compress. You can upload up to 20 files at once.",
+      "step2Title": "Set Compression",
+      "step2Desc": "Adjust the quality slider or set a target file size.",
+      "step3Title": "Compress & Download",
+      "step3Desc": "Click compress and download individually or all at once when complete."
+    },
+    "faq": {
+      "q1": "What formats are supported?",
+      "a1": "JPG, PNG, WebP, and GIF formats are supported. Compressed files are saved in the same format as the original.",
+      "q2": "How should I choose compression level?",
+      "a2": "For web images, 60-80% is recommended. For quality preservation, use 85-95%. Lower values produce smaller files.",
+      "q3": "Does it modify the original image?",
+      "a3": "No. The original file is not changed. A new compressed file is created separately."
+    }
+  },
   "howToUse": {
     "howToUse": "Cara Penggunaan",
     "supportedFormats": "Format yang Didukung",

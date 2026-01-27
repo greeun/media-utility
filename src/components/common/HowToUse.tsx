@@ -89,6 +89,14 @@ export default function HowToUse({
       badge: 'bg-[oklch(0.80_0.18_80/0.15)] text-[oklch(0.88_0.14_80)]',
       number: 'bg-[oklch(0.80_0.18_80)] text-[oklch(0.08_0.01_240)]',
     },
+    teal: {
+      bg: 'bg-[oklch(0.75_0.17_175/0.08)]',
+      text: 'text-[oklch(0.75_0.17_175)]',
+      textBright: 'text-[oklch(0.85_0.14_175)]',
+      border: 'border-[oklch(0.75_0.17_175/0.2)]',
+      badge: 'bg-[oklch(0.75_0.17_175/0.15)] text-[oklch(0.85_0.14_175)]',
+      number: 'bg-[oklch(0.75_0.17_175)] text-[oklch(0.08_0.01_240)]',
+    },
     rose: {
       bg: 'bg-[oklch(0.70_0.20_330/0.08)]',
       text: 'text-[oklch(0.70_0.20_330)]',

@@ -255,6 +255,41 @@ export function BackgroundRemoverIcon({ className = '', size = 24 }: IconProps) 
   );
 }
 
+// 이미지 압축 - 파일 크기 줄이기
+export function ImageCompressorIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 이미지 프레임 */}
+      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      {/* 산/풍경 */}
+      <circle cx="8" cy="8" r="1.5" fill="currentColor" fillOpacity="0.5" />
+      <path d="M4 17l4-4 3 3 5-5 4 4v3H4z" fill="currentColor" fillOpacity="0.2" />
+      {/* 압축 화살표 (위아래로 누르기) */}
+      <path
+        d="M12 6v4m0 0l-1.5-1.5M12 10l1.5-1.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 18v-4m0 0l-1.5 1.5M12 14l1.5 1.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 // === 특징 섹션 아이콘 ===
 
 // 프라이버시/보안

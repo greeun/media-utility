@@ -5,6 +5,7 @@ import { Link } from '@/i18n/navigation';
 import { ArrowRight, Shield, Zap, Globe, ChevronRight } from 'lucide-react';
 import {
   ImageConverterIcon,
+  ImageCompressorIcon,
   ImageEditorIcon,
   GifMakerIcon,
   VideoConverterIcon,
@@ -58,6 +59,15 @@ const accentConfig = {
     glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.20_330/0.25)]',
     badge: 'bg-[oklch(0.70_0.20_330/0.1)] text-[oklch(0.75_0.25_330)]',
   },
+  teal: {
+    bg: 'bg-[oklch(0.75_0.17_175)]',
+    bgHover: 'group-hover:bg-[oklch(0.80_0.20_175)]',
+    border: 'border-[oklch(0.75_0.17_175/0.2)]',
+    borderHover: 'group-hover:border-[oklch(0.75_0.17_175/0.4)]',
+    text: 'text-[oklch(0.80_0.20_175)]',
+    glow: 'group-hover:shadow-[0_0_40px_oklch(0.75_0.17_175/0.25)]',
+    badge: 'bg-[oklch(0.75_0.17_175/0.1)] text-[oklch(0.80_0.20_175)]',
+  },
   purple: {
     bg: 'bg-[oklch(0.70_0.20_290)]',
     bgHover: 'group-hover:bg-[oklch(0.75_0.25_290)]',
@@ -81,6 +91,15 @@ export default function Home() {
       href: '/image-converter',
       accent: 'cyan',
       features: ['HEIC → JPG', 'PNG → WebP', t('imageConverter.quality')],
+    },
+    {
+      id: 'image-compressor',
+      nameKey: 'imageCompressor.title',
+      descKey: 'imageCompressor.description',
+      icon: ImageCompressorIcon,
+      href: '/image-compressor',
+      accent: 'teal',
+      features: [t('imageCompressor.features.quality'), t('imageCompressor.features.maxSize'), t('imageCompressor.features.batch')],
     },
     {
       id: 'image-editor',

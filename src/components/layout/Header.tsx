@@ -12,11 +12,13 @@ import {
   VideoConverterIcon,
   UrlGeneratorIcon,
   BackgroundRemoverIcon,
+  ImageCompressorIcon,
 } from '@/components/icons/FeatureIcons';
 import LanguageSelector from '@/components/common/LanguageSelector';
 
 const navigationItems = [
   { key: 'imageConverter', href: '/image-converter', icon: ImageConverterIcon, accent: 'cyan' },
+  { key: 'imageCompressor', href: '/image-compressor', icon: ImageCompressorIcon, accent: 'teal' },
   { key: 'imageEditor', href: '/image-editor', icon: ImageEditorIcon, accent: 'violet' },
   { key: 'backgroundRemover', href: '/background-remover', icon: BackgroundRemoverIcon, accent: 'purple' },
   { key: 'gifMaker', href: '/gif-maker', icon: GifMakerIcon, accent: 'emerald' },
@@ -54,6 +56,11 @@ const accentStyles = {
     active: 'bg-[oklch(0.70_0.20_330/0.15)] text-[oklch(0.75_0.25_330)] border-[oklch(0.70_0.20_330/0.3)]',
     hover: 'hover:text-[oklch(0.75_0.25_330)] hover:bg-[oklch(0.70_0.20_330/0.08)]',
     glow: 'shadow-[0_0_20px_oklch(0.70_0.20_330/0.3)]',
+  },
+  teal: {
+    active: 'bg-[oklch(0.75_0.17_175/0.15)] text-[oklch(0.80_0.20_175)] border-[oklch(0.75_0.17_175/0.3)]',
+    hover: 'hover:text-[oklch(0.80_0.20_175)] hover:bg-[oklch(0.75_0.17_175/0.08)]',
+    glow: 'shadow-[0_0_20px_oklch(0.75_0.17_175/0.3)]',
   },
 };
 
