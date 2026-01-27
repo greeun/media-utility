@@ -66,27 +66,25 @@ export async function upscaleImage(
 
     onProgress?.(20);
 
-    // UpscalerJS가 처리 - 결과는 base64 data URL 문자열
-    const result = await upscaler.upscale(img, {
-      output: 'tensor',
+    // UpscalerJS가 처리 - base64 data URL 반환
+    const dataUrl: string = await upscaler.upscale(img, {
+      output: 'base64',
       patchSize: 64,
       padding: 4,
       progress: (percent: number) => {
-        // 20% ~ 85% 구간에 매핑
         onProgress?.(20 + Math.floor(percent * 65));
       },
     });
 
     onProgress?.(85);
 
-    // Tensor → Canvas → Blob
-    const tf = await import('@tensorflow/tfjs');
+    // Data URL → Canvas → Blob (출력 형식 변환용)
+    const resultImg = await loadImage(dataUrl);
     const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth * options.scale;
-    canvas.height = img.naturalHeight * options.scale;
-
-    await tf.browser.toPixels(result, canvas);
-    result.dispose();
+    canvas.width = resultImg.naturalWidth;
+    canvas.height = resultImg.naturalHeight;
+    const ctx = canvas.getContext('2d')!;
+    ctx.drawImage(resultImg, 0, 0);
 
     onProgress?.(90);
 
