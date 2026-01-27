@@ -22,6 +22,12 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
+async function getModel(scale: number) {
+  if (scale === 3) return (await import('@upscalerjs/esrgan-slim/3x')).default;
+  if (scale === 4) return (await import('@upscalerjs/esrgan-slim/4x')).default;
+  return (await import('@upscalerjs/esrgan-slim/2x')).default;
+}
+
 async function getUpscaler(scale: number) {
   if (upscalerInstance && currentScale === scale) return upscalerInstance;
 
@@ -31,14 +37,9 @@ async function getUpscaler(scale: number) {
   }
 
   const Upscaler = (await import('upscaler')).default;
-  const model = (await import('@upscalerjs/esrgan-slim')).default;
+  const model = await getModel(scale);
 
-  upscalerInstance = new Upscaler({
-    model: {
-      ...model,
-      scale,
-    },
-  });
+  upscalerInstance = new Upscaler({ model });
   currentScale = scale;
 
   return upscalerInstance;
