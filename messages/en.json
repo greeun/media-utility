@@ -382,6 +382,80 @@
       "step3Desc": "Click generate and download your completed meme."
     }
   },
+  "faceBlur": {
+    "title": "Face Blur",
+    "description": "Auto-detect faces with AI and apply blur/mosaic for privacy protection",
+    "settings": "Blur Settings",
+    "gaussian": "Gaussian Blur",
+    "mosaic": "Mosaic",
+    "intensity": "Intensity",
+    "light": "Light",
+    "strong": "Strong",
+    "detecting": "Detecting faces...",
+    "detectCount": "Detect faces in {count} files",
+    "applyCount": "Apply blur to {count} files",
+    "downloadCount": "Download {count} files",
+    "detectedFaces": "{count} faces detected",
+    "facesFound": "faces detected",
+    "fileList": "File List",
+    "aiNotice": "AI-powered Face Detection",
+    "aiNoticeDesc": "The AI model will be downloaded on first use. All processing is done in your browser for complete privacy.",
+    "features": {
+      "auto": "Auto Detection",
+      "autoDesc": "AI automatically detects faces in images and marks their locations.",
+      "blur": "Gaussian Blur",
+      "blurDesc": "Smooth gaussian blur for natural face blurring.",
+      "mosaic": "Mosaic",
+      "mosaicDesc": "Pixelated mosaic effect for face concealment.",
+      "batch": "Batch Processing",
+      "batchDesc": "Detect and blur faces in multiple images at once."
+    },
+    "howToUse": {
+      "title": "Face Blur Tool",
+      "description": "Auto-detect and blur faces using AI. All processing is done in your browser for privacy.",
+      "step1Title": "Upload Images",
+      "step1Desc": "Upload images to process.",
+      "step2Title": "Detect Faces",
+      "step2Desc": "Click detect and AI will automatically find faces.",
+      "step3Title": "Apply Blur & Download",
+      "step3Desc": "Choose blur type and intensity, apply, then download."
+    }
+  },
+  "htmlToImage": {
+    "title": "HTML to Image",
+    "description": "Convert HTML/CSS code to images",
+    "htmlPlaceholder": "Enter HTML code...",
+    "cssPlaceholder": "Enter CSS code...",
+    "width": "Width (px)",
+    "height": "Height (px)",
+    "format": "Format",
+    "quality": "Quality (%)",
+    "bgColor": "Background",
+    "preview": "Preview",
+    "result": "Result",
+    "converting": "Converting...",
+    "convert": "Convert to Image",
+    "features": {
+      "code": "HTML/CSS Input",
+      "codeDesc": "Enter HTML and CSS code directly to convert to images.",
+      "preview": "Live Preview",
+      "previewDesc": "See real-time preview of your code output.",
+      "format": "Multiple Formats",
+      "formatDesc": "Export as PNG, JPG, or SVG format.",
+      "size": "Custom Size",
+      "sizeDesc": "Set custom width and height for the output image."
+    },
+    "howToUse": {
+      "title": "HTML to Image Converter",
+      "description": "Enter HTML/CSS code and convert to images. Create banners, cards, and social images from code.",
+      "step1Title": "Enter Code",
+      "step1Desc": "Enter HTML and CSS in the editor tabs.",
+      "step2Title": "Adjust Settings",
+      "step2Desc": "Set output size, format, and background color.",
+      "step3Title": "Convert & Download",
+      "step3Desc": "Click convert and download the result image."
+    }
+  },
   "howToUse": {
     "howToUse": "How to Use",
     "supportedFormats": "Supported Formats",

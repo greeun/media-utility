@@ -7,6 +7,7 @@ import { ImageConverterIcon } from '@/components/icons/FeatureIcons';
 import FileUploader from '@/components/upload/FileUploader';
 import { convertImage, convertSvgToRaster, isSvgFile, generateNewFilename } from '@/services/imageConverter';
 import { convertHeicToJpg, isHeicFile } from '@/services/heicConverter';
+import { convertPsdToImage, isPsdFile } from '@/services/psdConverter';
 import { saveAs } from 'file-saver';
 import HowToUse from '@/components/common/HowToUse';
 
@@ -38,7 +39,7 @@ export default function ImageConverterPage() {
 
   const handleFilesSelected = useCallback((selectedFiles: File[]) => {
     const newFiles: ConvertedFile[] = selectedFiles
-      .filter((file) => file.type.startsWith('image/') || isHeicFile(file) || isSvgFile(file))
+      .filter((file) => file.type.startsWith('image/') || isHeicFile(file) || isSvgFile(file) || isPsdFile(file))
       .map((file) => ({
         id: crypto.randomUUID(),
         originalFile: file,
@@ -88,6 +89,19 @@ export default function ImageConverterPage() {
       return convertSvgToRaster(
         file.originalFile,
         { format: targetFormat, quality: quality / 100 },
+        (progress) => {
+          setFiles((prev) =>
+            prev.map((f) => (f.id === file.id ? { ...f, progress } : f))
+          );
+        }
+      );
+    }
+
+    if (isPsdFile(file.originalFile)) {
+      return convertPsdToImage(
+        file.originalFile,
+        targetFormat as 'png' | 'jpg' | 'webp',
+        { quality: quality / 100 },
         (progress) => {
           setFiles((prev) =>
             prev.map((f) => (f.id === file.id ? { ...f, progress } : f))
@@ -181,7 +195,7 @@ export default function ImageConverterPage() {
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
           <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
             <FileUploader
-              accept="image/*,.heic,.heif,.svg"
+              accept="image/*,.heic,.heif,.svg,.psd"
               multiple={true}
               maxFiles={20}
               maxSize={50}

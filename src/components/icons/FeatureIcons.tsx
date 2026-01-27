@@ -366,6 +366,59 @@ export function MemeGeneratorIcon({ className = '', size = 24 }: IconProps) {
   );
 }
 
+// 얼굴 블러 - 얼굴 감지 및 블러 처리
+export function FaceBlurIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 얼굴 윤곽 */}
+      <circle cx="12" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" />
+      {/* 눈 */}
+      <circle cx="9.5" cy="9" r="1" fill="currentColor" fillOpacity="0.4" />
+      <circle cx="14.5" cy="9" r="1" fill="currentColor" fillOpacity="0.4" />
+      {/* 블러 효과 (수평선) */}
+      <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+      <line x1="7.5" y1="13.5" x2="16.5" y2="13.5" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+      <line x1="8" y1="15" x2="16" y2="15" stroke="currentColor" strokeWidth="1" opacity="0.2" />
+      {/* 방패/보호 표시 */}
+      <path d="M17 17l3 1v3c0 1.5-1 3-3 3.5-2-.5-3-2-3-3.5v-3l3-1z" fill="currentColor" fillOpacity="0.8" stroke="currentColor" strokeWidth="1" />
+      <path d="M16 20.5l1 1 2-2" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// HTML → 이미지 - 코드를 이미지로 변환
+export function HtmlToImageIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 코드 문서 */}
+      <rect x="2" y="2" width="12" height="15" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      {/* 코드 라인 */}
+      <path d="M5 6l2 2-2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <line x1="8" y1="10" x2="11" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+      {/* 변환 화살표 */}
+      <path d="M16 10h3m0 0l-1.5-1.5M19 10l-1.5 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* 결과 이미지 */}
+      <rect x="14" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="16.5" cy="15.5" r="1" fill="currentColor" fillOpacity="0.5" />
+      <path d="M15 19l2-2 1.5 1 2.5-2v2.5h-6z" fill="currentColor" fillOpacity="0.3" />
+    </svg>
+  );
+}
+
 // === 특징 섹션 아이콘 ===
 
 // 프라이버시/보안

@@ -13,6 +13,8 @@ import {
   BackgroundRemoverIcon,
   WatermarkIcon,
   MemeGeneratorIcon,
+  FaceBlurIcon,
+  HtmlToImageIcon,
 } from '@/components/icons/FeatureIcons';
 
 const accentConfig = {
@@ -97,6 +99,24 @@ const accentConfig = {
     glow: 'group-hover:shadow-[0_0_40px_oklch(0.78_0.16_55/0.25)]',
     badge: 'bg-[oklch(0.78_0.16_55/0.1)] text-[oklch(0.83_0.18_55)]',
   },
+  rose: {
+    bg: 'bg-[oklch(0.70_0.22_25)]',
+    bgHover: 'group-hover:bg-[oklch(0.75_0.25_25)]',
+    border: 'border-[oklch(0.70_0.22_25/0.2)]',
+    borderHover: 'group-hover:border-[oklch(0.70_0.22_25/0.4)]',
+    text: 'text-[oklch(0.75_0.25_25)]',
+    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.22_25/0.25)]',
+    badge: 'bg-[oklch(0.70_0.22_25/0.1)] text-[oklch(0.75_0.25_25)]',
+  },
+  lime: {
+    bg: 'bg-[oklch(0.70_0.17_145)]',
+    bgHover: 'group-hover:bg-[oklch(0.75_0.20_145)]',
+    border: 'border-[oklch(0.70_0.17_145/0.2)]',
+    borderHover: 'group-hover:border-[oklch(0.70_0.17_145/0.4)]',
+    text: 'text-[oklch(0.75_0.20_145)]',
+    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.17_145/0.25)]',
+    badge: 'bg-[oklch(0.70_0.17_145/0.1)] text-[oklch(0.75_0.20_145)]',
+  },
 };
 
 export default function Home() {
@@ -156,6 +176,24 @@ export default function Home() {
       href: '/background-remover',
       accent: 'purple',
       features: ['AI ' + t('backgroundRemover.features.ai').split(' ')[0], 'PNG', t('backgroundRemover.features.batch')],
+    },
+    {
+      id: 'face-blur',
+      nameKey: 'faceBlur.title',
+      descKey: 'faceBlur.description',
+      icon: FaceBlurIcon,
+      href: '/face-blur',
+      accent: 'rose',
+      features: [t('faceBlur.features.auto'), t('faceBlur.features.blur'), t('faceBlur.features.mosaic')],
+    },
+    {
+      id: 'html-to-image',
+      nameKey: 'htmlToImage.title',
+      descKey: 'htmlToImage.description',
+      icon: HtmlToImageIcon,
+      href: '/html-to-image',
+      accent: 'lime',
+      features: ['HTML/CSS', t('htmlToImage.features.preview'), 'PNG/JPG/SVG'],
     },
     {
       id: 'gif-maker',

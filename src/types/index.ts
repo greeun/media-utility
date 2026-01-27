@@ -74,7 +74,9 @@ export type ToolType =
   | 'video-converter'
   | 'url-generator'
   | 'watermark'
-  | 'meme-generator';
+  | 'meme-generator'
+  | 'face-blur'
+  | 'html-to-image';
 
 // 도구 정보
 export interface Tool {
