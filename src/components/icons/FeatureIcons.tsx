@@ -290,6 +290,82 @@ export function ImageCompressorIcon({ className = '', size = 24 }: IconProps) {
   );
 }
 
+// 워터마크 - 이미지 위에 텍스트/이미지 오버레이
+export function WatermarkIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 이미지 프레임 */}
+      <rect x="2" y="3" width="20" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      {/* 산 풍경 */}
+      <path d="M3 17l5-5 3 3 5-5 5 4v4H3z" fill="currentColor" fillOpacity="0.15" />
+      {/* 워터마크 텍스트 라인 (대각선) */}
+      <path
+        d="M5 18L19 6"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.6"
+        strokeDasharray="3 2"
+      />
+      <path
+        d="M8 20L22 8"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        opacity="0.3"
+        strokeDasharray="3 2"
+      />
+      {/* 드롭 아이콘 */}
+      <circle cx="18" cy="7" r="3" fill="currentColor" />
+      <text
+        x="18"
+        y="9"
+        fontSize="5"
+        fontWeight="700"
+        fontFamily="system-ui, sans-serif"
+        fill="white"
+        textAnchor="middle"
+      >
+        W
+      </text>
+    </svg>
+  );
+}
+
+// 밈 생성기 - 이미지 위에 밈 텍스트
+export function MemeGeneratorIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 이미지 프레임 */}
+      <rect x="2" y="3" width="20" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      {/* 이미지 내용 */}
+      <circle cx="8" cy="10" r="2" fill="currentColor" fillOpacity="0.3" />
+      <path d="M3 16l4-4 3 3 4-4 5 4v3H3z" fill="currentColor" fillOpacity="0.15" />
+      {/* 상단 텍스트 바 */}
+      <rect x="5" y="5" width="14" height="3" rx="1" fill="currentColor" fillOpacity="0.7" />
+      {/* 하단 텍스트 바 */}
+      <rect x="5" y="16" width="14" height="3" rx="1" fill="currentColor" fillOpacity="0.7" />
+      {/* 텍스트 라인 */}
+      <line x1="7" y1="6.5" x2="17" y2="6.5" stroke="white" strokeWidth="1" strokeLinecap="round" />
+      <line x1="7" y1="17.5" x2="17" y2="17.5" stroke="white" strokeWidth="1" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 // === 특징 섹션 아이콘 ===
 
 // 프라이버시/보안

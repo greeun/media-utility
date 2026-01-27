@@ -11,6 +11,8 @@ import {
   VideoConverterIcon,
   UrlGeneratorIcon,
   BackgroundRemoverIcon,
+  WatermarkIcon,
+  MemeGeneratorIcon,
 } from '@/components/icons/FeatureIcons';
 
 const accentConfig = {
@@ -77,6 +79,24 @@ const accentConfig = {
     glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.20_290/0.25)]',
     badge: 'bg-[oklch(0.70_0.20_290/0.1)] text-[oklch(0.75_0.25_290)]',
   },
+  indigo: {
+    bg: 'bg-[oklch(0.65_0.20_275)]',
+    bgHover: 'group-hover:bg-[oklch(0.70_0.23_275)]',
+    border: 'border-[oklch(0.65_0.20_275/0.2)]',
+    borderHover: 'group-hover:border-[oklch(0.65_0.20_275/0.4)]',
+    text: 'text-[oklch(0.70_0.23_275)]',
+    glow: 'group-hover:shadow-[0_0_40px_oklch(0.65_0.20_275/0.25)]',
+    badge: 'bg-[oklch(0.65_0.20_275/0.1)] text-[oklch(0.70_0.23_275)]',
+  },
+  orange: {
+    bg: 'bg-[oklch(0.78_0.16_55)]',
+    bgHover: 'group-hover:bg-[oklch(0.83_0.18_55)]',
+    border: 'border-[oklch(0.78_0.16_55/0.2)]',
+    borderHover: 'group-hover:border-[oklch(0.78_0.16_55/0.4)]',
+    text: 'text-[oklch(0.83_0.18_55)]',
+    glow: 'group-hover:shadow-[0_0_40px_oklch(0.78_0.16_55/0.25)]',
+    badge: 'bg-[oklch(0.78_0.16_55/0.1)] text-[oklch(0.83_0.18_55)]',
+  },
 };
 
 export default function Home() {
@@ -109,6 +129,24 @@ export default function Home() {
       href: '/image-editor',
       accent: 'violet',
       features: [t('imageEditor.toolbar.crop'), t('imageEditor.toolbar.rotate'), t('imageEditor.toolbar.optimize')],
+    },
+    {
+      id: 'watermark',
+      nameKey: 'watermark.title',
+      descKey: 'watermark.description',
+      icon: WatermarkIcon,
+      href: '/watermark',
+      accent: 'indigo',
+      features: [t('watermark.features.text'), t('watermark.features.image'), t('watermark.features.tile')],
+    },
+    {
+      id: 'meme-generator',
+      nameKey: 'memeGenerator.title',
+      descKey: 'memeGenerator.description',
+      icon: MemeGeneratorIcon,
+      href: '/meme-generator',
+      accent: 'orange',
+      features: [t('memeGenerator.topText'), t('memeGenerator.bottomText'), t('memeGenerator.font')],
     },
     {
       id: 'background-remover',

@@ -72,7 +72,9 @@ export type ToolType =
   | 'image-editor'
   | 'gif-maker'
   | 'video-converter'
-  | 'url-generator';
+  | 'url-generator'
+  | 'watermark'
+  | 'meme-generator';
 
 // 도구 정보
 export interface Tool {
