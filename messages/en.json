@@ -36,8 +36,8 @@
   "menu": {
     "image": "Image",
     "design": "Design",
-    "convert": "Convert",
-    "utility": "Utility"
+    "video": "Video",
+    "others": "Others"
   },
   "home": {
     "title": "Media Utility",

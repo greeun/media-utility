@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Zap } from 'lucide-react';
-import { useState } from 'react';
+import { Menu, X, Zap, ChevronDown, Image, Palette, Video, MoreHorizontal } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import {
   ImageConverterIcon,
@@ -21,20 +21,52 @@ import {
 } from '@/components/icons/FeatureIcons';
 import LanguageSelector from '@/components/common/LanguageSelector';
 
-const navigationItems = [
-  { key: 'imageConverter', href: '/image-converter', icon: ImageConverterIcon, accent: 'cyan' },
-  { key: 'imageCompressor', href: '/image-compressor', icon: ImageCompressorIcon, accent: 'teal' },
-  { key: 'imageEditor', href: '/image-editor', icon: ImageEditorIcon, accent: 'violet' },
-  { key: 'watermark', href: '/watermark', icon: WatermarkIcon, accent: 'indigo' },
-  { key: 'memeGenerator', href: '/meme-generator', icon: MemeGeneratorIcon, accent: 'orange' },
-  { key: 'backgroundRemover', href: '/background-remover', icon: BackgroundRemoverIcon, accent: 'purple' },
-  { key: 'faceBlur', href: '/face-blur', icon: FaceBlurIcon, accent: 'rose' },
-  { key: 'htmlToImage', href: '/html-to-image', icon: HtmlToImageIcon, accent: 'lime' },
-  { key: 'imageUpscaler', href: '/image-upscaler', icon: UpscalerIcon, accent: 'sky' },
-  { key: 'gifMaker', href: '/gif-maker', icon: GifMakerIcon, accent: 'emerald' },
-  { key: 'videoConverter', href: '/video-converter', icon: VideoConverterIcon, accent: 'amber' },
-  { key: 'urlGenerator', href: '/url-generator', icon: UrlGeneratorIcon, accent: 'magenta' },
+// 카테고리별 메뉴 구성
+const menuCategories = [
+  {
+    key: 'image',
+    icon: Image,
+    accent: 'cyan',
+    items: [
+      { key: 'imageConverter', href: '/image-converter', icon: ImageConverterIcon, accent: 'cyan' },
+      { key: 'imageCompressor', href: '/image-compressor', icon: ImageCompressorIcon, accent: 'teal' },
+      { key: 'imageEditor', href: '/image-editor', icon: ImageEditorIcon, accent: 'violet' },
+      { key: 'backgroundRemover', href: '/background-remover', icon: BackgroundRemoverIcon, accent: 'purple' },
+      { key: 'faceBlur', href: '/face-blur', icon: FaceBlurIcon, accent: 'rose' },
+      { key: 'imageUpscaler', href: '/image-upscaler', icon: UpscalerIcon, accent: 'sky' },
+      { key: 'gifMaker', href: '/gif-maker', icon: GifMakerIcon, accent: 'emerald' },
+    ],
+  },
+  {
+    key: 'design',
+    icon: Palette,
+    accent: 'orange',
+    items: [
+      { key: 'watermark', href: '/watermark', icon: WatermarkIcon, accent: 'indigo' },
+      { key: 'memeGenerator', href: '/meme-generator', icon: MemeGeneratorIcon, accent: 'orange' },
+    ],
+  },
+  {
+    key: 'video',
+    icon: Video,
+    accent: 'amber',
+    items: [
+      { key: 'videoConverter', href: '/video-converter', icon: VideoConverterIcon, accent: 'amber' },
+    ],
+  },
+  {
+    key: 'others',
+    icon: MoreHorizontal,
+    accent: 'magenta',
+    items: [
+      { key: 'htmlToImage', href: '/html-to-image', icon: HtmlToImageIcon, accent: 'lime' },
+      { key: 'urlGenerator', href: '/url-generator', icon: UrlGeneratorIcon, accent: 'magenta' },
+    ],
+  },
 ];
+
+// 모바일용 플랫 메뉴
+const navigationItems = menuCategories.flatMap((cat) => cat.items);
 
 const accentStyles = {
   cyan: {
@@ -99,6 +131,90 @@ const accentStyles = {
   },
 };
 
+// 카테고리 드롭다운 컴포넌트
+function CategoryDropdown({
+  category,
+  t,
+  getLocalizedHref,
+  isPathActive,
+}: {
+  category: typeof menuCategories[0];
+  t: ReturnType<typeof useTranslations>;
+  getLocalizedHref: (href: string) => string;
+  isPathActive: (href: string) => boolean;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const CategoryIcon = category.icon;
+  const accent = accentStyles[category.accent as keyof typeof accentStyles];
+
+  // 카테고리 내 활성 메뉴 확인
+  const hasActiveItem = category.items.some((item) => isPathActive(item.href));
+
+  // 외부 클릭 시 닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={dropdownRef} className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`
+          flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg
+          transition-all duration-300 border border-transparent
+          ${hasActiveItem
+            ? `${accent.active}`
+            : `text-[oklch(0.60_0.02_240)] ${accent.hover}`
+          }
+        `}
+      >
+        <CategoryIcon size={16} />
+        <span>{t(`menu.${category.key}`)}</span>
+        <ChevronDown
+          size={14}
+          className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-2 min-w-[200px] py-2 rounded-xl bg-[oklch(0.14_0.01_260)] border border-[oklch(1_0_0/0.08)] shadow-xl shadow-black/20 animate-fade-up z-50">
+          {category.items.map((item) => {
+            const ItemIcon = item.icon;
+            const isActive = isPathActive(item.href);
+            const itemAccent = accentStyles[item.accent as keyof typeof accentStyles];
+
+            return (
+              <Link
+                key={item.key}
+                href={getLocalizedHref(item.href)}
+                onClick={() => setIsOpen(false)}
+                className={`
+                  flex items-center gap-3 px-4 py-2.5 text-sm font-medium
+                  transition-all duration-200
+                  ${isActive
+                    ? `${itemAccent.active}`
+                    : `text-[oklch(0.70_0.02_240)] ${itemAccent.hover}`
+                  }
+                `}
+              >
+                <ItemIcon size={18} />
+                <span>{t(`${item.key}.title`)}</span>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Header() {
   const t = useTranslations();
   const locale = useLocale();
@@ -137,34 +253,17 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - 카테고리별 드롭다운 */}
           <div className="hidden lg:flex lg:items-center lg:gap-1">
-            {navigation.map((item) => {
-              const Icon = item.icon;
-              const isActive = isPathActive(item.href);
-              const accent = accentStyles[item.accent as keyof typeof accentStyles];
-
-              return (
-                <Link
-                  key={item.key}
-                  href={item.localizedHref}
-                  className={`
-                    relative flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg
-                    transition-all duration-300 border border-transparent
-                    ${isActive
-                      ? `${accent.active} ${accent.glow}`
-                      : `text-[oklch(0.60_0.02_240)] ${accent.hover}`
-                    }
-                  `}
-                >
-                  <Icon size={16} />
-                  <span>{item.name}</span>
-                  {isActive && (
-                    <span className="absolute -bottom-px left-3 right-3 h-px bg-gradient-to-r from-transparent via-current to-transparent" />
-                  )}
-                </Link>
-              );
-            })}
+            {menuCategories.map((category) => (
+              <CategoryDropdown
+                key={category.key}
+                category={category}
+                t={t}
+                getLocalizedHref={getLocalizedHref}
+                isPathActive={isPathActive}
+              />
+            ))}
           </div>
 
           {/* Right Side: Language Selector + Mobile Menu */}

@@ -46,7 +46,7 @@ const createJestConfig = nextJest({
 
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
-  testEnvironment: isComponent ? 'jsdom' : 'node',
+  testEnvironment: 'jsdom',
   testMatch: isComponent
     ? [
         '<rootDir>/tests/02-component/**/*.test.ts',
