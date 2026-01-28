@@ -7,17 +7,17 @@
 require('@testing-library/jest-dom')
 
 // ============================================================================
-// Browser API Mocks (jsdom 환경에서만)
+// Browser API Mocks (모든 환경)
 // ============================================================================
 
 const isJsdom = typeof window !== 'undefined'
 
+// URL API는 항상 필요
+global.URL = global.URL || {}
+global.URL.createObjectURL = jest.fn(() => 'blob:mock-url')
+global.URL.revokeObjectURL = jest.fn()
+
 if (isJsdom) {
-  /**
-   * URL.createObjectURL / revokeObjectURL Mock
-   */
-  global.URL.createObjectURL = jest.fn(() => 'blob:mock-url')
-  global.URL.revokeObjectURL = jest.fn()
 
   /**
    * FileReader Mock
@@ -119,6 +119,95 @@ if (isJsdom) {
     global.Blob.prototype.arrayBuffer = jest.fn(() => Promise.resolve(new ArrayBuffer(8)))
   }
   if (global.Blob.prototype.text === undefined) {
+    global.Blob.prototype.text = jest.fn(() => Promise.resolve('mock text'))
+  }
+} else {
+  // Node 환경에서도 Canvas API 필요
+  global.HTMLCanvasElement = class HTMLCanvasElement {
+    constructor() {
+      this.width = 100
+      this.height = 100
+    }
+
+    getContext() {
+      return {
+        drawImage: jest.fn(),
+        fillRect: jest.fn(),
+        clearRect: jest.fn(),
+        putImageData: jest.fn(),
+        getImageData: jest.fn(() => ({
+          data: new Uint8ClampedArray(4),
+          width: 100,
+          height: 100,
+        })),
+        createImageData: jest.fn(),
+        scale: jest.fn(),
+        rotate: jest.fn(),
+        translate: jest.fn(),
+        save: jest.fn(),
+        restore: jest.fn(),
+        beginPath: jest.fn(),
+        closePath: jest.fn(),
+        stroke: jest.fn(),
+        strokeText: jest.fn(),
+        fill: jest.fn(),
+        fillText: jest.fn(),
+        arc: jest.fn(),
+        moveTo: jest.fn(),
+        lineTo: jest.fn(),
+        measureText: jest.fn(() => ({ width: 0 })),
+        filter: '',
+        fillStyle: '',
+        strokeStyle: '',
+        lineWidth: 0,
+        globalAlpha: 1,
+        font: '',
+        textAlign: 'start',
+        textBaseline: 'top',
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'low',
+        lineJoin: 'round',
+        canvas: {
+          width: 100,
+          height: 100,
+        },
+      }
+    }
+
+    toBlob(callback, type, quality) {
+      callback(new Blob(['mock'], { type: type || 'image/png' }))
+    }
+
+    toDataURL() {
+      return 'data:image/png;base64,mockDataURL'
+    }
+  }
+
+  global.ImageData = class ImageData {
+    constructor(data, width, height) {
+      this.data = data
+      this.width = width
+      this.height = height
+    }
+  }
+
+  global.Image = class Image {
+    constructor() {
+      this.width = 100
+      this.height = 100
+      this.naturalWidth = 100
+      this.naturalHeight = 100
+      this.onload = null
+      this.onerror = null
+      this.src = ''
+      setTimeout(() => this.onload?.(), 0)
+    }
+  }
+
+  if (typeof global.Blob.prototype.arrayBuffer === 'undefined') {
+    global.Blob.prototype.arrayBuffer = jest.fn(() => Promise.resolve(new ArrayBuffer(8)))
+  }
+  if (typeof global.Blob.prototype.text === 'undefined') {
     global.Blob.prototype.text = jest.fn(() => Promise.resolve('mock text'))
   }
 }
