@@ -33,6 +33,12 @@
     "storage": "Penyimpanan",
     "files": "file"
   },
+  "menu": {
+    "image": "Gambar",
+    "design": "Desain",
+    "convert": "Konversi",
+    "utility": "Utilitas"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "Alat konversi media berbasis browser",
@@ -78,6 +84,7 @@
       "step3Title": "Konversi & Unduh",
       "step3Desc": "Klik konversi dan unduh satu per satu atau sekaligus."
     },
+    "constraints": ["Maks 20 file, maks 50MB per file", "Input: HEIC, SVG, PSD, RAW dan lainnya", "Output: JPG, PNG, WebP"],
     "faq": {
       "q1": "Apa itu file HEIC?",
       "a1": "HEIC adalah format gambar efisiensi tinggi yang digunakan Apple sejak iOS 11. Ukuran filenya lebih kecil dari JPG dengan kualitas yang sama.",
@@ -122,6 +129,7 @@
       "quality": "Kualitas",
       "apply": "Optimalkan"
     },
+    "constraints": ["Satu gambar sekaligus", "Pemrosesan berbasis memori browser"],
     "howToUse": {
       "title": "Editor Gambar",
       "description": "Editor gambar online gratis yang mendukung pangkas, putar, balik, ubah ukuran, dan optimasi. Semua pemrosesan dilakukan di browser Anda.",
@@ -148,6 +156,7 @@
     "createGif": "Buat GIF",
     "creating": "Membuat GIF...",
     "result": "Hasil",
+    "constraints": ["Hanya file gambar", "Penggunaan memori meningkat sesuai jumlah frame"],
     "howToUse": {
       "title": "Pembuat GIF",
       "description": "Buat GIF animasi dari beberapa gambar. Sesuaikan kecepatan dan ukuran dengan mudah.",
@@ -177,6 +186,7 @@
     "preview": "Pratinjau",
     "result": "Hasil",
     "extractedFrames": "Frame yang Diekstrak",
+    "constraints": ["FFmpeg WASM (~30MB) diunduh saat pertama kali digunakan", "File besar mungkin dibatasi oleh memori browser"],
     "howToUse": {
       "title": "Konverter Video",
       "description": "Konversi video ke GIF, GIF ke video MP4, atau ekstrak frame. Semua pemrosesan dilakukan di browser Anda menggunakan FFmpeg WebAssembly.",
@@ -186,6 +196,44 @@
       "step2Desc": "Unggah file video atau GIF untuk dikonversi.",
       "step3Title": "Atur & Konversi",
       "step3Desc": "Sesuaikan FPS, skala, format, lalu konversi dan unduh."
+    }
+  },
+  "backgroundRemover": {
+    "title": "Penghapus Latar Belakang",
+    "description": "Hapus latar belakang gambar secara otomatis menggunakan AI",
+    "fileList": "Daftar File",
+    "processCount": "Proses {count} file",
+    "downloadCount": "Unduh {count} file",
+    "constraints": ["Maks 5 file, maks 10MB per file", "Model AI (~30MB) diunduh saat pertama kali digunakan", "Latar belakang kompleks dapat mempengaruhi akurasi"],
+    "aiNotice": "Penghapusan Latar Belakang Berbasis AI",
+    "aiNoticeDesc": "Model AI (~30MB) akan diunduh saat pertama kali digunakan. Semua pemrosesan dilakukan di browser Anda untuk privasi lengkap.",
+    "features": {
+      "ai": "Deteksi Otomatis AI",
+      "aiDesc": "Model AI deep learning secara otomatis mendeteksi objek dan menghapus latar belakang dengan presisi.",
+      "privacy": "Privasi Lengkap",
+      "privacyDesc": "Semua pemrosesan dilakukan di browser Anda. Gambar tidak pernah diunggah ke server eksternal.",
+      "transparent": "Output PNG Transparan",
+      "transparentDesc": "Disimpan sebagai file PNG transparan yang siap untuk berbagai penggunaan.",
+      "batch": "Pemrosesan Massal",
+      "batchDesc": "Unggah beberapa gambar dan hapus latar belakang secara otomatis sekaligus."
+    },
+    "howToUse": {
+      "title": "Alat Penghapus Latar Belakang AI",
+      "description": "Hapus latar belakang gambar secara otomatis menggunakan teknologi AI. Semua pemrosesan dilakukan di browser Anda untuk privasi lengkap.",
+      "step1Title": "Unggah Gambar",
+      "step1Desc": "Pilih gambar untuk menghapus latar belakang. Anda dapat mengunggah beberapa file sekaligus.",
+      "step2Title": "Pemrosesan Otomatis",
+      "step2Desc": "Klik proses dan AI akan secara otomatis mendeteksi objek dan menghapus latar belakang.",
+      "step3Title": "Unduh",
+      "step3Desc": "Unduh file PNG transparan yang telah selesai."
+    },
+    "faq": {
+      "q1": "Jenis gambar apa yang paling cocok?",
+      "a1": "Paling efektif untuk gambar dengan subjek yang jelas seperti orang, produk, atau hewan. Latar belakang kompleks atau objek transparan mungkin bervariasi hasilnya.",
+      "q2": "Mengapa proses pertama lambat?",
+      "a2": "Model AI (sekitar 30MB) diunduh saat pertama kali digunakan. Setelah itu, model disimpan di cache browser untuk pemrosesan cepat.",
+      "q3": "Apakah ada batas ukuran file?",
+      "a3": "Untuk performa optimal, kami merekomendasikan maksimal 10MB per file dan hingga 5 file sekaligus."
     }
   },
   "urlGenerator": {
@@ -219,6 +267,7 @@
       "newTab": "Buka di Tab Baru",
       "warning": "URL Blob hanya valid di sesi browser ini."
     },
+    "constraints": ["Data URL sekitar 133% dari ukuran file asli", "Blob URL atau penyimpanan cloud direkomendasikan untuk file besar"],
     "howToUse": {
       "title": "Generator URL",
       "description": "Konversi gambar dan video ke URL yang dapat dibagikan. Base64 untuk penyisipan, Blob untuk penggunaan sementara, Cloud untuk berbagi permanen.",
@@ -263,6 +312,7 @@
       "step3Title": "Compress & Download",
       "step3Desc": "Click compress and download individually or all at once when complete."
     },
+    "constraints": ["Maks 20 file, maks 50MB per file", "Format yang didukung: JPG, PNG, WebP, GIF"],
     "faq": {
       "q1": "What formats are supported?",
       "a1": "JPG, PNG, WebP, and GIF formats are supported. Compressed files are saved in the same format as the original.",
@@ -318,6 +368,7 @@
       "batch": "Batch Processing",
       "batchDesc": "Apply the same watermark to multiple images at once."
     },
+    "constraints": ["Maks 20 file, maks 50MB per file"],
     "howToUse": {
       "title": "Watermark Tool",
       "description": "Add text or image watermarks to protect your copyright. All processing is done in your browser.",
@@ -347,6 +398,7 @@
     "generating": "Generating...",
     "generate": "Generate Meme",
     "result": "Result",
+    "constraints": ["Satu gambar sekaligus", "Maks 50MB per file"],
     "howToUse": {
       "title": "Meme Generator",
       "description": "Add meme text to images to create fun content. See results instantly with live preview.",
@@ -374,6 +426,7 @@
     "detectedFaces": "{count} faces detected",
     "facesFound": "faces detected",
     "fileList": "File List",
+    "constraints": ["Maks 10 file, maks 50MB per file", "Model AI diunduh saat pertama kali digunakan", "Akurasi deteksi wajah tidak 100%"],
     "aiNotice": "AI-powered Face Detection",
     "aiNoticeDesc": "The AI model will be downloaded on first use. All processing is done in your browser for complete privacy.",
     "features": {
@@ -421,6 +474,7 @@
       "size": "Custom Size",
       "sizeDesc": "Set custom width and height for the output image."
     },
+    "constraints": ["Sumber daya eksternal (gambar, font) tunduk pada batasan CORS", "Resolusi maksimum: 4000×4000px"],
     "howToUse": {
       "title": "HTML to Image Converter",
       "description": "Enter HTML/CSS code and convert to images. Create banners, cards, and social images from code.",
@@ -435,6 +489,7 @@
   "imageUpscaler": {
     "title": "Image Upscaler",
     "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "constraints": ["Maks 5 file, maks 20MB per file", "Model AI (~80MB) diunduh saat pertama kali digunakan", "Browser desktop direkomendasikan", "Gambar besar mungkin membutuhkan waktu lebih lama"],
     "desktopNotice": "Desktop recommended",
     "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
     "settings": "Upscale Settings",

@@ -6,6 +6,7 @@ import { Download, RefreshCw, Code, Eye } from 'lucide-react';
 import { HtmlToImageIcon } from '@/components/icons/FeatureIcons';
 import { convertHtmlToImage } from '@/services/htmlToImage';
 import { saveAs } from 'file-saver';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 const DEFAULT_HTML = `<div style="padding: 40px; text-align: center; font-family: system-ui, sans-serif;">
@@ -100,6 +101,12 @@ ${css || ''}
             </div>
           </div>
         </div>
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('htmlToImage.constraints.0'), t('htmlToImage.constraints.1')]}
+          accentColor="emerald"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 코드 에디터 */}

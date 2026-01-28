@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Download, Trash2, RefreshCw, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 import { BackgroundRemoverIcon } from '@/components/icons/FeatureIcons';
 import FileUploader from '@/components/upload/FileUploader';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import { removeImageBackground, generateNewFilename } from '@/services/backgroundRemover';
 import { saveAs } from 'file-saver';
 import HowToUse from '@/components/common/HowToUse';
@@ -137,6 +138,12 @@ export default function BackgroundRemoverPage() {
           </div>
         </div>
 
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('backgroundRemover.constraints.0'), t('backgroundRemover.constraints.1'), t('backgroundRemover.constraints.2')]}
+          accentColor="violet"
+        />
+
         {/* Upload Area */}
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
           <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
@@ -149,25 +156,6 @@ export default function BackgroundRemoverPage() {
             />
           </div>
         </div>
-
-        {/* Info Notice */}
-        {files.length > 0 && (
-          <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
-            <div className="p-4 rounded-xl bg-[oklch(0.70_0.20_290/0.1)] border border-[oklch(0.70_0.20_290/0.2)]">
-              <div className="flex items-start gap-3">
-                <Sparkles className="w-5 h-5 text-[oklch(0.75_0.25_290)] flex-shrink-0 mt-0.5" />
-                <div className="text-sm text-[oklch(0.75_0.02_240)]">
-                  <p className="font-medium text-[oklch(0.85_0.02_240)] mb-1">
-                    {t('backgroundRemover.aiNotice')}
-                  </p>
-                  <p className="text-[oklch(0.65_0.02_240)]">
-                    {t('backgroundRemover.aiNoticeDesc')}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* File List */}
         {files.length > 0 && (

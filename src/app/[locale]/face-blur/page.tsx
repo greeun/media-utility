@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Download, Trash2, RefreshCw, CheckCircle, AlertCircle, Sparkles, Eye } from 'lucide-react';
 import { FaceBlurIcon } from '@/components/icons/FeatureIcons';
 import FileUploader from '@/components/upload/FileUploader';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import { detectFaces, applyFaceBlur } from '@/services/faceBlur';
 import type { DetectedFace } from '@/services/faceBlur';
 import { saveAs } from 'file-saver';
@@ -169,14 +170,11 @@ export default function FaceBlurPage() {
           </div>
         </div>
 
-        {/* AI Notice */}
-        <div className="mb-6 p-4 rounded-xl border border-[oklch(0.70_0.22_25/0.2)] bg-[oklch(0.70_0.22_25/0.05)] opacity-0 animate-fade-up" style={{ animationDelay: '0.05s', animationFillMode: 'forwards' }}>
-          <p className="text-sm text-[oklch(0.70_0.22_25)] flex items-center gap-2">
-            <Sparkles className="w-4 h-4" />
-            {t('faceBlur.aiNotice')}
-          </p>
-          <p className="text-xs text-[oklch(0.55_0.02_240)] mt-1">{t('faceBlur.aiNoticeDesc')}</p>
-        </div>
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('faceBlur.constraints.0'), t('faceBlur.constraints.1'), t('faceBlur.constraints.2')]}
+          accentColor="rose"
+        />
 
         {/* Upload Area */}
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>

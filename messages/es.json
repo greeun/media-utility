@@ -33,6 +33,12 @@
     "storage": "Almacenamiento",
     "files": "archivos"
   },
+  "menu": {
+    "image": "Imagen",
+    "design": "Diseño",
+    "convert": "Convertir",
+    "utility": "Utilidades"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "Herramientas de conversión de medios basadas en navegador",
@@ -78,6 +84,7 @@
       "step3Title": "Convertir y descargar",
       "step3Desc": "Haz clic en convertir y descarga individualmente o todo a la vez."
     },
+    "constraints": ["Hasta 20 archivos, máx. 50MB cada uno", "Entrada: HEIC, SVG, PSD, RAW y más", "Salida: JPG, PNG, WebP"],
     "faq": {
       "q1": "¿Qué es un archivo HEIC?",
       "a1": "HEIC es un formato de imagen de alta eficiencia usado por Apple desde iOS 11. Tiene tamaños de archivo más pequeños que JPG con la misma calidad.",
@@ -122,6 +129,7 @@
       "quality": "Calidad",
       "apply": "Optimizar"
     },
+    "constraints": ["Una imagen a la vez", "Procesamiento basado en memoria del navegador"],
     "howToUse": {
       "title": "Editor de imágenes",
       "description": "Editor de imágenes en línea gratuito que soporta recorte, rotación, volteo, redimensionado y optimización. Todo el procesamiento se realiza en tu navegador.",
@@ -148,6 +156,7 @@
     "createGif": "Crear GIF",
     "creating": "Creando GIF...",
     "result": "Resultado",
+    "constraints": ["Solo archivos de imagen", "El uso de memoria aumenta con el número de frames"],
     "howToUse": {
       "title": "Creador de GIF",
       "description": "Crea GIFs animados a partir de múltiples imágenes. Ajusta la velocidad y el tamaño fácilmente.",
@@ -177,6 +186,7 @@
     "preview": "Vista previa",
     "result": "Resultado",
     "extractedFrames": "Fotogramas extraídos",
+    "constraints": ["FFmpeg WASM (~30MB) se descarga en el primer uso", "Los archivos grandes pueden estar limitados por la memoria del navegador"],
     "howToUse": {
       "title": "Convertidor de video",
       "description": "Convierte videos a GIF, GIF a video MP4 o extrae fotogramas. Todo el procesamiento se realiza en tu navegador usando FFmpeg WebAssembly.",
@@ -186,6 +196,44 @@
       "step2Desc": "Sube un archivo de video o GIF para convertir.",
       "step3Title": "Configurar y convertir",
       "step3Desc": "Ajusta FPS, escala, formato, luego convierte y descarga."
+    }
+  },
+  "backgroundRemover": {
+    "title": "Removedor de fondo",
+    "description": "Elimina automáticamente fondos de imágenes usando IA",
+    "fileList": "Lista de archivos",
+    "processCount": "Procesar {count} archivos",
+    "downloadCount": "Descargar {count} archivos",
+    "constraints": ["Hasta 5 archivos, máx. 10MB cada uno", "Modelo de IA (~30MB) se descarga en el primer uso", "Los fondos complejos pueden afectar la precisión"],
+    "aiNotice": "Eliminación de fondo con IA",
+    "aiNoticeDesc": "El modelo de IA (~30MB) se descargará en el primer uso. Todo el procesamiento se realiza en tu navegador para total privacidad.",
+    "features": {
+      "ai": "Detección automática con IA",
+      "aiDesc": "El modelo de IA de aprendizaje profundo detecta automáticamente objetos y elimina fondos con precisión.",
+      "privacy": "Privacidad completa",
+      "privacyDesc": "Todo el procesamiento se realiza en tu navegador. Las imágenes nunca se suben a servidores externos.",
+      "transparent": "Salida PNG transparente",
+      "transparentDesc": "Se guarda como archivos PNG transparentes listos para diversos usos.",
+      "batch": "Procesamiento por lotes",
+      "batchDesc": "Sube múltiples imágenes y elimina todos los fondos de una vez."
+    },
+    "howToUse": {
+      "title": "Herramienta de eliminación de fondo con IA",
+      "description": "Elimina automáticamente fondos de imágenes usando tecnología de IA. Todo el procesamiento se realiza en tu navegador para total privacidad.",
+      "step1Title": "Subir imágenes",
+      "step1Desc": "Selecciona imágenes para eliminar fondos. Puedes subir varios archivos a la vez.",
+      "step2Title": "Procesamiento automático",
+      "step2Desc": "Haz clic en procesar y la IA detectará automáticamente objetos y eliminará fondos.",
+      "step3Title": "Descargar",
+      "step3Desc": "Descarga los archivos PNG transparentes completados."
+    },
+    "faq": {
+      "q1": "¿Qué tipos de imágenes funcionan mejor?",
+      "a1": "Más efectivo para imágenes con sujetos claros como personas, productos o animales. Los fondos complejos u objetos transparentes pueden variar en resultados.",
+      "q2": "¿Por qué la primera ejecución es lenta?",
+      "a2": "El modelo de IA (aproximadamente 30MB) se descarga en el primer uso. Después se almacena en caché del navegador para procesamiento rápido.",
+      "q3": "¿Hay límites de tamaño de archivo?",
+      "a3": "Para rendimiento óptimo, recomendamos máximo 10MB por archivo y hasta 5 archivos a la vez."
     }
   },
   "urlGenerator": {
@@ -219,6 +267,7 @@
       "newTab": "Abrir en nueva pestaña",
       "warning": "Las URLs Blob solo son válidas en esta sesión del navegador."
     },
+    "constraints": ["Data URL es ~133% del tamaño del archivo original", "Se recomienda Blob URL o almacenamiento en la nube para archivos grandes"],
     "howToUse": {
       "title": "Generador de URL",
       "description": "Convierte imágenes y videos a URLs compartibles. Base64 para incrustar, Blob para uso temporal, Nube para compartir permanente.",
@@ -263,6 +312,7 @@
       "step3Title": "Compress & Download",
       "step3Desc": "Click compress and download individually or all at once when complete."
     },
+    "constraints": ["Hasta 20 archivos, máx. 50MB cada uno", "Formatos soportados: JPG, PNG, WebP, GIF"],
     "faq": {
       "q1": "What formats are supported?",
       "a1": "JPG, PNG, WebP, and GIF formats are supported. Compressed files are saved in the same format as the original.",
@@ -318,6 +368,7 @@
       "batch": "Batch Processing",
       "batchDesc": "Apply the same watermark to multiple images at once."
     },
+    "constraints": ["Hasta 20 archivos, máx. 50MB cada uno"],
     "howToUse": {
       "title": "Watermark Tool",
       "description": "Add text or image watermarks to protect your copyright. All processing is done in your browser.",
@@ -347,6 +398,7 @@
     "generating": "Generating...",
     "generate": "Generate Meme",
     "result": "Result",
+    "constraints": ["Una imagen a la vez", "Máx. 50MB por archivo"],
     "howToUse": {
       "title": "Meme Generator",
       "description": "Add meme text to images to create fun content. See results instantly with live preview.",
@@ -374,6 +426,7 @@
     "detectedFaces": "{count} faces detected",
     "facesFound": "faces detected",
     "fileList": "File List",
+    "constraints": ["Hasta 10 archivos, máx. 50MB cada uno", "Modelo de IA se descarga en el primer uso", "La detección facial no es 100% precisa"],
     "aiNotice": "AI-powered Face Detection",
     "aiNoticeDesc": "The AI model will be downloaded on first use. All processing is done in your browser for complete privacy.",
     "features": {
@@ -421,6 +474,7 @@
       "size": "Custom Size",
       "sizeDesc": "Set custom width and height for the output image."
     },
+    "constraints": ["Recursos externos (imágenes, fuentes) sujetos a restricciones CORS", "Resolución máxima: 4000×4000px"],
     "howToUse": {
       "title": "HTML to Image Converter",
       "description": "Enter HTML/CSS code and convert to images. Create banners, cards, and social images from code.",
@@ -435,6 +489,7 @@
   "imageUpscaler": {
     "title": "Image Upscaler",
     "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "constraints": ["Hasta 5 archivos, máx. 20MB cada uno", "Modelo de IA (~80MB) se descarga en el primer uso", "Se recomienda navegador de escritorio", "Las imágenes grandes pueden tardar más en procesarse"],
     "desktopNotice": "Desktop recommended",
     "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
     "settings": "Upscale Settings",

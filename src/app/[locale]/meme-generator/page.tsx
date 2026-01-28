@@ -7,6 +7,7 @@ import { MemeGeneratorIcon } from '@/components/icons/FeatureIcons';
 import FileUploader from '@/components/upload/FileUploader';
 import { generateMeme } from '@/services/memeGenerator';
 import { saveAs } from 'file-saver';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 export default function MemeGeneratorPage() {
@@ -165,6 +166,12 @@ export default function MemeGeneratorPage() {
             </div>
           </div>
         </div>
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('memeGenerator.constraints.0'), t('memeGenerator.constraints.1')]}
+          accentColor="amber"
+        />
 
         {/* Upload Area */}
         {!file && (

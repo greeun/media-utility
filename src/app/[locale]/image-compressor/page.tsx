@@ -7,6 +7,7 @@ import { ImageCompressorIcon } from '@/components/icons/FeatureIcons';
 import FileUploader from '@/components/upload/FileUploader';
 import { compressImage, formatFileSize } from '@/services/imageCompressor';
 import { saveAs } from 'file-saver';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 interface CompressedFile {
@@ -158,6 +159,12 @@ export default function ImageCompressorPage() {
             </div>
           </div>
         </div>
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('imageCompressor.constraints.0'), t('imageCompressor.constraints.1')]}
+          accentColor="emerald"
+        />
 
         {/* Upload Area */}
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>

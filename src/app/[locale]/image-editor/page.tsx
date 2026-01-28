@@ -20,6 +20,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 import { rotateImage, flipImage, resizeImage, cropImage } from '@/services/imageEditor';
 import { optimizeImage } from '@/services/imageConverter';
 import { saveAs } from 'file-saver';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 type EditMode = 'crop' | 'rotate' | 'resize' | 'optimize' | null;
@@ -229,6 +230,12 @@ export default function ImageEditorPage() {
             </div>
           </div>
         </div>
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('imageEditor.constraints.0'), t('imageEditor.constraints.1')]}
+          accentColor="amber"
+        />
 
         {/* Upload Area */}
         {!preview && (

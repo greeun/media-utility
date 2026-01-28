@@ -33,6 +33,12 @@
     "storage": "Stockage",
     "files": "fichiers"
   },
+  "menu": {
+    "image": "Image",
+    "design": "Design",
+    "convert": "Convertir",
+    "utility": "Utilitaires"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "Outils de conversion média basés sur navigateur",
@@ -78,6 +84,7 @@
       "step3Title": "Convertir et télécharger",
       "step3Desc": "Cliquez sur convertir et téléchargez individuellement ou tout à la fois."
     },
+    "constraints": ["Jusqu'à 20 fichiers, max 50 Mo chacun", "Entrée : HEIC, SVG, PSD, RAW et plus", "Sortie : JPG, PNG, WebP"],
     "faq": {
       "q1": "Qu'est-ce qu'un fichier HEIC?",
       "a1": "HEIC est un format d'image haute efficacité utilisé par Apple depuis iOS 11. Il a des tailles de fichier plus petites que JPG avec la même qualité.",
@@ -122,6 +129,7 @@
       "quality": "Qualité",
       "apply": "Optimiser"
     },
+    "constraints": ["Une image à la fois", "Traitement basé sur la mémoire du navigateur"],
     "howToUse": {
       "title": "Éditeur d'images",
       "description": "Éditeur d'images en ligne gratuit supportant recadrage, rotation, retournement, redimensionnement et optimisation. Tout le traitement est fait dans votre navigateur.",
@@ -148,6 +156,7 @@
     "createGif": "Créer GIF",
     "creating": "Création du GIF...",
     "result": "Résultat",
+    "constraints": ["Fichiers image uniquement", "L'utilisation de la mémoire augmente avec le nombre de frames"],
     "howToUse": {
       "title": "Créateur de GIF",
       "description": "Créez des GIFs animés à partir de plusieurs images. Ajustez facilement la vitesse et la taille.",
@@ -177,6 +186,7 @@
     "preview": "Aperçu",
     "result": "Résultat",
     "extractedFrames": "Images extraites",
+    "constraints": ["FFmpeg WASM (~30 Mo) téléchargé à la première utilisation", "Les fichiers volumineux peuvent être limités par la mémoire du navigateur"],
     "howToUse": {
       "title": "Convertisseur vidéo",
       "description": "Convertissez des vidéos en GIF, GIF en vidéo MP4 ou extrayez des images. Tout le traitement est fait dans votre navigateur avec FFmpeg WebAssembly.",
@@ -186,6 +196,44 @@
       "step2Desc": "Téléversez un fichier vidéo ou GIF à convertir.",
       "step3Title": "Configurer et convertir",
       "step3Desc": "Ajustez IPS, échelle, format, puis convertissez et téléchargez."
+    }
+  },
+  "backgroundRemover": {
+    "title": "Suppresseur d'arrière-plan",
+    "description": "Supprimez automatiquement les arrière-plans d'images avec l'IA",
+    "fileList": "Liste des fichiers",
+    "processCount": "Traiter {count} fichiers",
+    "downloadCount": "Télécharger {count} fichiers",
+    "constraints": ["Jusqu'à 5 fichiers, max 10 Mo chacun", "Modèle IA (~30 Mo) téléchargé à la première utilisation", "Les arrière-plans complexes peuvent affecter la précision"],
+    "aiNotice": "Suppression d'arrière-plan par IA",
+    "aiNoticeDesc": "Le modèle IA (~30 Mo) sera téléchargé à la première utilisation. Tout le traitement est fait dans votre navigateur pour une confidentialité totale.",
+    "features": {
+      "ai": "Détection automatique par IA",
+      "aiDesc": "Le modèle IA d'apprentissage profond détecte automatiquement les objets et supprime précisément les arrière-plans.",
+      "privacy": "Confidentialité totale",
+      "privacyDesc": "Tout le traitement est fait dans votre navigateur. Les images ne sont jamais envoyées à des serveurs externes.",
+      "transparent": "Sortie PNG transparente",
+      "transparentDesc": "Sauvegarde en fichiers PNG transparents prêts pour divers usages.",
+      "batch": "Traitement par lots",
+      "batchDesc": "Téléversez plusieurs images et supprimez automatiquement les arrière-plans de toutes à la fois."
+    },
+    "howToUse": {
+      "title": "Outil de suppression d'arrière-plan par IA",
+      "description": "Supprimez automatiquement les arrière-plans des images grâce à la technologie IA. Tout le traitement est fait dans votre navigateur pour une confidentialité totale.",
+      "step1Title": "Téléverser des images",
+      "step1Desc": "Sélectionnez les images dont vous souhaitez supprimer l'arrière-plan. Vous pouvez téléverser plusieurs fichiers à la fois.",
+      "step2Title": "Traitement automatique",
+      "step2Desc": "Cliquez sur traiter et l'IA détectera automatiquement les objets et supprimera les arrière-plans.",
+      "step3Title": "Télécharger",
+      "step3Desc": "Téléchargez les fichiers PNG transparents terminés."
+    },
+    "faq": {
+      "q1": "Quels types d'images fonctionnent le mieux ?",
+      "a1": "Plus efficace pour les images avec des sujets clairs comme les personnes, produits ou animaux. Les arrière-plans complexes ou objets transparents peuvent varier en résultats.",
+      "q2": "Pourquoi la première exécution est-elle lente ?",
+      "a2": "Le modèle IA (environ 30 Mo) est téléchargé à la première utilisation. Ensuite, il est mis en cache dans votre navigateur pour un traitement rapide.",
+      "q3": "Y a-t-il des limites de taille de fichier ?",
+      "a3": "Pour des performances optimales, nous recommandons un maximum de 10 Mo par fichier et jusqu'à 5 fichiers à la fois."
     }
   },
   "urlGenerator": {
@@ -219,6 +267,7 @@
       "newTab": "Ouvrir dans un nouvel onglet",
       "warning": "Les URLs Blob ne sont valides que dans cette session de navigateur."
     },
+    "constraints": ["L'URL Data représente ~133% de la taille du fichier original", "URL Blob ou stockage cloud recommandé pour les fichiers volumineux"],
     "howToUse": {
       "title": "Générateur d'URL",
       "description": "Convertissez images et vidéos en URLs partageables. Base64 pour intégrer, Blob pour usage temporaire, Cloud pour partage permanent.",
@@ -263,6 +312,7 @@
       "step3Title": "Compress & Download",
       "step3Desc": "Click compress and download individually or all at once when complete."
     },
+    "constraints": ["Jusqu'à 20 fichiers, max 50 Mo chacun", "Formats supportés : JPG, PNG, WebP, GIF"],
     "faq": {
       "q1": "What formats are supported?",
       "a1": "JPG, PNG, WebP, and GIF formats are supported. Compressed files are saved in the same format as the original.",
@@ -318,6 +368,7 @@
       "batch": "Batch Processing",
       "batchDesc": "Apply the same watermark to multiple images at once."
     },
+    "constraints": ["Jusqu'à 20 fichiers, max 50 Mo chacun"],
     "howToUse": {
       "title": "Watermark Tool",
       "description": "Add text or image watermarks to protect your copyright. All processing is done in your browser.",
@@ -347,6 +398,7 @@
     "generating": "Generating...",
     "generate": "Generate Meme",
     "result": "Result",
+    "constraints": ["Une image à la fois", "Max 50 Mo par fichier"],
     "howToUse": {
       "title": "Meme Generator",
       "description": "Add meme text to images to create fun content. See results instantly with live preview.",
@@ -374,6 +426,7 @@
     "detectedFaces": "{count} faces detected",
     "facesFound": "faces detected",
     "fileList": "File List",
+    "constraints": ["Jusqu'à 10 fichiers, max 50 Mo chacun", "Modèle IA téléchargé à la première utilisation", "La détection faciale n'est pas précise à 100%"],
     "aiNotice": "AI-powered Face Detection",
     "aiNoticeDesc": "The AI model will be downloaded on first use. All processing is done in your browser for complete privacy.",
     "features": {
@@ -421,6 +474,7 @@
       "size": "Custom Size",
       "sizeDesc": "Set custom width and height for the output image."
     },
+    "constraints": ["Les ressources externes (images, polices) sont soumises aux restrictions CORS", "Résolution maximale : 4000×4000px"],
     "howToUse": {
       "title": "HTML to Image Converter",
       "description": "Enter HTML/CSS code and convert to images. Create banners, cards, and social images from code.",
@@ -435,6 +489,7 @@
   "imageUpscaler": {
     "title": "Image Upscaler",
     "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "constraints": ["Jusqu'à 5 fichiers, max 20 Mo chacun", "Modèle IA (~80 Mo) téléchargé à la première utilisation", "Navigateur de bureau recommandé", "Les grandes images peuvent prendre plus de temps"],
     "desktopNotice": "Desktop recommended",
     "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
     "settings": "Upscale Settings",

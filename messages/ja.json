@@ -33,6 +33,12 @@
     "storage": "ストレージ",
     "files": "ファイル"
   },
+  "menu": {
+    "image": "画像",
+    "design": "デザイン",
+    "convert": "変換",
+    "utility": "ユーティリティ"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "ブラウザベースのメディア変換ツール",
@@ -78,6 +84,7 @@
       "step3Title": "変換してダウンロード",
       "step3Desc": "変換をクリックし、完了後に個別または一括でダウンロード。"
     },
+    "constraints": ["最大20ファイル、1ファイルあたり50MB", "入力: HEIC, SVG, PSD, RAWなど", "出力: JPG, PNG, WebP"],
     "faq": {
       "q1": "HEIC ファイルとは？",
       "a1": "HEIC は Apple が iOS 11 から採用した高効率画像形式です。JPG より小さいファイルサイズで同等の画質を維持します。",
@@ -122,6 +129,7 @@
       "quality": "品質",
       "apply": "最適化"
     },
+    "constraints": ["画像1枚ずつ編集", "ブラウザメモリベースの処理"],
     "howToUse": {
       "title": "画像エディタ",
       "description": "切り抜き、回転、反転、リサイズ、最適化をサポートする無料オンライン画像エディタ。すべての処理はブラウザで行われます。",
@@ -148,6 +156,7 @@
     "createGif": "GIF を作成",
     "creating": "GIF 作成中...",
     "result": "結果",
+    "constraints": ["画像ファイルのみ対応", "フレーム数に応じてメモリ使用量が増加"],
     "howToUse": {
       "title": "GIF メーカー",
       "description": "複数の画像からアニメーション GIF を作成。速度とサイズを調整して簡単に GIF アニメーションを作れます。",
@@ -177,6 +186,7 @@
     "preview": "プレビュー",
     "result": "結果",
     "extractedFrames": "抽出されたフレーム",
+    "constraints": ["FFmpeg WASM(~30MB) 初回使用時にダウンロード", "大容量ファイルはブラウザメモリの制限を受ける場合があります"],
     "howToUse": {
       "title": "動画コンバーター",
       "description": "動画を GIF に、GIF を MP4 動画に、動画からフレームを抽出。FFmpeg WebAssembly を使用してブラウザですべての処理を行います。",
@@ -186,6 +196,44 @@
       "step2Desc": "変換する動画または GIF ファイルをアップロード。",
       "step3Title": "オプション設定と変換",
       "step3Desc": "FPS、スケール、形式を調整し、変換してダウンロード。"
+    }
+  },
+  "backgroundRemover": {
+    "title": "背景除去",
+    "description": "AIを使用して画像の背景を自動的に除去",
+    "fileList": "ファイル一覧",
+    "processCount": "{count} ファイルを処理",
+    "downloadCount": "{count} ファイルをダウンロード",
+    "constraints": ["最大5ファイル、1ファイルあたり10MB", "AIモデル(~30MB) 初回使用時にダウンロード", "複雑な背景は結果が異なる場合があります"],
+    "aiNotice": "AI ベースの背景除去",
+    "aiNoticeDesc": "初回実行時に AI モデル（約30MB）をダウンロードします。すべての処理はブラウザで行われ、プライバシーが保護されます。",
+    "features": {
+      "ai": "AI 自動検出",
+      "aiDesc": "ディープラーニング AI モデルがオブジェクトを自動検出し、背景を正確に除去します。",
+      "privacy": "完全なプライバシー",
+      "privacyDesc": "すべての処理がブラウザで行われ、画像は外部に送信されません。",
+      "transparent": "透明 PNG 出力",
+      "transparentDesc": "背景が除去された透明 PNG ファイルとして保存され、様々な用途に活用できます。",
+      "batch": "一括処理",
+      "batchDesc": "複数の画像をアップロードし、自動で背景を除去できます。"
+    },
+    "howToUse": {
+      "title": "AI 背景除去ツール",
+      "description": "AI 技術で画像から背景を自動的に除去します。すべての処理はブラウザで行われ、プライバシーが完全に保護されます。",
+      "step1Title": "画像をアップロード",
+      "step1Desc": "背景を除去する画像を選択。複数ファイルを一度にアップロードできます。",
+      "step2Title": "自動処理",
+      "step2Desc": "処理をクリックすると、AI が自動的にオブジェクトを検出し背景を除去します。",
+      "step3Title": "ダウンロード",
+      "step3Desc": "完成した透明背景 PNG ファイルをダウンロード。"
+    },
+    "faq": {
+      "q1": "どのような画像に適していますか？",
+      "a1": "人物、製品、動物など明確な主体がある画像に最も効果的です。複雑な背景や透明なオブジェクトは結果が異なる場合があります。",
+      "q2": "初回実行が遅い理由は？",
+      "a2": "初回実行時に AI モデル（約30MB）をダウンロードします。その後はブラウザキャッシュに保存され、高速に動作します。",
+      "q3": "ファイルサイズ制限はありますか？",
+      "a3": "処理速度のため、ファイルあたり最大 10MB、一度に最大 5 ファイルを推奨します。"
     }
   },
   "urlGenerator": {
@@ -219,6 +267,7 @@
       "newTab": "新しいタブで開く",
       "warning": "Blob URL はこのブラウザセッションでのみ有効です。"
     },
+    "constraints": ["Data URLは元ファイルの約133%のサイズ", "大容量ファイルにはBlob URLまたはクラウドストレージを推奨"],
     "howToUse": {
       "title": "URL ジェネレーター",
       "description": "画像と動画を共有可能な URL に変換。Base64 は埋め込み用、Blob は一時使用、クラウドは永続共有用。",
@@ -263,6 +312,7 @@
       "step3Title": "Compress & Download",
       "step3Desc": "Click compress and download individually or all at once when complete."
     },
+    "constraints": ["最大20ファイル、1ファイルあたり50MB", "対応形式: JPG, PNG, WebP, GIF"],
     "faq": {
       "q1": "What formats are supported?",
       "a1": "JPG, PNG, WebP, and GIF formats are supported. Compressed files are saved in the same format as the original.",
@@ -318,6 +368,7 @@
       "batch": "Batch Processing",
       "batchDesc": "Apply the same watermark to multiple images at once."
     },
+    "constraints": ["最大20ファイル、1ファイルあたり50MB"],
     "howToUse": {
       "title": "Watermark Tool",
       "description": "Add text or image watermarks to protect your copyright. All processing is done in your browser.",
@@ -347,6 +398,7 @@
     "generating": "Generating...",
     "generate": "Generate Meme",
     "result": "Result",
+    "constraints": ["画像1枚ずつ処理", "1ファイルあたり最大50MB"],
     "howToUse": {
       "title": "Meme Generator",
       "description": "Add meme text to images to create fun content. See results instantly with live preview.",
@@ -374,6 +426,7 @@
     "detectedFaces": "{count} faces detected",
     "facesFound": "faces detected",
     "fileList": "File List",
+    "constraints": ["最大10ファイル、1ファイルあたり50MB", "AIモデル 初回使用時にダウンロード", "顔検出の精度は100%ではありません"],
     "aiNotice": "AI-powered Face Detection",
     "aiNoticeDesc": "The AI model will be downloaded on first use. All processing is done in your browser for complete privacy.",
     "features": {
@@ -421,6 +474,7 @@
       "size": "Custom Size",
       "sizeDesc": "Set custom width and height for the output image."
     },
+    "constraints": ["外部リソース（画像、フォント）はCORS制限あり", "最大解像度: 4000×4000px"],
     "howToUse": {
       "title": "HTML to Image Converter",
       "description": "Enter HTML/CSS code and convert to images. Create banners, cards, and social images from code.",
@@ -435,6 +489,7 @@
   "imageUpscaler": {
     "title": "Image Upscaler",
     "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "constraints": ["最大5ファイル、1ファイルあたり20MB", "AIモデル(~80MB) 初回使用時にダウンロード", "デスクトップブラウザ推奨", "大きな画像は処理に時間がかかる場合があります"],
     "desktopNotice": "Desktop recommended",
     "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
     "settings": "Upscale Settings",

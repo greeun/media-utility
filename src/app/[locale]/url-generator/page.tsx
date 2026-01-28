@@ -13,6 +13,7 @@ import {
   uploadToR2,
   getStorageInfo,
 } from '@/services/urlGenerator';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 interface GeneratedUrl {
@@ -260,6 +261,12 @@ export default function UrlGeneratorPage() {
             </div>
           </div>
         )}
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('urlGenerator.constraints.0'), t('urlGenerator.constraints.1')]}
+          accentColor="teal"
+        />
 
         {/* Upload Area */}
         <div className="mb-6 p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>

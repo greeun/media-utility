@@ -33,6 +33,12 @@
     "storage": "Speicher",
     "files": "Dateien"
   },
+  "menu": {
+    "image": "Bild",
+    "design": "Design",
+    "convert": "Konvertieren",
+    "utility": "Dienstprogramme"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "Browserbasierte Medienkonvertierungstools",
@@ -78,6 +84,7 @@
       "step3Title": "Konvertieren & Herunterladen",
       "step3Desc": "Klicken Sie auf Konvertieren und laden Sie einzeln oder alle auf einmal herunter."
     },
+    "constraints": ["Bis zu 20 Dateien, max. 50MB pro Datei", "Eingabe: HEIC, SVG, PSD, RAW und mehr", "Ausgabe: JPG, PNG, WebP"],
     "faq": {
       "q1": "Was ist eine HEIC-Datei?",
       "a1": "HEIC ist ein hocheffizientes Bildformat, das Apple seit iOS 11 verwendet. Es hat kleinere Dateigrößen als JPG bei gleicher Qualität.",
@@ -122,6 +129,7 @@
       "quality": "Qualität",
       "apply": "Optimieren"
     },
+    "constraints": ["Ein Bild gleichzeitig", "Browserbasierte Speicherverarbeitung"],
     "howToUse": {
       "title": "Bildeditor",
       "description": "Kostenloser Online-Bildeditor mit Zuschneiden, Drehen, Spiegeln, Größenänderung und Optimierung. Alle Verarbeitung erfolgt in Ihrem Browser.",
@@ -148,6 +156,7 @@
     "createGif": "GIF erstellen",
     "creating": "GIF wird erstellt...",
     "result": "Ergebnis",
+    "constraints": ["Nur Bilddateien", "Speicherverbrauch steigt mit der Anzahl der Frames"],
     "howToUse": {
       "title": "GIF-Maker",
       "description": "Erstellen Sie animierte GIFs aus mehreren Bildern. Passen Sie Geschwindigkeit und Größe einfach an.",
@@ -177,6 +186,7 @@
     "preview": "Vorschau",
     "result": "Ergebnis",
     "extractedFrames": "Extrahierte Frames",
+    "constraints": ["FFmpeg WASM (~30MB) wird beim ersten Gebrauch heruntergeladen", "Große Dateien können durch Browser-Speicherlimits eingeschränkt sein"],
     "howToUse": {
       "title": "Videokonverter",
       "description": "Konvertieren Sie Videos zu GIF, GIF zu MP4-Video oder extrahieren Sie Frames. Alle Verarbeitung erfolgt in Ihrem Browser mit FFmpeg WebAssembly.",
@@ -186,6 +196,44 @@
       "step2Desc": "Laden Sie eine Video- oder GIF-Datei zum Konvertieren hoch.",
       "step3Title": "Einstellen & Konvertieren",
       "step3Desc": "Passen Sie FPS, Skalierung, Format an und konvertieren und laden Sie herunter."
+    }
+  },
+  "backgroundRemover": {
+    "title": "Hintergrund entfernen",
+    "description": "Entfernen Sie Bildhintergründe automatisch mit KI",
+    "fileList": "Dateiliste",
+    "processCount": "{count} Dateien verarbeiten",
+    "downloadCount": "{count} Dateien herunterladen",
+    "constraints": ["Bis zu 5 Dateien, max. 10MB pro Datei", "KI-Modell (~30MB) wird beim ersten Gebrauch heruntergeladen", "Komplexe Hintergründe können die Genauigkeit beeinflussen"],
+    "aiNotice": "KI-gestützte Hintergrundentfernung",
+    "aiNoticeDesc": "Das KI-Modell (~30MB) wird beim ersten Gebrauch heruntergeladen. Alle Verarbeitung erfolgt in Ihrem Browser für vollständigen Datenschutz.",
+    "features": {
+      "ai": "KI-Automatische Erkennung",
+      "aiDesc": "Deep-Learning-KI-Modell erkennt automatisch Objekte und entfernt Hintergründe präzise.",
+      "privacy": "Vollständiger Datenschutz",
+      "privacyDesc": "Alle Verarbeitung erfolgt in Ihrem Browser. Bilder werden nie auf externe Server hochgeladen.",
+      "transparent": "Transparente PNG-Ausgabe",
+      "transparentDesc": "Speichert als transparente PNG-Dateien für verschiedene Verwendungszwecke.",
+      "batch": "Stapelverarbeitung",
+      "batchDesc": "Laden Sie mehrere Bilder hoch und entfernen Sie alle Hintergründe auf einmal."
+    },
+    "howToUse": {
+      "title": "KI Hintergrund-Entfernungstool",
+      "description": "Entfernen Sie Hintergründe automatisch aus Bildern mit KI-Technologie. Alle Verarbeitung erfolgt in Ihrem Browser für vollständigen Datenschutz.",
+      "step1Title": "Bilder hochladen",
+      "step1Desc": "Wählen Sie Bilder aus, deren Hintergrund entfernt werden soll. Sie können mehrere Dateien gleichzeitig hochladen.",
+      "step2Title": "Automatische Verarbeitung",
+      "step2Desc": "Klicken Sie auf Verarbeiten und die KI erkennt automatisch Objekte und entfernt Hintergründe.",
+      "step3Title": "Herunterladen",
+      "step3Desc": "Laden Sie die fertigen transparenten PNG-Dateien herunter."
+    },
+    "faq": {
+      "q1": "Welche Bildtypen funktionieren am besten?",
+      "a1": "Am effektivsten für Bilder mit klaren Motiven wie Personen, Produkte oder Tiere. Komplexe Hintergründe oder transparente Objekte können unterschiedliche Ergebnisse liefern.",
+      "q2": "Warum ist der erste Durchlauf langsam?",
+      "a2": "Das KI-Modell (ca. 30MB) wird beim ersten Gebrauch heruntergeladen. Danach wird es im Browser-Cache gespeichert für schnelle Verarbeitung.",
+      "q3": "Gibt es Dateigrößenbeschränkungen?",
+      "a3": "Für optimale Leistung empfehlen wir maximal 10MB pro Datei und bis zu 5 Dateien gleichzeitig."
     }
   },
   "urlGenerator": {
@@ -219,6 +267,7 @@
       "newTab": "In neuem Tab öffnen",
       "warning": "Blob-URLs sind nur in dieser Browser-Sitzung gültig."
     },
+    "constraints": ["Data-URL ist ca. 133% der Originaldateigröße", "Für große Dateien wird Blob-URL oder Cloud-Speicher empfohlen"],
     "howToUse": {
       "title": "URL-Generator",
       "description": "Wandeln Sie Bilder und Videos in teilbare URLs um. Base64 zum Einbetten, Blob für temporäre Nutzung, Cloud für permanentes Teilen.",
@@ -263,6 +312,7 @@
       "step3Title": "Compress & Download",
       "step3Desc": "Click compress and download individually or all at once when complete."
     },
+    "constraints": ["Bis zu 20 Dateien, max. 50MB pro Datei", "Unterstützte Formate: JPG, PNG, WebP, GIF"],
     "faq": {
       "q1": "What formats are supported?",
       "a1": "JPG, PNG, WebP, and GIF formats are supported. Compressed files are saved in the same format as the original.",
@@ -318,6 +368,7 @@
       "batch": "Batch Processing",
       "batchDesc": "Apply the same watermark to multiple images at once."
     },
+    "constraints": ["Bis zu 20 Dateien, max. 50MB pro Datei"],
     "howToUse": {
       "title": "Watermark Tool",
       "description": "Add text or image watermarks to protect your copyright. All processing is done in your browser.",
@@ -347,6 +398,7 @@
     "generating": "Generating...",
     "generate": "Generate Meme",
     "result": "Result",
+    "constraints": ["Ein Bild gleichzeitig", "Max. 50MB pro Datei"],
     "howToUse": {
       "title": "Meme Generator",
       "description": "Add meme text to images to create fun content. See results instantly with live preview.",
@@ -374,6 +426,7 @@
     "detectedFaces": "{count} faces detected",
     "facesFound": "faces detected",
     "fileList": "File List",
+    "constraints": ["Bis zu 10 Dateien, max. 50MB pro Datei", "KI-Modell wird beim ersten Gebrauch heruntergeladen", "Gesichtserkennung ist nicht 100% genau"],
     "aiNotice": "AI-powered Face Detection",
     "aiNoticeDesc": "The AI model will be downloaded on first use. All processing is done in your browser for complete privacy.",
     "features": {
@@ -421,6 +474,7 @@
       "size": "Custom Size",
       "sizeDesc": "Set custom width and height for the output image."
     },
+    "constraints": ["Externe Ressourcen (Bilder, Schriften) unterliegen CORS-Beschränkungen", "Maximale Auflösung: 4000×4000px"],
     "howToUse": {
       "title": "HTML to Image Converter",
       "description": "Enter HTML/CSS code and convert to images. Create banners, cards, and social images from code.",
@@ -435,6 +489,7 @@
   "imageUpscaler": {
     "title": "Image Upscaler",
     "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "constraints": ["Bis zu 5 Dateien, max. 20MB pro Datei", "KI-Modell (~80MB) wird beim ersten Gebrauch heruntergeladen", "Desktop-Browser empfohlen", "Große Bilder können länger dauern"],
     "desktopNotice": "Desktop recommended",
     "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
     "settings": "Upscale Settings",

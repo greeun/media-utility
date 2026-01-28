@@ -6,6 +6,7 @@ import { Upload, Trash2, Download, GripVertical, ChevronUp, ChevronDown, Loader2
 import { GifMakerIcon } from '@/components/icons/FeatureIcons';
 import { createGifFromImages } from '@/services/gifGenerator';
 import { saveAs } from 'file-saver';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 interface ImageItem {
@@ -148,6 +149,12 @@ export default function GifMakerPage() {
             </div>
           </div>
         </div>
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('gifMaker.constraints.0'), t('gifMaker.constraints.1')]}
+          accentColor="emerald"
+        />
 
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Left: Image List */}

@@ -33,6 +33,12 @@
     "storage": "Хранилище",
     "files": "файлов"
   },
+  "menu": {
+    "image": "Изображение",
+    "design": "Дизайн",
+    "convert": "Конвертировать",
+    "utility": "Утилиты"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "Инструменты конвертации медиа в браузере",
@@ -78,6 +84,7 @@
       "step3Title": "Конвертировать и скачать",
       "step3Desc": "Нажмите конвертировать и скачайте по отдельности или все сразу."
     },
+    "constraints": ["До 20 файлов, макс. 50МБ каждый", "Вход: HEIC, SVG, PSD, RAW и другие", "Выход: JPG, PNG, WebP"],
     "faq": {
       "q1": "Что такое файл HEIC?",
       "a1": "HEIC — это высокоэффективный формат изображений, используемый Apple с iOS 11. Он имеет меньший размер файла чем JPG при том же качестве.",
@@ -122,6 +129,7 @@
       "quality": "Качество",
       "apply": "Оптимизировать"
     },
+    "constraints": ["Одно изображение за раз", "Обработка в памяти браузера"],
     "howToUse": {
       "title": "Редактор изображений",
       "description": "Бесплатный онлайн-редактор изображений с поддержкой обрезки, поворота, отражения, изменения размера и оптимизации. Вся обработка происходит в вашем браузере.",
@@ -148,6 +156,7 @@
     "createGif": "Создать GIF",
     "creating": "Создание GIF...",
     "result": "Результат",
+    "constraints": ["Только файлы изображений", "Использование памяти увеличивается с количеством кадров"],
     "howToUse": {
       "title": "GIF-мейкер",
       "description": "Создавайте анимированные GIF из нескольких изображений. Легко настраивайте скорость и размер.",
@@ -177,6 +186,7 @@
     "preview": "Предпросмотр",
     "result": "Результат",
     "extractedFrames": "Извлеченные кадры",
+    "constraints": ["FFmpeg WASM (~30МБ) загружается при первом использовании", "Большие файлы могут быть ограничены памятью браузера"],
     "howToUse": {
       "title": "Конвертер видео",
       "description": "Конвертируйте видео в GIF, GIF в MP4 видео или извлекайте кадры. Вся обработка происходит в вашем браузере с помощью FFmpeg WebAssembly.",
@@ -186,6 +196,44 @@
       "step2Desc": "Загрузите видео или GIF файл для конвертации.",
       "step3Title": "Настроить и конвертировать",
       "step3Desc": "Настройте FPS, масштаб, формат, затем конвертируйте и скачайте."
+    }
+  },
+  "backgroundRemover": {
+    "title": "Удаление фона",
+    "description": "Автоматическое удаление фона изображений с помощью ИИ",
+    "fileList": "Список файлов",
+    "processCount": "Обработать {count} файлов",
+    "downloadCount": "Скачать {count} файлов",
+    "constraints": ["До 5 файлов, макс. 10МБ каждый", "ИИ-модель (~30МБ) загружается при первом использовании", "Сложные фоны могут влиять на точность"],
+    "aiNotice": "Удаление фона на основе ИИ",
+    "aiNoticeDesc": "ИИ-модель (~30МБ) загружается при первом использовании. Вся обработка выполняется в вашем браузере для полной конфиденциальности.",
+    "features": {
+      "ai": "Автоматическое обнаружение ИИ",
+      "aiDesc": "Модель глубокого обучения автоматически обнаруживает объекты и точно удаляет фон.",
+      "privacy": "Полная конфиденциальность",
+      "privacyDesc": "Вся обработка выполняется в вашем браузере. Изображения никогда не загружаются на внешние серверы.",
+      "transparent": "Прозрачный PNG вывод",
+      "transparentDesc": "Сохраняется как прозрачный PNG файл, готовый для различного использования.",
+      "batch": "Пакетная обработка",
+      "batchDesc": "Загрузите несколько изображений и автоматически удалите фон у всех сразу."
+    },
+    "howToUse": {
+      "title": "Инструмент удаления фона с ИИ",
+      "description": "Автоматическое удаление фона изображений с помощью технологии ИИ. Вся обработка выполняется в вашем браузере для полной конфиденциальности.",
+      "step1Title": "Загрузить изображения",
+      "step1Desc": "Выберите изображения для удаления фона. Можно загрузить несколько файлов сразу.",
+      "step2Title": "Автоматическая обработка",
+      "step2Desc": "Нажмите обработать и ИИ автоматически обнаружит объекты и удалит фон.",
+      "step3Title": "Скачать",
+      "step3Desc": "Скачайте готовые прозрачные PNG файлы."
+    },
+    "faq": {
+      "q1": "Для каких изображений подходит лучше всего?",
+      "a1": "Наиболее эффективно для изображений с чёткими объектами, такими как люди, продукты или животные. Сложные фоны или прозрачные объекты могут давать разные результаты.",
+      "q2": "Почему первый запуск медленный?",
+      "a2": "При первом использовании загружается ИИ-модель (около 30МБ). После этого она кэшируется в браузере для быстрой обработки.",
+      "q3": "Есть ли ограничения на размер файла?",
+      "a3": "Для оптимальной производительности рекомендуем максимум 10МБ на файл и до 5 файлов за раз."
     }
   },
   "urlGenerator": {
@@ -219,6 +267,7 @@
       "newTab": "Открыть в новой вкладке",
       "warning": "Blob URL действителен только в этой сессии браузера."
     },
+    "constraints": ["Data URL составляет ~133% от размера исходного файла", "Для больших файлов рекомендуется Blob URL или облачное хранилище"],
     "howToUse": {
       "title": "Генератор URL",
       "description": "Конвертируйте изображения и видео в URL для обмена. Base64 для встраивания, Blob для временного использования, Облако для постоянного обмена.",
@@ -263,6 +312,7 @@
       "step3Title": "Compress & Download",
       "step3Desc": "Click compress and download individually or all at once when complete."
     },
+    "constraints": ["До 20 файлов, макс. 50МБ каждый", "Поддерживаемые форматы: JPG, PNG, WebP, GIF"],
     "faq": {
       "q1": "What formats are supported?",
       "a1": "JPG, PNG, WebP, and GIF formats are supported. Compressed files are saved in the same format as the original.",
@@ -318,6 +368,7 @@
       "batch": "Batch Processing",
       "batchDesc": "Apply the same watermark to multiple images at once."
     },
+    "constraints": ["До 20 файлов, макс. 50МБ каждый"],
     "howToUse": {
       "title": "Watermark Tool",
       "description": "Add text or image watermarks to protect your copyright. All processing is done in your browser.",
@@ -347,6 +398,7 @@
     "generating": "Generating...",
     "generate": "Generate Meme",
     "result": "Result",
+    "constraints": ["Одно изображение за раз", "Макс. 50МБ на файл"],
     "howToUse": {
       "title": "Meme Generator",
       "description": "Add meme text to images to create fun content. See results instantly with live preview.",
@@ -374,6 +426,7 @@
     "detectedFaces": "{count} faces detected",
     "facesFound": "faces detected",
     "fileList": "File List",
+    "constraints": ["До 10 файлов, макс. 50МБ каждый", "ИИ-модель загружается при первом использовании", "Точность распознавания лиц не 100%"],
     "aiNotice": "AI-powered Face Detection",
     "aiNoticeDesc": "The AI model will be downloaded on first use. All processing is done in your browser for complete privacy.",
     "features": {
@@ -421,6 +474,7 @@
       "size": "Custom Size",
       "sizeDesc": "Set custom width and height for the output image."
     },
+    "constraints": ["Внешние ресурсы (изображения, шрифты) ограничены CORS", "Максимальное разрешение: 4000×4000px"],
     "howToUse": {
       "title": "HTML to Image Converter",
       "description": "Enter HTML/CSS code and convert to images. Create banners, cards, and social images from code.",
@@ -435,6 +489,7 @@
   "imageUpscaler": {
     "title": "Image Upscaler",
     "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "constraints": ["До 5 файлов, макс. 20МБ каждый", "ИИ-модель (~80МБ) загружается при первом использовании", "Рекомендуется настольный браузер", "Обработка больших изображений может занять больше времени"],
     "desktopNotice": "Desktop recommended",
     "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
     "settings": "Upscale Settings",

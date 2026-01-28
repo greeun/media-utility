@@ -10,6 +10,7 @@ import { convertHeicToJpg, isHeicFile } from '@/services/heicConverter';
 import { convertPsdToImage, isPsdFile } from '@/services/psdConverter';
 import { convertRawToImage, isRawFile } from '@/services/rawConverter';
 import { saveAs } from 'file-saver';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 interface ConvertedFile {
@@ -204,6 +205,12 @@ export default function ImageConverterPage() {
             </div>
           </div>
         </div>
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('imageConverter.constraints.0'), t('imageConverter.constraints.1'), t('imageConverter.constraints.2')]}
+          accentColor="cyan"
+        />
 
         {/* Upload Area */}
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>

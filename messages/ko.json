@@ -33,6 +33,12 @@
     "storage": "저장소",
     "files": "개 파일"
   },
+  "menu": {
+    "image": "이미지",
+    "design": "디자인",
+    "convert": "변환",
+    "utility": "유틸리티"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "브라우저 기반 미디어 변환 도구",
@@ -78,6 +84,11 @@
       "step3Title": "변환 및 다운로드",
       "step3Desc": "변환 버튼을 클릭하고, 완료되면 개별 또는 일괄 다운로드하세요."
     },
+    "constraints": [
+      "최대 20개 파일, 파일당 50MB",
+      "입력: HEIC, SVG, PSD, RAW 등 다양한 포맷 지원",
+      "출력: JPG, PNG, WebP"
+    ],
     "faq": {
       "q1": "HEIC 파일이란 무엇인가요?",
       "a1": "HEIC는 Apple이 iOS 11부터 사용하는 고효율 이미지 포맷입니다. JPG보다 파일 크기가 작으면서 화질은 동일합니다.",
@@ -122,6 +133,10 @@
       "quality": "품질",
       "apply": "최적화"
     },
+    "constraints": [
+      "이미지 1장씩 편집 가능",
+      "브라우저 메모리 기반 처리"
+    ],
     "howToUse": {
       "title": "이미지 편집기",
       "description": "자르기, 회전, 뒤집기, 크기 조절, 최적화를 지원하는 무료 온라인 이미지 편집기입니다. 모든 처리는 브라우저에서 이루어집니다.",
@@ -148,6 +163,10 @@
     "createGif": "GIF 생성",
     "creating": "GIF 생성 중...",
     "result": "결과",
+    "constraints": [
+      "이미지 파일만 지원",
+      "프레임 수에 따라 메모리 사용량 증가"
+    ],
     "howToUse": {
       "title": "GIF 메이커",
       "description": "여러 이미지로 애니메이션 GIF를 만들 수 있습니다. 속도와 크기를 조절하여 쉽게 GIF 애니메이션을 만드세요.",
@@ -177,6 +196,10 @@
     "preview": "미리보기",
     "result": "결과",
     "extractedFrames": "추출된 프레임",
+    "constraints": [
+      "FFmpeg WASM(~30MB) 첫 사용 시 다운로드",
+      "대용량 파일은 브라우저 메모리 제한에 영향받을 수 있습니다"
+    ],
     "howToUse": {
       "title": "비디오 변환기",
       "description": "비디오를 GIF로, GIF를 MP4 비디오로, 비디오에서 프레임을 추출합니다. FFmpeg WebAssembly를 사용하여 브라우저에서 모든 처리가 이루어집니다.",
@@ -194,6 +217,11 @@
     "fileList": "파일 목록",
     "processCount": "{count}개 처리하기",
     "downloadCount": "{count}개 모두 다운로드",
+    "constraints": [
+      "최대 5개 파일, 파일당 10MB",
+      "AI 모델(~30MB) 첫 사용 시 다운로드",
+      "복잡한 배경은 결과가 다를 수 있습니다"
+    ],
     "aiNotice": "AI 기반 배경 제거",
     "aiNoticeDesc": "첫 실행 시 AI 모델(~30MB)을 다운로드합니다. 모든 처리는 브라우저에서 수행되어 개인정보가 보호됩니다.",
     "features": {
@@ -256,6 +284,10 @@
       "newTab": "새 탭에서 열기",
       "warning": "Blob URL은 이 브라우저 세션에서만 유효합니다."
     },
+    "constraints": [
+      "Data URL은 원본 파일의 약 133% 크기",
+      "대용량 파일에는 Blob URL 또는 클라우드 저장소 권장"
+    ],
     "howToUse": {
       "title": "URL 생성기",
       "description": "이미지와 비디오를 공유 가능한 URL로 변환합니다. Base64는 임베딩용, Blob은 임시 사용, 클라우드는 영구 공유용입니다.",
@@ -300,6 +332,10 @@
       "step3Title": "압축 및 다운로드",
       "step3Desc": "압축 버튼을 클릭하고, 완료되면 개별 또는 일괄 다운로드하세요."
     },
+    "constraints": [
+      "최대 20개 파일, 파일당 50MB",
+      "지원 포맷: JPG, PNG, WebP, GIF"
+    ],
     "faq": {
       "q1": "어떤 포맷을 지원하나요?",
       "a1": "JPG, PNG, WebP, GIF 포맷을 지원합니다. 압축된 파일은 원본과 동일한 포맷으로 저장됩니다.",
@@ -342,6 +378,9 @@
       "batch": "일괄 처리",
       "batchDesc": "여러 이미지에 동일한 워터마크를 한 번에 적용할 수 있습니다."
     },
+    "constraints": [
+      "최대 20개 파일, 파일당 50MB"
+    ],
     "howToUse": {
       "title": "워터마크 도구",
       "description": "텍스트 또는 이미지 워터마크를 추가하여 저작권을 보호하세요. 모든 처리는 브라우저에서 이루어집니다.",
@@ -371,6 +410,10 @@
     "generating": "생성 중...",
     "generate": "밈 생성",
     "result": "결과",
+    "constraints": [
+      "이미지 1장씩 처리",
+      "파일당 최대 50MB"
+    ],
     "howToUse": {
       "title": "밈 생성기",
       "description": "이미지에 밈 텍스트를 추가하여 재미있는 콘텐츠를 만드세요. 실시간 미리보기로 결과를 확인할 수 있습니다.",
@@ -398,6 +441,11 @@
     "detectedFaces": "{count}개 얼굴 감지됨",
     "facesFound": "개 얼굴 감지됨",
     "fileList": "파일 목록",
+    "constraints": [
+      "최대 10개 파일, 파일당 50MB",
+      "AI 모델 첫 사용 시 다운로드",
+      "얼굴 감지 정확도는 100%가 아닙니다"
+    ],
     "aiNotice": "AI 기반 얼굴 감지",
     "aiNoticeDesc": "첫 실행 시 AI 모델을 다운로드합니다. 모든 처리는 브라우저에서 수행되어 개인정보가 보호됩니다.",
     "features": {
@@ -445,6 +493,10 @@
       "size": "크기 설정",
       "sizeDesc": "출력 이미지의 너비와 높이를 자유롭게 설정할 수 있습니다."
     },
+    "constraints": [
+      "외부 리소스(이미지, 폰트)는 CORS 제한 적용",
+      "최대 해상도: 4000×4000px"
+    ],
     "howToUse": {
       "title": "HTML → 이미지 변환기",
       "description": "HTML/CSS 코드를 입력하면 이미지로 변환합니다. 배너, 카드, 소셜 이미지 등을 코드로 만들 수 있습니다.",
@@ -466,6 +518,12 @@
   "imageUpscaler": {
     "title": "이미지 업스케일",
     "description": "AI 모델을 사용하여 저해상도 이미지를 고해상도로 확대합니다.",
+    "constraints": [
+      "최대 5개 파일, 파일당 20MB",
+      "AI 모델(~80MB) 첫 사용 시 다운로드",
+      "데스크톱 브라우저 권장",
+      "큰 이미지는 처리 시간이 길어질 수 있습니다"
+    ],
     "desktopNotice": "데스크톱 환경을 권장합니다",
     "desktopNoticeDesc": "AI 업스케일은 높은 연산 자원을 필요로 합니다. 데스크톱 브라우저에서 최적의 성능을 발휘합니다.",
     "settings": "업스케일 설정",

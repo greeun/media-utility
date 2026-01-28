@@ -6,6 +6,7 @@ import { Upload, Download, RefreshCw, Film, Image as ImageIcon, Loader2, Video, 
 import { VideoConverterIcon } from '@/components/icons/FeatureIcons';
 import { videoToGif, gifToMp4, extractFrames } from '@/services/videoProcessor';
 import { saveAs } from 'file-saver';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 type ConversionMode = 'video-to-gif' | 'gif-to-mp4' | 'video-to-frames';
@@ -207,6 +208,12 @@ export default function VideoConverterPage() {
             </div>
           </div>
         </div>
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('videoConverter.constraints.0'), t('videoConverter.constraints.1')]}
+          accentColor="sky"
+        />
 
         {/* Upload Area */}
         {!preview && (

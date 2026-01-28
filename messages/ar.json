@@ -33,6 +33,12 @@
     "storage": "التخزين",
     "files": "ملفات"
   },
+  "menu": {
+    "image": "صورة",
+    "design": "تصميم",
+    "convert": "تحويل",
+    "utility": "أدوات"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "أدوات تحويل الوسائط في المتصفح",
@@ -78,6 +84,7 @@
       "step3Title": "التحويل والتنزيل",
       "step3Desc": "انقر على تحويل وقم بالتنزيل فرديًا أو دفعة واحدة."
     },
+    "constraints": ["حتى 20 ملفًا، بحد أقصى 50 ميجابايت لكل ملف", "الإدخال: HEIC، SVG، PSD، RAW والمزيد", "الإخراج: JPG، PNG، WebP"],
     "faq": {
       "q1": "ما هو ملف HEIC؟",
       "a1": "HEIC هو صيغة صور عالية الكفاءة تستخدمها Apple منذ iOS 11. حجم الملف أصغر من JPG مع نفس الجودة.",
@@ -90,6 +97,7 @@
   "imageEditor": {
     "title": "محرر الصور",
     "description": "قص وتدوير وقلب وتغيير حجم وتحسين الصور",
+    "constraints": ["صورة واحدة في المرة", "معالجة تعتمد على ذاكرة المتصفح"],
     "toolbar": {
       "crop": "قص",
       "rotate": "تدوير",
@@ -136,6 +144,7 @@
   "gifMaker": {
     "title": "صانع GIF",
     "description": "ادمج عدة صور لإنشاء صور GIF متحركة",
+    "constraints": ["ملفات الصور فقط", "يزداد استخدام الذاكرة مع عدد الإطارات"],
     "images": "الصور",
     "noImages": "لم تتم إضافة صور",
     "addImages": "إضافة صور",
@@ -162,6 +171,7 @@
   "videoConverter": {
     "title": "محول الفيديو",
     "description": "تحويل الفيديو إلى GIF، GIF إلى MP4، استخراج الإطارات",
+    "constraints": ["يتم تنزيل FFmpeg WASM (~30 ميجابايت) عند الاستخدام الأول", "الملفات الكبيرة قد تكون محدودة بذاكرة المتصفح"],
     "mode": {
       "videoToGif": "فيديو إلى GIF",
       "gifToVideo": "GIF إلى فيديو",
@@ -188,9 +198,48 @@
       "step3Desc": "اضبط الإطارات/ثانية والمقياس والصيغة، ثم حوّل وقم بالتنزيل."
     }
   },
+  "backgroundRemover": {
+    "title": "إزالة الخلفية",
+    "description": "إزالة خلفية الصور تلقائيًا باستخدام الذكاء الاصطناعي",
+    "fileList": "قائمة الملفات",
+    "processCount": "معالجة {count} ملفات",
+    "downloadCount": "تنزيل {count} ملفات",
+    "constraints": ["حتى 5 ملفات، بحد أقصى 10 ميجابايت لكل ملف", "يتم تنزيل نموذج الذكاء الاصطناعي (~30 ميجابايت) عند الاستخدام الأول", "الخلفيات المعقدة قد تؤثر على الدقة"],
+    "aiNotice": "إزالة الخلفية بالذكاء الاصطناعي",
+    "aiNoticeDesc": "يتم تنزيل نموذج الذكاء الاصطناعي (~30 ميجابايت) عند الاستخدام الأول. تتم جميع المعالجة في متصفحك لحماية الخصوصية.",
+    "features": {
+      "ai": "كشف تلقائي بالذكاء الاصطناعي",
+      "aiDesc": "نموذج التعلم العميق يكتشف الكائنات تلقائيًا ويزيل الخلفية بدقة.",
+      "privacy": "خصوصية كاملة",
+      "privacyDesc": "تتم جميع المعالجة في متصفحك. لا يتم رفع الصور إلى خوادم خارجية.",
+      "transparent": "إخراج PNG شفاف",
+      "transparentDesc": "يتم الحفظ كملفات PNG شفافة جاهزة للاستخدامات المتنوعة.",
+      "batch": "معالجة دُفعية",
+      "batchDesc": "ارفع عدة صور وأزل الخلفية تلقائيًا من جميعها مرة واحدة."
+    },
+    "howToUse": {
+      "title": "أداة إزالة الخلفية بالذكاء الاصطناعي",
+      "description": "إزالة الخلفية تلقائيًا من الصور باستخدام تقنية الذكاء الاصطناعي. تتم جميع المعالجة في متصفحك لحماية الخصوصية.",
+      "step1Title": "رفع الصور",
+      "step1Desc": "اختر الصور لإزالة خلفيتها. يمكنك رفع عدة ملفات مرة واحدة.",
+      "step2Title": "معالجة تلقائية",
+      "step2Desc": "انقر على معالجة وسيقوم الذكاء الاصطناعي بكشف الكائنات وإزالة الخلفية تلقائيًا.",
+      "step3Title": "تنزيل",
+      "step3Desc": "قم بتنزيل ملفات PNG الشفافة المكتملة."
+    },
+    "faq": {
+      "q1": "ما أنواع الصور المناسبة؟",
+      "a1": "الأكثر فعالية للصور ذات المواضيع الواضحة مثل الأشخاص والمنتجات والحيوانات. الخلفيات المعقدة أو الكائنات الشفافة قد تختلف في النتائج.",
+      "q2": "لماذا التشغيل الأول بطيء؟",
+      "a2": "يتم تنزيل نموذج الذكاء الاصطناعي (حوالي 30 ميجابايت) عند الاستخدام الأول. بعد ذلك يتم تخزينه في ذاكرة المتصفح للمعالجة السريعة.",
+      "q3": "هل توجد قيود على حجم الملف؟",
+      "a3": "نوصي بحد أقصى 10 ميجابايت لكل ملف وحتى 5 ملفات مرة واحدة للأداء الأمثل."
+    }
+  },
   "urlGenerator": {
     "title": "مولد URL",
     "description": "حوّل الصور/الفيديوهات إلى روابط قابلة للمشاركة",
+    "constraints": ["حجم Data URL حوالي 133% من حجم الملف الأصلي", "يُنصح باستخدام Blob URL أو التخزين السحابي للملفات الكبيرة"],
     "urlType": "نوع URL",
     "types": {
       "base64": "URL Base64",
@@ -233,6 +282,7 @@
   "imageCompressor": {
     "title": "Image Compressor",
     "description": "Reduce image file size for web optimization and save storage space",
+    "constraints": ["حتى 20 ملفًا، بحد أقصى 50 ميجابايت لكل ملف", "الصيغ المدعومة: JPG، PNG، WebP، GIF"],
     "quality": "Compression Quality",
     "smallFile": "Smaller file",
     "highQuality": "Higher quality",
@@ -288,6 +338,7 @@
   "watermark": {
     "title": "Watermark",
     "description": "Add text or image watermarks to protect your copyright",
+    "constraints": ["حتى 20 ملفًا، بحد أقصى 50 ميجابايت لكل ملف"],
     "settings": "Watermark Settings",
     "textType": "Text",
     "imageType": "Image",
@@ -332,6 +383,7 @@
   "memeGenerator": {
     "title": "Meme Generator",
     "description": "Add funny meme text to your images",
+    "constraints": ["صورة واحدة في المرة", "بحد أقصى 50 ميجابايت لكل ملف"],
     "preview": "Preview",
     "changeImage": "Change Image",
     "textSettings": "Text Settings",
@@ -361,6 +413,7 @@
   "faceBlur": {
     "title": "Face Blur",
     "description": "Auto-detect faces with AI and apply blur/mosaic for privacy protection",
+    "constraints": ["حتى 10 ملفات، بحد أقصى 50 ميجابايت لكل ملف", "يتم تنزيل نموذج الذكاء الاصطناعي عند الاستخدام الأول", "دقة اكتشاف الوجه ليست 100%"],
     "settings": "Blur Settings",
     "gaussian": "Gaussian Blur",
     "mosaic": "Mosaic",
@@ -400,6 +453,7 @@
   "htmlToImage": {
     "title": "HTML to Image",
     "description": "Convert HTML/CSS code to images",
+    "constraints": ["الموارد الخارجية (الصور والخطوط) تخضع لقيود CORS", "الحد الأقصى للدقة: 4000×4000 بكسل"],
     "htmlPlaceholder": "Enter HTML code...",
     "cssPlaceholder": "Enter CSS code...",
     "width": "Width (px)",
@@ -435,6 +489,7 @@
   "imageUpscaler": {
     "title": "Image Upscaler",
     "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "constraints": ["حتى 5 ملفات، بحد أقصى 20 ميجابايت لكل ملف", "يتم تنزيل نموذج الذكاء الاصطناعي (~80 ميجابايت) عند الاستخدام الأول", "يُنصح باستخدام متصفح سطح المكتب", "قد تستغرق الصور الكبيرة وقتًا أطول في المعالجة"],
     "desktopNotice": "Desktop recommended",
     "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
     "settings": "Upscale Settings",

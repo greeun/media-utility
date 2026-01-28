@@ -8,6 +8,7 @@ import FileUploader from '@/components/upload/FileUploader';
 import { applyTextWatermark, applyImageWatermark } from '@/services/watermark';
 import type { WatermarkPosition } from '@/services/watermark';
 import { saveAs } from 'file-saver';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
 
 type WatermarkType = 'text' | 'image';
@@ -225,6 +226,12 @@ export default function WatermarkPage() {
             </div>
           </div>
         </div>
+
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('watermark.constraints.0')]}
+          accentColor="teal"
+        />
 
         {/* Upload Area */}
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>

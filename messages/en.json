@@ -33,6 +33,12 @@
     "storage": "Storage",
     "files": "files"
   },
+  "menu": {
+    "image": "Image",
+    "design": "Design",
+    "convert": "Convert",
+    "utility": "Utility"
+  },
   "home": {
     "title": "Media Utility",
     "subtitle": "Browser-based media conversion tools",
@@ -78,6 +84,7 @@
       "step3Title": "Convert & Download",
       "step3Desc": "Click convert and download individually or all at once when complete."
     },
+    "constraints": ["Up to 20 files, max 50MB each", "Input: HEIC, SVG, PSD, RAW and more", "Output: JPG, PNG, WebP"],
     "faq": {
       "q1": "What is a HEIC file?",
       "a1": "HEIC is a high-efficiency image format used by Apple since iOS 11. It has smaller file sizes than JPG with the same quality.",
@@ -122,6 +129,7 @@
       "quality": "Quality",
       "apply": "Optimize"
     },
+    "constraints": ["One image at a time", "Browser memory-based processing"],
     "howToUse": {
       "title": "Image Editor",
       "description": "A free online image editor supporting crop, rotate, flip, resize, and optimize. All processing is done in your browser.",
@@ -148,6 +156,7 @@
     "createGif": "Create GIF",
     "creating": "Creating GIF...",
     "result": "Result",
+    "constraints": ["Image files only", "Memory usage increases with frame count"],
     "howToUse": {
       "title": "GIF Maker",
       "description": "Create animated GIFs from multiple images. Easily make GIF animations with adjustable speed and size.",
@@ -177,6 +186,7 @@
     "preview": "Preview",
     "result": "Result",
     "extractedFrames": "Extracted Frames",
+    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may be limited by browser memory"],
     "howToUse": {
       "title": "Video Converter",
       "description": "Convert videos to GIF, GIF to MP4 video, or extract frames from videos. All processing is done in your browser using FFmpeg WebAssembly.",
@@ -194,6 +204,7 @@
     "fileList": "File List",
     "processCount": "Process {count} files",
     "downloadCount": "Download {count} files",
+    "constraints": ["Up to 5 files, max 10MB each", "AI model (~30MB) downloaded on first use", "Complex backgrounds may affect accuracy"],
     "aiNotice": "AI-powered Background Removal",
     "aiNoticeDesc": "The AI model (~30MB) will be downloaded on first use. All processing is done in your browser for complete privacy.",
     "features": {
@@ -256,6 +267,7 @@
       "newTab": "Open in New Tab",
       "warning": "Blob URLs are only valid in this browser session."
     },
+    "constraints": ["Data URL is ~133% of original file size", "Blob URL or cloud storage recommended for large files"],
     "howToUse": {
       "title": "URL Generator",
       "description": "Convert images and videos to shareable URLs. Choose Base64 for embedding, Blob for temporary use, or Cloud for permanent sharing.",
@@ -300,6 +312,7 @@
       "step3Title": "Compress & Download",
       "step3Desc": "Click compress and download individually or all at once when complete."
     },
+    "constraints": ["Up to 20 files, max 50MB each", "Supported formats: JPG, PNG, WebP, GIF"],
     "faq": {
       "q1": "What formats are supported?",
       "a1": "JPG, PNG, WebP, and GIF formats are supported. Compressed files are saved in the same format as the original.",
@@ -342,6 +355,7 @@
       "batch": "Batch Processing",
       "batchDesc": "Apply the same watermark to multiple images at once."
     },
+    "constraints": ["Up to 20 files, max 50MB each"],
     "howToUse": {
       "title": "Watermark Tool",
       "description": "Add text or image watermarks to protect your copyright. All processing is done in your browser.",
@@ -371,6 +385,7 @@
     "generating": "Generating...",
     "generate": "Generate Meme",
     "result": "Result",
+    "constraints": ["One image at a time", "Max 50MB per file"],
     "howToUse": {
       "title": "Meme Generator",
       "description": "Add meme text to images to create fun content. See results instantly with live preview.",
@@ -398,6 +413,7 @@
     "detectedFaces": "{count} faces detected",
     "facesFound": "faces detected",
     "fileList": "File List",
+    "constraints": ["Up to 10 files, max 50MB each", "AI model downloaded on first use", "Face detection accuracy is not 100%"],
     "aiNotice": "AI-powered Face Detection",
     "aiNoticeDesc": "The AI model will be downloaded on first use. All processing is done in your browser for complete privacy.",
     "features": {
@@ -445,6 +461,7 @@
       "size": "Custom Size",
       "sizeDesc": "Set custom width and height for the output image."
     },
+    "constraints": ["External resources (images, fonts) subject to CORS restrictions", "Max resolution: 4000×4000px"],
     "howToUse": {
       "title": "HTML to Image Converter",
       "description": "Enter HTML/CSS code and convert to images. Create banners, cards, and social images from code.",
@@ -466,6 +483,7 @@
   "imageUpscaler": {
     "title": "Image Upscaler",
     "description": "Upscale low-resolution images to high-resolution using AI models.",
+    "constraints": ["Up to 5 files, max 20MB each", "AI model (~80MB) downloaded on first use", "Desktop browser recommended", "Large images may take longer to process"],
     "desktopNotice": "Desktop recommended",
     "desktopNoticeDesc": "AI upscaling requires significant computing resources. Best performance on desktop browsers.",
     "settings": "Upscale Settings",

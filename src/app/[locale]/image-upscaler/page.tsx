@@ -2,9 +2,10 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { Download, Trash2, RefreshCw, CheckCircle, AlertCircle, ZoomIn, Monitor } from 'lucide-react';
+import { Download, Trash2, RefreshCw, CheckCircle, AlertCircle, ZoomIn } from 'lucide-react';
 import { UpscalerIcon } from '@/components/icons/FeatureIcons';
 import FileUploader from '@/components/upload/FileUploader';
+import ToolConstraints from '@/components/common/ToolConstraints';
 import { upscaleImage } from '@/services/imageUpscaler';
 import { saveAs } from 'file-saver';
 import HowToUse from '@/components/common/HowToUse';
@@ -151,14 +152,11 @@ export default function ImageUpscalerPage() {
           </div>
         </div>
 
-        {/* 데스크톱 권장 안내 */}
-        <div className="mb-6 p-4 rounded-xl border border-[oklch(0.70_0.18_280/0.2)] bg-[oklch(0.70_0.18_280/0.05)] opacity-0 animate-fade-up" style={{ animationDelay: '0.05s', animationFillMode: 'forwards' }}>
-          <p className="text-sm text-[oklch(0.70_0.18_280)] flex items-center gap-2">
-            <Monitor className="w-4 h-4" />
-            {t('imageUpscaler.desktopNotice')}
-          </p>
-          <p className="text-xs text-[oklch(0.55_0.02_240)] mt-1">{t('imageUpscaler.desktopNoticeDesc')}</p>
-        </div>
+        {/* 제약사항 */}
+        <ToolConstraints
+          constraints={[t('imageUpscaler.constraints.0'), t('imageUpscaler.constraints.1'), t('imageUpscaler.constraints.2'), t('imageUpscaler.constraints.3')]}
+          accentColor="violet"
+        />
 
         {/* Upload Area */}
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
