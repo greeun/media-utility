@@ -105,8 +105,11 @@ const customJestConfig = {
     '<rootDir>/tests/04-e2e/',
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!(gif.js|heic-to|browser-image-compression|uuid)/)'
+    'node_modules/(?!(gif.js|heic-to|browser-image-compression|uuid|@babel)/)'
   ],
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+  },
   forceExit: true,
   detectOpenHandles: false,
 }
