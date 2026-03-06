@@ -83,8 +83,9 @@ describe('LanguageSelector', () => {
     );
     const koButton = dropdownButtons[0];
 
-    // 활성 버튼에 활성 인디케이터 (작은 원)가 있는지 확인
-    expect(koButton?.querySelector('.rounded-full')).toBeInTheDocument();
+    // 활성 버튼에 활성 인디케이터 (회전된 사각형 마름모)가 있는지 확인
+    expect(koButton?.querySelector('.rotate-45')).toBeInTheDocument();
+    expect(koButton).toHaveClass('bg-black', 'text-white');
   });
 
   it('로케일 선택 시 router.replace가 호출되어야 함', () => {

@@ -213,17 +213,17 @@ export default function UrlGeneratorPage() {
   }, [files, handleR2Upload]);
 
   return (
-    <div className="min-h-full bg-[oklch(0.08_0.01_240)] py-8 lg:py-12">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full bg-white py-8 lg:py-12">
+      <div className="mx-auto max-w-4xl px-6 lg:px-12">
         {/* Header */}
         <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[oklch(0.70_0.20_330)] flex items-center justify-center shadow-[0_0_30px_oklch(0.70_0.20_330/0.3)]">
+            <div className="flex-shrink-0 w-16 h-16 border-4 border-black bg-[#EC4899] flex items-center justify-center">
               <UrlGeneratorIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('urlGenerator.title')}</h1>
-              <p className="mt-1 text-[oklch(0.55_0.02_240)]">
+              <h1 className="text-4xl font-black uppercase tracking-tight text-black mb-2">{t('urlGenerator.title')}</h1>
+              <p className="mt-1 text-lg font-bold text-gray-900">
                 {t('urlGenerator.description')}
               </p>
             </div>
@@ -232,7 +232,7 @@ export default function UrlGeneratorPage() {
 
         {/* Storage Info */}
         {urlType === 'r2' && storageInfo && (
-          <div className="mb-6 p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.05s', animationFillMode: 'forwards' }}>
+          <div className="mb-6 p-4 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.05s', animationFillMode: 'forwards' }}>
             <div className="flex items-center gap-3">
               <HardDrive className="w-5 h-5 text-[oklch(0.50_0.02_240)]" />
               <div className="flex-1">
@@ -269,7 +269,7 @@ export default function UrlGeneratorPage() {
         />
 
         {/* Upload Area */}
-        <div className="mb-6 p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
+        <div className="mb-6 p-6 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
           <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-[oklch(1_0_0/0.1)] rounded-xl cursor-pointer hover:border-[oklch(0.70_0.20_330/0.5)] hover:bg-[oklch(0.70_0.20_330/0.02)] transition-all">
             <Upload className="w-8 h-8 text-[oklch(0.40_0.02_240)] mb-2" />
             <span className="text-sm font-medium text-[oklch(0.70_0.02_240)]">{t('common.upload')}</span>
@@ -286,7 +286,7 @@ export default function UrlGeneratorPage() {
 
         {/* URL Type Selection */}
         {files.length > 0 && (
-          <div className="mb-6 p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
+          <div className="mb-6 p-6 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
             <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('urlGenerator.urlType')}</h3>
             <div className="grid sm:grid-cols-3 gap-3">
               {[
@@ -398,7 +398,7 @@ export default function UrlGeneratorPage() {
 
         {/* File List */}
         {files.length > 0 && (
-          <div className="mb-6 p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+          <div className="mb-6 p-6 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)]">
                 {t('urlGenerator.result.title')} <span className="text-[oklch(0.55_0.02_240)] font-normal">({files.length})</span>

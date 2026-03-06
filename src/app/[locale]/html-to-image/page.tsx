@@ -87,17 +87,17 @@ ${css || ''}
   };
 
   return (
-    <div className="min-h-full bg-[oklch(0.08_0.01_240)] py-8 lg:py-12">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full bg-white py-8 lg:py-12">
+      <div className="mx-auto max-w-5xl px-6 lg:px-12">
         {/* Header */}
         <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[oklch(0.70_0.17_145)] flex items-center justify-center shadow-[0_0_30px_oklch(0.70_0.17_145/0.3)]">
+            <div className="flex-shrink-0 w-16 h-16 border-4 border-black bg-[#FBBF24] flex items-center justify-center">
               <HtmlToImageIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('htmlToImage.title')}</h1>
-              <p className="mt-1 text-[oklch(0.55_0.02_240)]">{t('htmlToImage.description')}</p>
+              <h1 className="text-4xl font-black uppercase tracking-tight text-black mb-2">{t('htmlToImage.title')}</h1>
+              <p className="mt-1 text-lg font-bold text-gray-900">{t('htmlToImage.description')}</p>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ ${css || ''}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 코드 에디터 */}
           <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-            <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] h-full">
+            <div className="p-6 bg-white border-4 border-black h-full">
               {/* 탭 */}
               <div className="flex gap-2 mb-4">
                 <button onClick={() => setActiveTab('html')}
@@ -173,7 +173,7 @@ ${css || ''}
 
           {/* 미리보기 */}
           <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
-            <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] h-full">
+            <div className="p-6 bg-white border-4 border-black h-full">
               <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
                 <Eye className="w-4 h-4 text-[oklch(0.70_0.17_145)]" />
                 {t('htmlToImage.preview')}
@@ -204,12 +204,12 @@ ${css || ''}
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
           <button onClick={handleConvert} disabled={isConverting || !html.trim()}
-            className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.70_0.17_145)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:shadow-[0_0_30px_oklch(0.70_0.17_145/0.4)] disabled:opacity-50 disabled:cursor-not-allowed">
+            className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.70_0.17_145)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover: disabled:opacity-50 disabled:cursor-not-allowed">
             {isConverting ? (<><RefreshCw className="w-4 h-4 animate-spin" />{t('htmlToImage.converting')}</>) : (<><RefreshCw className="w-4 h-4" />{t('htmlToImage.convert')}</>)}
           </button>
           {result && (
             <button onClick={handleDownload}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.72_0.17_160)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:shadow-[0_0_30px_oklch(0.72_0.17_160/0.4)]">
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.72_0.17_160)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:">
               <Download className="w-4 h-4" />{t('common.download')}
             </button>
           )}

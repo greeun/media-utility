@@ -85,10 +85,10 @@ export default function FileUploader({
   return (
     <div className="w-full">
       <div
-        className={`relative border-2 border-dashed rounded-xl p-8 transition-all cursor-pointer ${
+        className={`relative border-4 border-dashed bg-white p-12 transition-all duration-200 cursor-pointer ${
           isDragging
-            ? 'border-[oklch(0.75_0.18_195)] bg-[oklch(0.75_0.18_195/0.05)]'
-            : 'border-[oklch(1_0_0/0.1)] hover:border-[oklch(0.75_0.18_195/0.5)] hover:bg-[oklch(0.75_0.18_195/0.02)]'
+            ? 'border-[#EC4899] bg-[#EC4899]/5'
+            : 'border-black hover:border-[#EC4899] hover:bg-gray-50'
         }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -104,31 +104,31 @@ export default function FileUploader({
           className="hidden"
         />
 
-        <div className="flex flex-col items-center justify-center gap-4">
-          <div className={`p-4 rounded-full transition-colors ${isDragging ? 'bg-[oklch(0.75_0.18_195/0.15)]' : 'bg-[oklch(0.16_0.02_245)]'}`}>
-            <Upload className={`w-8 h-8 transition-colors ${isDragging ? 'text-[oklch(0.75_0.18_195)]' : 'text-[oklch(0.45_0.02_240)]'}`} />
+        <div className="flex flex-col items-center justify-center gap-6">
+          <div className={`p-6 border-4 border-current transition-colors ${isDragging ? 'text-[#EC4899]' : 'text-black'}`}>
+            <Upload className="w-10 h-10" strokeWidth={2.5} />
           </div>
 
           <div className="text-center">
-            <p className={`text-lg font-medium transition-colors ${isDragging ? 'text-[oklch(0.80_0.20_195)]' : 'text-[oklch(0.85_0.02_240)]'}`}>
+            <p className={`text-xl font-black uppercase tracking-wide transition-colors ${isDragging ? 'text-[#EC4899]' : 'text-black'}`}>
               {t('dragOrClick')}
             </p>
-            <p className="text-sm text-[oklch(0.55_0.02_240)] mt-1">
+            <p className="text-sm font-bold text-gray-600 mt-2">
               {t('maxFiles', { count: maxFiles, size: maxSize })}
             </p>
           </div>
 
           {/* File type indicators based on accept prop */}
-          <div className="flex items-center gap-4 text-xs text-[oklch(0.45_0.02_240)]">
+          <div className="flex items-center gap-6 text-xs font-bold uppercase tracking-wider text-gray-500">
             {accept.includes('image') && (
-              <span className="flex items-center gap-1">
-                <FileImage className="w-4 h-4" />
+              <span className="flex items-center gap-2">
+                <FileImage className="w-5 h-5" strokeWidth={2.5} />
                 {t('image')}
               </span>
             )}
             {accept.includes('video') && (
-              <span className="flex items-center gap-1">
-                <FileVideo className="w-4 h-4" />
+              <span className="flex items-center gap-2">
+                <FileVideo className="w-5 h-5" strokeWidth={2.5} />
                 {t('video')}
               </span>
             )}
@@ -137,9 +137,9 @@ export default function FileUploader({
       </div>
 
       {error && (
-        <div className="mt-3 flex items-center gap-2 text-[oklch(0.65_0.22_25)] text-sm">
-          <X className="w-4 h-4" />
-          {error}
+        <div className="mt-4 flex items-center gap-3 px-4 py-3 bg-black text-white border-4 border-black">
+          <X className="w-5 h-5" strokeWidth={2.5} />
+          <span className="text-sm font-bold">{error}</span>
         </div>
       )}
     </div>

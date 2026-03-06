@@ -8,26 +8,27 @@ export default function Footer() {
   const version = process.env.NEXT_PUBLIC_VERSION;
 
   return (
-    <footer className="bg-[oklch(0.06_0.01_240)] border-t border-[oklch(1_0_0/0.06)]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-center md:text-left">
-            <p className="text-sm text-[oklch(0.55_0.02_240)]">
-              {t('copyright', { year })}<span className="text-transparent selection:text-[oklch(0.55_0.02_240)]"> v{version}</span>
+    <footer className="bg-black text-white border-t-4 border-black">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-12">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-wider mb-2">
+              {t('copyright', { year })}
+              <span className="ml-2 text-[#EC4899]">v{version}</span>
             </p>
-            <p className="text-xs text-[oklch(0.45_0.02_240)] mt-1">
+            <p className="text-sm opacity-70">
               {t('privacyNote')}
             </p>
           </div>
-          <div className="flex items-center gap-6 text-sm text-[oklch(0.55_0.02_240)]">
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-[oklch(0.72_0.17_160)] rounded-full"></span>
-              {t('clientSide')}
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-[oklch(0.75_0.18_195)] rounded-full"></span>
-              {t('freeUse')}
-            </span>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:justify-end">
+            <div className="flex items-center gap-2 px-4 py-2 border-2 border-white">
+              <span className="w-2 h-2 bg-[#10B981] rotate-45"></span>
+              <span className="text-xs font-bold uppercase tracking-wider">{t('clientSide')}</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 border-2 border-white">
+              <span className="w-2 h-2 bg-[#06B6D4] rotate-45"></span>
+              <span className="text-xs font-bold uppercase tracking-wider">{t('freeUse')}</span>
+            </div>
           </div>
         </div>
       </div>

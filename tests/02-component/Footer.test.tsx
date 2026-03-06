@@ -80,15 +80,15 @@ describe('Footer', () => {
     const { container } = render(<Footer />);
 
     const footer = container.querySelector('footer');
-    expect(footer).toHaveClass('bg-[oklch(0.06_0.01_240)]');
-    expect(footer).toHaveClass('border-t');
+    expect(footer).toHaveClass('bg-black');
+    expect(footer).toHaveClass('border-t-4', 'border-black');
   });
 
   it('반응형 레이아웃이 적용되어야 함', () => {
     const { container } = render(<Footer />);
 
     const flexContainer = container.querySelector('.flex.flex-col');
-    expect(flexContainer).toHaveClass('md:flex-row');
+    expect(flexContainer).toHaveClass('sm:flex-row');
   });
 
   it('copyright 번역 함수에 연도를 전달해야 함', () => {
@@ -99,12 +99,12 @@ describe('Footer', () => {
     expect(screen.getByText(/© 2025 All rights reserved/)).toBeInTheDocument();
   });
 
-  it('버전이 투명 텍스트로 표시되어야 함', () => {
+  it('버전이 핑크색 텍스트로 표시되어야 함', () => {
     process.env.NEXT_PUBLIC_VERSION = '1.0.0';
 
     const { container } = render(<Footer />);
 
-    const versionSpan = container.querySelector('.text-transparent');
+    const versionSpan = container.querySelector('.text-\\[\\#EC4899\\]');
     expect(versionSpan).toBeInTheDocument();
     expect(versionSpan?.textContent).toContain('v1.0.0');
   });
@@ -112,21 +112,26 @@ describe('Footer', () => {
   it('배지에 색상이 적용되어야 함', () => {
     const { container } = render(<Footer />);
 
-    const badges = container.querySelectorAll('.rounded-full');
+    // 배지 컨테이너 확인 (border-2 border-white 박스)
+    const badges = container.querySelectorAll('.border-2.border-white');
     expect(badges).toHaveLength(2);
 
-    // 첫 번째 배지: 클라이언트 사이드 (초록색)
-    expect(badges[0]).toHaveClass('bg-[oklch(0.72_0.17_160)]');
+    // 배지 내부의 인디케이터 (회전된 사각형)
+    const indicators = container.querySelectorAll('.rotate-45');
+    expect(indicators).toHaveLength(2);
 
-    // 두 번째 배지: 무료 사용 (파란색)
-    expect(badges[1]).toHaveClass('bg-[oklch(0.75_0.18_195)]');
+    // 첫 번째 인디케이터: 클라이언트 사이드 (초록색)
+    expect(indicators[0]).toHaveClass('bg-[#10B981]');
+
+    // 두 번째 인디케이터: 무료 사용 (청록색)
+    expect(indicators[1]).toHaveClass('bg-[#06B6D4]');
   });
 
-  it('텍스트 정렬이 반응형으로 적용되어야 함', () => {
+  it('배지 컨테이너가 반응형으로 정렬되어야 함', () => {
     const { container } = render(<Footer />);
 
-    const textContainer = container.querySelector('.text-center');
-    expect(textContainer).toHaveClass('md:text-left');
+    const badgesContainer = container.querySelector('.flex.flex-col.sm\\:flex-row');
+    expect(badgesContainer).toHaveClass('md:justify-end');
   });
 
   it('올바른 간격이 적용되어야 함', () => {

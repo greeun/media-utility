@@ -19,11 +19,19 @@ test.describe('네비게이션', () => {
   test('헤더 네비게이션이 모든 페이지에서 작동해야 함', async ({ page }) => {
     await page.goto('/image-converter')
 
-    // 비디오 변환 페이지로 이동
+    // 비디오 카테고리 드롭다운 열기
+    const videoCategory = page.getByRole('button', { name: /video|비디오/i }).first()
+    await videoCategory.click()
+
+    // 비디오 변환 링크 클릭
     await page.getByRole('link', { name: /비디오 변환|Video Converter/i }).first().click()
     await expect(page).toHaveURL(/video-converter/)
 
-    // URL 생성 페이지로 이동
+    // Others 카테고리 드롭다운 열기
+    const othersCategory = page.getByRole('button', { name: /others|기타/i }).first()
+    await othersCategory.click()
+
+    // URL 생성 링크 클릭
     await page.getByRole('link', { name: /URL|url/i }).first().click()
     await expect(page).toHaveURL(/url-generator/)
   })
@@ -31,12 +39,12 @@ test.describe('네비게이션', () => {
   test('로고 클릭 시 홈으로 이동해야 함', async ({ page }) => {
     await page.goto('/image-converter')
 
-    // 로고 클릭 (사이트명 또는 로고 아이콘)
-    const logo = page.getByRole('link').filter({ has: page.locator('svg') }).first()
-    await logo.click()
+    // 로고 링크 클릭 (header 내의 첫 번째 링크 또는 사이트명이 있는 링크)
+    const logoLink = page.locator('header a').first()
+    await logoLink.click()
 
-    // 홈 또는 루트 경로로 이동
-    await expect(page).toHaveURL(/^\/$|\/ko\/?$|\/en\/?$/)
+    // 홈 또는 루트 경로로 이동 (로케일 포함 가능)
+    await expect(page).toHaveURL(/\/$|\/ko\/?$|\/en\/?$/)
   })
 })
 
@@ -46,12 +54,12 @@ test.describe('반응형 네비게이션', () => {
     await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/')
 
-    // 햄버거 메뉴 버튼 클릭
-    const menuButton = page.getByRole('button')
+    // 햄버거 메뉴 버튼 클릭 (Menu 아이콘이 있는 버튼)
+    const menuButton = page.locator('button[class*="lg:hidden"]').first()
     await menuButton.click()
 
-    // 모바일 메뉴가 열려야 함
-    const mobileMenu = page.locator('[class*="animate-fade"]')
+    // 모바일 메뉴가 열려야 함 (border-t-4가 있는 div)
+    const mobileMenu = page.locator('nav div[class*="border-t-4"]').last()
     await expect(mobileMenu).toBeVisible()
   })
 
@@ -60,13 +68,18 @@ test.describe('반응형 네비게이션', () => {
     await page.goto('/')
 
     // 메뉴 열기
-    await page.getByRole('button').click()
+    const menuButton = page.locator('button[class*="lg:hidden"]').first()
+    await menuButton.click()
 
-    // 메뉴 링크 클릭
+    // 모바일 메뉴 링크 클릭
     await page.getByRole('link', { name: /이미지 변환|Image Converter/i }).first().click()
 
     // 페이지 이동 확인
     await expect(page).toHaveURL(/image-converter/)
+
+    // 메뉴가 닫혔는지 확인 (모바일 메뉴가 보이지 않아야 함)
+    const mobileMenu = page.locator('nav div[class*="border-t-4"]').last()
+    await expect(mobileMenu).not.toBeVisible()
   })
 })
 

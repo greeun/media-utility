@@ -192,17 +192,17 @@ export default function VideoConverterPage() {
   const isGif = file?.type === 'image/gif';
 
   return (
-    <div className="min-h-full bg-[oklch(0.08_0.01_240)] py-8 lg:py-12">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full bg-white py-8 lg:py-12">
+      <div className="mx-auto max-w-5xl px-6 lg:px-12">
         {/* Header */}
         <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[oklch(0.80_0.18_80)] flex items-center justify-center shadow-[0_0_30px_oklch(0.80_0.18_80/0.3)]">
+            <div className="flex-shrink-0 w-16 h-16 border-4 border-black bg-[#F97316] flex items-center justify-center">
               <VideoConverterIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('videoConverter.title')}</h1>
-              <p className="mt-1 text-[oklch(0.55_0.02_240)]">
+              <h1 className="text-4xl font-black uppercase tracking-tight text-black mb-2">{t('videoConverter.title')}</h1>
+              <p className="mt-1 text-lg font-bold text-gray-900">
                 {t('videoConverter.description')}
               </p>
             </div>
@@ -218,7 +218,7 @@ export default function VideoConverterPage() {
         {/* Upload Area */}
         {!preview && (
           <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-            <div className="p-8 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+            <div className="p-8 bg-white border-4 border-black">
               <label
                 onDragOver={handleDragOver}
                 onDragEnter={handleDragEnter}
@@ -254,7 +254,7 @@ export default function VideoConverterPage() {
             {/* Left: Preview & Options */}
             <div className="space-y-4">
               {/* Preview */}
-              <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
+              <div className="p-6 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
                 <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('videoConverter.preview')}</h3>
                 <div className="bg-[oklch(0.12_0.015_250)] rounded-xl overflow-hidden">
                   {isVideo ? (
@@ -274,7 +274,7 @@ export default function VideoConverterPage() {
               </div>
 
               {/* Mode Selection */}
-              <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
+              <div className="p-6 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
                 <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('common.settings')}</h3>
                 <div className="flex flex-wrap gap-2">
                   {isVideo && (
@@ -316,7 +316,7 @@ export default function VideoConverterPage() {
 
               {/* Options */}
               {mode === 'video-to-gif' && (
-                <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+                <div className="p-6 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                   <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
                     <Sparkles className="w-4 h-4 text-[oklch(0.80_0.18_80)]" />
                     {t('gifMaker.options')}
@@ -354,7 +354,7 @@ export default function VideoConverterPage() {
               <button
                 onClick={handleConvert}
                 disabled={isProcessing}
-                className="w-full py-3 rounded-xl bg-[oklch(0.80_0.18_80)] text-[oklch(0.08_0.01_240)] font-semibold flex items-center justify-center gap-2 hover:shadow-[0_0_30px_oklch(0.80_0.18_80/0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed opacity-0 animate-fade-up"
+                className="w-full py-3 rounded-xl bg-[oklch(0.80_0.18_80)] text-[oklch(0.08_0.01_240)] font-semibold flex items-center justify-center gap-2 hover: transition-all disabled:opacity-50 disabled:cursor-not-allowed opacity-0 animate-fade-up"
                 style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
               >
                 {isProcessing ? (
@@ -399,7 +399,7 @@ export default function VideoConverterPage() {
             <div className="space-y-4">
               {/* Single Result (GIF or MP4) */}
               {resultPreview && result instanceof Blob && (
-                <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-scale-in" style={{ animationFillMode: 'forwards' }}>
+                <div className="p-6 bg-white border-4 border-black opacity-0 animate-scale-in" style={{ animationFillMode: 'forwards' }}>
                   <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('videoConverter.result')}</h3>
                   <div className="bg-[oklch(0.12_0.015_250)] rounded-xl overflow-hidden">
                     {mode === 'gif-to-mp4' ? (
@@ -425,7 +425,7 @@ export default function VideoConverterPage() {
 
               {/* Frames Result */}
               {Array.isArray(result) && result.length > 0 && (
-                <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-scale-in" style={{ animationFillMode: 'forwards' }}>
+                <div className="p-6 bg-white border-4 border-black opacity-0 animate-scale-in" style={{ animationFillMode: 'forwards' }}>
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)]">
                       {t('videoConverter.extractedFrames')} <span className="text-[oklch(0.55_0.02_240)] font-normal">({result.length})</span>

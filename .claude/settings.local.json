@@ -1,36 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tree:*)",
-      "Bash(git -C /Users/uni4love/project/workspace/211-withwiz/tlog.net/media-utility log --oneline -5)",
-      "Bash(npm show:*)",
-      "Bash(npm search:*)",
-      "Bash(npm install:*)",
-      "WebFetch(domain:www.npmjs.com)",
-      "Bash(npm run build:*)",
-      "Bash(npm uninstall:*)",
-      "Bash(chmod:*)",
-      "Bash(curl:*)",
-      "Bash(tar:*)",
-      "Bash(git remote add:*)",
-      "Bash(git checkout:*)",
+      "Bash(git merge:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\n원격 저장소와 병합 충돌 해결\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git push:*)",
-      "Bash(git commit:*)",
-      "Bash(find:*)",
-      "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(bash:*)",
-      "Bash(docker build:*)",
-      "Bash(docker run:*)",
-      "Bash(docker rm:*)",
-      "Bash(docker logs:*)",
-      "WebFetch(domain:demodev-convert.base44.app)",
-      "Skill(vs-design-diverge:frontend-for-opus-4.5)"
+      "Bash(git commit -m \"$\\(cat <<''EOF''\n홈페이지 Link 컴포넌트 로케일 적용 수정\n\nnext/link 대신 @/i18n/navigation의 Link를 사용하여\n언어 설정에 따라 올바른 로케일 경로로 이동하도록 수정\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git checkout:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:02-component:*)"
     ]
-  },
-  "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": [
-    "n8n"
-  ]
+  }
 }

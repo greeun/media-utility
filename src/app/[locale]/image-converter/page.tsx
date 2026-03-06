@@ -189,17 +189,17 @@ export default function ImageConverterPage() {
   const completedCount = files.filter((f) => f.status === 'completed').length;
 
   return (
-    <div className="min-h-full bg-[oklch(0.08_0.01_240)] py-8 lg:py-12">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full bg-white py-8 lg:py-12">
+      <div className="mx-auto max-w-4xl px-6 lg:px-12">
         {/* Header */}
         <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[oklch(0.75_0.18_195)] flex items-center justify-center shadow-[0_0_30px_oklch(0.75_0.18_195/0.3)]">
-              <ImageConverterIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
+          <div className="flex items-start gap-6">
+            <div className="flex-shrink-0 w-16 h-16 border-4 border-black bg-[#EC4899] flex items-center justify-center">
+              <ImageConverterIcon size={32} className="text-white" strokeWidth={2.5} />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('imageConverter.title')}</h1>
-              <p className="mt-1 text-[oklch(0.55_0.02_240)]">
+              <h1 className="text-4xl font-black uppercase tracking-tight text-black mb-2">{t('imageConverter.title')}</h1>
+              <p className="text-lg font-bold text-gray-900">
                 {t('imageConverter.description')}
               </p>
             </div>
@@ -209,44 +209,42 @@ export default function ImageConverterPage() {
         {/* 제약사항 */}
         <ToolConstraints
           constraints={[t('imageConverter.constraints.0'), t('imageConverter.constraints.1'), t('imageConverter.constraints.2')]}
-          accentColor="cyan"
+          accentColor="pink"
         />
 
         {/* Upload Area */}
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-          <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
-            <FileUploader
-              accept="image/*,.heic,.heif,.svg,.psd,.cr2,.cr3,.nef,.arw,.dng,.orf,.rw2,.raf,.raw"
-              multiple={true}
-              maxFiles={20}
-              maxSize={50}
-              onFilesSelected={handleFilesSelected}
-            />
-          </div>
+          <FileUploader
+            accept="image/*,.heic,.heif,.svg,.psd,.cr2,.cr3,.nef,.arw,.dng,.orf,.rw2,.raf,.raw"
+            multiple={true}
+            maxFiles={20}
+            maxSize={50}
+            onFilesSelected={handleFilesSelected}
+          />
         </div>
 
         {/* Options */}
         {files.length > 0 && (
           <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
-            <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
-              <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[oklch(0.75_0.18_195)]" />
+            <div className="p-6 bg-white border-4 border-black">
+              <h3 className="text-lg font-black uppercase tracking-wide text-black mb-6 flex items-center gap-3">
+                <Sparkles className="w-5 h-5 text-[#EC4899]" strokeWidth={2.5} />
                 {t('common.settings')}
               </h3>
               <div className="grid sm:grid-cols-2 gap-6">
                 {/* Format Selection */}
                 <div>
-                  <label className="block text-sm text-[oklch(0.70_0.02_240)] mb-3">{t('imageConverter.outputFormat')}</label>
+                  <label className="block text-sm font-bold uppercase tracking-wide text-gray-900 mb-3">{t('imageConverter.outputFormat')}</label>
                   <div className="flex gap-2">
                     {OUTPUT_FORMATS.map((format) => (
                       <button
                         key={format.value}
                         onClick={() => setTargetFormat(format.value)}
                         className={`
-                          px-4 py-2 rounded-lg text-sm font-medium transition-all
+                          px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all duration-200 border-4
                           ${targetFormat === format.value
-                            ? 'bg-[oklch(0.75_0.18_195)] text-[oklch(0.08_0.01_240)] shadow-[0_0_20px_oklch(0.75_0.18_195/0.3)]'
-                            : 'bg-[oklch(0.16_0.02_245)] text-[oklch(0.70_0.02_240)] hover:bg-[oklch(0.20_0.025_240)] hover:text-[oklch(0.85_0.02_240)]'
+                            ? 'bg-[#EC4899] text-white border-[#EC4899]'
+                            : 'bg-white text-black border-black hover:bg-black hover:text-white'
                           }
                         `}
                       >
@@ -258,8 +256,8 @@ export default function ImageConverterPage() {
 
                 {/* Quality Slider */}
                 <div>
-                  <label className="block text-sm text-[oklch(0.70_0.02_240)] mb-3">
-                    {t('imageConverter.quality')}: <span className="text-[oklch(0.75_0.18_195)] font-semibold">{quality}%</span>
+                  <label className="block text-sm font-bold uppercase tracking-wide text-gray-900 mb-3">
+                    {t('imageConverter.quality')}: <span className="text-[#EC4899]">{quality}%</span>
                   </label>
                   <input
                     type="range"
@@ -267,10 +265,10 @@ export default function ImageConverterPage() {
                     max={100}
                     value={quality}
                     onChange={(e) => setQuality(Number(e.target.value))}
-                    className="w-full h-2 bg-[oklch(0.20_0.025_240)] rounded-full appearance-none cursor-pointer
-                      [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
-                      [&::-webkit-slider-thumb]:bg-[oklch(0.75_0.18_195)] [&::-webkit-slider-thumb]:rounded-full
-                      [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_10px_oklch(0.75_0.18_195/0.5)]"
+                    className="w-full h-3 bg-gray-200 appearance-none cursor-pointer
+                      [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6
+                      [&::-webkit-slider-thumb]:bg-[#EC4899] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-black
+                      [&::-webkit-slider-thumb]:cursor-pointer"
                   />
                 </div>
               </div>
@@ -281,28 +279,28 @@ export default function ImageConverterPage() {
         {/* File List */}
         {files.length > 0 && (
           <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-            <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+            <div className="p-6 bg-white border-4 border-black">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)]">
-                  {t('imageConverter.fileList')} <span className="text-[oklch(0.55_0.02_240)] font-normal">({files.length})</span>
+                <h3 className="text-lg font-black uppercase tracking-wide text-black">
+                  {t('imageConverter.fileList')} <span className="text-gray-800 font-normal">({files.length})</span>
                 </h3>
                 <button
                   onClick={clearAll}
-                  className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[oklch(0.65_0.22_25)] hover:text-[oklch(0.75_0.25_25)] hover:bg-[oklch(0.65_0.22_25/0.1)] rounded-lg transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wide bg-white text-black border-4 border-black hover:bg-black hover:text-white transition-all duration-200"
                 >
-                  <Trash2 className="w-3.5 h-3.5" />
+                  <Trash2 className="w-4 h-4" strokeWidth={2.5} />
                   {t('common.deleteAll')}
                 </button>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {files.map((file) => (
                   <div
                     key={file.id}
-                    className="flex items-center gap-4 p-3 rounded-xl bg-[oklch(0.12_0.015_250)] border border-[oklch(1_0_0/0.04)] hover:border-[oklch(1_0_0/0.08)] transition-colors"
+                    className="group flex items-center gap-4 p-4 bg-gray-50 border-4 border-black hover:bg-black hover:text-white transition-all duration-200"
                   >
                     {/* Preview */}
-                    <div className="w-14 h-14 rounded-lg overflow-hidden bg-[oklch(0.16_0.02_245)] flex-shrink-0">
+                    <div className="w-16 h-16 border-4 border-black overflow-hidden bg-white flex-shrink-0">
                       {!isHeicFile(file.originalFile) ? (
                         <img
                           src={file.preview}
@@ -310,7 +308,7 @@ export default function ImageConverterPage() {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-[oklch(0.50_0.02_240)] text-xs font-mono">
+                        <div className="w-full h-full flex items-center justify-center text-gray-900 text-xs font-mono font-bold">
                           {isHeicFile(file.originalFile) ? 'HEIC' : 'SVG'}
                         </div>
                       )}
@@ -318,32 +316,32 @@ export default function ImageConverterPage() {
 
                     {/* Info */}
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-[oklch(0.95_0.01_80)] truncate">
+                      <p className="text-sm font-black uppercase tracking-wide truncate text-black group-hover:text-white">
                         {file.originalName}
                       </p>
-                      <p className="text-xs text-[oklch(0.50_0.02_240)]">
+                      <p className="text-xs font-bold mt-1 text-gray-900 group-hover:text-white">
                         {(file.originalFile.size / 1024).toFixed(1)} KB
                         {file.status === 'completed' && file.result && (
-                          <span className="text-[oklch(0.72_0.17_160)] ml-2">
+                          <span className="text-[#10B981] group-hover:text-[#34D399] ml-2">
                             → {(file.result.size / 1024).toFixed(1)} KB
                           </span>
                         )}
                       </p>
                       {(file.status === 'processing' || file.status === 'completed') && (
-                        <div className="mt-2 h-1 bg-[oklch(0.20_0.025_240)] rounded-full overflow-hidden">
+                        <div className="mt-2 h-2 bg-gray-300 overflow-hidden border-2 border-black">
                           <div
-                            className={`h-full rounded-full transition-all duration-300 ${
+                            className={`h-full transition-all duration-200 ${
                               file.status === 'completed'
-                                ? 'bg-[oklch(0.72_0.17_160)]'
-                                : 'bg-[oklch(0.75_0.18_195)]'
+                                ? 'bg-[#10B981]'
+                                : 'bg-[#EC4899]'
                             }`}
                             style={{ width: `${file.progress}%` }}
                           />
                         </div>
                       )}
                       {file.status === 'error' && (
-                        <p className="text-xs text-[oklch(0.65_0.22_25)] mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
+                        <p className="text-xs font-bold mt-1 flex items-center gap-2 text-red-600 group-hover:text-red-400">
+                          <AlertCircle className="w-4 h-4" strokeWidth={2.5} />
                           {file.error}
                         </p>
                       )}
@@ -353,20 +351,20 @@ export default function ImageConverterPage() {
                     <div className="flex items-center gap-2">
                       {file.status === 'completed' && (
                         <>
-                          <CheckCircle className="w-5 h-5 text-[oklch(0.72_0.17_160)]" />
+                          <CheckCircle className="w-6 h-6 text-[#10B981]" strokeWidth={2.5} />
                           <button
                             onClick={() => handleDownload(file)}
-                            className="w-9 h-9 flex items-center justify-center rounded-lg bg-[oklch(0.75_0.18_195)] text-[oklch(0.08_0.01_240)] hover:shadow-[0_0_20px_oklch(0.75_0.18_195/0.4)] transition-all"
+                            className="w-10 h-10 flex items-center justify-center border-4 border-black bg-[#EC4899] text-white hover:bg-black transition-all duration-200"
                           >
-                            <Download className="w-4 h-4" />
+                            <Download className="w-5 h-5" strokeWidth={2.5} />
                           </button>
                         </>
                       )}
                       <button
                         onClick={() => removeFile(file.id)}
-                        className="w-9 h-9 flex items-center justify-center rounded-lg text-[oklch(0.50_0.02_240)] hover:text-[oklch(0.65_0.22_25)] hover:bg-[oklch(0.65_0.22_25/0.1)] transition-colors"
+                        className="w-10 h-10 flex items-center justify-center border-4 border-black bg-white text-black hover:bg-black hover:text-white transition-all duration-200"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-5 h-5" strokeWidth={2.5} />
                       </button>
                     </div>
                   </div>
@@ -378,21 +376,21 @@ export default function ImageConverterPage() {
 
         {/* Action Buttons */}
         {files.length > 0 && (
-          <div className="flex flex-col sm:flex-row gap-3 justify-center opacity-0 animate-fade-up" style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-up" style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}>
             {pendingCount > 0 && (
               <button
                 onClick={handleConvert}
                 disabled={isConverting}
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.75_0.18_195)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:shadow-[0_0_30px_oklch(0.75_0.18_195/0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-black text-white font-black text-lg uppercase tracking-wide border-4 border-black hover:bg-white hover:text-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isConverting ? (
                   <>
-                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <RefreshCw className="w-5 h-5 animate-spin" strokeWidth={2.5} />
                     {t('common.converting')}
                   </>
                 ) : (
                   <>
-                    <RefreshCw className="w-4 h-4" />
+                    <RefreshCw className="w-5 h-5" strokeWidth={2.5} />
                     {t('imageConverter.convertCount', { count: pendingCount })}
                   </>
                 )}
@@ -401,9 +399,9 @@ export default function ImageConverterPage() {
             {completedCount > 0 && (
               <button
                 onClick={handleDownloadAll}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.72_0.17_160)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:shadow-[0_0_30px_oklch(0.72_0.17_160/0.4)]"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#EC4899] text-white font-black text-lg uppercase tracking-wide border-4 border-black hover:bg-black hover:text-white transition-all duration-200"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-5 h-5" strokeWidth={2.5} />
                 {t('imageConverter.downloadCount', { count: completedCount })}
               </button>
             )}
@@ -415,7 +413,7 @@ export default function ImageConverterPage() {
           <HowToUse
             title={t('imageConverter.howToUse.title')}
             description={t('imageConverter.howToUse.description')}
-            accentColor="sky"
+            accentColor="pink"
             steps={[
               {
                 number: 1,

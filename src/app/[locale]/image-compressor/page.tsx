@@ -143,17 +143,17 @@ export default function ImageCompressorPage() {
   const totalRatio = totalOriginalSize > 0 ? Math.round((1 - totalCompressedSize / totalOriginalSize) * 100) : 0;
 
   return (
-    <div className="min-h-full bg-[oklch(0.08_0.01_240)] py-8 lg:py-12">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full bg-white py-8 lg:py-12">
+      <div className="mx-auto max-w-4xl px-6 lg:px-12">
         {/* Header */}
         <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[oklch(0.75_0.17_175)] flex items-center justify-center shadow-[0_0_30px_oklch(0.75_0.17_175/0.3)]">
-              <ImageCompressorIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
+          <div className="flex items-start gap-6">
+            <div className="flex-shrink-0 w-16 h-16 border-4 border-black bg-[#06B6D4] flex items-center justify-center">
+              <ImageCompressorIcon size={32} className="text-white" strokeWidth={2.5} />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('imageCompressor.title')}</h1>
-              <p className="mt-1 text-[oklch(0.55_0.02_240)]">
+              <h1 className="text-4xl font-black uppercase tracking-tight text-black mb-2">{t('imageCompressor.title')}</h1>
+              <p className="text-lg font-bold text-gray-900">
                 {t('imageCompressor.description')}
               </p>
             </div>
@@ -163,35 +163,33 @@ export default function ImageCompressorPage() {
         {/* 제약사항 */}
         <ToolConstraints
           constraints={[t('imageCompressor.constraints.0'), t('imageCompressor.constraints.1')]}
-          accentColor="emerald"
+          accentColor="cyan"
         />
 
         {/* Upload Area */}
         <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-          <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
-            <FileUploader
-              accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif"
-              multiple={true}
-              maxFiles={20}
-              maxSize={50}
-              onFilesSelected={handleFilesSelected}
-            />
-          </div>
+          <FileUploader
+            accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif"
+            multiple={true}
+            maxFiles={20}
+            maxSize={50}
+            onFilesSelected={handleFilesSelected}
+          />
         </div>
 
         {/* Options */}
         {files.length > 0 && (
           <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
-            <div className="p-6 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
-              <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[oklch(0.75_0.17_175)]" />
+            <div className="p-6 bg-white border-4 border-black">
+              <h3 className="text-lg font-black uppercase tracking-wide text-black mb-6 flex items-center gap-3">
+                <Sparkles className="w-5 h-5 text-[#06B6D4]" strokeWidth={2.5} />
                 {t('common.settings')}
               </h3>
               <div className="space-y-6">
                 {/* Quality Slider */}
                 <div>
-                  <label className="block text-sm text-[oklch(0.70_0.02_240)] mb-3">
-                    {t('imageCompressor.quality')}: <span className="text-[oklch(0.75_0.17_175)] font-semibold">{quality}%</span>
+                  <label className="block text-sm font-bold uppercase tracking-wide text-gray-900 mb-3">
+                    {t('imageCompressor.quality')}: <span className="text-[#06B6D4]">{quality}%</span>
                   </label>
                   <input
                     type="range"
@@ -199,12 +197,12 @@ export default function ImageCompressorPage() {
                     max={100}
                     value={quality}
                     onChange={(e) => setQuality(Number(e.target.value))}
-                    className="w-full h-2 bg-[oklch(0.20_0.025_240)] rounded-full appearance-none cursor-pointer
-                      [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
-                      [&::-webkit-slider-thumb]:bg-[oklch(0.75_0.17_175)] [&::-webkit-slider-thumb]:rounded-full
-                      [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_10px_oklch(0.75_0.17_175/0.5)]"
+                    className="w-full h-3 bg-gray-200 appearance-none cursor-pointer
+                      [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6
+                      [&::-webkit-slider-thumb]:bg-[#06B6D4] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-black
+                      [&::-webkit-slider-thumb]:cursor-pointer"
                   />
-                  <div className="flex justify-between text-xs text-[oklch(0.50_0.02_240)] mt-1">
+                  <div className="flex justify-between text-xs font-bold text-gray-900 mt-1">
                     <span>{t('imageCompressor.smallFile')}</span>
                     <span>{t('imageCompressor.highQuality')}</span>
                   </div>

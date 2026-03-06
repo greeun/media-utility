@@ -214,17 +214,17 @@ export default function ImageEditorPage() {
   ];
 
   return (
-    <div className="min-h-full bg-[oklch(0.08_0.01_240)] py-8 lg:py-12">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full bg-white py-8 lg:py-12">
+      <div className="mx-auto max-w-5xl px-6 lg:px-12">
         {/* Header */}
         <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[oklch(0.65_0.22_290)] flex items-center justify-center shadow-[0_0_30px_oklch(0.65_0.22_290/0.3)]">
+            <div className="flex-shrink-0 w-16 h-16 border-4 border-black bg-[#A855F7] flex items-center justify-center">
               <ImageEditorIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-[oklch(0.95_0.01_80)]">{t('imageEditor.title')}</h1>
-              <p className="mt-1 text-[oklch(0.55_0.02_240)]">
+              <h1 className="text-4xl font-black uppercase tracking-tight text-black mb-2">{t('imageEditor.title')}</h1>
+              <p className="mt-1 text-lg font-bold text-gray-900">
                 {t('imageEditor.description')}
               </p>
             </div>
@@ -240,7 +240,7 @@ export default function ImageEditorPage() {
         {/* Upload Area */}
         {!preview && (
           <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-            <div className="p-8 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+            <div className="p-8 bg-white border-4 border-black">
               <label
                 onDragOver={handleDragOver}
                 onDragEnter={handleDragEnter}
@@ -274,7 +274,7 @@ export default function ImageEditorPage() {
         {preview && (
           <div className="space-y-4">
             {/* Toolbar */}
-            <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
+            <div className="p-4 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
               <div className="flex flex-wrap items-center justify-center gap-2">
                 {toolbarButtons.map((btn, idx) => {
                   const Icon = btn.icon;
@@ -303,7 +303,7 @@ export default function ImageEditorPage() {
 
             {/* Edit Panels */}
             {editMode === 'crop' && (
-              <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+              <div className="p-4 bg-white border-4 border-black">
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-[oklch(0.60_0.02_240)]">{t('imageEditor.crop.freeform')}</p>
                   <button
@@ -318,7 +318,7 @@ export default function ImageEditorPage() {
             )}
 
             {editMode === 'resize' && (
-              <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+              <div className="p-4 bg-white border-4 border-black">
                 <div className="flex flex-wrap items-end gap-4">
                   <div className="w-28">
                     <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">{t('imageEditor.resize.width')}</label>
@@ -359,7 +359,7 @@ export default function ImageEditorPage() {
             )}
 
             {editMode === 'optimize' && (
-              <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)]">
+              <div className="p-4 bg-white border-4 border-black">
                 <div className="flex flex-wrap items-end gap-6">
                   <div className="flex-1 min-w-[180px]">
                     <label className="block text-sm text-[oklch(0.60_0.02_240)] mb-2">
@@ -389,7 +389,7 @@ export default function ImageEditorPage() {
             )}
 
             {/* Image Preview */}
-            <div className="p-4 rounded-2xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.10_0.015_250)] opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
+            <div className="p-4 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
               <div className="relative flex items-center justify-center min-h-[400px] bg-[oklch(0.12_0.015_250)] rounded-xl overflow-hidden">
                 {isProcessing && (
                   <div className="absolute inset-0 bg-[oklch(0.08_0.01_240/0.8)] flex items-center justify-center z-10">
@@ -451,7 +451,7 @@ export default function ImageEditorPage() {
               )}
               <button
                 onClick={handleDownload}
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] font-semibold hover:shadow-[0_0_30px_oklch(0.65_0.22_290/0.4)] transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-[oklch(0.65_0.22_290)] text-[oklch(0.08_0.01_240)] font-semibold hover: transition-all"
               >
                 <Download className="w-4 h-4" />
                 {t('common.download')}
