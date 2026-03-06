@@ -84,7 +84,11 @@
       "step3Title": "Konversi & Unduh",
       "step3Desc": "Klik konversi dan unduh satu per satu atau sekaligus."
     },
-    "constraints": ["Maks 20 file, maks 50MB per file", "Input: HEIC, SVG, PSD, RAW dan lainnya", "Output: JPG, PNG, WebP"],
+    "constraints": [
+      "Maks 20 file, maks 50MB per file",
+      "Input: HEIC, SVG, PSD, RAW dan lainnya",
+      "Output: JPG, PNG, WebP"
+    ],
     "faq": {
       "q1": "Apa itu file HEIC?",
       "a1": "HEIC adalah format gambar efisiensi tinggi yang digunakan Apple sejak iOS 11. Ukuran filenya lebih kecil dari JPG dengan kualitas yang sama.",
@@ -129,7 +133,10 @@
       "quality": "Kualitas",
       "apply": "Optimalkan"
     },
-    "constraints": ["Satu gambar sekaligus", "Pemrosesan berbasis memori browser"],
+    "constraints": [
+      "Satu gambar sekaligus",
+      "Pemrosesan berbasis memori browser"
+    ],
     "howToUse": {
       "title": "Editor Gambar",
       "description": "Editor gambar online gratis yang mendukung pangkas, putar, balik, ubah ukuran, dan optimasi. Semua pemrosesan dilakukan di browser Anda.",
@@ -156,7 +163,10 @@
     "createGif": "Buat GIF",
     "creating": "Membuat GIF...",
     "result": "Hasil",
-    "constraints": ["Hanya file gambar", "Penggunaan memori meningkat sesuai jumlah frame"],
+    "constraints": [
+      "Hanya file gambar",
+      "Penggunaan memori meningkat sesuai jumlah frame"
+    ],
     "howToUse": {
       "title": "Pembuat GIF",
       "description": "Buat GIF animasi dari beberapa gambar. Sesuaikan kecepatan dan ukuran dengan mudah.",
@@ -186,7 +196,10 @@
     "preview": "Pratinjau",
     "result": "Hasil",
     "extractedFrames": "Frame yang Diekstrak",
-    "constraints": ["FFmpeg WASM (~30MB) diunduh saat pertama kali digunakan", "File besar mungkin dibatasi oleh memori browser"],
+    "constraints": [
+      "FFmpeg WASM (~30MB) diunduh saat pertama kali digunakan",
+      "File besar mungkin dibatasi oleh memori browser"
+    ],
     "howToUse": {
       "title": "Konverter Video",
       "description": "Konversi video ke GIF, GIF ke video MP4, atau ekstrak frame. Semua pemrosesan dilakukan di browser Anda menggunakan FFmpeg WebAssembly.",
@@ -198,13 +211,72 @@
       "step3Desc": "Sesuaikan FPS, skala, format, lalu konversi dan unduh."
     }
   },
+  "videoFormatConverter": {
+    "title": "Konverter Format Video",
+    "description": "Konversi format video antara MP4, WebM, MOV, dan AVI",
+    "preview": "Pratinjau",
+    "result": "Hasil",
+    "outputFormat": "Format Output",
+    "currentFormat": "Format Saat Ini",
+    "conversionError": "Terjadi kesalahan saat konversi",
+    "sharedArrayBufferError": "Browser Anda tidak mendukung SharedArrayBuffer. Gunakan browser modern atau akses melalui HTTPS.",
+    "constraints": [
+      "FFmpeg WASM (~30MB) diunduh pada penggunaan pertama",
+      "File besar mungkin dibatasi oleh memori browser"
+    ],
+    "howToUse": {
+      "title": "Konverter Format Video",
+      "description": "Konversi antara berbagai format video termasuk MP4, WebM, MOV, dan AVI. Semua pemrosesan dilakukan di browser Anda.",
+      "step1Title": "Unggah Video",
+      "step1Desc": "Seret atau klik untuk mengunggah file video.",
+      "step2Title": "Pilih Format Output",
+      "step2Desc": "Pilih format output: MP4, WebM, MOV, atau AVI.",
+      "step3Title": "Konversi & Unduh",
+      "step3Desc": "Klik tombol konversi untuk memproses dan mengunduh hasil."
+    }
+  },
+  "videoResizer": {
+    "title": "Pengubah Ukuran Video",
+    "description": "Ubah resolusi dan dimensi video",
+    "preview": "Pratinjau",
+    "result": "Hasil",
+    "sizeSettings": "Pengaturan Ukuran",
+    "presets": "Preset",
+    "width": "Lebar (px)",
+    "height": "Tinggi (px)",
+    "originalSize": "Ukuran Asli",
+    "aspectRatioLocked": "Rasio Aspek Terkunci",
+    "aspectRatioFree": "Rasio Aspek Bebas",
+    "resize": "Ubah Ukuran",
+    "resizing": "Mengubah ukuran...",
+    "resizeError": "Terjadi kesalahan saat mengubah ukuran",
+    "sharedArrayBufferError": "Browser Anda tidak mendukung SharedArrayBuffer. Gunakan browser modern atau akses melalui HTTPS.",
+    "constraints": [
+      "FFmpeg WASM (~30MB) diunduh pada penggunaan pertama",
+      "File besar mungkin dibatasi oleh memori browser"
+    ],
+    "howToUse": {
+      "title": "Pengubah Ukuran Video",
+      "description": "Ubah resolusi video ke ukuran yang Anda butuhkan. Mendukung preset dan dimensi kustom.",
+      "step1Title": "Unggah Video",
+      "step1Desc": "Seret atau klik untuk mengunggah video.",
+      "step2Title": "Atur Ukuran",
+      "step2Desc": "Pilih preset (4K, 1080p, 720p, dll.) atau masukkan dimensi kustom.",
+      "step3Title": "Ubah Ukuran & Unduh",
+      "step3Desc": "Klik tombol ubah ukuran untuk memproses dan mengunduh."
+    }
+  },
   "backgroundRemover": {
     "title": "Penghapus Latar Belakang",
     "description": "Hapus latar belakang gambar secara otomatis menggunakan AI",
     "fileList": "Daftar File",
     "processCount": "Proses {count} file",
     "downloadCount": "Unduh {count} file",
-    "constraints": ["Maks 5 file, maks 10MB per file", "Model AI (~30MB) diunduh saat pertama kali digunakan", "Latar belakang kompleks dapat mempengaruhi akurasi"],
+    "constraints": [
+      "Maks 5 file, maks 10MB per file",
+      "Model AI (~30MB) diunduh saat pertama kali digunakan",
+      "Latar belakang kompleks dapat mempengaruhi akurasi"
+    ],
     "aiNotice": "Penghapusan Latar Belakang Berbasis AI",
     "aiNoticeDesc": "Model AI (~30MB) akan diunduh saat pertama kali digunakan. Semua pemrosesan dilakukan di browser Anda untuk privasi lengkap.",
     "features": {
@@ -267,7 +339,10 @@
       "newTab": "Buka di Tab Baru",
       "warning": "URL Blob hanya valid di sesi browser ini."
     },
-    "constraints": ["Data URL sekitar 133% dari ukuran file asli", "Blob URL atau penyimpanan cloud direkomendasikan untuk file besar"],
+    "constraints": [
+      "Data URL sekitar 133% dari ukuran file asli",
+      "Blob URL atau penyimpanan cloud direkomendasikan untuk file besar"
+    ],
     "howToUse": {
       "title": "Generator URL",
       "description": "Konversi gambar dan video ke URL yang dapat dibagikan. Base64 untuk penyisipan, Blob untuk penggunaan sementara, Cloud untuk berbagi permanen.",
@@ -312,7 +387,10 @@
       "step3Title": "Kompresi & Unduh",
       "step3Desc": "Klik kompresi dan unduh satu per satu atau sekaligus setelah selesai."
     },
-    "constraints": ["Maks 20 file, maks 50MB per file", "Format yang didukung: JPG, PNG, WebP, GIF"],
+    "constraints": [
+      "Maks 20 file, maks 50MB per file",
+      "Format yang didukung: JPG, PNG, WebP, GIF"
+    ],
     "faq": {
       "q1": "Format apa saja yang didukung?",
       "a1": "Format JPG, PNG, WebP, dan GIF didukung. File yang dikompresi disimpan dalam format yang sama dengan aslinya.",
@@ -368,7 +446,9 @@
       "batch": "Pemrosesan Massal",
       "batchDesc": "Terapkan watermark yang sama ke beberapa gambar sekaligus."
     },
-    "constraints": ["Maks 20 file, maks 50MB per file"],
+    "constraints": [
+      "Maks 20 file, maks 50MB per file"
+    ],
     "howToUse": {
       "title": "Alat Watermark",
       "description": "Tambahkan watermark teks atau gambar untuk melindungi hak cipta Anda. Semua pemrosesan dilakukan di browser Anda.",
@@ -398,7 +478,10 @@
     "generating": "Membuat...",
     "generate": "Buat Meme",
     "result": "Hasil",
-    "constraints": ["Satu gambar sekaligus", "Maks 50MB per file"],
+    "constraints": [
+      "Satu gambar sekaligus",
+      "Maks 50MB per file"
+    ],
     "howToUse": {
       "title": "Pembuat Meme",
       "description": "Tambahkan teks meme ke gambar untuk membuat konten yang menyenangkan. Lihat hasil secara instan dengan pratinjau langsung.",
@@ -426,7 +509,11 @@
     "detectedFaces": "{count} wajah terdeteksi",
     "facesFound": "wajah terdeteksi",
     "fileList": "Daftar File",
-    "constraints": ["Maks 10 file, maks 50MB per file", "Model AI diunduh saat pertama kali digunakan", "Akurasi deteksi wajah tidak 100%"],
+    "constraints": [
+      "Maks 10 file, maks 50MB per file",
+      "Model AI diunduh saat pertama kali digunakan",
+      "Akurasi deteksi wajah tidak 100%"
+    ],
     "aiNotice": "Deteksi Wajah Berbasis AI",
     "aiNoticeDesc": "Model AI akan diunduh saat pertama kali digunakan. Semua pemrosesan dilakukan di browser Anda untuk privasi lengkap.",
     "features": {
@@ -474,7 +561,10 @@
       "size": "Ukuran Kustom",
       "sizeDesc": "Atur lebar dan tinggi kustom untuk gambar output."
     },
-    "constraints": ["Sumber daya eksternal (gambar, font) tunduk pada batasan CORS", "Resolusi maksimum: 4000×4000px"],
+    "constraints": [
+      "Sumber daya eksternal (gambar, font) tunduk pada batasan CORS",
+      "Resolusi maksimum: 4000×4000px"
+    ],
     "howToUse": {
       "title": "Konverter HTML ke Gambar",
       "description": "Masukkan kode HTML/CSS dan konversi ke gambar. Buat banner, kartu, dan gambar sosial dari kode.",
@@ -489,7 +579,12 @@
   "imageUpscaler": {
     "title": "Pembesar Gambar",
     "description": "Perbesar gambar resolusi rendah ke resolusi tinggi menggunakan model AI.",
-    "constraints": ["Maks 5 file, maks 20MB per file", "Model AI (~80MB) diunduh saat pertama kali digunakan", "Browser desktop direkomendasikan", "Gambar besar mungkin membutuhkan waktu lebih lama"],
+    "constraints": [
+      "Maks 5 file, maks 20MB per file",
+      "Model AI (~80MB) diunduh saat pertama kali digunakan",
+      "Browser desktop direkomendasikan",
+      "Gambar besar mungkin membutuhkan waktu lebih lama"
+    ],
     "desktopNotice": "Desktop direkomendasikan",
     "desktopNoticeDesc": "Upscaling AI membutuhkan sumber daya komputasi yang signifikan. Performa terbaik di browser desktop.",
     "settings": "Pengaturan Upscale",

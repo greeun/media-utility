@@ -84,7 +84,11 @@
       "step3Title": "Konvertieren & Herunterladen",
       "step3Desc": "Klicken Sie auf Konvertieren und laden Sie einzeln oder alle auf einmal herunter."
     },
-    "constraints": ["Bis zu 20 Dateien, max. 50MB pro Datei", "Eingabe: HEIC, SVG, PSD, RAW und mehr", "Ausgabe: JPG, PNG, WebP"],
+    "constraints": [
+      "Bis zu 20 Dateien, max. 50MB pro Datei",
+      "Eingabe: HEIC, SVG, PSD, RAW und mehr",
+      "Ausgabe: JPG, PNG, WebP"
+    ],
     "faq": {
       "q1": "Was ist eine HEIC-Datei?",
       "a1": "HEIC ist ein hocheffizientes Bildformat, das Apple seit iOS 11 verwendet. Es hat kleinere Dateigrößen als JPG bei gleicher Qualität.",
@@ -129,7 +133,10 @@
       "quality": "Qualität",
       "apply": "Optimieren"
     },
-    "constraints": ["Ein Bild gleichzeitig", "Browserbasierte Speicherverarbeitung"],
+    "constraints": [
+      "Ein Bild gleichzeitig",
+      "Browserbasierte Speicherverarbeitung"
+    ],
     "howToUse": {
       "title": "Bildeditor",
       "description": "Kostenloser Online-Bildeditor mit Zuschneiden, Drehen, Spiegeln, Größenänderung und Optimierung. Alle Verarbeitung erfolgt in Ihrem Browser.",
@@ -156,7 +163,10 @@
     "createGif": "GIF erstellen",
     "creating": "GIF wird erstellt...",
     "result": "Ergebnis",
-    "constraints": ["Nur Bilddateien", "Speicherverbrauch steigt mit der Anzahl der Frames"],
+    "constraints": [
+      "Nur Bilddateien",
+      "Speicherverbrauch steigt mit der Anzahl der Frames"
+    ],
     "howToUse": {
       "title": "GIF-Maker",
       "description": "Erstellen Sie animierte GIFs aus mehreren Bildern. Passen Sie Geschwindigkeit und Größe einfach an.",
@@ -186,7 +196,10 @@
     "preview": "Vorschau",
     "result": "Ergebnis",
     "extractedFrames": "Extrahierte Frames",
-    "constraints": ["FFmpeg WASM (~30MB) wird beim ersten Gebrauch heruntergeladen", "Große Dateien können durch Browser-Speicherlimits eingeschränkt sein"],
+    "constraints": [
+      "FFmpeg WASM (~30MB) wird beim ersten Gebrauch heruntergeladen",
+      "Große Dateien können durch Browser-Speicherlimits eingeschränkt sein"
+    ],
     "howToUse": {
       "title": "Videokonverter",
       "description": "Konvertieren Sie Videos zu GIF, GIF zu MP4-Video oder extrahieren Sie Frames. Alle Verarbeitung erfolgt in Ihrem Browser mit FFmpeg WebAssembly.",
@@ -198,13 +211,72 @@
       "step3Desc": "Passen Sie FPS, Skalierung, Format an und konvertieren und laden Sie herunter."
     }
   },
+  "videoFormatConverter": {
+    "title": "Video-Format-Konverter",
+    "description": "Konvertieren Sie Videoformate zwischen MP4, WebM, MOV und AVI",
+    "preview": "Vorschau",
+    "result": "Ergebnis",
+    "outputFormat": "Ausgabeformat",
+    "currentFormat": "Aktuelles Format",
+    "conversionError": "Fehler bei der Konvertierung",
+    "sharedArrayBufferError": "Ihr Browser unterstützt SharedArrayBuffer nicht. Verwenden Sie einen modernen Browser oder greifen Sie über HTTPS zu.",
+    "constraints": [
+      "FFmpeg WASM (~30 MB) wird beim ersten Gebrauch heruntergeladen",
+      "Große Dateien können durch den Browserspeicher begrenzt sein"
+    ],
+    "howToUse": {
+      "title": "Video-Format-Konverter",
+      "description": "Konvertieren Sie zwischen verschiedenen Videoformaten einschließlich MP4, WebM, MOV und AVI. Die gesamte Verarbeitung erfolgt in Ihrem Browser.",
+      "step1Title": "Video hochladen",
+      "step1Desc": "Ziehen oder klicken Sie, um die Videodatei hochzuladen.",
+      "step2Title": "Format wählen",
+      "step2Desc": "Wählen Sie das Ausgabeformat: MP4, WebM, MOV oder AVI.",
+      "step3Title": "Konvertieren und herunterladen",
+      "step3Desc": "Klicken Sie auf Konvertieren, um zu verarbeiten und das Ergebnis herunterzuladen."
+    }
+  },
+  "videoResizer": {
+    "title": "Video-Größenanpassung",
+    "description": "Ändern Sie die Auflösung und Abmessungen des Videos",
+    "preview": "Vorschau",
+    "result": "Ergebnis",
+    "sizeSettings": "Größeneinstellungen",
+    "presets": "Voreinstellungen",
+    "width": "Breite (px)",
+    "height": "Höhe (px)",
+    "originalSize": "Originalgröße",
+    "aspectRatioLocked": "Seitenverhältnis gesperrt",
+    "aspectRatioFree": "Freies Seitenverhältnis",
+    "resize": "Größe ändern",
+    "resizing": "Größe wird geändert...",
+    "resizeError": "Fehler beim Ändern der Größe",
+    "sharedArrayBufferError": "Ihr Browser unterstützt SharedArrayBuffer nicht. Verwenden Sie einen modernen Browser oder greifen Sie über HTTPS zu.",
+    "constraints": [
+      "FFmpeg WASM (~30 MB) wird beim ersten Gebrauch heruntergeladen",
+      "Große Dateien können durch den Browserspeicher begrenzt sein"
+    ],
+    "howToUse": {
+      "title": "Video-Größenanpassungstool",
+      "description": "Ändern Sie die Videoauflösung auf jede gewünschte Größe. Unterstützt Voreinstellungen und benutzerdefinierte Abmessungen.",
+      "step1Title": "Video hochladen",
+      "step1Desc": "Ziehen oder klicken Sie, um das Video hochzuladen.",
+      "step2Title": "Größe einstellen",
+      "step2Desc": "Wählen Sie eine Voreinstellung (4K, 1080p, 720p, usw.) oder geben Sie benutzerdefinierte Abmessungen ein.",
+      "step3Title": "Größe ändern und herunterladen",
+      "step3Desc": "Klicken Sie auf Größe ändern, um zu verarbeiten und herunterzuladen."
+    }
+  },
   "backgroundRemover": {
     "title": "Hintergrund entfernen",
     "description": "Entfernen Sie Bildhintergründe automatisch mit KI",
     "fileList": "Dateiliste",
     "processCount": "{count} Dateien verarbeiten",
     "downloadCount": "{count} Dateien herunterladen",
-    "constraints": ["Bis zu 5 Dateien, max. 10MB pro Datei", "KI-Modell (~30MB) wird beim ersten Gebrauch heruntergeladen", "Komplexe Hintergründe können die Genauigkeit beeinflussen"],
+    "constraints": [
+      "Bis zu 5 Dateien, max. 10MB pro Datei",
+      "KI-Modell (~30MB) wird beim ersten Gebrauch heruntergeladen",
+      "Komplexe Hintergründe können die Genauigkeit beeinflussen"
+    ],
     "aiNotice": "KI-gestützte Hintergrundentfernung",
     "aiNoticeDesc": "Das KI-Modell (~30MB) wird beim ersten Gebrauch heruntergeladen. Alle Verarbeitung erfolgt in Ihrem Browser für vollständigen Datenschutz.",
     "features": {
@@ -267,7 +339,10 @@
       "newTab": "In neuem Tab öffnen",
       "warning": "Blob-URLs sind nur in dieser Browser-Sitzung gültig."
     },
-    "constraints": ["Data-URL ist ca. 133% der Originaldateigröße", "Für große Dateien wird Blob-URL oder Cloud-Speicher empfohlen"],
+    "constraints": [
+      "Data-URL ist ca. 133% der Originaldateigröße",
+      "Für große Dateien wird Blob-URL oder Cloud-Speicher empfohlen"
+    ],
     "howToUse": {
       "title": "URL-Generator",
       "description": "Wandeln Sie Bilder und Videos in teilbare URLs um. Base64 zum Einbetten, Blob für temporäre Nutzung, Cloud für permanentes Teilen.",
@@ -312,7 +387,10 @@
       "step3Title": "Komprimieren & Herunterladen",
       "step3Desc": "Klicken Sie auf Komprimieren und laden Sie einzeln oder alle auf einmal herunter."
     },
-    "constraints": ["Bis zu 20 Dateien, max. 50MB pro Datei", "Unterstützte Formate: JPG, PNG, WebP, GIF"],
+    "constraints": [
+      "Bis zu 20 Dateien, max. 50MB pro Datei",
+      "Unterstützte Formate: JPG, PNG, WebP, GIF"
+    ],
     "faq": {
       "q1": "Welche Formate werden unterstützt?",
       "a1": "JPG, PNG, WebP und GIF werden unterstützt. Komprimierte Dateien werden im gleichen Format wie das Original gespeichert.",
@@ -368,7 +446,9 @@
       "batch": "Stapelverarbeitung",
       "batchDesc": "Dasselbe Wasserzeichen auf mehrere Bilder gleichzeitig anwenden."
     },
-    "constraints": ["Bis zu 20 Dateien, max. 50MB pro Datei"],
+    "constraints": [
+      "Bis zu 20 Dateien, max. 50MB pro Datei"
+    ],
     "howToUse": {
       "title": "Wasserzeichen-Werkzeug",
       "description": "Text- oder Bild-Wasserzeichen hinzufügen, um Ihr Urheberrecht zu schützen. Alle Verarbeitung erfolgt in Ihrem Browser.",
@@ -398,7 +478,10 @@
     "generating": "Erstelle...",
     "generate": "Meme erstellen",
     "result": "Ergebnis",
-    "constraints": ["Ein Bild gleichzeitig", "Max. 50MB pro Datei"],
+    "constraints": [
+      "Ein Bild gleichzeitig",
+      "Max. 50MB pro Datei"
+    ],
     "howToUse": {
       "title": "Meme-Generator",
       "description": "Meme-Text zu Bildern hinzufügen, um lustige Inhalte zu erstellen. Ergebnisse sofort mit Live-Vorschau sehen.",
@@ -426,7 +509,11 @@
     "detectedFaces": "{count} Gesichter erkannt",
     "facesFound": "Gesichter erkannt",
     "fileList": "Dateiliste",
-    "constraints": ["Bis zu 10 Dateien, max. 50MB pro Datei", "KI-Modell wird beim ersten Gebrauch heruntergeladen", "Gesichtserkennung ist nicht 100% genau"],
+    "constraints": [
+      "Bis zu 10 Dateien, max. 50MB pro Datei",
+      "KI-Modell wird beim ersten Gebrauch heruntergeladen",
+      "Gesichtserkennung ist nicht 100% genau"
+    ],
     "aiNotice": "KI-gestützte Gesichtserkennung",
     "aiNoticeDesc": "Das KI-Modell wird beim ersten Gebrauch heruntergeladen. Alle Verarbeitung erfolgt in Ihrem Browser für vollständigen Datenschutz.",
     "features": {
@@ -474,7 +561,10 @@
       "size": "Benutzerdefinierte Größe",
       "sizeDesc": "Benutzerdefinierte Breite und Höhe für das Ausgabebild festlegen."
     },
-    "constraints": ["Externe Ressourcen (Bilder, Schriften) unterliegen CORS-Beschränkungen", "Maximale Auflösung: 4000×4000px"],
+    "constraints": [
+      "Externe Ressourcen (Bilder, Schriften) unterliegen CORS-Beschränkungen",
+      "Maximale Auflösung: 4000×4000px"
+    ],
     "howToUse": {
       "title": "HTML-zu-Bild-Konverter",
       "description": "HTML/CSS-Code eingeben und in Bilder umwandeln. Banner, Karten und Social-Media-Bilder aus Code erstellen.",
@@ -489,7 +579,12 @@
   "imageUpscaler": {
     "title": "Bild-Upscaler",
     "description": "Niedrigauflösende Bilder mit KI-Modellen auf hohe Auflösung skalieren.",
-    "constraints": ["Bis zu 5 Dateien, max. 20MB pro Datei", "KI-Modell (~80MB) wird beim ersten Gebrauch heruntergeladen", "Desktop-Browser empfohlen", "Große Bilder können länger dauern"],
+    "constraints": [
+      "Bis zu 5 Dateien, max. 20MB pro Datei",
+      "KI-Modell (~80MB) wird beim ersten Gebrauch heruntergeladen",
+      "Desktop-Browser empfohlen",
+      "Große Bilder können länger dauern"
+    ],
     "desktopNotice": "Desktop empfohlen",
     "desktopNoticeDesc": "KI-Upscaling erfordert erhebliche Rechenressourcen. Beste Leistung auf Desktop-Browsern.",
     "settings": "Upscale-Einstellungen",

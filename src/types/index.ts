@@ -72,6 +72,8 @@ export type ToolType =
   | 'image-editor'
   | 'gif-maker'
   | 'video-converter'
+  | 'video-format-converter'
+  | 'video-resizer'
   | 'url-generator'
   | 'watermark'
   | 'meme-generator'

@@ -84,7 +84,11 @@
       "step3Title": "Convertir et télécharger",
       "step3Desc": "Cliquez sur convertir et téléchargez individuellement ou tout à la fois."
     },
-    "constraints": ["Jusqu'à 20 fichiers, max 50 Mo chacun", "Entrée : HEIC, SVG, PSD, RAW et plus", "Sortie : JPG, PNG, WebP"],
+    "constraints": [
+      "Jusqu'à 20 fichiers, max 50 Mo chacun",
+      "Entrée : HEIC, SVG, PSD, RAW et plus",
+      "Sortie : JPG, PNG, WebP"
+    ],
     "faq": {
       "q1": "Qu'est-ce qu'un fichier HEIC?",
       "a1": "HEIC est un format d'image haute efficacité utilisé par Apple depuis iOS 11. Il a des tailles de fichier plus petites que JPG avec la même qualité.",
@@ -129,7 +133,10 @@
       "quality": "Qualité",
       "apply": "Optimiser"
     },
-    "constraints": ["Une image à la fois", "Traitement basé sur la mémoire du navigateur"],
+    "constraints": [
+      "Une image à la fois",
+      "Traitement basé sur la mémoire du navigateur"
+    ],
     "howToUse": {
       "title": "Éditeur d'images",
       "description": "Éditeur d'images en ligne gratuit supportant recadrage, rotation, retournement, redimensionnement et optimisation. Tout le traitement est fait dans votre navigateur.",
@@ -156,7 +163,10 @@
     "createGif": "Créer GIF",
     "creating": "Création du GIF...",
     "result": "Résultat",
-    "constraints": ["Fichiers image uniquement", "L'utilisation de la mémoire augmente avec le nombre de frames"],
+    "constraints": [
+      "Fichiers image uniquement",
+      "L'utilisation de la mémoire augmente avec le nombre de frames"
+    ],
     "howToUse": {
       "title": "Créateur de GIF",
       "description": "Créez des GIFs animés à partir de plusieurs images. Ajustez facilement la vitesse et la taille.",
@@ -186,7 +196,10 @@
     "preview": "Aperçu",
     "result": "Résultat",
     "extractedFrames": "Images extraites",
-    "constraints": ["FFmpeg WASM (~30 Mo) téléchargé à la première utilisation", "Les fichiers volumineux peuvent être limités par la mémoire du navigateur"],
+    "constraints": [
+      "FFmpeg WASM (~30 Mo) téléchargé à la première utilisation",
+      "Les fichiers volumineux peuvent être limités par la mémoire du navigateur"
+    ],
     "howToUse": {
       "title": "Convertisseur vidéo",
       "description": "Convertissez des vidéos en GIF, GIF en vidéo MP4 ou extrayez des images. Tout le traitement est fait dans votre navigateur avec FFmpeg WebAssembly.",
@@ -198,13 +211,72 @@
       "step3Desc": "Ajustez IPS, échelle, format, puis convertissez et téléchargez."
     }
   },
+  "videoFormatConverter": {
+    "title": "Convertisseur de Format Vidéo",
+    "description": "Convertir les formats vidéo entre MP4, WebM, MOV et AVI",
+    "preview": "Aperçu",
+    "result": "Résultat",
+    "outputFormat": "Format de sortie",
+    "currentFormat": "Format actuel",
+    "conversionError": "Erreur lors de la conversion",
+    "sharedArrayBufferError": "Votre navigateur ne prend pas en charge SharedArrayBuffer. Utilisez un navigateur moderne ou accédez via HTTPS.",
+    "constraints": [
+      "FFmpeg WASM (~30 Mo) téléchargé lors de la première utilisation",
+      "Les fichiers volumineux peuvent être limités par la mémoire du navigateur"
+    ],
+    "howToUse": {
+      "title": "Convertisseur de Format Vidéo",
+      "description": "Convertir entre différents formats vidéo dont MP4, WebM, MOV et AVI. Tout le traitement est effectué dans votre navigateur.",
+      "step1Title": "Télécharger la Vidéo",
+      "step1Desc": "Glissez ou cliquez pour télécharger le fichier vidéo.",
+      "step2Title": "Sélectionner le Format",
+      "step2Desc": "Choisissez le format de sortie : MP4, WebM, MOV ou AVI.",
+      "step3Title": "Convertir et Télécharger",
+      "step3Desc": "Cliquez sur convertir pour traiter et télécharger le résultat."
+    }
+  },
+  "videoResizer": {
+    "title": "Redimensionner la Vidéo",
+    "description": "Modifier la résolution et les dimensions de la vidéo",
+    "preview": "Aperçu",
+    "result": "Résultat",
+    "sizeSettings": "Paramètres de taille",
+    "presets": "Préréglages",
+    "width": "Largeur (px)",
+    "height": "Hauteur (px)",
+    "originalSize": "Taille originale",
+    "aspectRatioLocked": "Ratio verrouillé",
+    "aspectRatioFree": "Ratio libre",
+    "resize": "Redimensionner",
+    "resizing": "Redimensionnement...",
+    "resizeError": "Erreur lors du redimensionnement",
+    "sharedArrayBufferError": "Votre navigateur ne prend pas en charge SharedArrayBuffer. Utilisez un navigateur moderne ou accédez via HTTPS.",
+    "constraints": [
+      "FFmpeg WASM (~30 Mo) téléchargé lors de la première utilisation",
+      "Les fichiers volumineux peuvent être limités par la mémoire du navigateur"
+    ],
+    "howToUse": {
+      "title": "Redimensionneur de Vidéo",
+      "description": "Modifiez la résolution de la vidéo à la taille souhaitée. Prend en charge les préréglages et les dimensions personnalisées.",
+      "step1Title": "Télécharger la Vidéo",
+      "step1Desc": "Glissez ou cliquez pour télécharger la vidéo.",
+      "step2Title": "Configurer la Taille",
+      "step2Desc": "Choisissez un préréglage (4K, 1080p, 720p, etc.) ou entrez des dimensions personnalisées.",
+      "step3Title": "Redimensionner et Télécharger",
+      "step3Desc": "Cliquez sur redimensionner pour traiter et télécharger."
+    }
+  },
   "backgroundRemover": {
     "title": "Suppresseur d'arrière-plan",
     "description": "Supprimez automatiquement les arrière-plans d'images avec l'IA",
     "fileList": "Liste des fichiers",
     "processCount": "Traiter {count} fichiers",
     "downloadCount": "Télécharger {count} fichiers",
-    "constraints": ["Jusqu'à 5 fichiers, max 10 Mo chacun", "Modèle IA (~30 Mo) téléchargé à la première utilisation", "Les arrière-plans complexes peuvent affecter la précision"],
+    "constraints": [
+      "Jusqu'à 5 fichiers, max 10 Mo chacun",
+      "Modèle IA (~30 Mo) téléchargé à la première utilisation",
+      "Les arrière-plans complexes peuvent affecter la précision"
+    ],
     "aiNotice": "Suppression d'arrière-plan par IA",
     "aiNoticeDesc": "Le modèle IA (~30 Mo) sera téléchargé à la première utilisation. Tout le traitement est fait dans votre navigateur pour une confidentialité totale.",
     "features": {
@@ -267,7 +339,10 @@
       "newTab": "Ouvrir dans un nouvel onglet",
       "warning": "Les URLs Blob ne sont valides que dans cette session de navigateur."
     },
-    "constraints": ["L'URL Data représente ~133% de la taille du fichier original", "URL Blob ou stockage cloud recommandé pour les fichiers volumineux"],
+    "constraints": [
+      "L'URL Data représente ~133% de la taille du fichier original",
+      "URL Blob ou stockage cloud recommandé pour les fichiers volumineux"
+    ],
     "howToUse": {
       "title": "Générateur d'URL",
       "description": "Convertissez images et vidéos en URLs partageables. Base64 pour intégrer, Blob pour usage temporaire, Cloud pour partage permanent.",
@@ -312,7 +387,10 @@
       "step3Title": "Compresser et Télécharger",
       "step3Desc": "Cliquez sur compresser et téléchargez individuellement ou tout à la fois."
     },
-    "constraints": ["Jusqu'à 20 fichiers, max 50 Mo chacun", "Formats supportés : JPG, PNG, WebP, GIF"],
+    "constraints": [
+      "Jusqu'à 20 fichiers, max 50 Mo chacun",
+      "Formats supportés : JPG, PNG, WebP, GIF"
+    ],
     "faq": {
       "q1": "Quels formats sont supportés ?",
       "a1": "Les formats JPG, PNG, WebP et GIF sont supportés. Les fichiers compressés sont sauvegardés dans le même format que l'original.",
@@ -368,7 +446,9 @@
       "batch": "Traitement par Lots",
       "batchDesc": "Appliquer le même filigrane à plusieurs images à la fois."
     },
-    "constraints": ["Jusqu'à 20 fichiers, max 50 Mo chacun"],
+    "constraints": [
+      "Jusqu'à 20 fichiers, max 50 Mo chacun"
+    ],
     "howToUse": {
       "title": "Outil de Filigrane",
       "description": "Ajouter des filigranes texte ou image pour protéger vos droits d'auteur. Tout le traitement est effectué dans votre navigateur.",
@@ -398,7 +478,10 @@
     "generating": "Génération...",
     "generate": "Générer le Mème",
     "result": "Résultat",
-    "constraints": ["Une image à la fois", "Max 50 Mo par fichier"],
+    "constraints": [
+      "Une image à la fois",
+      "Max 50 Mo par fichier"
+    ],
     "howToUse": {
       "title": "Générateur de Mèmes",
       "description": "Ajouter du texte mème aux images pour créer du contenu amusant. Voir les résultats instantanément avec l'aperçu en direct.",
@@ -426,7 +509,11 @@
     "detectedFaces": "{count} visages détectés",
     "facesFound": "visages détectés",
     "fileList": "Liste des Fichiers",
-    "constraints": ["Jusqu'à 10 fichiers, max 50 Mo chacun", "Modèle IA téléchargé à la première utilisation", "La détection faciale n'est pas précise à 100%"],
+    "constraints": [
+      "Jusqu'à 10 fichiers, max 50 Mo chacun",
+      "Modèle IA téléchargé à la première utilisation",
+      "La détection faciale n'est pas précise à 100%"
+    ],
     "aiNotice": "Détection Faciale par IA",
     "aiNoticeDesc": "Le modèle IA sera téléchargé à la première utilisation. Tout le traitement est effectué dans votre navigateur pour une confidentialité totale.",
     "features": {
@@ -474,7 +561,10 @@
       "size": "Taille Personnalisée",
       "sizeDesc": "Définir largeur et hauteur personnalisées pour l'image de sortie."
     },
-    "constraints": ["Les ressources externes (images, polices) sont soumises aux restrictions CORS", "Résolution maximale : 4000×4000px"],
+    "constraints": [
+      "Les ressources externes (images, polices) sont soumises aux restrictions CORS",
+      "Résolution maximale : 4000×4000px"
+    ],
     "howToUse": {
       "title": "Convertisseur HTML vers Image",
       "description": "Entrer du code HTML/CSS et convertir en images. Créer des bannières, cartes et images sociales à partir du code.",
@@ -489,7 +579,12 @@
   "imageUpscaler": {
     "title": "Agrandisseur d'Images",
     "description": "Agrandir les images basse résolution en haute résolution avec des modèles IA.",
-    "constraints": ["Jusqu'à 5 fichiers, max 20 Mo chacun", "Modèle IA (~80 Mo) téléchargé à la première utilisation", "Navigateur de bureau recommandé", "Les grandes images peuvent prendre plus de temps"],
+    "constraints": [
+      "Jusqu'à 5 fichiers, max 20 Mo chacun",
+      "Modèle IA (~80 Mo) téléchargé à la première utilisation",
+      "Navigateur de bureau recommandé",
+      "Les grandes images peuvent prendre plus de temps"
+    ],
     "desktopNotice": "Bureau recommandé",
     "desktopNoticeDesc": "L'agrandissement IA nécessite des ressources de calcul importantes. Meilleures performances sur les navigateurs de bureau.",
     "settings": "Paramètres d'Agrandissement",

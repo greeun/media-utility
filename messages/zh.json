@@ -84,7 +84,11 @@
       "step3Title": "转换并下载",
       "step3Desc": "点击转换，完成后单独或批量下载。"
     },
-    "constraints": ["最多20个文件，每个最大50MB", "输入：HEIC、SVG、PSD、RAW等", "输出：JPG、PNG、WebP"],
+    "constraints": [
+      "最多20个文件，每个最大50MB",
+      "输入：HEIC、SVG、PSD、RAW等",
+      "输出：JPG、PNG、WebP"
+    ],
     "faq": {
       "q1": "什么是 HEIC 文件？",
       "a1": "HEIC 是 Apple 从 iOS 11 开始使用的高效图片格式。文件大小比 JPG 小，但质量相同。",
@@ -129,7 +133,10 @@
       "quality": "质量",
       "apply": "优化"
     },
-    "constraints": ["一次编辑一张图片", "基于浏览器内存处理"],
+    "constraints": [
+      "一次编辑一张图片",
+      "基于浏览器内存处理"
+    ],
     "howToUse": {
       "title": "图片编辑器",
       "description": "免费在线图片编辑器，支持裁剪、旋转、翻转、调整大小和优化。所有处理在浏览器中完成。",
@@ -156,7 +163,10 @@
     "createGif": "创建 GIF",
     "creating": "创建 GIF 中...",
     "result": "结果",
-    "constraints": ["仅支持图片文件", "帧数越多，内存使用越大"],
+    "constraints": [
+      "仅支持图片文件",
+      "帧数越多，内存使用越大"
+    ],
     "howToUse": {
       "title": "GIF 制作器",
       "description": "用多张图片创建动画 GIF。可调整速度和大小，轻松制作 GIF 动画。",
@@ -186,7 +196,10 @@
     "preview": "预览",
     "result": "结果",
     "extractedFrames": "提取的帧",
-    "constraints": ["FFmpeg WASM（~30MB）首次使用时下载", "大文件可能受浏览器内存限制"],
+    "constraints": [
+      "FFmpeg WASM（~30MB）首次使用时下载",
+      "大文件可能受浏览器内存限制"
+    ],
     "howToUse": {
       "title": "视频转换器",
       "description": "将视频转换为 GIF、GIF 转换为 MP4 视频或从视频中提取帧。使用 FFmpeg WebAssembly 在浏览器中完成所有处理。",
@@ -198,13 +211,72 @@
       "step3Desc": "调整帧率、缩放、格式，然后转换并下载。"
     }
   },
+  "videoFormatConverter": {
+    "title": "视频格式转换",
+    "description": "在MP4、WebM、MOV、AVI之间转换视频格式",
+    "preview": "预览",
+    "result": "结果",
+    "outputFormat": "输出格式",
+    "currentFormat": "当前格式",
+    "conversionError": "转换过程中发生错误",
+    "sharedArrayBufferError": "您的浏览器不支持SharedArrayBuffer。请使用现代浏览器或通过HTTPS访问。",
+    "constraints": [
+      "首次使用时下载FFmpeg WASM（~30MB）",
+      "大文件可能受浏览器内存限制"
+    ],
+    "howToUse": {
+      "title": "视频格式转换器",
+      "description": "支持MP4、WebM、MOV、AVI等多种视频格式间的转换。使用FFmpeg WebAssembly在浏览器中完成所有处理。",
+      "step1Title": "上传视频",
+      "step1Desc": "拖拽或点击上传要转换的视频文件。",
+      "step2Title": "选择输出格式",
+      "step2Desc": "选择MP4、WebM、MOV或AVI作为输出格式。",
+      "step3Title": "转换并下载",
+      "step3Desc": "点击转换按钮进行处理并下载结果。"
+    }
+  },
+  "videoResizer": {
+    "title": "视频尺寸调整",
+    "description": "更改视频的分辨率和尺寸",
+    "preview": "预览",
+    "result": "结果",
+    "sizeSettings": "尺寸设置",
+    "presets": "预设",
+    "width": "宽度 (px)",
+    "height": "高度 (px)",
+    "originalSize": "原始尺寸",
+    "aspectRatioLocked": "锁定比例",
+    "aspectRatioFree": "自由比例",
+    "resize": "调整尺寸",
+    "resizing": "调整中...",
+    "resizeError": "调整尺寸时发生错误",
+    "sharedArrayBufferError": "您的浏览器不支持SharedArrayBuffer。请使用现代浏览器或通过HTTPS访问。",
+    "constraints": [
+      "首次使用时下载FFmpeg WASM（~30MB）",
+      "大文件可能受浏览器内存限制"
+    ],
+    "howToUse": {
+      "title": "视频尺寸调整器",
+      "description": "将视频分辨率调整为所需尺寸。支持预设和自定义尺寸，并提供比例锁定功能。",
+      "step1Title": "上传视频",
+      "step1Desc": "拖拽或点击上传要调整尺寸的视频文件。",
+      "step2Title": "设置尺寸",
+      "step2Desc": "选择预设（4K、1080p、720p等）或输入自定义尺寸。",
+      "step3Title": "调整并下载",
+      "step3Desc": "点击调整按钮进行处理并下载结果。"
+    }
+  },
   "backgroundRemover": {
     "title": "背景移除",
     "description": "使用 AI 自动移除图片背景",
     "fileList": "文件列表",
     "processCount": "处理 {count} 个文件",
     "downloadCount": "下载 {count} 个文件",
-    "constraints": ["最多5个文件，每个最大10MB", "AI模型（~30MB）首次使用时下载", "复杂背景可能影响准确度"],
+    "constraints": [
+      "最多5个文件，每个最大10MB",
+      "AI模型（~30MB）首次使用时下载",
+      "复杂背景可能影响准确度"
+    ],
     "aiNotice": "AI 驱动的背景移除",
     "aiNoticeDesc": "AI 模型（~30MB）将在首次使用时下载。所有处理都在浏览器中完成，确保隐私安全。",
     "features": {
@@ -267,7 +339,10 @@
       "newTab": "在新标签页中打开",
       "warning": "Blob URL 仅在当前浏览器会话中有效。"
     },
-    "constraints": ["Data URL约为原文件的133%大小", "大文件建议使用Blob URL或云存储"],
+    "constraints": [
+      "Data URL约为原文件的133%大小",
+      "大文件建议使用Blob URL或云存储"
+    ],
     "howToUse": {
       "title": "URL 生成器",
       "description": "将图片和视频转换为可分享的 URL。Base64 用于嵌入，Blob 用于临时使用，云存储用于永久分享。",
@@ -312,7 +387,10 @@
       "step3Title": "压缩并下载",
       "step3Desc": "点击压缩，完成后单独或批量下载。"
     },
-    "constraints": ["最多20个文件，每个最大50MB", "支持格式：JPG、PNG、WebP、GIF"],
+    "constraints": [
+      "最多20个文件，每个最大50MB",
+      "支持格式：JPG、PNG、WebP、GIF"
+    ],
     "faq": {
       "q1": "支持哪些格式？",
       "a1": "支持 JPG、PNG、WebP 和 GIF 格式。压缩后的文件保存为与原始文件相同的格式。",
@@ -368,7 +446,9 @@
       "batch": "批量处理",
       "batchDesc": "一次性将相同水印应用到多张图片。"
     },
-    "constraints": ["最多20个文件，每个最大50MB"],
+    "constraints": [
+      "最多20个文件，每个最大50MB"
+    ],
     "howToUse": {
       "title": "水印工具",
       "description": "添加文字或图片水印以保护您的版权。所有处理在浏览器中完成。",
@@ -398,7 +478,10 @@
     "generating": "生成中...",
     "generate": "生成表情包",
     "result": "结果",
-    "constraints": ["一次处理一张图片", "每个文件最大50MB"],
+    "constraints": [
+      "一次处理一张图片",
+      "每个文件最大50MB"
+    ],
     "howToUse": {
       "title": "表情包生成器",
       "description": "为图片添加表情包文字，创作有趣的内容。实时预览查看效果。",
@@ -426,7 +509,11 @@
     "detectedFaces": "检测到 {count} 张人脸",
     "facesFound": "张人脸已检测",
     "fileList": "文件列表",
-    "constraints": ["最多10个文件，每个最大50MB", "AI模型首次使用时下载", "人脸检测准确率非100%"],
+    "constraints": [
+      "最多10个文件，每个最大50MB",
+      "AI模型首次使用时下载",
+      "人脸检测准确率非100%"
+    ],
     "aiNotice": "AI 驱动的人脸检测",
     "aiNoticeDesc": "AI 模型将在首次使用时下载。所有处理在浏览器中完成，确保隐私安全。",
     "features": {
@@ -474,7 +561,10 @@
       "size": "自定义尺寸",
       "sizeDesc": "设置输出图片的自定义宽度和高度。"
     },
-    "constraints": ["外部资源（图片、字体）受CORS限制", "最大分辨率：4000×4000px"],
+    "constraints": [
+      "外部资源（图片、字体）受CORS限制",
+      "最大分辨率：4000×4000px"
+    ],
     "howToUse": {
       "title": "HTML 转图片转换器",
       "description": "输入 HTML/CSS 代码并转换为图片。用代码创建横幅、卡片和社交媒体图片。",
@@ -489,7 +579,12 @@
   "imageUpscaler": {
     "title": "图片放大",
     "description": "使用 AI 模型将低分辨率图片放大为高分辨率。",
-    "constraints": ["最多5个文件，每个最大20MB", "AI模型（~80MB）首次使用时下载", "建议使用桌面浏览器", "大图片处理可能需要较长时间"],
+    "constraints": [
+      "最多5个文件，每个最大20MB",
+      "AI模型（~80MB）首次使用时下载",
+      "建议使用桌面浏览器",
+      "大图片处理可能需要较长时间"
+    ],
     "desktopNotice": "建议使用桌面端",
     "desktopNoticeDesc": "AI 放大需要大量计算资源。桌面浏览器性能最佳。",
     "settings": "放大设置",

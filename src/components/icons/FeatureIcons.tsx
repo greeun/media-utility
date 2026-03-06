@@ -474,6 +474,64 @@ export function RawConverterIcon({ className = '', size = 24 }: IconProps) {
   );
 }
 
+// 비디오 포맷 변환 - 포맷 간 변환
+export function VideoFormatIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 왼쪽 파일 */}
+      <rect x="2" y="4" width="8" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M4.5 7v3l2.5-1.5z" fill="currentColor" />
+      {/* 포맷 라벨 */}
+      <rect x="3" y="11" width="6" height="2" rx="0.5" fill="currentColor" fillOpacity="0.3" />
+      {/* 양방향 화살표 */}
+      <path d="M12 7h2m0 0l-1-1m1 1l-1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 11h-2m0 0l1 1m-1-1l1-1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+      {/* 오른쪽 파일 */}
+      <rect x="14" y="4" width="8" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M16.5 7v3l2.5-1.5z" fill="currentColor" />
+      {/* 포맷 라벨 */}
+      <rect x="15" y="11" width="6" height="2" rx="0.5" fill="currentColor" fillOpacity="0.3" />
+      {/* 하단 포맷 목록 */}
+      <text x="6" y="20" fontSize="4" fontWeight="700" fontFamily="system-ui, sans-serif" fill="currentColor" textAnchor="middle" opacity="0.6">MP4</text>
+      <text x="18" y="20" fontSize="4" fontWeight="700" fontFamily="system-ui, sans-serif" fill="currentColor" textAnchor="middle" opacity="0.6">WebM</text>
+    </svg>
+  );
+}
+
+// 비디오 크기 변경 - 리사이즈
+export function VideoResizerIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      {/* 작은 비디오 */}
+      <rect x="2" y="8" width="8" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M4 10v2.5l2-1.25z" fill="currentColor" fillOpacity="0.5" />
+      {/* 크기 변경 화살표 */}
+      <path d="M12 11h3m0 0l-1.5-1.5M15 11l-1.5 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* 큰 비디오 */}
+      <rect x="11" y="3" width="11" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M13.5 5.5v3l2.5-1.5z" fill="currentColor" />
+      {/* 크기 표시 */}
+      <path d="M18 14v5m0 0h-5m5 0l-6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* 치수 표시 */}
+      <text x="6" y="21" fontSize="3.5" fontWeight="700" fontFamily="system-ui, sans-serif" fill="currentColor" textAnchor="middle" opacity="0.5">HD</text>
+    </svg>
+  );
+}
+
 // === 특징 섹션 아이콘 ===
 
 // 프라이버시/보안

@@ -242,6 +242,131 @@ export async function createThumbnail(
 }
 
 /**
+ * 비디오 포맷 변환 (MP4, WebM, MOV, AVI 간)
+ */
+export async function convertVideoFormat(
+  file: File,
+  outputFormat: 'mp4' | 'webm' | 'mov' | 'avi',
+  onProgress?: (progress: number) => void
+): Promise<Blob> {
+  const ff = await initFFmpeg((msg) => console.log(msg));
+
+  onProgress?.(10);
+
+  const inputName = 'input' + getExtension(file.name);
+  await ff.writeFile(inputName, await fetchFile(file));
+
+  onProgress?.(30);
+
+  const outputName = `output.${outputFormat}`;
+  const args: string[] = ['-i', inputName];
+
+  switch (outputFormat) {
+    case 'mp4':
+      args.push('-c:v', 'libx264', '-preset', 'fast', '-crf', '23');
+      args.push('-c:a', 'aac', '-b:a', '128k');
+      args.push('-movflags', 'faststart');
+      args.push('-pix_fmt', 'yuv420p');
+      break;
+    case 'webm':
+      args.push('-c:v', 'libvpx', '-crf', '30', '-b:v', '0');
+      args.push('-c:a', 'libvorbis');
+      break;
+    case 'mov':
+      args.push('-c:v', 'libx264', '-preset', 'fast', '-crf', '23');
+      args.push('-c:a', 'aac', '-b:a', '128k');
+      args.push('-pix_fmt', 'yuv420p');
+      break;
+    case 'avi':
+      args.push('-c:v', 'libx264', '-preset', 'fast', '-crf', '23');
+      args.push('-c:a', 'aac', '-b:a', '128k');
+      break;
+  }
+
+  args.push(outputName);
+
+  await ff.exec(args);
+
+  onProgress?.(80);
+
+  const mimeTypes: Record<string, string> = {
+    mp4: 'video/mp4',
+    webm: 'video/webm',
+    mov: 'video/quicktime',
+    avi: 'video/x-msvideo',
+  };
+
+  const data = await ff.readFile(outputName);
+  const blob = new Blob([new Uint8Array(data as Uint8Array)], {
+    type: mimeTypes[outputFormat],
+  });
+
+  await ff.deleteFile(inputName);
+  await ff.deleteFile(outputName);
+
+  onProgress?.(100);
+
+  return blob;
+}
+
+/**
+ * 비디오 크기 변경
+ */
+export async function resizeVideo(
+  file: File,
+  width: number,
+  height: number,
+  onProgress?: (progress: number) => void
+): Promise<Blob> {
+  const ff = await initFFmpeg((msg) => console.log(msg));
+
+  onProgress?.(10);
+
+  const inputName = 'input' + getExtension(file.name);
+  await ff.writeFile(inputName, await fetchFile(file));
+
+  onProgress?.(30);
+
+  const ext = getExtension(file.name).replace('.', '');
+  const outputExt = ['mp4', 'webm', 'mov', 'avi'].includes(ext) ? ext : 'mp4';
+  const outputName = `output.${outputExt}`;
+
+  // 짝수 크기로 맞추기 (인코딩 요구사항)
+  const w = Math.round(width / 2) * 2;
+  const h = Math.round(height / 2) * 2;
+
+  await ff.exec([
+    '-i', inputName,
+    '-vf', `scale=${w}:${h}`,
+    '-c:v', 'libx264', '-preset', 'fast', '-crf', '23',
+    '-c:a', 'copy',
+    '-pix_fmt', 'yuv420p',
+    outputName,
+  ]);
+
+  onProgress?.(80);
+
+  const mimeTypes: Record<string, string> = {
+    mp4: 'video/mp4',
+    webm: 'video/webm',
+    mov: 'video/quicktime',
+    avi: 'video/x-msvideo',
+  };
+
+  const data = await ff.readFile(outputName);
+  const blob = new Blob([new Uint8Array(data as Uint8Array)], {
+    type: mimeTypes[outputExt] || 'video/mp4',
+  });
+
+  await ff.deleteFile(inputName);
+  await ff.deleteFile(outputName);
+
+  onProgress?.(100);
+
+  return blob;
+}
+
+/**
  * 파일 확장자 추출
  */
 function getExtension(filename: string): string {

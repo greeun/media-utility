@@ -211,6 +211,61 @@
       "step3Desc": "FPS, 크기, 포맷을 조정한 후 변환하고 다운로드하세요."
     }
   },
+  "videoFormatConverter": {
+    "title": "비디오 포맷 변환",
+    "description": "MP4, WebM, MOV, AVI 간 비디오 포맷을 변환합니다",
+    "preview": "미리보기",
+    "result": "결과",
+    "outputFormat": "출력 포맷",
+    "currentFormat": "현재 포맷",
+    "conversionError": "변환 중 오류가 발생했습니다",
+    "sharedArrayBufferError": "브라우저가 SharedArrayBuffer를 지원하지 않습니다. 최신 브라우저를 사용하거나 HTTPS로 접속해주세요.",
+    "constraints": [
+      "FFmpeg WASM(~30MB) 첫 사용 시 다운로드",
+      "대용량 파일은 브라우저 메모리 제한에 영향받을 수 있습니다"
+    ],
+    "howToUse": {
+      "title": "비디오 포맷 변환기",
+      "description": "MP4, WebM, MOV, AVI 등 다양한 비디오 포맷 간 변환을 지원합니다. FFmpeg WebAssembly를 사용하여 브라우저에서 모든 처리가 이루어집니다.",
+      "step1Title": "비디오 업로드",
+      "step1Desc": "변환할 비디오 파일을 드래그하거나 클릭하여 업로드하세요.",
+      "step2Title": "출력 포맷 선택",
+      "step2Desc": "MP4, WebM, MOV, AVI 중 원하는 출력 포맷을 선택하세요.",
+      "step3Title": "변환 및 다운로드",
+      "step3Desc": "변환 버튼을 클릭하여 변환하고 결과를 다운로드하세요."
+    }
+  },
+  "videoResizer": {
+    "title": "비디오 크기 변경",
+    "description": "비디오의 해상도와 크기를 변경합니다",
+    "preview": "미리보기",
+    "result": "결과",
+    "sizeSettings": "크기 설정",
+    "presets": "프리셋",
+    "width": "너비 (px)",
+    "height": "높이 (px)",
+    "originalSize": "원본 크기",
+    "aspectRatioLocked": "비율 고정",
+    "aspectRatioFree": "비율 자유",
+    "resize": "크기 변경",
+    "resizing": "크기 변경 중...",
+    "resizeError": "크기 변경 중 오류가 발생했습니다",
+    "sharedArrayBufferError": "브라우저가 SharedArrayBuffer를 지원하지 않습니다. 최신 브라우저를 사용하거나 HTTPS로 접속해주세요.",
+    "constraints": [
+      "FFmpeg WASM(~30MB) 첫 사용 시 다운로드",
+      "대용량 파일은 브라우저 메모리 제한에 영향받을 수 있습니다"
+    ],
+    "howToUse": {
+      "title": "비디오 크기 변경기",
+      "description": "비디오의 해상도를 원하는 크기로 변경합니다. 프리셋 또는 커스텀 크기를 지원하며, 비율 고정 기능도 제공합니다.",
+      "step1Title": "비디오 업로드",
+      "step1Desc": "크기를 변경할 비디오 파일을 드래그하거나 클릭하여 업로드하세요.",
+      "step2Title": "크기 설정",
+      "step2Desc": "프리셋(4K, 1080p, 720p 등)을 선택하거나 커스텀 크기를 직접 입력하세요.",
+      "step3Title": "변환 및 다운로드",
+      "step3Desc": "크기 변경 버튼을 클릭하여 처리하고 결과를 다운로드하세요."
+    }
+  },
   "backgroundRemover": {
     "title": "배경 제거",
     "description": "AI를 사용하여 이미지 배경을 자동으로 제거하세요",

@@ -198,6 +198,55 @@
       "step3Desc": "Adjust FPS, scale, format, then convert and download."
     }
   },
+  "videoFormatConverter": {
+    "title": "Video Format Converter",
+    "description": "Convert video formats between MP4, WebM, MOV, and AVI",
+    "preview": "Preview",
+    "result": "Result",
+    "outputFormat": "Output Format",
+    "currentFormat": "Current Format",
+    "conversionError": "Error occurred during conversion",
+    "sharedArrayBufferError": "Your browser does not support SharedArrayBuffer. Please use a modern browser or access via HTTPS.",
+    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may be limited by browser memory"],
+    "howToUse": {
+      "title": "Video Format Converter",
+      "description": "Convert between various video formats including MP4, WebM, MOV, and AVI. All processing is done in your browser using FFmpeg WebAssembly.",
+      "step1Title": "Upload Video",
+      "step1Desc": "Drag or click to upload the video file you want to convert.",
+      "step2Title": "Select Output Format",
+      "step2Desc": "Choose your desired output format: MP4, WebM, MOV, or AVI.",
+      "step3Title": "Convert & Download",
+      "step3Desc": "Click the convert button to process and download the result."
+    }
+  },
+  "videoResizer": {
+    "title": "Video Resizer",
+    "description": "Change video resolution and dimensions",
+    "preview": "Preview",
+    "result": "Result",
+    "sizeSettings": "Size Settings",
+    "presets": "Presets",
+    "width": "Width (px)",
+    "height": "Height (px)",
+    "originalSize": "Original Size",
+    "aspectRatioLocked": "Aspect Ratio Locked",
+    "aspectRatioFree": "Aspect Ratio Free",
+    "resize": "Resize",
+    "resizing": "Resizing...",
+    "resizeError": "Error occurred during resizing",
+    "sharedArrayBufferError": "Your browser does not support SharedArrayBuffer. Please use a modern browser or access via HTTPS.",
+    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may be limited by browser memory"],
+    "howToUse": {
+      "title": "Video Resizer",
+      "description": "Change video resolution to any size you need. Supports presets and custom dimensions with aspect ratio lock.",
+      "step1Title": "Upload Video",
+      "step1Desc": "Drag or click to upload the video file you want to resize.",
+      "step2Title": "Set Size",
+      "step2Desc": "Choose a preset (4K, 1080p, 720p, etc.) or enter custom dimensions.",
+      "step3Title": "Resize & Download",
+      "step3Desc": "Click the resize button to process and download the result."
+    }
+  },
   "backgroundRemover": {
     "title": "Background Remover",
     "description": "Automatically remove image backgrounds using AI",

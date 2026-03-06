@@ -84,7 +84,11 @@
       "step3Title": "Convertir y descargar",
       "step3Desc": "Haz clic en convertir y descarga individualmente o todo a la vez."
     },
-    "constraints": ["Hasta 20 archivos, máx. 50MB cada uno", "Entrada: HEIC, SVG, PSD, RAW y más", "Salida: JPG, PNG, WebP"],
+    "constraints": [
+      "Hasta 20 archivos, máx. 50MB cada uno",
+      "Entrada: HEIC, SVG, PSD, RAW y más",
+      "Salida: JPG, PNG, WebP"
+    ],
     "faq": {
       "q1": "¿Qué es un archivo HEIC?",
       "a1": "HEIC es un formato de imagen de alta eficiencia usado por Apple desde iOS 11. Tiene tamaños de archivo más pequeños que JPG con la misma calidad.",
@@ -129,7 +133,10 @@
       "quality": "Calidad",
       "apply": "Optimizar"
     },
-    "constraints": ["Una imagen a la vez", "Procesamiento basado en memoria del navegador"],
+    "constraints": [
+      "Una imagen a la vez",
+      "Procesamiento basado en memoria del navegador"
+    ],
     "howToUse": {
       "title": "Editor de imágenes",
       "description": "Editor de imágenes en línea gratuito que soporta recorte, rotación, volteo, redimensionado y optimización. Todo el procesamiento se realiza en tu navegador.",
@@ -156,7 +163,10 @@
     "createGif": "Crear GIF",
     "creating": "Creando GIF...",
     "result": "Resultado",
-    "constraints": ["Solo archivos de imagen", "El uso de memoria aumenta con el número de frames"],
+    "constraints": [
+      "Solo archivos de imagen",
+      "El uso de memoria aumenta con el número de frames"
+    ],
     "howToUse": {
       "title": "Creador de GIF",
       "description": "Crea GIFs animados a partir de múltiples imágenes. Ajusta la velocidad y el tamaño fácilmente.",
@@ -186,7 +196,10 @@
     "preview": "Vista previa",
     "result": "Resultado",
     "extractedFrames": "Fotogramas extraídos",
-    "constraints": ["FFmpeg WASM (~30MB) se descarga en el primer uso", "Los archivos grandes pueden estar limitados por la memoria del navegador"],
+    "constraints": [
+      "FFmpeg WASM (~30MB) se descarga en el primer uso",
+      "Los archivos grandes pueden estar limitados por la memoria del navegador"
+    ],
     "howToUse": {
       "title": "Convertidor de video",
       "description": "Convierte videos a GIF, GIF a video MP4 o extrae fotogramas. Todo el procesamiento se realiza en tu navegador usando FFmpeg WebAssembly.",
@@ -198,13 +211,72 @@
       "step3Desc": "Ajusta FPS, escala, formato, luego convierte y descarga."
     }
   },
+  "videoFormatConverter": {
+    "title": "Conversor de Formato de Video",
+    "description": "Convierte formatos de video entre MP4, WebM, MOV y AVI",
+    "preview": "Vista previa",
+    "result": "Resultado",
+    "outputFormat": "Formato de salida",
+    "currentFormat": "Formato actual",
+    "conversionError": "Error durante la conversión",
+    "sharedArrayBufferError": "Su navegador no soporta SharedArrayBuffer. Use un navegador moderno o acceda por HTTPS.",
+    "constraints": [
+      "FFmpeg WASM (~30MB) se descarga en el primer uso",
+      "Los archivos grandes pueden estar limitados por la memoria del navegador"
+    ],
+    "howToUse": {
+      "title": "Conversor de Formato de Video",
+      "description": "Convierte entre varios formatos de video incluyendo MP4, WebM, MOV y AVI. Todo el procesamiento se realiza en su navegador.",
+      "step1Title": "Subir Video",
+      "step1Desc": "Arrastra o haz clic para subir el archivo de video.",
+      "step2Title": "Seleccionar Formato",
+      "step2Desc": "Elige el formato de salida: MP4, WebM, MOV o AVI.",
+      "step3Title": "Convertir y Descargar",
+      "step3Desc": "Haz clic en convertir para procesar y descargar el resultado."
+    }
+  },
+  "videoResizer": {
+    "title": "Redimensionar Video",
+    "description": "Cambia la resolución y dimensiones del video",
+    "preview": "Vista previa",
+    "result": "Resultado",
+    "sizeSettings": "Configuración de tamaño",
+    "presets": "Preajustes",
+    "width": "Ancho (px)",
+    "height": "Alto (px)",
+    "originalSize": "Tamaño original",
+    "aspectRatioLocked": "Relación de aspecto bloqueada",
+    "aspectRatioFree": "Relación de aspecto libre",
+    "resize": "Redimensionar",
+    "resizing": "Redimensionando...",
+    "resizeError": "Error al redimensionar",
+    "sharedArrayBufferError": "Su navegador no soporta SharedArrayBuffer. Use un navegador moderno o acceda por HTTPS.",
+    "constraints": [
+      "FFmpeg WASM (~30MB) se descarga en el primer uso",
+      "Los archivos grandes pueden estar limitados por la memoria del navegador"
+    ],
+    "howToUse": {
+      "title": "Redimensionador de Video",
+      "description": "Cambia la resolución del video al tamaño que necesites. Soporta preajustes y dimensiones personalizadas.",
+      "step1Title": "Subir Video",
+      "step1Desc": "Arrastra o haz clic para subir el video.",
+      "step2Title": "Configurar Tamaño",
+      "step2Desc": "Elige un preajuste (4K, 1080p, 720p, etc.) o ingresa dimensiones personalizadas.",
+      "step3Title": "Redimensionar y Descargar",
+      "step3Desc": "Haz clic en redimensionar para procesar y descargar."
+    }
+  },
   "backgroundRemover": {
     "title": "Removedor de fondo",
     "description": "Elimina automáticamente fondos de imágenes usando IA",
     "fileList": "Lista de archivos",
     "processCount": "Procesar {count} archivos",
     "downloadCount": "Descargar {count} archivos",
-    "constraints": ["Hasta 5 archivos, máx. 10MB cada uno", "Modelo de IA (~30MB) se descarga en el primer uso", "Los fondos complejos pueden afectar la precisión"],
+    "constraints": [
+      "Hasta 5 archivos, máx. 10MB cada uno",
+      "Modelo de IA (~30MB) se descarga en el primer uso",
+      "Los fondos complejos pueden afectar la precisión"
+    ],
     "aiNotice": "Eliminación de fondo con IA",
     "aiNoticeDesc": "El modelo de IA (~30MB) se descargará en el primer uso. Todo el procesamiento se realiza en tu navegador para total privacidad.",
     "features": {
@@ -267,7 +339,10 @@
       "newTab": "Abrir en nueva pestaña",
       "warning": "Las URLs Blob solo son válidas en esta sesión del navegador."
     },
-    "constraints": ["Data URL es ~133% del tamaño del archivo original", "Se recomienda Blob URL o almacenamiento en la nube para archivos grandes"],
+    "constraints": [
+      "Data URL es ~133% del tamaño del archivo original",
+      "Se recomienda Blob URL o almacenamiento en la nube para archivos grandes"
+    ],
     "howToUse": {
       "title": "Generador de URL",
       "description": "Convierte imágenes y videos a URLs compartibles. Base64 para incrustar, Blob para uso temporal, Nube para compartir permanente.",
@@ -312,7 +387,10 @@
       "step3Title": "Comprimir y Descargar",
       "step3Desc": "Haz clic en comprimir y descarga individualmente o todo a la vez."
     },
-    "constraints": ["Hasta 20 archivos, máx. 50MB cada uno", "Formatos soportados: JPG, PNG, WebP, GIF"],
+    "constraints": [
+      "Hasta 20 archivos, máx. 50MB cada uno",
+      "Formatos soportados: JPG, PNG, WebP, GIF"
+    ],
     "faq": {
       "q1": "¿Qué formatos son compatibles?",
       "a1": "Se admiten formatos JPG, PNG, WebP y GIF. Los archivos comprimidos se guardan en el mismo formato que el original.",
@@ -368,7 +446,9 @@
       "batch": "Procesamiento por Lotes",
       "batchDesc": "Aplicar la misma marca de agua a múltiples imágenes a la vez."
     },
-    "constraints": ["Hasta 20 archivos, máx. 50MB cada uno"],
+    "constraints": [
+      "Hasta 20 archivos, máx. 50MB cada uno"
+    ],
     "howToUse": {
       "title": "Herramienta de Marca de Agua",
       "description": "Agregar marcas de agua de texto o imagen para proteger tus derechos de autor. Todo el procesamiento se realiza en tu navegador.",
@@ -398,7 +478,10 @@
     "generating": "Generando...",
     "generate": "Generar Meme",
     "result": "Resultado",
-    "constraints": ["Una imagen a la vez", "Máx. 50MB por archivo"],
+    "constraints": [
+      "Una imagen a la vez",
+      "Máx. 50MB por archivo"
+    ],
     "howToUse": {
       "title": "Generador de Memes",
       "description": "Agregar texto de meme a imágenes para crear contenido divertido. Ver resultados instantáneamente con vista previa en vivo.",
@@ -426,7 +509,11 @@
     "detectedFaces": "{count} rostros detectados",
     "facesFound": "rostros detectados",
     "fileList": "Lista de Archivos",
-    "constraints": ["Hasta 10 archivos, máx. 50MB cada uno", "Modelo de IA se descarga en el primer uso", "La detección facial no es 100% precisa"],
+    "constraints": [
+      "Hasta 10 archivos, máx. 50MB cada uno",
+      "Modelo de IA se descarga en el primer uso",
+      "La detección facial no es 100% precisa"
+    ],
     "aiNotice": "Detección Facial con IA",
     "aiNoticeDesc": "El modelo de IA se descargará en el primer uso. Todo el procesamiento se realiza en tu navegador para privacidad total.",
     "features": {
@@ -474,7 +561,10 @@
       "size": "Tamaño Personalizado",
       "sizeDesc": "Establecer ancho y alto personalizados para la imagen de salida."
     },
-    "constraints": ["Recursos externos (imágenes, fuentes) sujetos a restricciones CORS", "Resolución máxima: 4000×4000px"],
+    "constraints": [
+      "Recursos externos (imágenes, fuentes) sujetos a restricciones CORS",
+      "Resolución máxima: 4000×4000px"
+    ],
     "howToUse": {
       "title": "Convertidor HTML a Imagen",
       "description": "Ingresa código HTML/CSS y convierte a imágenes. Crear banners, tarjetas e imágenes sociales desde código.",
@@ -489,7 +579,12 @@
   "imageUpscaler": {
     "title": "Escalador de Imágenes",
     "description": "Escalar imágenes de baja resolución a alta resolución usando modelos de IA.",
-    "constraints": ["Hasta 5 archivos, máx. 20MB cada uno", "Modelo de IA (~80MB) se descarga en el primer uso", "Se recomienda navegador de escritorio", "Las imágenes grandes pueden tardar más en procesarse"],
+    "constraints": [
+      "Hasta 5 archivos, máx. 20MB cada uno",
+      "Modelo de IA (~80MB) se descarga en el primer uso",
+      "Se recomienda navegador de escritorio",
+      "Las imágenes grandes pueden tardar más en procesarse"
+    ],
     "desktopNotice": "Se recomienda escritorio",
     "desktopNoticeDesc": "El escalado con IA requiere recursos de cómputo significativos. Mejor rendimiento en navegadores de escritorio.",
     "settings": "Configuración de Escalado",

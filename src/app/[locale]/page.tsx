@@ -2,13 +2,15 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { ArrowRight, Shield, Zap, Globe, ChevronRight } from 'lucide-react';
+import { ArrowRight, Shield, Zap, Globe } from 'lucide-react';
 import {
   ImageConverterIcon,
   ImageCompressorIcon,
   ImageEditorIcon,
   GifMakerIcon,
   VideoConverterIcon,
+  VideoFormatIcon,
+  VideoResizerIcon,
   UrlGeneratorIcon,
   BackgroundRemoverIcon,
   WatermarkIcon,
@@ -18,114 +20,43 @@ import {
   UpscalerIcon,
 } from '@/components/icons/FeatureIcons';
 
+// Swiss Modernism + Exaggerated Minimalism: Pink + Cyan color system
 const accentConfig = {
+  pink: {
+    bg: 'bg-[#EC4899]',
+    hover: 'hover:bg-[#F472B6]',
+    text: 'text-[#EC4899]',
+    border: 'border-[#EC4899]',
+  },
   cyan: {
-    bg: 'bg-[oklch(0.75_0.18_195)]',
-    bgHover: 'group-hover:bg-[oklch(0.80_0.20_195)]',
-    border: 'border-[oklch(0.75_0.18_195/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.75_0.18_195/0.4)]',
-    text: 'text-[oklch(0.80_0.20_195)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.75_0.18_195/0.25)]',
-    badge: 'bg-[oklch(0.75_0.18_195/0.1)] text-[oklch(0.80_0.20_195)]',
-  },
-  violet: {
-    bg: 'bg-[oklch(0.65_0.22_290)]',
-    bgHover: 'group-hover:bg-[oklch(0.70_0.26_290)]',
-    border: 'border-[oklch(0.65_0.22_290/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.65_0.22_290/0.4)]',
-    text: 'text-[oklch(0.70_0.26_290)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.65_0.22_290/0.25)]',
-    badge: 'bg-[oklch(0.65_0.22_290/0.1)] text-[oklch(0.70_0.26_290)]',
-  },
-  emerald: {
-    bg: 'bg-[oklch(0.72_0.17_160)]',
-    bgHover: 'group-hover:bg-[oklch(0.78_0.20_160)]',
-    border: 'border-[oklch(0.72_0.17_160/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.72_0.17_160/0.4)]',
-    text: 'text-[oklch(0.78_0.20_160)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.72_0.17_160/0.25)]',
-    badge: 'bg-[oklch(0.72_0.17_160/0.1)] text-[oklch(0.78_0.20_160)]',
-  },
-  amber: {
-    bg: 'bg-[oklch(0.80_0.18_80)]',
-    bgHover: 'group-hover:bg-[oklch(0.85_0.22_80)]',
-    border: 'border-[oklch(0.80_0.18_80/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.80_0.18_80/0.4)]',
-    text: 'text-[oklch(0.85_0.22_80)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.80_0.18_80/0.25)]',
-    badge: 'bg-[oklch(0.80_0.18_80/0.1)] text-[oklch(0.85_0.22_80)]',
-  },
-  magenta: {
-    bg: 'bg-[oklch(0.70_0.20_330)]',
-    bgHover: 'group-hover:bg-[oklch(0.75_0.25_330)]',
-    border: 'border-[oklch(0.70_0.20_330/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.70_0.20_330/0.4)]',
-    text: 'text-[oklch(0.75_0.25_330)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.20_330/0.25)]',
-    badge: 'bg-[oklch(0.70_0.20_330/0.1)] text-[oklch(0.75_0.25_330)]',
-  },
-  teal: {
-    bg: 'bg-[oklch(0.75_0.17_175)]',
-    bgHover: 'group-hover:bg-[oklch(0.80_0.20_175)]',
-    border: 'border-[oklch(0.75_0.17_175/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.75_0.17_175/0.4)]',
-    text: 'text-[oklch(0.80_0.20_175)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.75_0.17_175/0.25)]',
-    badge: 'bg-[oklch(0.75_0.17_175/0.1)] text-[oklch(0.80_0.20_175)]',
-  },
-  purple: {
-    bg: 'bg-[oklch(0.70_0.20_290)]',
-    bgHover: 'group-hover:bg-[oklch(0.75_0.25_290)]',
-    border: 'border-[oklch(0.70_0.20_290/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.70_0.20_290/0.4)]',
-    text: 'text-[oklch(0.75_0.25_290)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.20_290/0.25)]',
-    badge: 'bg-[oklch(0.70_0.20_290/0.1)] text-[oklch(0.75_0.25_290)]',
-  },
-  indigo: {
-    bg: 'bg-[oklch(0.65_0.20_275)]',
-    bgHover: 'group-hover:bg-[oklch(0.70_0.23_275)]',
-    border: 'border-[oklch(0.65_0.20_275/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.65_0.20_275/0.4)]',
-    text: 'text-[oklch(0.70_0.23_275)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.65_0.20_275/0.25)]',
-    badge: 'bg-[oklch(0.65_0.20_275/0.1)] text-[oklch(0.70_0.23_275)]',
+    bg: 'bg-[#06B6D4]',
+    hover: 'hover:bg-[#22D3EE]',
+    text: 'text-[#06B6D4]',
+    border: 'border-[#06B6D4]',
   },
   orange: {
-    bg: 'bg-[oklch(0.78_0.16_55)]',
-    bgHover: 'group-hover:bg-[oklch(0.83_0.18_55)]',
-    border: 'border-[oklch(0.78_0.16_55/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.78_0.16_55/0.4)]',
-    text: 'text-[oklch(0.83_0.18_55)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.78_0.16_55/0.25)]',
-    badge: 'bg-[oklch(0.78_0.16_55/0.1)] text-[oklch(0.83_0.18_55)]',
+    bg: 'bg-[#F97316]',
+    hover: 'hover:bg-[#FB923C]',
+    text: 'text-[#F97316]',
+    border: 'border-[#F97316]',
   },
-  rose: {
-    bg: 'bg-[oklch(0.70_0.22_25)]',
-    bgHover: 'group-hover:bg-[oklch(0.75_0.25_25)]',
-    border: 'border-[oklch(0.70_0.22_25/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.70_0.22_25/0.4)]',
-    text: 'text-[oklch(0.75_0.25_25)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.22_25/0.25)]',
-    badge: 'bg-[oklch(0.70_0.22_25/0.1)] text-[oklch(0.75_0.25_25)]',
+  purple: {
+    bg: 'bg-[#A855F7]',
+    hover: 'hover:bg-[#C084FC]',
+    text: 'text-[#A855F7]',
+    border: 'border-[#A855F7]',
   },
-  lime: {
-    bg: 'bg-[oklch(0.70_0.17_145)]',
-    bgHover: 'group-hover:bg-[oklch(0.75_0.20_145)]',
-    border: 'border-[oklch(0.70_0.17_145/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.70_0.17_145/0.4)]',
-    text: 'text-[oklch(0.75_0.20_145)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.17_145/0.25)]',
-    badge: 'bg-[oklch(0.70_0.17_145/0.1)] text-[oklch(0.75_0.20_145)]',
+  emerald: {
+    bg: 'bg-[#10B981]',
+    hover: 'hover:bg-[#34D399]',
+    text: 'text-[#10B981]',
+    border: 'border-[#10B981]',
   },
-  sky: {
-    bg: 'bg-[oklch(0.70_0.18_280)]',
-    bgHover: 'group-hover:bg-[oklch(0.75_0.20_280)]',
-    border: 'border-[oklch(0.70_0.18_280/0.2)]',
-    borderHover: 'group-hover:border-[oklch(0.70_0.18_280/0.4)]',
-    text: 'text-[oklch(0.75_0.20_280)]',
-    glow: 'group-hover:shadow-[0_0_40px_oklch(0.70_0.18_280/0.25)]',
-    badge: 'bg-[oklch(0.70_0.18_280/0.1)] text-[oklch(0.75_0.20_280)]',
+  yellow: {
+    bg: 'bg-[#FBBF24]',
+    hover: 'hover:bg-[#FCD34D]',
+    text: 'text-[#FBBF24]',
+    border: 'border-[#FBBF24]',
   },
 };
 
@@ -139,8 +70,8 @@ export default function Home() {
       descKey: 'imageConverter.description',
       icon: ImageConverterIcon,
       href: '/image-converter',
-      accent: 'cyan',
-      features: ['HEIC → JPG', 'PNG → WebP', t('imageConverter.quality')],
+      accent: 'pink',
+      number: '01',
     },
     {
       id: 'image-compressor',
@@ -148,8 +79,8 @@ export default function Home() {
       descKey: 'imageCompressor.description',
       icon: ImageCompressorIcon,
       href: '/image-compressor',
-      accent: 'teal',
-      features: [t('imageCompressor.features.quality'), t('imageCompressor.features.maxSize'), t('imageCompressor.features.batch')],
+      accent: 'cyan',
+      number: '02',
     },
     {
       id: 'image-editor',
@@ -157,8 +88,8 @@ export default function Home() {
       descKey: 'imageEditor.description',
       icon: ImageEditorIcon,
       href: '/image-editor',
-      accent: 'violet',
-      features: [t('imageEditor.toolbar.crop'), t('imageEditor.toolbar.rotate'), t('imageEditor.toolbar.optimize')],
+      accent: 'purple',
+      number: '03',
     },
     {
       id: 'watermark',
@@ -166,8 +97,8 @@ export default function Home() {
       descKey: 'watermark.description',
       icon: WatermarkIcon,
       href: '/watermark',
-      accent: 'indigo',
-      features: [t('watermark.features.text'), t('watermark.features.image'), t('watermark.features.tile')],
+      accent: 'emerald',
+      number: '04',
     },
     {
       id: 'meme-generator',
@@ -176,7 +107,7 @@ export default function Home() {
       icon: MemeGeneratorIcon,
       href: '/meme-generator',
       accent: 'orange',
-      features: [t('memeGenerator.topText'), t('memeGenerator.bottomText'), t('memeGenerator.font')],
+      number: '05',
     },
     {
       id: 'background-remover',
@@ -185,7 +116,7 @@ export default function Home() {
       icon: BackgroundRemoverIcon,
       href: '/background-remover',
       accent: 'purple',
-      features: ['AI ' + t('backgroundRemover.features.ai').split(' ')[0], 'PNG', t('backgroundRemover.features.batch')],
+      number: '06',
     },
     {
       id: 'face-blur',
@@ -193,8 +124,8 @@ export default function Home() {
       descKey: 'faceBlur.description',
       icon: FaceBlurIcon,
       href: '/face-blur',
-      accent: 'rose',
-      features: [t('faceBlur.features.auto'), t('faceBlur.features.blur'), t('faceBlur.features.mosaic')],
+      accent: 'pink',
+      number: '07',
     },
     {
       id: 'html-to-image',
@@ -202,8 +133,8 @@ export default function Home() {
       descKey: 'htmlToImage.description',
       icon: HtmlToImageIcon,
       href: '/html-to-image',
-      accent: 'lime',
-      features: ['HTML/CSS', t('htmlToImage.features.preview'), 'PNG/JPG/SVG'],
+      accent: 'yellow',
+      number: '08',
     },
     {
       id: 'image-upscaler',
@@ -211,8 +142,8 @@ export default function Home() {
       descKey: 'imageUpscaler.description',
       icon: UpscalerIcon,
       href: '/image-upscaler',
-      accent: 'sky',
-      features: ['AI', '2x/3x/4x', t('imageUpscaler.features.compare')],
+      accent: 'cyan',
+      number: '09',
     },
     {
       id: 'gif-maker',
@@ -221,7 +152,7 @@ export default function Home() {
       icon: GifMakerIcon,
       href: '/gif-maker',
       accent: 'emerald',
-      features: ['Image → GIF', t('gifMaker.frameDelay'), t('gifMaker.outputSize')],
+      number: '10',
     },
     {
       id: 'video-converter',
@@ -229,8 +160,26 @@ export default function Home() {
       descKey: 'videoConverter.description',
       icon: VideoConverterIcon,
       href: '/video-converter',
-      accent: 'amber',
-      features: [t('videoConverter.mode.videoToGif'), t('videoConverter.mode.gifToVideo'), t('videoConverter.mode.extractFrames')],
+      accent: 'orange',
+      number: '11',
+    },
+    {
+      id: 'video-format-converter',
+      nameKey: 'videoFormatConverter.title',
+      descKey: 'videoFormatConverter.description',
+      icon: VideoFormatIcon,
+      href: '/video-format-converter',
+      accent: 'cyan',
+      number: '12',
+    },
+    {
+      id: 'video-resizer',
+      nameKey: 'videoResizer.title',
+      descKey: 'videoResizer.description',
+      icon: VideoResizerIcon,
+      href: '/video-resizer',
+      accent: 'purple',
+      number: '13',
     },
     {
       id: 'url-generator',
@@ -238,8 +187,8 @@ export default function Home() {
       descKey: 'urlGenerator.description',
       icon: UrlGeneratorIcon,
       href: '/url-generator',
-      accent: 'magenta',
-      features: ['Base64 URL', 'Blob URL', t('urlGenerator.types.r2')],
+      accent: 'pink',
+      number: '14',
     },
   ];
 
@@ -248,100 +197,96 @@ export default function Home() {
       icon: Shield,
       titleKey: 'home.privacyTitle',
       descKey: 'home.privacyDesc',
+      color: '#EC4899',
     },
     {
       icon: Zap,
       titleKey: 'home.speedTitle',
       descKey: 'home.speedDesc',
+      color: '#06B6D4',
     },
     {
       icon: Globe,
       titleKey: 'home.freeTitle',
       descKey: 'home.freeDesc',
+      color: '#F97316',
     },
   ];
 
   return (
-    <div className="min-h-full">
-      {/* Hero Section - Editorial Style */}
-      <section className="relative overflow-hidden bg-gradient-mesh">
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(1_0_0/0.03)_1px,transparent_1px),linear-gradient(to_bottom,oklch(1_0_0/0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+    <div className="min-h-full bg-white">
+      {/* Hero Section - Exaggerated Minimalism */}
+      <section className="relative overflow-hidden border-b-4 border-black">
+        {/* Subtle Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
-        {/* Floating Orbs */}
-        <div className="absolute top-20 left-[10%] w-64 h-64 bg-[oklch(0.75_0.18_195/0.15)] rounded-full blur-[100px] animate-float" />
-        <div className="absolute bottom-20 right-[15%] w-48 h-48 bg-[oklch(0.70_0.20_330/0.12)] rounded-full blur-[80px] animate-float" style={{ animationDelay: '-2s' }} />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-            {/* Left Content - Typography Heavy */}
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-12 py-16 lg:py-24">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
+            {/* Left - Giant Typography */}
             <div className="lg:col-span-7 space-y-8">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[oklch(1_0_0/0.1)] bg-[oklch(1_0_0/0.03)]">
-                <Shield className="w-4 h-4 text-[oklch(0.72_0.17_160)]" />
-                <span className="text-sm text-[oklch(0.70_0.02_240)]">{t('common.browserProcessing')}</span>
-                <span className="text-[oklch(0.50_0.02_240)]">·</span>
-                <span className="text-sm text-[oklch(0.70_0.02_240)]">{t('common.noServerUpload')}</span>
+              {/* Small Label */}
+              <div className="inline-flex items-center gap-3 px-0">
+                <div className="w-2 h-2 bg-[#EC4899] rotate-45" />
+                <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold">
+                  {t('common.browserProcessing')}
+                </span>
               </div>
 
-              {/* Headline */}
-              <div className="space-y-4">
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.95]">
-                  <span className="text-[oklch(0.95_0.01_80)]">Media</span>{' '}
-                  <span className="text-[oklch(0.75_0.18_195)]">Utility</span>
+              {/* Giant Headline - Exaggerated */}
+              <div className="space-y-2">
+                <h1
+                  className="font-black tracking-[-0.05em] leading-[0.85]"
+                  style={{ fontSize: 'clamp(3.5rem, 12vw, 9rem)' }}
+                >
+                  <span className="text-black">Media</span>
+                  <br />
+                  <span className="text-[#EC4899]">Utility</span>
                 </h1>
-                <p className="text-xl sm:text-2xl text-[oklch(0.60_0.02_240)] max-w-lg leading-relaxed">
-                  {t('home.subtitle')}
-                </p>
+                <div className="w-20 h-1.5 bg-[#06B6D4]" />
               </div>
 
-              {/* Description */}
-              <p className="text-[oklch(0.55_0.02_240)] max-w-xl leading-relaxed">
-                {t('home.description')}
+              {/* Subtitle */}
+              <p className="text-xl lg:text-2xl text-gray-900 max-w-xl font-medium leading-relaxed">
+                {t('home.subtitle')}
               </p>
 
-              {/* CTA Buttons */}
+              {/* CTA */}
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link
                   href="/image-converter"
-                  className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[oklch(0.75_0.18_195)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:shadow-[0_0_40px_oklch(0.75_0.18_195/0.4)]"
+                  className="group inline-flex items-center gap-3 px-8 py-4 bg-black text-white font-bold text-lg border-4 border-black hover:bg-white hover:text-black transition-all duration-200 cursor-pointer"
                 >
                   {t('common.startNow')}
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-[oklch(1_0_0/0.2)] to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer" />
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2 duration-200" />
                 </Link>
                 <Link
                   href="#tools"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[oklch(1_0_0/0.1)] text-[oklch(0.80_0.02_240)] font-medium hover:bg-[oklch(1_0_0/0.05)] hover:border-[oklch(1_0_0/0.2)] transition-all"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold text-lg border-4 border-black hover:bg-black hover:text-white transition-all duration-200 cursor-pointer"
                 >
                   {t('common.exploreFunctions')}
-                  <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
 
-            {/* Right Side - Stats/Info Cards */}
-            <div className="lg:col-span-5 space-y-4">
+            {/* Right - Feature Blocks */}
+            <div className="lg:col-span-5 space-y-1">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
                 return (
                   <div
                     key={feature.titleKey}
-                    className={`
-                      group p-5 rounded-xl border border-[oklch(1_0_0/0.06)] bg-[oklch(0.12_0.015_250/0.5)]
-                      hover:border-[oklch(1_0_0/0.12)] hover:bg-[oklch(0.14_0.02_250/0.6)]
-                      transition-all duration-300 backdrop-blur-sm
-                      opacity-0 animate-fade-up
-                    `}
-                    style={{ animationDelay: `${0.2 + index * 0.1}s`, animationFillMode: 'forwards' }}
+                    className="group p-6 border-4 border-black bg-white hover:bg-black hover:text-white transition-all duration-200 cursor-pointer"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[oklch(0.20_0.03_240)] flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon className="w-5 h-5 text-[oklch(0.75_0.18_195)]" />
+                      <div
+                        className="flex-shrink-0 w-12 h-12 flex items-center justify-center border-4 border-current group-hover:rotate-12 transition-transform duration-200"
+                        style={{ color: feature.color }}
+                      >
+                        <Icon className="w-6 h-6" strokeWidth={2.5} />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[oklch(0.95_0.01_80)] mb-1">{t(feature.titleKey)}</h3>
-                        <p className="text-sm text-[oklch(0.55_0.02_240)] leading-relaxed">{t(feature.descKey)}</p>
+                        <h3 className="font-black text-lg mb-1 uppercase tracking-wide text-black group-hover:text-white">{t(feature.titleKey)}</h3>
+                        <p className="text-sm leading-relaxed text-gray-900 group-hover:text-white">{t(feature.descKey)}</p>
                       </div>
                     </div>
                   </div>
@@ -352,78 +297,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tools Grid - Asymmetric Bento Layout */}
-      <section id="tools" className="py-24 bg-[oklch(0.08_0.01_240)]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section Header - Left Aligned Editorial */}
-          <div className="max-w-xl mb-16">
-            <span className="font-mono text-xs text-[oklch(0.75_0.18_195)] uppercase tracking-widest">{t('home.tools')}</span>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tighter text-[oklch(0.95_0.01_80)]">
-              {t('home.selectTool')}
-            </h2>
+      {/* Tools Grid - Swiss Grid System */}
+      <section id="tools" className="py-20 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          {/* Section Header */}
+          <div className="mb-16 pb-8 border-b-4 border-black">
+            <div className="flex items-end justify-between">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold text-[#EC4899]">
+                  {t('home.tools')}
+                </span>
+                <h2 className="mt-2 text-5xl lg:text-7xl font-black tracking-[-0.03em] text-black">
+                  {t('home.selectTool')}
+                </h2>
+              </div>
+              <div className="hidden lg:block text-6xl font-black text-gray-300">14</div>
+            </div>
           </div>
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {tools.map((tool, index) => {
+          {/* Grid - 12 Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+            {tools.map((tool) => {
               const Icon = tool.icon;
               const accent = accentConfig[tool.accent as keyof typeof accentConfig];
-              const isLarge = index === 0 || index === 3;
 
               return (
                 <Link
                   key={tool.id}
                   href={tool.href}
-                  className={`
-                    group relative p-6 rounded-2xl border bg-[oklch(0.10_0.015_250)]
-                    ${accent.border} ${accent.borderHover} ${accent.glow}
-                    transition-all duration-500
-                    ${isLarge ? 'md:col-span-2 lg:col-span-1' : ''}
-                    opacity-0 animate-fade-up
-                  `}
-                  style={{ animationDelay: `${0.1 + index * 0.08}s`, animationFillMode: 'forwards' }}
+                  className="group relative bg-white border-4 border-black p-6 hover:bg-black hover:text-white transition-all duration-200 cursor-pointer overflow-hidden"
                 >
-                  {/* Gradient Overlay on Hover */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[oklch(1_0_0/0.02)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  {/* Number - Large Background */}
+                  <div className="absolute top-4 right-4 text-7xl font-black text-gray-100 group-hover:text-white/5 transition-colors duration-200">
+                    {tool.number}
+                  </div>
 
                   <div className="relative space-y-4">
                     {/* Icon */}
-                    <div className={`
-                      inline-flex items-center justify-center w-12 h-12 rounded-xl
-                      ${accent.bg} ${accent.bgHover} transition-colors
-                    `}>
-                      <Icon size={24} className="text-[oklch(0.08_0.01_240)]" />
+                    <div className={`inline-flex items-center justify-center w-14 h-14 border-4 border-current ${accent.text} group-hover:border-white group-hover:text-white transition-all duration-200`}>
+                      <Icon size={28} strokeWidth={2.5} />
                     </div>
 
                     {/* Content */}
                     <div>
-                      <h3 className="text-xl font-semibold text-[oklch(0.95_0.01_80)] mb-2 group-hover:text-[oklch(1_0.01_80)] transition-colors">
+                      <h3 className="text-xl font-black uppercase tracking-wide mb-2 leading-tight text-black group-hover:text-white">
                         {t(tool.nameKey)}
                       </h3>
-                      <p className="text-sm text-[oklch(0.55_0.02_240)] leading-relaxed mb-4">
+                      <p className="text-sm leading-relaxed text-gray-900 group-hover:text-white">
                         {t(tool.descKey)}
                       </p>
                     </div>
 
-                    {/* Feature Tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {tool.features.map((feature) => (
-                        <span
-                          key={feature}
-                          className={`
-                            px-2.5 py-1 rounded-md text-xs font-medium
-                            ${accent.badge}
-                          `}
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-
                     {/* Arrow */}
-                    <div className={`flex items-center gap-1 text-sm font-medium ${accent.text} mt-4`}>
+                    <div className="flex items-center gap-2 text-sm font-bold uppercase pt-2 text-black group-hover:text-white">
                       <span>{t('common.startNow')}</span>
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2 duration-200" />
                     </div>
                   </div>
                 </Link>
@@ -433,36 +361,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-24 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.08_0.01_240)] via-[oklch(0.10_0.02_250)] to-[oklch(0.08_0.01_240)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(1_0_0/0.02)_1px,transparent_1px),linear-gradient(to_bottom,oklch(1_0_0/0.02)_1px,transparent_1px)] bg-[size:6rem_6rem]" />
+      {/* CTA Section - Bold Statement */}
+      <section className="relative py-32 bg-black text-white overflow-hidden">
+        {/* Accent Squares */}
+        <div className="absolute top-10 right-10 w-32 h-32 bg-[#EC4899] rotate-12 opacity-20" />
+        <div className="absolute bottom-10 left-10 w-40 h-40 bg-[#06B6D4] -rotate-12 opacity-20" />
 
-        {/* Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[oklch(0.75_0.18_195/0.08)] rounded-full blur-[120px]" />
+        <div className="relative mx-auto max-w-5xl px-6 lg:px-12 text-center">
+          <div className="space-y-12">
+            <div>
+              <div className="inline-flex items-center gap-3 mb-6">
+                <div className="w-3 h-3 bg-[#06B6D4] rotate-45" />
+                <span className="font-mono text-sm uppercase tracking-[0.2em] font-bold">
+                  {t('home.noInstall')}
+                </span>
+                <div className="w-3 h-3 bg-[#EC4899] rotate-45" />
+              </div>
 
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[oklch(0.72_0.17_160/0.3)] bg-[oklch(0.72_0.17_160/0.1)]">
-              <Zap className="w-4 h-4 text-[oklch(0.78_0.20_160)]" />
-              <span className="text-sm font-medium text-[oklch(0.78_0.20_160)]">{t('home.noInstall')}</span>
+              <h2 className="text-5xl lg:text-7xl font-black tracking-[-0.03em] leading-tight">
+                {t('home.ctaTitle')}
+              </h2>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter text-[oklch(0.95_0.01_80)]">
-              {t('home.ctaTitle')}
-            </h2>
-
-            <p className="text-[oklch(0.55_0.02_240)] max-w-xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-2xl mx-auto font-medium">
               {t('home.ctaDesc')}
             </p>
 
             <Link
               href="/image-converter"
-              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-[oklch(0.95_0.01_80)] text-[oklch(0.08_0.01_240)] font-semibold text-lg transition-all hover:shadow-[0_0_50px_oklch(0.95_0.01_80/0.3)]"
+              className="group inline-flex items-center gap-4 px-12 py-5 bg-white text-black font-black text-xl border-4 border-white hover:bg-[#EC4899] hover:border-[#EC4899] hover:text-white transition-all duration-200 cursor-pointer"
             >
               {t('common.startNow')}
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-2 duration-200" strokeWidth={3} />
             </Link>
           </div>
         </div>

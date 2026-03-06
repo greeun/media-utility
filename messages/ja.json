@@ -84,7 +84,11 @@
       "step3Title": "変換してダウンロード",
       "step3Desc": "変換をクリックし、完了後に個別または一括でダウンロード。"
     },
-    "constraints": ["最大20ファイル、1ファイルあたり50MB", "入力: HEIC, SVG, PSD, RAWなど", "出力: JPG, PNG, WebP"],
+    "constraints": [
+      "最大20ファイル、1ファイルあたり50MB",
+      "入力: HEIC, SVG, PSD, RAWなど",
+      "出力: JPG, PNG, WebP"
+    ],
     "faq": {
       "q1": "HEIC ファイルとは？",
       "a1": "HEIC は Apple が iOS 11 から採用した高効率画像形式です。JPG より小さいファイルサイズで同等の画質を維持します。",
@@ -129,7 +133,10 @@
       "quality": "品質",
       "apply": "最適化"
     },
-    "constraints": ["画像1枚ずつ編集", "ブラウザメモリベースの処理"],
+    "constraints": [
+      "画像1枚ずつ編集",
+      "ブラウザメモリベースの処理"
+    ],
     "howToUse": {
       "title": "画像エディタ",
       "description": "切り抜き、回転、反転、リサイズ、最適化をサポートする無料オンライン画像エディタ。すべての処理はブラウザで行われます。",
@@ -156,7 +163,10 @@
     "createGif": "GIF を作成",
     "creating": "GIF 作成中...",
     "result": "結果",
-    "constraints": ["画像ファイルのみ対応", "フレーム数に応じてメモリ使用量が増加"],
+    "constraints": [
+      "画像ファイルのみ対応",
+      "フレーム数に応じてメモリ使用量が増加"
+    ],
     "howToUse": {
       "title": "GIF メーカー",
       "description": "複数の画像からアニメーション GIF を作成。速度とサイズを調整して簡単に GIF アニメーションを作れます。",
@@ -186,7 +196,10 @@
     "preview": "プレビュー",
     "result": "結果",
     "extractedFrames": "抽出されたフレーム",
-    "constraints": ["FFmpeg WASM(~30MB) 初回使用時にダウンロード", "大容量ファイルはブラウザメモリの制限を受ける場合があります"],
+    "constraints": [
+      "FFmpeg WASM(~30MB) 初回使用時にダウンロード",
+      "大容量ファイルはブラウザメモリの制限を受ける場合があります"
+    ],
     "howToUse": {
       "title": "動画コンバーター",
       "description": "動画を GIF に、GIF を MP4 動画に、動画からフレームを抽出。FFmpeg WebAssembly を使用してブラウザですべての処理を行います。",
@@ -198,13 +211,72 @@
       "step3Desc": "FPS、スケール、形式を調整し、変換してダウンロード。"
     }
   },
+  "videoFormatConverter": {
+    "title": "動画フォーマット変換",
+    "description": "MP4、WebM、MOV、AVI間で動画フォーマットを変換",
+    "preview": "プレビュー",
+    "result": "結果",
+    "outputFormat": "出力フォーマット",
+    "currentFormat": "現在のフォーマット",
+    "conversionError": "変換中にエラーが発生しました",
+    "sharedArrayBufferError": "お使いのブラウザはSharedArrayBufferをサポートしていません。最新のブラウザを使用するかHTTPSでアクセスしてください。",
+    "constraints": [
+      "FFmpeg WASM（約30MB）は初回使用時にダウンロード",
+      "大きなファイルはブラウザのメモリ制限の影響を受ける可能性があります"
+    ],
+    "howToUse": {
+      "title": "動画フォーマット変換ツール",
+      "description": "MP4、WebM、MOV、AVIなど様々な動画フォーマット間の変換をサポート。FFmpeg WebAssemblyを使用してブラウザ内で処理します。",
+      "step1Title": "動画をアップロード",
+      "step1Desc": "変換したい動画ファイルをドラッグまたはクリックしてアップロード。",
+      "step2Title": "出力フォーマットを選択",
+      "step2Desc": "MP4、WebM、MOV、AVIから出力フォーマットを選択。",
+      "step3Title": "変換してダウンロード",
+      "step3Desc": "変換ボタンをクリックして処理し、結果をダウンロード。"
+    }
+  },
+  "videoResizer": {
+    "title": "動画サイズ変更",
+    "description": "動画の解像度とサイズを変更",
+    "preview": "プレビュー",
+    "result": "結果",
+    "sizeSettings": "サイズ設定",
+    "presets": "プリセット",
+    "width": "幅 (px)",
+    "height": "高さ (px)",
+    "originalSize": "元のサイズ",
+    "aspectRatioLocked": "アスペクト比固定",
+    "aspectRatioFree": "アスペクト比自由",
+    "resize": "サイズ変更",
+    "resizing": "サイズ変更中...",
+    "resizeError": "サイズ変更中にエラーが発生しました",
+    "sharedArrayBufferError": "お使いのブラウザはSharedArrayBufferをサポートしていません。最新のブラウザを使用するかHTTPSでアクセスしてください。",
+    "constraints": [
+      "FFmpeg WASM（約30MB）は初回使用時にダウンロード",
+      "大きなファイルはブラウザのメモリ制限の影響を受ける可能性があります"
+    ],
+    "howToUse": {
+      "title": "動画サイズ変更ツール",
+      "description": "動画の解像度を必要なサイズに変更。プリセットとカスタムサイズをサポートし、アスペクト比の固定も可能。",
+      "step1Title": "動画をアップロード",
+      "step1Desc": "サイズを変更したい動画ファイルをドラッグまたはクリックしてアップロード。",
+      "step2Title": "サイズを設定",
+      "step2Desc": "プリセット（4K、1080p、720p等）を選択するかカスタムサイズを入力。",
+      "step3Title": "サイズ変更してダウンロード",
+      "step3Desc": "サイズ変更ボタンをクリックして処理し、結果をダウンロード。"
+    }
+  },
   "backgroundRemover": {
     "title": "背景除去",
     "description": "AIを使用して画像の背景を自動的に除去",
     "fileList": "ファイル一覧",
     "processCount": "{count} ファイルを処理",
     "downloadCount": "{count} ファイルをダウンロード",
-    "constraints": ["最大5ファイル、1ファイルあたり10MB", "AIモデル(~30MB) 初回使用時にダウンロード", "複雑な背景は結果が異なる場合があります"],
+    "constraints": [
+      "最大5ファイル、1ファイルあたり10MB",
+      "AIモデル(~30MB) 初回使用時にダウンロード",
+      "複雑な背景は結果が異なる場合があります"
+    ],
     "aiNotice": "AI ベースの背景除去",
     "aiNoticeDesc": "初回実行時に AI モデル（約30MB）をダウンロードします。すべての処理はブラウザで行われ、プライバシーが保護されます。",
     "features": {
@@ -267,7 +339,10 @@
       "newTab": "新しいタブで開く",
       "warning": "Blob URL はこのブラウザセッションでのみ有効です。"
     },
-    "constraints": ["Data URLは元ファイルの約133%のサイズ", "大容量ファイルにはBlob URLまたはクラウドストレージを推奨"],
+    "constraints": [
+      "Data URLは元ファイルの約133%のサイズ",
+      "大容量ファイルにはBlob URLまたはクラウドストレージを推奨"
+    ],
     "howToUse": {
       "title": "URL ジェネレーター",
       "description": "画像と動画を共有可能な URL に変換。Base64 は埋め込み用、Blob は一時使用、クラウドは永続共有用。",
@@ -312,7 +387,10 @@
       "step3Title": "圧縮してダウンロード",
       "step3Desc": "圧縮をクリックして、個別または一括でダウンロードします。"
     },
-    "constraints": ["最大20ファイル、1ファイルあたり50MB", "対応形式: JPG, PNG, WebP, GIF"],
+    "constraints": [
+      "最大20ファイル、1ファイルあたり50MB",
+      "対応形式: JPG, PNG, WebP, GIF"
+    ],
     "faq": {
       "q1": "対応形式は？",
       "a1": "JPG、PNG、WebP、GIF形式に対応しています。圧縮ファイルは元と同じ形式で保存されます。",
@@ -368,7 +446,9 @@
       "batch": "一括処理",
       "batchDesc": "複数の画像に同じ透かしを一度に適用。"
     },
-    "constraints": ["最大20ファイル、1ファイルあたり50MB"],
+    "constraints": [
+      "最大20ファイル、1ファイルあたり50MB"
+    ],
     "howToUse": {
       "title": "透かしツール",
       "description": "著作権保護のためにテキストまたは画像の透かしを追加。すべての処理はブラウザで行われます。",
@@ -398,7 +478,10 @@
     "generating": "生成中...",
     "generate": "ミームを生成",
     "result": "結果",
-    "constraints": ["画像1枚ずつ処理", "1ファイルあたり最大50MB"],
+    "constraints": [
+      "画像1枚ずつ処理",
+      "1ファイルあたり最大50MB"
+    ],
     "howToUse": {
       "title": "ミームジェネレーター",
       "description": "画像にミームテキストを追加して楽しいコンテンツを作成。ライブプレビューで即座に結果を確認。",
@@ -426,7 +509,11 @@
     "detectedFaces": "{count}個の顔を検出",
     "facesFound": "個の顔を検出",
     "fileList": "ファイル一覧",
-    "constraints": ["最大10ファイル、1ファイルあたり50MB", "AIモデル 初回使用時にダウンロード", "顔検出の精度は100%ではありません"],
+    "constraints": [
+      "最大10ファイル、1ファイルあたり50MB",
+      "AIモデル 初回使用時にダウンロード",
+      "顔検出の精度は100%ではありません"
+    ],
     "aiNotice": "AI顔検出",
     "aiNoticeDesc": "AIモデルは初回使用時にダウンロードされます。完全なプライバシーのためすべての処理はブラウザで行われます。",
     "features": {
@@ -474,7 +561,10 @@
       "size": "カスタムサイズ",
       "sizeDesc": "出力画像のカスタム幅と高さを設定。"
     },
-    "constraints": ["外部リソース（画像、フォント）はCORS制限あり", "最大解像度: 4000×4000px"],
+    "constraints": [
+      "外部リソース（画像、フォント）はCORS制限あり",
+      "最大解像度: 4000×4000px"
+    ],
     "howToUse": {
       "title": "HTMLから画像コンバーター",
       "description": "HTML/CSSコードを入力して画像に変換。コードからバナー、カード、ソーシャル画像を作成。",
@@ -489,7 +579,12 @@
   "imageUpscaler": {
     "title": "画像アップスケーラー",
     "description": "AIモデルを使用して低解像度画像を高解像度に拡大。",
-    "constraints": ["最大5ファイル、1ファイルあたり20MB", "AIモデル(~80MB) 初回使用時にダウンロード", "デスクトップブラウザ推奨", "大きな画像は処理に時間がかかる場合があります"],
+    "constraints": [
+      "最大5ファイル、1ファイルあたり20MB",
+      "AIモデル(~80MB) 初回使用時にダウンロード",
+      "デスクトップブラウザ推奨",
+      "大きな画像は処理に時間がかかる場合があります"
+    ],
     "desktopNotice": "デスクトップ推奨",
     "desktopNoticeDesc": "AIアップスケーリングには大量の計算リソースが必要です。デスクトップブラウザで最高のパフォーマンス。",
     "settings": "アップスケール設定",
