@@ -141,11 +141,13 @@ function CategoryDropdown({
   t,
   getLocalizedHref,
   isPathActive,
+  isDark = false,
 }: {
   category: typeof menuCategories[0];
   t: ReturnType<typeof useTranslations>;
   getLocalizedHref: (href: string) => string;
   isPathActive: (href: string) => boolean;
+  isDark?: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -172,10 +174,14 @@ function CategoryDropdown({
         onClick={() => setIsOpen(!isOpen)}
         className={`
           flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wider
-          transition-all duration-200 border-4 border-transparent
-          ${hasActiveItem
-            ? 'border-black bg-black text-white'
-            : 'hover:border-black'
+          transition-all duration-200
+          ${isDark
+            ? hasActiveItem
+              ? `rounded-lg border border-transparent ${accent?.active || ''}`
+              : `rounded-lg border border-transparent text-[oklch(0.70_0.02_240)] ${accent?.hover || ''}`
+            : hasActiveItem
+              ? 'border-4 border-black bg-black text-white'
+              : 'border-4 border-transparent hover:border-black'
           }
         `}
       >
@@ -189,10 +195,15 @@ function CategoryDropdown({
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 min-w-[240px] bg-white border-4 border-black shadow-[8px_8px_0_0_#000] z-50">
+        <div className={`absolute top-full left-0 mt-1 min-w-[240px] z-50 ${
+          isDark
+            ? 'rounded-xl bg-[oklch(0.12_0.015_250)] border border-[oklch(1_0_0/0.1)] shadow-[0_8px_32px_oklch(0_0_0/0.5)]'
+            : 'bg-white border-4 border-black shadow-[8px_8px_0_0_#000]'
+        }`}>
           {category.items.map((item) => {
             const ItemIcon = item.icon;
             const isActive = isPathActive(item.href);
+            const itemAccent = accentStyles[item.accent as keyof typeof accentStyles];
 
             return (
               <Link
@@ -200,11 +211,15 @@ function CategoryDropdown({
                 href={getLocalizedHref(item.href)}
                 onClick={() => setIsOpen(false)}
                 className={`
-                  flex items-center gap-3 px-4 py-3 text-sm font-bold border-b-2 border-gray-200 last:border-b-0
+                  flex items-center gap-3 px-4 py-3 text-sm font-bold
                   transition-all duration-200
-                  ${isActive
-                    ? 'bg-black text-white'
-                    : 'hover:bg-gray-100'
+                  ${isDark
+                    ? isActive
+                      ? `${itemAccent?.active || ''} first:rounded-t-xl last:rounded-b-xl`
+                      : `text-[oklch(0.70_0.02_240)] ${itemAccent?.hover || ''} first:rounded-t-xl last:rounded-b-xl border-b border-[oklch(1_0_0/0.05)] last:border-b-0`
+                    : isActive
+                      ? 'bg-black text-white border-b-2 border-gray-200 last:border-b-0'
+                      : 'hover:bg-gray-100 border-b-2 border-gray-200 last:border-b-0'
                   }
                 `}
               >
@@ -225,6 +240,9 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // 홈 v1 다크 테마 감지 (루트 또는 /home/v1)
+  const isHomeDark = pathname === `/${locale}` || pathname === '/' || pathname === `/${locale}/home/v1` || pathname === '/home/v1';
+
   // Build localized href
   const getLocalizedHref = (href: string) => {
     if (locale === 'en') return href;
@@ -244,15 +262,25 @@ export default function Header() {
   }));
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b-4 border-black">
+    <header className={`sticky top-0 z-50 transition-colors duration-200 ${
+      isHomeDark
+        ? 'bg-[oklch(0.08_0.01_240)] border-b border-[oklch(1_0_0/0.1)]'
+        : 'bg-white border-b-4 border-black'
+    }`}>
       <nav className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href={getLocalizedHref('/')} className="group flex items-center gap-3">
-            <div className="flex items-center justify-center w-12 h-12 border-4 border-black bg-[#EC4899] group-hover:bg-[#06B6D4] transition-colors duration-200">
+            <div className={`flex items-center justify-center w-12 h-12 transition-colors duration-200 ${
+              isHomeDark
+                ? 'rounded-xl bg-[oklch(0.75_0.18_195)] group-hover:bg-[oklch(0.80_0.20_195)]'
+                : 'border-4 border-black bg-[#EC4899] group-hover:bg-[#06B6D4]'
+            }`}>
               <Zap className="w-6 h-6 text-white" strokeWidth={3} />
             </div>
-            <span className="font-black text-xl tracking-tight">
+            <span className={`font-black text-xl tracking-tight ${
+              isHomeDark ? 'text-[oklch(0.95_0.01_80)]' : ''
+            }`}>
               {t('common.siteName')}
             </span>
           </Link>
@@ -266,18 +294,23 @@ export default function Header() {
                 t={t}
                 getLocalizedHref={getLocalizedHref}
                 isPathActive={isPathActive}
+                isDark={isHomeDark}
               />
             ))}
           </div>
 
           {/* Right Side: Language Selector + Mobile Menu */}
           <div className="flex items-center gap-3">
-            <LanguageSelector />
+            <LanguageSelector isDark={isHomeDark} />
 
             {/* Mobile menu button */}
             <button
               type="button"
-              className="lg:hidden p-2 border-4 border-black hover:bg-black hover:text-white transition-all duration-200"
+              className={`lg:hidden p-2 transition-all duration-200 ${
+                isHomeDark
+                  ? 'border border-[oklch(1_0_0/0.15)] rounded-lg text-[oklch(0.80_0.02_240)] hover:bg-[oklch(1_0_0/0.05)]'
+                  : 'border-4 border-black hover:bg-black hover:text-white'
+              }`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (
@@ -291,11 +324,16 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden pb-6 border-t-4 border-black mt-4">
+          <div className={`lg:hidden pb-6 mt-4 ${
+            isHomeDark
+              ? 'border-t border-[oklch(1_0_0/0.1)]'
+              : 'border-t-4 border-black'
+          }`}>
             <div className="flex flex-col gap-1 pt-4">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 const isActive = isPathActive(item.href);
+                const itemAccent = accentStyles[item.accent as keyof typeof accentStyles];
 
                 return (
                   <Link
@@ -303,17 +341,24 @@ export default function Header() {
                     href={item.localizedHref}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`
-                      flex items-center gap-3 px-4 py-3 text-sm font-bold border-4 border-transparent
+                      flex items-center gap-3 px-4 py-3 text-sm font-bold
                       transition-all duration-200
-                      ${isActive
-                        ? 'border-black bg-black text-white'
-                        : 'hover:border-black'
+                      ${isHomeDark
+                        ? isActive
+                          ? `rounded-lg border border-transparent ${itemAccent?.active || ''}`
+                          : `rounded-lg border border-transparent text-[oklch(0.70_0.02_240)] ${itemAccent?.hover || ''}`
+                        : isActive
+                          ? 'border-4 border-black bg-black text-white'
+                          : 'border-4 border-transparent hover:border-black'
                       }
                     `}
                   >
                     <Icon size={22} strokeWidth={2.5} />
                     <span className="uppercase tracking-wide">{item.name}</span>
-                    {isActive && (
+                    {isActive && isHomeDark && (
+                      <span className="ml-auto w-2 h-2 bg-current rotate-45" />
+                    )}
+                    {isActive && !isHomeDark && (
                       <span className="ml-auto w-2 h-2 bg-white rotate-45" />
                     )}
                   </Link>
