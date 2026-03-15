@@ -282,7 +282,7 @@ export default function HomeV2() {
                         className="flex-shrink-0 w-12 h-12 flex items-center justify-center border-4 border-current group-hover:rotate-12 transition-transform duration-200"
                         style={{ color: feature.color }}
                       >
-                        <Icon className="w-6 h-6" strokeWidth={2.5} />
+                        <Icon className="w-6 h-6" />
                       </div>
                       <div>
                         <h3 className="font-black text-lg mb-1 uppercase tracking-wide text-black group-hover:text-white">{t(feature.titleKey)}</h3>
@@ -335,7 +335,7 @@ export default function HomeV2() {
                   <div className="relative space-y-4">
                     {/* Icon */}
                     <div className={`inline-flex items-center justify-center w-14 h-14 border-4 border-current ${accent.text} group-hover:border-white group-hover:text-white transition-all duration-200`}>
-                      <Icon size={28} strokeWidth={2.5} />
+                      <Icon size={28} />
                     </div>
 
                     {/* Content */}

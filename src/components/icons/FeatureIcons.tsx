@@ -1,6 +1,7 @@
 interface IconProps {
   className?: string;
   size?: number;
+  strokeWidth?: number;
 }
 
 // 이미지 변환 - 두 포맷 간 변환을 표현
