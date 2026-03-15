@@ -47,3 +47,5 @@ media-icons-artifact/
 
 # data directory
 /data
+docs/.pdca-status.json
+docs/.bkit-memory.json
