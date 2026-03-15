@@ -100,13 +100,14 @@
   },
   "imageEditor": {
     "title": "图片编辑",
-    "description": "裁剪、旋转、翻转、调整大小、优化图片",
+    "description": "裁剪、旋转、翻转、调整大小、优化、亮度调整",
     "toolbar": {
       "crop": "裁剪",
       "rotate": "旋转",
       "flip": "翻转",
       "resize": "调整大小",
-      "optimize": "优化"
+      "optimize": "优化",
+      "brightness": "亮度"
     },
     "crop": {
       "freeform": "自由形式",
@@ -133,17 +134,22 @@
       "quality": "质量",
       "apply": "优化"
     },
+    "brightness": {
+      "label": "亮度调整",
+      "apply": "应用",
+      "reset": "重置"
+    },
     "constraints": [
       "一次编辑一张图片",
       "基于浏览器内存处理"
     ],
     "howToUse": {
       "title": "图片编辑器",
-      "description": "免费在线图片编辑器，支持裁剪、旋转、翻转、调整大小和优化。所有处理在浏览器中完成。",
+      "description": "免费在线图片编辑器，支持裁剪、旋转、翻转、调整大小、优化和亮度调整。所有处理在浏览器中完成。",
       "step1Title": "上传图片",
       "step1Desc": "拖放或点击选择要编辑的图片文件。",
       "step2Title": "编辑图片",
-      "step2Desc": "使用工具栏裁剪、旋转、翻转、调整大小或优化图片。",
+      "step2Desc": "使用工具栏裁剪、旋转、翻转、调整大小、优化或调整亮度。",
       "step3Title": "下载",
       "step3Desc": "编辑完成后，下载结果图片。"
     }

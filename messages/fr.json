@@ -100,13 +100,14 @@
   },
   "imageEditor": {
     "title": "Éditeur d'images",
-    "description": "Recadrez, pivotez, retournez, redimensionnez et optimisez les images",
+    "description": "Recadrez, pivotez, retournez, redimensionnez, optimisez et réglez la luminosité des images",
     "toolbar": {
       "crop": "Recadrer",
       "rotate": "Pivoter",
       "flip": "Retourner",
       "resize": "Redimensionner",
-      "optimize": "Optimiser"
+      "optimize": "Optimiser",
+      "brightness": "Luminosité"
     },
     "crop": {
       "freeform": "Libre",
@@ -133,17 +134,22 @@
       "quality": "Qualité",
       "apply": "Optimiser"
     },
+    "brightness": {
+      "label": "Réglage de la luminosité",
+      "apply": "Appliquer",
+      "reset": "Réinitialiser"
+    },
     "constraints": [
       "Une image à la fois",
       "Traitement basé sur la mémoire du navigateur"
     ],
     "howToUse": {
       "title": "Éditeur d'images",
-      "description": "Éditeur d'images en ligne gratuit supportant recadrage, rotation, retournement, redimensionnement et optimisation. Tout le traitement est fait dans votre navigateur.",
+      "description": "Éditeur d'images en ligne gratuit supportant recadrage, rotation, retournement, redimensionnement, optimisation et réglage de la luminosité. Tout le traitement est fait dans votre navigateur.",
       "step1Title": "Téléverser une image",
       "step1Desc": "Glissez ou cliquez pour sélectionner un fichier image à éditer.",
       "step2Title": "Éditer l'image",
-      "step2Desc": "Utilisez la barre d'outils pour recadrer, pivoter, retourner, redimensionner ou optimiser.",
+      "step2Desc": "Utilisez la barre d'outils pour recadrer, pivoter, retourner, redimensionner, optimiser ou régler la luminosité.",
       "step3Title": "Télécharger",
       "step3Desc": "Une fois l'édition terminée, téléchargez l'image résultante."
     }

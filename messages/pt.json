@@ -100,13 +100,14 @@
   },
   "imageEditor": {
     "title": "Editor de imagens",
-    "description": "Corte, gire, inverta, redimensione e otimize imagens",
+    "description": "Corte, gire, inverta, redimensione, otimize e ajuste o brilho de imagens",
     "toolbar": {
       "crop": "Cortar",
       "rotate": "Girar",
       "flip": "Inverter",
       "resize": "Redimensionar",
-      "optimize": "Otimizar"
+      "optimize": "Otimizar",
+      "brightness": "Brilho"
     },
     "crop": {
       "freeform": "Livre",
@@ -133,17 +134,22 @@
       "quality": "Qualidade",
       "apply": "Otimizar"
     },
+    "brightness": {
+      "label": "Ajuste de brilho",
+      "apply": "Aplicar",
+      "reset": "Redefinir"
+    },
     "constraints": [
       "Uma imagem por vez",
       "Processamento baseado na memória do navegador"
     ],
     "howToUse": {
       "title": "Editor de imagens",
-      "description": "Editor de imagens online gratuito com suporte a corte, rotação, inversão, redimensionamento e otimização. Todo o processamento é feito no seu navegador.",
+      "description": "Editor de imagens online gratuito com suporte a corte, rotação, inversão, redimensionamento, otimização e ajuste de brilho. Todo o processamento é feito no seu navegador.",
       "step1Title": "Enviar imagem",
       "step1Desc": "Arraste ou clique para selecionar um arquivo de imagem para editar.",
       "step2Title": "Editar imagem",
-      "step2Desc": "Use a barra de ferramentas para cortar, girar, inverter, redimensionar ou otimizar.",
+      "step2Desc": "Use a barra de ferramentas para cortar, girar, inverter, redimensionar, otimizar ou ajustar brilho.",
       "step3Title": "Baixar",
       "step3Desc": "Quando terminar de editar, baixe a imagem resultante."
     }

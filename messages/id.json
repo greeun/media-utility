@@ -100,13 +100,14 @@
   },
   "imageEditor": {
     "title": "Editor Gambar",
-    "description": "Pangkas, putar, balik, ubah ukuran, dan optimalkan gambar",
+    "description": "Pangkas, putar, balik, ubah ukuran, optimalkan, dan sesuaikan kecerahan gambar",
     "toolbar": {
       "crop": "Pangkas",
       "rotate": "Putar",
       "flip": "Balik",
       "resize": "Ubah Ukuran",
-      "optimize": "Optimalkan"
+      "optimize": "Optimalkan",
+      "brightness": "Kecerahan"
     },
     "crop": {
       "freeform": "Bebas",
@@ -133,17 +134,22 @@
       "quality": "Kualitas",
       "apply": "Optimalkan"
     },
+    "brightness": {
+      "label": "Pengaturan Kecerahan",
+      "apply": "Terapkan",
+      "reset": "Atur Ulang"
+    },
     "constraints": [
       "Satu gambar sekaligus",
       "Pemrosesan berbasis memori browser"
     ],
     "howToUse": {
       "title": "Editor Gambar",
-      "description": "Editor gambar online gratis yang mendukung pangkas, putar, balik, ubah ukuran, dan optimasi. Semua pemrosesan dilakukan di browser Anda.",
+      "description": "Editor gambar online gratis yang mendukung pangkas, putar, balik, ubah ukuran, optimasi, dan penyesuaian kecerahan. Semua pemrosesan dilakukan di browser Anda.",
       "step1Title": "Unggah Gambar",
       "step1Desc": "Seret atau klik untuk memilih file gambar untuk diedit.",
       "step2Title": "Edit Gambar",
-      "step2Desc": "Gunakan toolbar untuk memangkas, memutar, membalik, mengubah ukuran, atau mengoptimalkan.",
+      "step2Desc": "Gunakan toolbar untuk memangkas, memutar, membalik, mengubah ukuran, mengoptimalkan, atau menyesuaikan kecerahan.",
       "step3Title": "Unduh",
       "step3Desc": "Setelah selesai mengedit, unduh gambar hasilnya."
     }

@@ -100,13 +100,14 @@
   },
   "imageEditor": {
     "title": "Bildeditor",
-    "description": "Bilder zuschneiden, drehen, spiegeln, skalieren und optimieren",
+    "description": "Bilder zuschneiden, drehen, spiegeln, skalieren, optimieren und Helligkeit anpassen",
     "toolbar": {
       "crop": "Zuschneiden",
       "rotate": "Drehen",
       "flip": "Spiegeln",
       "resize": "Größe ändern",
-      "optimize": "Optimieren"
+      "optimize": "Optimieren",
+      "brightness": "Helligkeit"
     },
     "crop": {
       "freeform": "Frei",
@@ -133,17 +134,22 @@
       "quality": "Qualität",
       "apply": "Optimieren"
     },
+    "brightness": {
+      "label": "Helligkeit anpassen",
+      "apply": "Anwenden",
+      "reset": "Zurücksetzen"
+    },
     "constraints": [
       "Ein Bild gleichzeitig",
       "Browserbasierte Speicherverarbeitung"
     ],
     "howToUse": {
       "title": "Bildeditor",
-      "description": "Kostenloser Online-Bildeditor mit Zuschneiden, Drehen, Spiegeln, Größenänderung und Optimierung. Alle Verarbeitung erfolgt in Ihrem Browser.",
+      "description": "Kostenloser Online-Bildeditor mit Zuschneiden, Drehen, Spiegeln, Größenänderung, Optimierung und Helligkeitsanpassung. Alle Verarbeitung erfolgt in Ihrem Browser.",
       "step1Title": "Bild hochladen",
       "step1Desc": "Ziehen oder klicken Sie, um eine Bilddatei zum Bearbeiten auszuwählen.",
       "step2Title": "Bild bearbeiten",
-      "step2Desc": "Verwenden Sie die Symbolleiste zum Zuschneiden, Drehen, Spiegeln, Skalieren oder Optimieren.",
+      "step2Desc": "Verwenden Sie die Symbolleiste zum Zuschneiden, Drehen, Spiegeln, Skalieren, Optimieren oder Helligkeit anpassen.",
       "step3Title": "Herunterladen",
       "step3Desc": "Nach der Bearbeitung laden Sie das Ergebnisbild herunter."
     }

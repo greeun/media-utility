@@ -1,5 +1,4 @@
 import { loadImage } from './imageConverter';
-import { ImageEditOptions } from '@/types';
 
 /**
  * 이미지 자르기
@@ -194,6 +193,55 @@ export async function resizeImage(
           resolve(blob);
         } else {
           reject(new Error('이미지 리사이즈에 실패했습니다.'));
+        }
+      },
+      outputFormat,
+      quality
+    );
+  });
+}
+
+/**
+ * 이미지 밝기 조절
+ */
+export async function adjustBrightness(
+  file: File | Blob,
+  brightness: number,
+  outputFormat: string = 'image/jpeg',
+  quality: number = 0.92
+): Promise<Blob> {
+  const img = await loadImage(file instanceof File ? file : new File([file], 'image'));
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  if (!ctx) {
+    throw new Error('Canvas context를 생성할 수 없습니다.');
+  }
+
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img, 0, 0);
+
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+  const offset = brightness * 2.55;
+
+  for (let i = 0; i < data.length; i += 4) {
+    data[i]     = Math.max(0, Math.min(255, data[i]     + offset));
+    data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + offset));
+    data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + offset));
+  }
+
+  ctx.putImageData(imageData, 0, 0);
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => {
+        if (blob) {
+          resolve(blob);
+        } else {
+          reject(new Error('이미지 밝기 조절에 실패했습니다.'));
         }
       },
       outputFormat,

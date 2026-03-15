@@ -96,13 +96,14 @@
   },
   "imageEditor": {
     "title": "Image Editor",
-    "description": "Crop, rotate, flip, resize, and optimize images",
+    "description": "Crop, rotate, flip, resize, optimize, and adjust brightness of images",
     "toolbar": {
       "crop": "Crop",
       "rotate": "Rotate",
       "flip": "Flip",
       "resize": "Resize",
-      "optimize": "Optimize"
+      "optimize": "Optimize",
+      "brightness": "Brightness"
     },
     "crop": {
       "freeform": "Freeform",
@@ -129,14 +130,19 @@
       "quality": "Quality",
       "apply": "Optimize"
     },
+    "brightness": {
+      "label": "Brightness",
+      "apply": "Apply",
+      "reset": "Reset"
+    },
     "constraints": ["One image at a time", "Browser memory-based processing"],
     "howToUse": {
       "title": "Image Editor",
-      "description": "A free online image editor supporting crop, rotate, flip, resize, and optimize. All processing is done in your browser.",
+      "description": "A free online image editor supporting crop, rotate, flip, resize, optimize, and brightness adjustment. All processing is done in your browser.",
       "step1Title": "Upload Image",
       "step1Desc": "Drag or click to select an image file to edit.",
       "step2Title": "Edit Image",
-      "step2Desc": "Use the toolbar to crop, rotate, flip, resize, or optimize your image.",
+      "step2Desc": "Use the toolbar to crop, rotate, flip, resize, optimize, or adjust brightness of your image.",
       "step3Title": "Download",
       "step3Desc": "When done editing, download the result image."
     }

@@ -100,13 +100,14 @@
   },
   "imageEditor": {
     "title": "Editor de imágenes",
-    "description": "Recorta, rota, voltea, redimensiona y optimiza imágenes",
+    "description": "Recorta, rota, voltea, redimensiona, optimiza y ajusta el brillo de imágenes",
     "toolbar": {
       "crop": "Recortar",
       "rotate": "Rotar",
       "flip": "Voltear",
       "resize": "Redimensionar",
-      "optimize": "Optimizar"
+      "optimize": "Optimizar",
+      "brightness": "Brillo"
     },
     "crop": {
       "freeform": "Libre",
@@ -133,17 +134,22 @@
       "quality": "Calidad",
       "apply": "Optimizar"
     },
+    "brightness": {
+      "label": "Ajuste de brillo",
+      "apply": "Aplicar",
+      "reset": "Restablecer"
+    },
     "constraints": [
       "Una imagen a la vez",
       "Procesamiento basado en memoria del navegador"
     ],
     "howToUse": {
       "title": "Editor de imágenes",
-      "description": "Editor de imágenes en línea gratuito que soporta recorte, rotación, volteo, redimensionado y optimización. Todo el procesamiento se realiza en tu navegador.",
+      "description": "Editor de imágenes en línea gratuito que soporta recorte, rotación, volteo, redimensionado, optimización y ajuste de brillo. Todo el procesamiento se realiza en tu navegador.",
       "step1Title": "Subir imagen",
       "step1Desc": "Arrastra o haz clic para seleccionar un archivo de imagen para editar.",
       "step2Title": "Editar imagen",
-      "step2Desc": "Usa la barra de herramientas para recortar, rotar, voltear, redimensionar u optimizar.",
+      "step2Desc": "Usa la barra de herramientas para recortar, rotar, voltear, redimensionar, optimizar o ajustar brillo.",
       "step3Title": "Descargar",
       "step3Desc": "Cuando termines de editar, descarga la imagen resultante."
     }
