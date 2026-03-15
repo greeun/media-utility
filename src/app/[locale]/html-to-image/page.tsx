@@ -1,238 +1,260 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Download, RefreshCw, Code, Eye } from 'lucide-react';
 import { HtmlToImageIcon } from '@/components/icons/FeatureIcons';
-import { convertHtmlToImage } from '@/services/htmlToImage';
-import { saveAs } from 'file-saver';
+import { PageHeader, FormatButton } from '@/design-system/v2';
+import { ToolPageLayout } from '@/design-system/v2/layouts';
+import { ACCENT_COLORS } from '@/design-system/v2/tokens';
 import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
+import { useHtmlToImage } from './_hooks/useHtmlToImage';
+import { FORMAT_OPTIONS } from './_constants';
+import type { ImageFormat } from './_types';
 
-const DEFAULT_HTML = `<div style="padding: 40px; text-align: center; font-family: system-ui, sans-serif;">
-  <h1 style="font-size: 32px; color: #333; margin-bottom: 16px;">Hello, World!</h1>
-  <p style="font-size: 16px; color: #666;">This is a preview of HTML to Image conversion.</p>
-</div>`;
-
-const DEFAULT_CSS = `body {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100%;
-}`;
+const ACCENT = ACCENT_COLORS.yellow;
 
 export default function HtmlToImagePage() {
   const t = useTranslations();
-
-  const [html, setHtml] = useState(DEFAULT_HTML);
-  const [css, setCss] = useState(DEFAULT_CSS);
-  const [width, setWidth] = useState(800);
-  const [height, setHeight] = useState(600);
-  const [format, setFormat] = useState<'png' | 'jpg' | 'svg'>('png');
-  const [quality, setQuality] = useState(92);
-  const [backgroundColor, setBackgroundColor] = useState('#ffffff');
-  const [isConverting, setIsConverting] = useState(false);
-  const [result, setResult] = useState<Blob | null>(null);
-  const [resultUrl, setResultUrl] = useState('');
-  const [activeTab, setActiveTab] = useState<'html' | 'css'>('html');
-
-  const previewRef = useRef<HTMLIFrameElement>(null);
-
-  // 실시간 미리보기
-  useEffect(() => {
-    if (!previewRef.current) return;
-    const doc = previewRef.current.contentDocument;
-    if (!doc) return;
-
-    doc.open();
-    doc.write(`<!DOCTYPE html>
-<html>
-<head>
-<style>
-html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: ${backgroundColor}; }
-${css || ''}
-</style>
-</head>
-<body>${html}</body>
-</html>`);
-    doc.close();
-  }, [html, css, backgroundColor]);
-
-  const handleConvert = async () => {
-    setIsConverting(true);
-    try {
-      const blob = await convertHtmlToImage({
-        html,
-        css,
-        width,
-        height,
-        format,
-        quality: quality / 100,
-        backgroundColor,
-      });
-      setResult(blob);
-      if (resultUrl) URL.revokeObjectURL(resultUrl);
-      setResultUrl(URL.createObjectURL(blob));
-    } catch (error) {
-      console.error('HTML 변환 실패:', error);
-    }
-    setIsConverting(false);
-  };
-
-  const handleDownload = () => {
-    if (result) {
-      saveAs(result, `html-capture.${format}`);
-    }
-  };
+  const {
+    html,
+    css,
+    width,
+    height,
+    format,
+    quality,
+    backgroundColor,
+    isConverting,
+    result,
+    resultUrl,
+    activeTab,
+    previewRef,
+    setHtml,
+    setCss,
+    setWidth,
+    setHeight,
+    setFormat,
+    setQuality,
+    setBackgroundColor,
+    setActiveTab,
+    handleConvert,
+    handleDownload,
+  } = useHtmlToImage();
 
   return (
-    <div className="min-h-full bg-white py-8 lg:py-12">
-      <div className="mx-auto max-w-5xl px-6 lg:px-12">
-        {/* Header */}
-        <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-16 h-16 border-4 border-black bg-[#FBBF24] flex items-center justify-center">
-              <HtmlToImageIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
+    <ToolPageLayout maxWidth="xl">
+      {/* Header */}
+      <PageHeader
+        icon={<HtmlToImageIcon size={28} className="text-black" />}
+        iconBgColor={ACCENT}
+        title={t('htmlToImage.title')}
+        description={t('htmlToImage.description')}
+      />
+
+      {/* 제약사항 */}
+      <ToolConstraints
+        constraints={[t('htmlToImage.constraints.0'), t('htmlToImage.constraints.1')]}
+        accentColor="emerald"
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* 코드 에디터 */}
+        <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
+          <div className="p-6 bg-white border-4 border-black h-full">
+            {/* 탭 */}
+            <div className="flex gap-2 mb-4">
+              <FormatButton
+                label="HTML"
+                active={activeTab === 'html'}
+                accentColor={ACCENT}
+                onClick={() => setActiveTab('html')}
+              />
+              <FormatButton
+                label="CSS"
+                active={activeTab === 'css'}
+                accentColor={ACCENT}
+                onClick={() => setActiveTab('css')}
+              />
             </div>
-            <div>
-              <h1 className="text-4xl font-black uppercase tracking-tight text-black mb-2">{t('htmlToImage.title')}</h1>
-              <p className="mt-1 text-lg font-bold text-gray-900">{t('htmlToImage.description')}</p>
+
+            {activeTab === 'html' ? (
+              <textarea
+                value={html}
+                onChange={(e) => setHtml(e.target.value)}
+                placeholder={t('htmlToImage.htmlPlaceholder')}
+                className="w-full h-64 px-4 py-3 bg-gray-50 border-4 border-black text-black text-sm font-mono resize-none focus:outline-none"
+              />
+            ) : (
+              <textarea
+                value={css}
+                onChange={(e) => setCss(e.target.value)}
+                placeholder={t('htmlToImage.cssPlaceholder')}
+                className="w-full h-64 px-4 py-3 bg-gray-50 border-4 border-black text-black text-sm font-mono resize-none focus:outline-none"
+              />
+            )}
+
+            {/* 설정 */}
+            <div className="mt-4 space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-gray-900 mb-1">
+                    {t('htmlToImage.width')}
+                  </label>
+                  <input
+                    type="number"
+                    min={100}
+                    max={4000}
+                    value={width}
+                    onChange={(e) => setWidth(Number(e.target.value))}
+                    className="w-full px-3 py-2 bg-white text-black border-4 border-black text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-gray-900 mb-1">
+                    {t('htmlToImage.height')}
+                  </label>
+                  <input
+                    type="number"
+                    min={100}
+                    max={4000}
+                    value={height}
+                    onChange={(e) => setHeight(Number(e.target.value))}
+                    className="w-full px-3 py-2 bg-white text-black border-4 border-black text-sm"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-gray-900 mb-1">
+                    {t('htmlToImage.format')}
+                  </label>
+                  <select
+                    value={format}
+                    onChange={(e) => setFormat(e.target.value as ImageFormat)}
+                    className="w-full px-3 py-2 bg-white text-black border-4 border-black text-sm"
+                  >
+                    {FORMAT_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-gray-900 mb-1">
+                    {t('htmlToImage.quality')}
+                  </label>
+                  <input
+                    type="number"
+                    min={10}
+                    max={100}
+                    value={quality}
+                    onChange={(e) => setQuality(Number(e.target.value))}
+                    className="w-full px-3 py-2 bg-white text-black border-4 border-black text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-gray-900 mb-1">
+                    {t('htmlToImage.bgColor')}
+                  </label>
+                  <input
+                    type="color"
+                    value={backgroundColor}
+                    onChange={(e) => setBackgroundColor(e.target.value)}
+                    className="w-full h-[38px] cursor-pointer border-4 border-black bg-white"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 제약사항 */}
-        <ToolConstraints
-          constraints={[t('htmlToImage.constraints.0'), t('htmlToImage.constraints.1')]}
-          accentColor="emerald"
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* 코드 에디터 */}
-          <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-            <div className="p-6 bg-white border-4 border-black h-full">
-              {/* 탭 */}
-              <div className="flex gap-2 mb-4">
-                <button onClick={() => setActiveTab('html')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'html' ? 'bg-[oklch(0.70_0.17_145)] text-[oklch(0.08_0.01_240)]' : 'bg-[oklch(0.16_0.02_245)] text-[oklch(0.70_0.02_240)] hover:bg-[oklch(0.20_0.025_240)]'}`}>
-                  <Code className="w-3.5 h-3.5" /> HTML
-                </button>
-                <button onClick={() => setActiveTab('css')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${activeTab === 'css' ? 'bg-[oklch(0.70_0.17_145)] text-[oklch(0.08_0.01_240)]' : 'bg-[oklch(0.16_0.02_245)] text-[oklch(0.70_0.02_240)] hover:bg-[oklch(0.20_0.025_240)]'}`}>
-                  <Code className="w-3.5 h-3.5" /> CSS
-                </button>
-              </div>
-
-              {activeTab === 'html' ? (
-                <textarea value={html} onChange={(e) => setHtml(e.target.value)} placeholder={t('htmlToImage.htmlPlaceholder')}
-                  className="w-full h-64 px-4 py-3 rounded-lg bg-[oklch(0.06_0.01_240)] border border-[oklch(1_0_0/0.1)] text-[oklch(0.90_0.01_80)] text-sm font-mono resize-none focus:outline-none focus:border-[oklch(0.70_0.17_145/0.5)]" />
-              ) : (
-                <textarea value={css} onChange={(e) => setCss(e.target.value)} placeholder={t('htmlToImage.cssPlaceholder')}
-                  className="w-full h-64 px-4 py-3 rounded-lg bg-[oklch(0.06_0.01_240)] border border-[oklch(1_0_0/0.1)] text-[oklch(0.90_0.01_80)] text-sm font-mono resize-none focus:outline-none focus:border-[oklch(0.70_0.17_145/0.5)]" />
-              )}
-
-              {/* 설정 */}
-              <div className="mt-4 space-y-3">
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs text-[oklch(0.60_0.02_240)] mb-1">{t('htmlToImage.width')}</label>
-                    <input type="number" min={100} max={4000} value={width} onChange={(e) => setWidth(Number(e.target.value))}
-                      className="w-full px-3 py-2 rounded-lg bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] text-[oklch(0.95_0.01_80)] text-sm" />
-                  </div>
-                  <div>
-                    <label className="block text-xs text-[oklch(0.60_0.02_240)] mb-1">{t('htmlToImage.height')}</label>
-                    <input type="number" min={100} max={4000} value={height} onChange={(e) => setHeight(Number(e.target.value))}
-                      className="w-full px-3 py-2 rounded-lg bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] text-[oklch(0.95_0.01_80)] text-sm" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-3 gap-3">
-                  <div>
-                    <label className="block text-xs text-[oklch(0.60_0.02_240)] mb-1">{t('htmlToImage.format')}</label>
-                    <select value={format} onChange={(e) => setFormat(e.target.value as 'png' | 'jpg' | 'svg')}
-                      className="w-full px-3 py-2 rounded-lg bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] text-[oklch(0.95_0.01_80)] text-sm">
-                      <option value="png">PNG</option>
-                      <option value="jpg">JPG</option>
-                      <option value="svg">SVG</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-xs text-[oklch(0.60_0.02_240)] mb-1">{t('htmlToImage.quality')}</label>
-                    <input type="number" min={10} max={100} value={quality} onChange={(e) => setQuality(Number(e.target.value))}
-                      className="w-full px-3 py-2 rounded-lg bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] text-[oklch(0.95_0.01_80)] text-sm" />
-                  </div>
-                  <div>
-                    <label className="block text-xs text-[oklch(0.60_0.02_240)] mb-1">{t('htmlToImage.bgColor')}</label>
-                    <input type="color" value={backgroundColor} onChange={(e) => setBackgroundColor(e.target.value)}
-                      className="w-full h-9 rounded-lg cursor-pointer border border-[oklch(1_0_0/0.1)]" />
-                  </div>
-                </div>
-              </div>
+        {/* 미리보기 */}
+        <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
+          <div className="p-6 bg-white border-4 border-black h-full">
+            <h3 className="text-xs font-bold uppercase tracking-wide text-gray-900 mb-4 flex items-center gap-2">
+              <Eye className="w-4 h-4" style={{ color: ACCENT }} />
+              {t('htmlToImage.preview')}
+            </h3>
+            <div className="border-4 border-black overflow-hidden" style={{ backgroundColor }}>
+              <iframe
+                ref={previewRef}
+                title="HTML Preview"
+                className="w-full border-0"
+                style={{ height: '300px' }}
+                sandbox="allow-same-origin"
+              />
             </div>
-          </div>
 
-          {/* 미리보기 */}
-          <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
-            <div className="p-6 bg-white border-4 border-black h-full">
-              <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
-                <Eye className="w-4 h-4 text-[oklch(0.70_0.17_145)]" />
-                {t('htmlToImage.preview')}
-              </h3>
-              <div className="rounded-lg border border-[oklch(1_0_0/0.1)] overflow-hidden" style={{ backgroundColor }}>
-                <iframe
-                  ref={previewRef}
-                  title="HTML Preview"
-                  className="w-full border-0"
-                  style={{ height: '300px' }}
-                  sandbox="allow-same-origin"
-                />
-              </div>
-
-              {/* 결과 */}
-              {resultUrl && (
-                <div className="mt-4">
-                  <h4 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-2">{t('htmlToImage.result')}</h4>
-                  <div className="rounded-lg border border-[oklch(0.72_0.17_160/0.2)] overflow-hidden">
-                    <img src={resultUrl} alt="Converted result" className="w-full" />
-                  </div>
+            {/* 결과 */}
+            {resultUrl && (
+              <div className="mt-4">
+                <h4 className="text-xs font-bold uppercase tracking-wide text-gray-900 mb-2">
+                  {t('htmlToImage.result')}
+                </h4>
+                <div className="border-4 border-black overflow-hidden">
+                  <img src={resultUrl} alt="Converted result" className="w-full" />
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6 opacity-0 animate-fade-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-          <button onClick={handleConvert} disabled={isConverting || !html.trim()}
-            className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.70_0.17_145)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover: disabled:opacity-50 disabled:cursor-not-allowed">
-            {isConverting ? (<><RefreshCw className="w-4 h-4 animate-spin" />{t('htmlToImage.converting')}</>) : (<><RefreshCw className="w-4 h-4" />{t('htmlToImage.convert')}</>)}
-          </button>
-          {result && (
-            <button onClick={handleDownload}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[oklch(0.72_0.17_160)] text-[oklch(0.08_0.01_240)] font-semibold transition-all hover:">
-              <Download className="w-4 h-4" />{t('common.download')}
-            </button>
-          )}
-        </div>
-
-        {/* How To Use */}
-        <div className="mt-12">
-          <HowToUse title={t('htmlToImage.howToUse.title')} description={t('htmlToImage.howToUse.description')} accentColor="emerald"
-            steps={[
-              { number: 1, title: t('htmlToImage.howToUse.step1Title'), description: t('htmlToImage.howToUse.step1Desc') },
-              { number: 2, title: t('htmlToImage.howToUse.step2Title'), description: t('htmlToImage.howToUse.step2Desc') },
-              { number: 3, title: t('htmlToImage.howToUse.step3Title'), description: t('htmlToImage.howToUse.step3Desc') },
-            ]}
-            supportedFormats={['PNG', 'JPG', 'SVG']}
-            features={[
-              { title: t('htmlToImage.features.code'), description: t('htmlToImage.features.codeDesc') },
-              { title: t('htmlToImage.features.preview'), description: t('htmlToImage.features.previewDesc') },
-              { title: t('htmlToImage.features.format'), description: t('htmlToImage.features.formatDesc') },
-              { title: t('htmlToImage.features.size'), description: t('htmlToImage.features.sizeDesc') },
-            ]}
-          />
         </div>
       </div>
-    </div>
+
+      {/* Action Buttons */}
+      <div
+        className="flex flex-col sm:flex-row gap-3 justify-center mt-6 opacity-0 animate-fade-up"
+        style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}
+      >
+        <button
+          onClick={handleConvert}
+          disabled={isConverting || !html.trim()}
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 border-4 border-black font-bold uppercase tracking-wide text-sm text-white transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+          style={{ backgroundColor: ACCENT, color: 'black' }}
+        >
+          {isConverting ? (
+            <>
+              <RefreshCw className="w-4 h-4 animate-spin" />
+              {t('htmlToImage.converting')}
+            </>
+          ) : (
+            <>
+              <RefreshCw className="w-4 h-4" />
+              {t('htmlToImage.convert')}
+            </>
+          )}
+        </button>
+        {result && (
+          <button
+            onClick={handleDownload}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 border-4 border-black bg-black text-white font-bold uppercase tracking-wide text-sm transition-all hover:bg-gray-900"
+          >
+            <Download className="w-4 h-4" />
+            {t('common.download')}
+          </button>
+        )}
+      </div>
+
+      {/* How To Use */}
+      <div className="mt-12">
+        <HowToUse
+          title={t('htmlToImage.howToUse.title')}
+          description={t('htmlToImage.howToUse.description')}
+          accentColor="emerald"
+          steps={[
+            { number: 1, title: t('htmlToImage.howToUse.step1Title'), description: t('htmlToImage.howToUse.step1Desc') },
+            { number: 2, title: t('htmlToImage.howToUse.step2Title'), description: t('htmlToImage.howToUse.step2Desc') },
+            { number: 3, title: t('htmlToImage.howToUse.step3Title'), description: t('htmlToImage.howToUse.step3Desc') },
+          ]}
+          supportedFormats={['PNG', 'JPG', 'SVG']}
+          features={[
+            { title: t('htmlToImage.features.code'), description: t('htmlToImage.features.codeDesc') },
+            { title: t('htmlToImage.features.preview'), description: t('htmlToImage.features.previewDesc') },
+            { title: t('htmlToImage.features.format'), description: t('htmlToImage.features.formatDesc') },
+            { title: t('htmlToImage.features.size'), description: t('htmlToImage.features.sizeDesc') },
+          ]}
+        />
+      </div>
+    </ToolPageLayout>
   );
 }
