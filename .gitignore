@@ -46,6 +46,9 @@ next-env.d.ts
 media-icons-artifact/
 
 # data directory
-/data
+/data/
 docs/.pdca-status.json
 docs/.bkit-memory.json
+
+/.claude/
+/.swc/
