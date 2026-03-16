@@ -6,7 +6,7 @@ test.describe('비디오 변환 기능 테스트 - test.mp4', () => {
     test.setTimeout(600000) // 10분 타임아웃
     
     // 비디오 변환 페이지로 이동
-    await page.goto('/ko/video-converter')
+    await page.goto('/en/video-converter')
     console.log('✅ 페이지 로드 완료')
     
     // 페이지가 로드될 때까지 대기
@@ -54,12 +54,11 @@ test.describe('비디오 변환 기능 테스트 - test.mp4', () => {
     
     // 변환이 완료될 때까지 대기 (최대 5분)
     // 결과 이미지 또는 다운로드 버튼이 나타날 때까지 대기
-    const resultSection = page.locator('img[alt*="Result"], img[alt*="결과"], button').filter({ hasText: /다운로드|Download/i }).first()
-    await expect(resultSection).toBeVisible({ timeout: 300000 })
-    console.log('✅ 변환 완료 - 결과 표시됨')
-    
-    // 다운로드 버튼 확인
     const downloadButton = page.getByRole('button').filter({ hasText: /다운로드|Download/i }).first()
+    await expect(downloadButton).toBeVisible({ timeout: 300000 })
+    console.log('✅ 변환 완료 - 결과 표시됨')
+
+    // 다운로드 버튼 확인
     await expect(downloadButton).toBeVisible({ timeout: 10000 })
     console.log('✅ 다운로드 버튼 표시됨')
     

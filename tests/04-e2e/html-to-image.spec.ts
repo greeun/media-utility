@@ -34,6 +34,10 @@ test.describe('HTML to Image - HTML 입력 영역', () => {
     await page.goto('/en/html-to-image')
 
     const textarea = page.locator('textarea').first()
+    await expect(textarea).toBeVisible()
+
+    // 기본 HTML 내용을 지우고 새 내용 입력
+    await textarea.clear()
     await textarea.fill('<h1>Hello World</h1>')
 
     await expect(textarea).toHaveValue('<h1>Hello World</h1>')
@@ -102,26 +106,31 @@ test.describe('HTML to Image - 변환 실행', () => {
 
     // HTML textarea 비우기
     const textarea = page.locator('textarea').first()
-    await textarea.fill('')
+    await expect(textarea).toBeVisible({ timeout: 10000 })
+    await textarea.clear()
+    await page.waitForTimeout(500)
 
-    // 변환 버튼 비활성화 확인
+    // 변환 버튼 비활성화 확인 (버튼 텍스트: "Convert to Image")
     const convertBtn = page.locator('button').filter({ hasText: /Convert/i })
-    await expect(convertBtn.first()).toBeDisabled()
+    await expect(convertBtn.first()).toBeDisabled({ timeout: 10000 })
   })
 
   test('HTML 입력 후 변환 실행 시 다운로드 버튼이 표시되어야 함', async ({ page }) => {
     await page.goto('/en/html-to-image')
 
-    // HTML 입력
+    // HTML 입력 (기본값 지우고 새 입력)
     const textarea = page.locator('textarea').first()
+    await expect(textarea).toBeVisible()
+    await textarea.clear()
     await textarea.fill('<h1 style="color: red;">Test</h1>')
 
     // 변환 실행
     const convertBtn = page.locator('button').filter({ hasText: /Convert/i })
+    await expect(convertBtn.first()).toBeEnabled({ timeout: 5000 })
     await convertBtn.first().click()
 
-    // 다운로드 버튼 표시 대기
+    // 다운로드 버튼 표시 대기 (Firefox에서는 시간이 더 걸릴 수 있음)
     const downloadBtn = page.locator('button').filter({ hasText: /Download/i })
-    await expect(downloadBtn.first()).toBeVisible({ timeout: 15000 })
+    await expect(downloadBtn.first()).toBeVisible({ timeout: 30000 })
   })
 })

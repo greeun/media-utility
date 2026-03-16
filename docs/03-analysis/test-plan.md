@@ -43,26 +43,29 @@ Media Utility 프로젝트의 모든 기능에 대한 테스트 전략과 케이
 
 | 카테고리 | 파일 수 | 상태 |
 |----------|---------|------|
-| 01-unit/services | 16개 (15 서비스 + 1 luminance) | ✅ 완료 |
+| 01-unit/services | 17개 (15 서비스 + contrast-exposure + luminance) | ✅ 완료 |
 | 01-unit/stores | 1개 (fileStore) | ✅ 완료 |
-| 01-unit/lib | 1개 (utils) | ✅ 완료 |
-| 02-component | 10개 | ✅ 완료 |
-| 03-integration | 4개 | ✅ 완료 |
-| 04-e2e | 12개 | ⚠️ 부분 완료 |
+| 01-unit/lib | 2개 (utils, r2) | ✅ 완료 |
+| 01-unit/hooks | 4개 (useFileManager, useBatchProcessor, useDragAndDrop, useDownloader) | ✅ 완료 |
+| 01-unit/api | 5개 (health, upload, uploadComplete, files, storage) | ✅ 완료 |
+| 01-unit/i18n | 3개 (translations, navigation, request) | ✅ 완료 |
+| 01-unit/security | 1개 (fileValidation) | ✅ 완료 |
+| 01-unit/middleware | 1개 (middleware) | ✅ 완료 |
+| 02-component | 11개 (기존 10개 + ThemeSelector) | ✅ 완료 |
+| 03-integration | 6개 | ✅ 완료 |
+| 04-e2e | 24개 (도구 페이지 + file-view) | ✅ 완료 |
 
 ### 2.2 누락된 테스트 (신규 필요)
 
 | 카테고리 | 누락 항목 | 우선순위 |
 |----------|-----------|---------|
-| 01-unit/hooks | useFileManager, useBatchProcessor, useDragAndDrop, useDownloader | High |
-| 01-unit/i18n | i18n config, 번역 키 완전성 | Medium |
-| 02-component | 디자인 시스템 v2 컴포넌트 | Medium |
-| 04-e2e | background-remover, face-blur, image-compressor, image-editor, image-upscaler, meme-generator, watermark, html-to-image, video-format-converter, video-resizer | High |
-| 05-api | health, upload, upload/complete, files/[fileId], storage, storage/cleanup | High |
+| 02-component | 디자인 시스템 v2 컴포넌트 (Button, Input, Card, Slider 등) | Medium |
+| 02-component | 페이지 훅 (useImageEditor) | Medium |
 | 06-performance | 대용량 파일, 메모리 누수, 동시 처리 | Medium |
-| 07-accessibility | WCAG 2.1 AA 준수 | Medium |
-| 08-i18n | 번역 완전성, locale 라우팅, RTL(아랍어) | Medium |
-| 09-security | 파일 타입 검증, 크기 제한, CORS | High |
+| 07-accessibility | WCAG 2.1 AA 준수 (키보드, 스크린리더, axe-core) | Medium |
+| 08-i18n (E2E) | locale 라우팅 E2E, RTL(아랍어) | Medium |
+| 09-security (E2E) | CORS 헤더, XSS 방지 E2E | High |
+| 12-mobile | 모바일 반응형 뷰포트 테스트 | Medium |
 
 ---
 
@@ -260,7 +263,28 @@ Media Utility 프로젝트의 모든 기능에 대한 테스트 전략과 케이
 | U-UT-002 | cn(): 조건부 클래스 처리 | Medium |
 | U-UT-003 | cn(): 충돌 클래스 해결 | Medium |
 
-### 3.4 공유 훅 테스트 (신규)
+### 3.3.1 R2 스토리지 유틸리티 테스트
+
+| TC-ID | 테스트 케이스 | 우선순위 |
+|-------|-------------|---------|
+| U-R2-001 | r2Client: 환경 변수로 S3Client 정상 생성 | Critical |
+| U-R2-002 | R2_BUCKET_NAME: 환경 변수에서 올바르게 내보내기 | High |
+| U-R2-003 | R2_PUBLIC_URL: 환경 변수에서 올바르게 내보내기 | High |
+| U-R2-004 | 환경 변수 미설정 시 빈 문자열 기본값 | High |
+| U-R2-005 | R2_ACCOUNT_ID 미설정 시 console.warn 출력 | Medium |
+| U-R2-006 | r2Client export 확인 | Medium |
+
+### 3.3.2 Middleware 테스트
+
+| TC-ID | 테스트 케이스 | 우선순위 |
+|-------|-------------|---------|
+| U-MW-001 | createMiddleware: 올바른 locales, defaultLocale, localePrefix 옵션 전달 | Critical |
+| U-MW-002 | config.matcher: 루트 경로 '/' 포함 | High |
+| U-MW-003 | config.matcher: 11개 locale 경로 패턴 포함 | High |
+| U-MW-004 | config.matcher: 12개 도구 페이지 경로 패턴 포함 | High |
+| U-MW-005 | default export가 함수 | Medium |
+
+### 3.4 공유 훅 테스트 (기존)
 
 #### 3.4.1 useFileManager.ts
 
@@ -303,15 +327,32 @@ Media Utility 프로젝트의 모든 기능에 대한 테스트 전략과 케이
 | U-DL-002 | download: 파일명 지정 | High |
 | U-DL-003 | downloadAll: 여러 파일 ZIP 다운로드 (해당 시) | Medium |
 
-### 3.5 i18n 설정 테스트 (신규)
+### 3.5 i18n 설정 테스트 (기존)
 
 | TC-ID | 테스트 케이스 | 우선순위 |
 |-------|-------------|---------|
 | U-I18N-001 | config: 11개 locale 정의 확인 (ko,en,ja,zh,de,fr,es,pt,ru,ar,id) | High |
-| U-I18N-002 | config: defaultLocale = 'ko' | High |
+| U-I18N-002 | config: defaultLocale = 'en' | High |
 | U-I18N-003 | 번역 키 완전성: 모든 언어 파일에 동일한 키 구조 | High |
 | U-I18N-004 | 번역 값: 빈 문자열 없음 | Medium |
 | U-I18N-005 | 특수 키: luminanceLabel 11개 언어 존재 | Medium |
+
+### 3.5.1 i18n Navigation 테스트
+
+| TC-ID | 테스트 케이스 | 우선순위 |
+|-------|-------------|---------|
+| U-NAV-001 | createNavigation: locales, defaultLocale, localePrefix 옵션 전달 | High |
+| U-NAV-002 | Link, redirect, usePathname, useRouter 내보내기 확인 | High |
+
+### 3.5.2 i18n Request Config 테스트
+
+| TC-ID | 테스트 케이스 | 우선순위 |
+|-------|-------------|---------|
+| U-REQ-001 | getRequestConfig 호출 확인 | High |
+| U-REQ-002 | 유효한 locale 전달 시 해당 locale 사용 | Critical |
+| U-REQ-003 | 유효하지 않은 locale 시 defaultLocale 사용 | Critical |
+| U-REQ-004 | undefined locale 시 defaultLocale 사용 | High |
+| U-REQ-005 | messages 포함 확인 | High |
 
 ---
 
@@ -345,6 +386,17 @@ Media Utility 프로젝트의 모든 기능에 대한 테스트 전략과 케이
 | C-LS-002 | LanguageSelector | 언어 변경 시 locale 전환 | Critical |
 | C-LG-001 | Logo | SVG 로고 렌더링 | Low |
 | C-FI-001 | FeatureIcons | 도구별 아이콘 렌더링 | Low |
+| C-TS-001 | ThemeSelector | 기본 렌더링 | High |
+| C-TS-002 | ThemeSelector | localStorage에서 테마 복원 | High |
+| C-TS-003 | ThemeSelector | 저장된 테마 없을 때 DEFAULT_THEME 적용 | High |
+| C-TS-004 | ThemeSelector | 드롭다운 열기/닫기 토글 | High |
+| C-TS-005 | ThemeSelector | 모든 테마 옵션 표시 | High |
+| C-TS-006 | ThemeSelector | 테마 선택 시 data-theme, localStorage 업데이트 | Critical |
+| C-TS-007 | ThemeSelector | 테마 선택 후 드롭다운 닫힘 | Medium |
+| C-TS-008 | ThemeSelector | 외부 클릭 시 드롭다운 닫힘 | Medium |
+| C-TS-009 | ThemeSelector | 색상 프리뷰 표시 | Medium |
+| C-TS-010 | ThemeSelector | 현재 테마 활성 인디케이터 | Medium |
+| C-TS-011 | ThemeSelector | 테마 설명 표시 | Low |
 
 ### 4.2 디자인 시스템 v2 컴포넌트 (신규)
 
@@ -459,14 +511,39 @@ Media Utility 프로젝트의 모든 기능에 대한 테스트 전략과 케이
 | E-HM-* | home.spec.ts | 홈페이지 로드, 도구 카드 표시 |
 | E-NV-* | navigation.spec.ts | 전체 도구 페이지 네비게이션 |
 | E-IC-* | image-converter.spec.ts | 이미지 포맷 변환 워크플로우 |
+| E-IE-* | image-editor.spec.ts | 이미지 편집기 (자르기, 회전, 뒤집기, 밝기) |
 | E-LU-* | image-editor-luminance.spec.ts | 휘도 슬라이더 UI, 적용, 초기화 |
+| E-CE-* | image-editor-contrast-exposure.spec.ts | 대비/노출 조절 |
+| E-CP-* | image-compressor.spec.ts | 이미지 압축 워크플로우 |
+| E-UP-* | image-upscaler.spec.ts | 이미지 업스케일 워크플로우 |
+| E-BR-* | background-remover.spec.ts | 배경 제거 워크플로우 |
+| E-FB-* | face-blur.spec.ts | 얼굴 블러 워크플로우 |
+| E-MG-* | meme-generator.spec.ts | 밈 텍스트 추가 워크플로우 |
+| E-WM-* | watermark.spec.ts | 워터마크 추가 워크플로우 |
+| E-HI-* | html-to-image.spec.ts | HTML → 이미지 변환 |
 | E-GM-* | gif-maker.spec.ts | GIF 생성 워크플로우 |
 | E-VC-* | video-converter.spec.ts | 비디오 변환 |
+| E-VF-* | video-format-converter.spec.ts | 비디오 포맷 변환 |
+| E-VR-* | video-resizer.spec.ts | 비디오 리사이징 |
 | E-UG-* | url-generator.spec.ts | URL 생성 |
 | E-FF-* | ffmpeg-*.spec.ts | FFmpeg WASM 동작 |
 | E-AF-* | all-features-test.spec.ts | 전체 기능 통합 |
+| E-FV-* | file-view.spec.ts | 파일 뷰어 (조회, 인증, 미리보기) |
 
-### 7.2 누락 E2E 테스트 (신규 필요)
+### 7.2 추가 E2E 테스트 (신규)
+
+#### 7.2.0 file-view.spec.ts (파일 뷰어 페이지)
+
+| TC-ID | 테스트 케이스 | 우선순위 |
+|-------|-------------|---------|
+| E-FV-001 | 존재하지 않는 fileId → 오류 표시 | Critical |
+| E-FV-002 | 로딩 중 스피너 표시 | Medium |
+| E-FV-003 | 비밀번호 보호 파일 → 비밀번호 입력 폼 표시 | Critical |
+| E-FV-004 | 이미지 파일 미리보기 (img 태그) | Critical |
+| E-FV-005 | 비디오 파일 미리보기 (video 태그) | High |
+| E-FV-006 | 비지원 파일 형식 → 다운로드 안내 | High |
+| E-FV-007 | 만료일 표시 | Medium |
+| E-FV-008 | 잘못된 비밀번호 → 오류 메시지 | High |
 
 #### 7.2.1 image-editor.spec.ts (일반 편집 기능)
 
@@ -800,18 +877,18 @@ npm run test:01-unit && npm run test:02-component && npm run test:03-integration
 
 ### 14.1 필요한 테스트 파일
 
-| 파일 | 용도 | 경로 |
-|------|------|------|
-| test-image.png | 일반 이미지 테스트 | tests/fixtures/test-image.png |
-| test-image.jpg | JPG 변환 테스트 | tests/fixtures/test-image.jpg |
-| test-image-large.jpg | 대용량 이미지 (4000x3000) | tests/fixtures/test-image-large.jpg |
-| test-image-small.png | 소형 이미지 (100x100) | tests/fixtures/test-image-small.png |
-| test-heic.heic | HEIC 변환 테스트 | tests/fixtures/test-heic.heic |
-| test-raw.cr2 | RAW 변환 테스트 | tests/fixtures/test-raw.cr2 |
-| test-psd.psd | PSD 변환 테스트 | tests/fixtures/test-psd.psd |
-| test-video.mp4 | 비디오 처리 테스트 | tests/fixtures/test-video.mp4 |
-| test-face.jpg | 얼굴 감지 테스트 | tests/fixtures/test-face.jpg |
-| test-corrupted.jpg | 손상된 파일 테스트 | tests/fixtures/test-corrupted.jpg |
+| 파일 | 용도 | 경로 | 상태 |
+|------|------|------|------|
+| test-image.png | 일반 이미지 테스트 | tests/fixtures/test-image.png | ✅ |
+| test-image.jpg | JPG 변환 테스트 | tests/fixtures/test-image.jpg | ✅ |
+| test-image-small.png | 소형 이미지 (100x100) | tests/fixtures/test-image-small.png | ✅ |
+| test-corrupted.jpg | 손상된 파일 테스트 | tests/fixtures/test-corrupted.jpg | ✅ |
+| test-image-large.jpg | 대용량 이미지 (4000x3000) | tests/fixtures/test-image-large.jpg | ⏳ 추후 |
+| test-heic.heic | HEIC 변환 테스트 | tests/fixtures/test-heic.heic | ⏳ 추후 |
+| test-raw.cr2 | RAW 변환 테스트 | tests/fixtures/test-raw.cr2 | ⏳ 추후 |
+| test-psd.psd | PSD 변환 테스트 | tests/fixtures/test-psd.psd | ⏳ 추후 |
+| test-video.mp4 | 비디오 처리 테스트 | tests/fixtures/test-video.mp4 | ⏳ 추후 |
+| test-face.jpg | 얼굴 감지 테스트 | tests/fixtures/test-face.jpg | ⏳ 추후 |
 
 ### 14.2 Mock 전략
 
@@ -870,48 +947,51 @@ test-results/
 
 ## 16. 전체 테스트 케이스 요약
 
-| 카테고리 | 기존 | 신규 필요 | 총계 |
-|----------|------|----------|------|
-| 01-unit (서비스) | ~80개 | ~20개 | ~100개 |
+| 카테고리 | 구현 완료 | 신규 필요 | 총계 |
+|----------|----------|----------|------|
+| 01-unit (서비스) | ~80개 | 0 | ~80개 |
 | 01-unit (스토어) | ~9개 | 0 | ~9개 |
-| 01-unit (유틸) | ~3개 | 0 | ~3개 |
-| 01-unit (공유 훅) | 0 | ~21개 | ~21개 |
-| 01-unit (i18n) | 0 | ~5개 | ~5개 |
-| 02-component (기존) | ~24개 | 0 | ~24개 |
-| 02-component (디자인 시스템) | 0 | ~12개 | ~12개 |
+| 01-unit (유틸 + R2) | ~11개 | 0 | ~11개 |
+| 01-unit (공유 훅) | ~21개 | 0 | ~21개 |
+| 01-unit (i18n + nav + request) | ~12개 | 0 | ~12개 |
+| 01-unit (API) | ~12개 | 0 | ~12개 |
+| 01-unit (보안) | ~5개 | 0 | ~5개 |
+| 01-unit (middleware) | ~5개 | 0 | ~5개 |
+| 02-component (기존 + ThemeSelector) | ~35개 | 0 | ~35개 |
+| 02-component (디자인 시스템 v2) | 0 | ~12개 | ~12개 |
 | 02-component (페이지 훅) | 0 | ~7개 | ~7개 |
-| 03-integration | ~12개 | ~8개 | ~20개 |
-| 04-e2e (기존) | ~40개 | 0 | ~40개 |
-| 04-e2e (신규 페이지) | 0 | ~45개 | ~45개 |
-| 05-api | 0 | ~12개 | ~12개 |
+| 03-integration | ~20개 | 0 | ~20개 |
+| 04-e2e (전체) | ~85개 | 0 | ~85개 |
 | 06-performance | 0 | ~11개 | ~11개 |
 | 07-accessibility | 0 | ~15개 | ~15개 |
-| 08-i18n | 0 | ~11개 | ~11개 |
-| 09-security | 0 | ~12개 | ~12개 |
+| 08-i18n (E2E) | 0 | ~11개 | ~11개 |
+| 09-security (E2E) | 0 | ~12개 | ~12개 |
 | 모바일 반응형 | 0 | ~8개 | ~8개 |
-| **합계** | **~168개** | **~187개** | **~355개** |
+| **합계** | **~295개** | **~76개** | **~371개** |
 
 ---
 
 ## 17. 구현 우선순위 로드맵
 
-### Phase 1: Critical (즉시)
-1. 누락된 E2E 테스트 (image-editor, image-compressor, background-remover, face-blur)
-2. API 라우트 테스트
-3. 보안 테스트 (파일 검증, CORS)
+### Phase 1: Critical (즉시) — ✅ 완료
+1. ~~누락된 E2E 테스트~~ → 전체 도구 페이지 + file-view 완료
+2. ~~API 라우트 테스트~~ → 01-unit/api에 구현 완료
+3. ~~보안 테스트~~ → 01-unit/security에 구현 완료
 
 ### Phase 2: High (1주 내)
-4. 공유 훅 단위 테스트
-5. 나머지 E2E 테스트 (meme-generator, watermark, html-to-image, video-*)
-6. 추가 통합 테스트
+### Phase 2: High — ✅ 완료
+4. ~~공유 훅 단위 테스트~~ → 4개 훅 테스트 완료
+5. ~~나머지 E2E 테스트~~ → 전체 도구 페이지 E2E 완료
+6. ~~추가 통합 테스트~~ → 6개 통합 테스트 완료
 
-### Phase 3: Medium (2주 내)
-7. 디자인 시스템 v2 컴포넌트 테스트
-8. 접근성 테스트
-9. i18n 번역 완전성 테스트
-10. 성능 테스트
+### Phase 3: Medium (다음 목표)
+7. 디자인 시스템 v2 컴포넌트 테스트 (Button, Input, Card, Slider 등 12개)
+8. 접근성 테스트 (axe-core 자동화, 키보드 네비게이션)
+9. i18n locale 라우팅 E2E 테스트
+10. 성능 테스트 (대용량 파일, 메모리 누수)
 
 ### Phase 4: Enhancement (지속적)
 11. 모바일 반응형 테스트
-12. 페이지 훅 테스트
-13. 커버리지 목표 달성
+12. 페이지 훅 테스트 (useImageEditor)
+13. 보안 E2E 테스트 (CORS 헤더, XSS 방지)
+14. 커버리지 목표 달성 (line ≥ 80%, branch ≥ 70%)

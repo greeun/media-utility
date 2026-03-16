@@ -50,8 +50,12 @@ test.describe('비디오 리사이저 - 파일 업로드 영역', () => {
   test('지원 포맷 안내 텍스트가 표시되어야 함', async ({ page }) => {
     await page.goto('/en/video-resizer')
 
-    // MP4, WebM, MOV, AVI 포맷 안내
-    await expect(page.getByText(/MP4.*WebM.*MOV.*AVI/)).toBeVisible()
+    // 업로드 영역 내 포맷 안내 텍스트 확인 ("MP4, WebM, MOV, AVI")
+    const uploadSection = page.locator('[class*="border-dashed"]').first()
+    await expect(uploadSection).toBeVisible()
+    // 업로드 영역 부모 내에서 포맷 텍스트 존재 확인
+    const formatHint = page.locator('span', { hasText: 'MP4, WebM, MOV, AVI' })
+    await expect(formatHint).toBeVisible()
   })
 })
 

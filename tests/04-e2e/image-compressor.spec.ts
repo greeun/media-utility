@@ -102,8 +102,8 @@ test.describe('이미지 압축기 - 압축 실행 및 결과', () => {
     await expect(compressBtn.first()).toBeVisible({ timeout: 10000 })
     await compressBtn.first().click()
 
-    // 결과 통계 표시 대기 (원본/압축 크기, 비율)
-    await expect(page.locator('text=/%/')).toBeVisible({ timeout: 15000 })
+    // 결과 통계 표시 대기 (압축 완료 후 결과 영역 표시)
+    await expect(page.getByText(/\d+%/).first()).toBeVisible({ timeout: 15000 })
   })
 
   test('압축 완료 후 다운로드 버튼이 표시되어야 함', async ({ page }) => {

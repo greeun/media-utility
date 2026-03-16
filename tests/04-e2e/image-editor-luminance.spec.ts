@@ -158,8 +158,8 @@ test.describe('이미지 편집기 - 휘도 조절', () => {
     // 패널 닫힘 대기
     await expect(page.locator('input[type="range"]').first()).not.toBeVisible({ timeout: 10000 })
 
-    // 회전 버튼 클릭
-    const rotateBtn = page.locator('button').filter({ hasText: /회전/ }).first()
+    // 회전 버튼 클릭 (한국어: "왼쪽 90°" 또는 "오른쪽 90°")
+    const rotateBtn = page.locator('button').filter({ hasText: /90°/ }).first()
     await rotateBtn.click()
 
     // 편집 결과 크기가 여전히 표시됨 (이전 편집 유지)

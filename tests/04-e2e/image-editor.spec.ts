@@ -120,15 +120,17 @@ test.describe('이미지 편집기 - 자르기', () => {
   test('자르기 모드 토글: 다시 클릭하면 패널이 닫혀야 함', async ({ page }) => {
     await uploadTestImage(page)
 
-    const cropBtn = page.locator('button').filter({ hasText: 'Crop' })
-
     // 자르기 모드 진입
+    const cropBtn = page.locator('button').filter({ hasText: 'Crop' }).first()
     await cropBtn.click()
-    await expect(page.locator('button').filter({ hasText: 'Apply Crop' })).toBeVisible()
 
-    // 다시 클릭하면 패널 닫힘
+    const applyCropBtn = page.locator('button').filter({ hasText: 'Apply Crop' })
+    await expect(applyCropBtn).toBeVisible()
+
+    // 다시 클릭하면 패널 닫힘 (Apply Crop이 아닌 Crop 툴바 버튼 클릭)
+    // Apply Crop 버튼이 있는 상태에서 첫 번째 Crop 버튼(툴바)을 클릭
     await cropBtn.click()
-    await expect(page.locator('button').filter({ hasText: 'Apply Crop' })).not.toBeVisible()
+    await expect(applyCropBtn).not.toBeVisible()
   })
 })
 

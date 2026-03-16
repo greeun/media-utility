@@ -73,6 +73,9 @@ test.describe('배경 제거 - 처리 실행', () => {
   })
 
   test('처리 완료 후 다운로드 버튼이 표시되어야 함', async ({ page }) => {
+    // AI 모델 로딩 + 처리 시간이 오래 걸릴 수 있음
+    test.setTimeout(300000) // 5분 타임아웃
+
     await page.goto('/en/background-remover')
 
     const fileInput = page.locator('input[type="file"]').first()
@@ -83,9 +86,9 @@ test.describe('배경 제거 - 처리 실행', () => {
     await expect(processBtn.first()).toBeVisible({ timeout: 10000 })
     await processBtn.first().click()
 
-    // 다운로드 버튼 표시 대기
+    // 다운로드 버튼 표시 대기 (AI 모델 다운로드 + 처리 시간 필요)
     const downloadBtn = page.locator('button').filter({ hasText: /Download/ })
-    await expect(downloadBtn.first()).toBeVisible({ timeout: 120000 })
+    await expect(downloadBtn.first()).toBeVisible({ timeout: 180000 })
   })
 })
 

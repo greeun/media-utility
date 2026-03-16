@@ -27,30 +27,30 @@ test.describe('홈페이지', () => {
 
 test.describe('이미지 변환 페이지', () => {
   test('이미지 변환 페이지로 이동 가능해야 함', async ({ page }) => {
-    await page.goto('/image-converter')
+    await page.goto('/en/image-converter')
 
-    // 파일 업로더 컴포넌트가 있어야 함
-    const uploadArea = page.locator('[class*="border-dashed"]')
-    await expect(uploadArea).toBeVisible()
+    // 업로드 영역이 표시되어야 함 (ds-upload 또는 border-dashed)
+    const uploadArea = page.locator('.ds-upload, [class*="border-dashed"]')
+    await expect(uploadArea.first()).toBeVisible()
   })
 })
 
 test.describe('GIF 생성 페이지', () => {
   test('GIF 메이커 페이지로 이동 가능해야 함', async ({ page }) => {
-    await page.goto('/gif-maker')
+    await page.goto('/en/gif-maker')
 
-    // 파일 업로더 컴포넌트가 있어야 함
-    const uploadArea = page.locator('[class*="border-dashed"]')
-    await expect(uploadArea).toBeVisible()
+    // 업로드 영역이 표시되어야 함 (ds-upload 또는 border-dashed)
+    const uploadArea = page.locator('.ds-upload, [class*="border-dashed"]')
+    await expect(uploadArea.first()).toBeVisible()
   })
 })
 
 test.describe('비디오 변환 페이지', () => {
   test('비디오 변환 페이지로 이동 가능해야 함', async ({ page }) => {
-    await page.goto('/video-converter')
+    await page.goto('/en/video-converter')
 
-    // 파일 업로더 컴포넌트가 있어야 함
-    const uploadArea = page.locator('[class*="border-dashed"]')
-    await expect(uploadArea).toBeVisible()
+    // 업로드 영역이 표시되어야 함 (ds-upload 또는 border-dashed)
+    const uploadArea = page.locator('.ds-upload, [class*="border-dashed"]')
+    await expect(uploadArea.first()).toBeVisible()
   })
 })
