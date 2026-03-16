@@ -137,12 +137,13 @@
     "brightness": {
       "label": "Helligkeit anpassen",
       "luminanceLabel": "Leuchtdichte",
+      "contrastLabel": "Kontrast",
+      "exposureLabel": "Belichtung",
       "apply": "Anwenden",
       "reset": "Zurücksetzen"
     },
     "constraints": [
-      "Ein Bild gleichzeitig",
-      "Browserbasierte Speicherverarbeitung"
+      "Ein Bild gleichzeitig"
     ],
     "howToUse": {
       "title": "Bildeditor",
@@ -205,7 +206,7 @@
     "extractedFrames": "Extrahierte Frames",
     "constraints": [
       "FFmpeg WASM (~30MB) wird beim ersten Gebrauch heruntergeladen",
-      "Große Dateien können durch Browser-Speicherlimits eingeschränkt sein"
+      "Die Verarbeitung großer Dateien kann länger dauern"
     ],
     "howToUse": {
       "title": "Videokonverter",
@@ -229,7 +230,7 @@
     "sharedArrayBufferError": "Ihr Browser unterstützt SharedArrayBuffer nicht. Verwenden Sie einen modernen Browser oder greifen Sie über HTTPS zu.",
     "constraints": [
       "FFmpeg WASM (~30 MB) wird beim ersten Gebrauch heruntergeladen",
-      "Große Dateien können durch den Browserspeicher begrenzt sein"
+      "Die Verarbeitung großer Dateien kann länger dauern"
     ],
     "howToUse": {
       "title": "Video-Format-Konverter",
@@ -260,7 +261,7 @@
     "sharedArrayBufferError": "Ihr Browser unterstützt SharedArrayBuffer nicht. Verwenden Sie einen modernen Browser oder greifen Sie über HTTPS zu.",
     "constraints": [
       "FFmpeg WASM (~30 MB) wird beim ersten Gebrauch heruntergeladen",
-      "Große Dateien können durch den Browserspeicher begrenzt sein"
+      "Die Verarbeitung großer Dateien kann länger dauern"
     ],
     "howToUse": {
       "title": "Video-Größenanpassungstool",

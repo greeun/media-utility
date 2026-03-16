@@ -137,12 +137,13 @@
     "brightness": {
       "label": "밝기 조절",
       "luminanceLabel": "휘도 조절",
+      "contrastLabel": "대비 조절",
+      "exposureLabel": "노출 조절",
       "apply": "적용",
       "reset": "초기화"
     },
     "constraints": [
-      "이미지 1장씩 편집 가능",
-      "브라우저 메모리 기반 처리"
+      "이미지 1장씩 편집 가능"
     ],
     "howToUse": {
       "title": "이미지 편집기",
@@ -205,7 +206,7 @@
     "extractedFrames": "추출된 프레임",
     "constraints": [
       "FFmpeg WASM(~30MB) 첫 사용 시 다운로드",
-      "대용량 파일은 브라우저 메모리 제한에 영향받을 수 있습니다"
+      "대용량 파일은 처리 시간이 오래 걸릴 수 있습니다"
     ],
     "howToUse": {
       "title": "비디오 변환기",
@@ -229,7 +230,7 @@
     "sharedArrayBufferError": "브라우저가 SharedArrayBuffer를 지원하지 않습니다. 최신 브라우저를 사용하거나 HTTPS로 접속해주세요.",
     "constraints": [
       "FFmpeg WASM(~30MB) 첫 사용 시 다운로드",
-      "대용량 파일은 브라우저 메모리 제한에 영향받을 수 있습니다"
+      "대용량 파일은 처리 시간이 오래 걸릴 수 있습니다"
     ],
     "howToUse": {
       "title": "비디오 포맷 변환기",
@@ -260,7 +261,7 @@
     "sharedArrayBufferError": "브라우저가 SharedArrayBuffer를 지원하지 않습니다. 최신 브라우저를 사용하거나 HTTPS로 접속해주세요.",
     "constraints": [
       "FFmpeg WASM(~30MB) 첫 사용 시 다운로드",
-      "대용량 파일은 브라우저 메모리 제한에 영향받을 수 있습니다"
+      "대용량 파일은 처리 시간이 오래 걸릴 수 있습니다"
     ],
     "howToUse": {
       "title": "비디오 크기 변경기",

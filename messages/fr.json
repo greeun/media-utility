@@ -137,12 +137,13 @@
     "brightness": {
       "label": "Réglage de la luminosité",
       "luminanceLabel": "Luminance",
+      "contrastLabel": "Contraste",
+      "exposureLabel": "Exposition",
       "apply": "Appliquer",
       "reset": "Réinitialiser"
     },
     "constraints": [
-      "Une image à la fois",
-      "Traitement basé sur la mémoire du navigateur"
+      "Une image à la fois"
     ],
     "howToUse": {
       "title": "Éditeur d'images",
@@ -205,7 +206,7 @@
     "extractedFrames": "Images extraites",
     "constraints": [
       "FFmpeg WASM (~30 Mo) téléchargé à la première utilisation",
-      "Les fichiers volumineux peuvent être limités par la mémoire du navigateur"
+      "Le traitement des fichiers volumineux peut prendre plus de temps"
     ],
     "howToUse": {
       "title": "Convertisseur vidéo",
@@ -229,7 +230,7 @@
     "sharedArrayBufferError": "Votre navigateur ne prend pas en charge SharedArrayBuffer. Utilisez un navigateur moderne ou accédez via HTTPS.",
     "constraints": [
       "FFmpeg WASM (~30 Mo) téléchargé lors de la première utilisation",
-      "Les fichiers volumineux peuvent être limités par la mémoire du navigateur"
+      "Le traitement des fichiers volumineux peut prendre plus de temps"
     ],
     "howToUse": {
       "title": "Convertisseur de Format Vidéo",
@@ -260,7 +261,7 @@
     "sharedArrayBufferError": "Votre navigateur ne prend pas en charge SharedArrayBuffer. Utilisez un navigateur moderne ou accédez via HTTPS.",
     "constraints": [
       "FFmpeg WASM (~30 Mo) téléchargé lors de la première utilisation",
-      "Les fichiers volumineux peuvent être limités par la mémoire du navigateur"
+      "Le traitement des fichiers volumineux peut prendre plus de temps"
     ],
     "howToUse": {
       "title": "Redimensionneur de Vidéo",

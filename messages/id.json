@@ -137,12 +137,13 @@
     "brightness": {
       "label": "Pengaturan Kecerahan",
       "luminanceLabel": "Luminansi",
+      "contrastLabel": "Kontras",
+      "exposureLabel": "Eksposur",
       "apply": "Terapkan",
       "reset": "Atur Ulang"
     },
     "constraints": [
-      "Satu gambar sekaligus",
-      "Pemrosesan berbasis memori browser"
+      "Satu gambar sekaligus"
     ],
     "howToUse": {
       "title": "Editor Gambar",
@@ -205,7 +206,7 @@
     "extractedFrames": "Frame yang Diekstrak",
     "constraints": [
       "FFmpeg WASM (~30MB) diunduh saat pertama kali digunakan",
-      "File besar mungkin dibatasi oleh memori browser"
+      "File besar mungkin memerlukan waktu lebih lama untuk diproses"
     ],
     "howToUse": {
       "title": "Konverter Video",
@@ -229,7 +230,7 @@
     "sharedArrayBufferError": "Browser Anda tidak mendukung SharedArrayBuffer. Gunakan browser modern atau akses melalui HTTPS.",
     "constraints": [
       "FFmpeg WASM (~30MB) diunduh pada penggunaan pertama",
-      "File besar mungkin dibatasi oleh memori browser"
+      "File besar mungkin memerlukan waktu lebih lama untuk diproses"
     ],
     "howToUse": {
       "title": "Konverter Format Video",
@@ -260,7 +261,7 @@
     "sharedArrayBufferError": "Browser Anda tidak mendukung SharedArrayBuffer. Gunakan browser modern atau akses melalui HTTPS.",
     "constraints": [
       "FFmpeg WASM (~30MB) diunduh pada penggunaan pertama",
-      "File besar mungkin dibatasi oleh memori browser"
+      "File besar mungkin memerlukan waktu lebih lama untuk diproses"
     ],
     "howToUse": {
       "title": "Pengubah Ukuran Video",

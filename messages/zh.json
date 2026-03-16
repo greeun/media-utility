@@ -137,12 +137,13 @@
     "brightness": {
       "label": "亮度调整",
       "luminanceLabel": "辉度调整",
+      "contrastLabel": "对比度调整",
+      "exposureLabel": "曝光调整",
       "apply": "应用",
       "reset": "重置"
     },
     "constraints": [
-      "一次编辑一张图片",
-      "基于浏览器内存处理"
+      "一次编辑一张图片"
     ],
     "howToUse": {
       "title": "图片编辑器",
@@ -205,7 +206,7 @@
     "extractedFrames": "提取的帧",
     "constraints": [
       "FFmpeg WASM（~30MB）首次使用时下载",
-      "大文件可能受浏览器内存限制"
+      "大文件处理可能需要更长时间"
     ],
     "howToUse": {
       "title": "视频转换器",
@@ -229,7 +230,7 @@
     "sharedArrayBufferError": "您的浏览器不支持SharedArrayBuffer。请使用现代浏览器或通过HTTPS访问。",
     "constraints": [
       "首次使用时下载FFmpeg WASM（~30MB）",
-      "大文件可能受浏览器内存限制"
+      "大文件处理可能需要更长时间"
     ],
     "howToUse": {
       "title": "视频格式转换器",
@@ -260,7 +261,7 @@
     "sharedArrayBufferError": "您的浏览器不支持SharedArrayBuffer。请使用现代浏览器或通过HTTPS访问。",
     "constraints": [
       "首次使用时下载FFmpeg WASM（~30MB）",
-      "大文件可能受浏览器内存限制"
+      "大文件处理可能需要更长时间"
     ],
     "howToUse": {
       "title": "视频尺寸调整器",

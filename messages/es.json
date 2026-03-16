@@ -137,12 +137,13 @@
     "brightness": {
       "label": "Ajuste de brillo",
       "luminanceLabel": "Luminancia",
+      "contrastLabel": "Contraste",
+      "exposureLabel": "Exposición",
       "apply": "Aplicar",
       "reset": "Restablecer"
     },
     "constraints": [
-      "Una imagen a la vez",
-      "Procesamiento basado en memoria del navegador"
+      "Una imagen a la vez"
     ],
     "howToUse": {
       "title": "Editor de imágenes",
@@ -205,7 +206,7 @@
     "extractedFrames": "Fotogramas extraídos",
     "constraints": [
       "FFmpeg WASM (~30MB) se descarga en el primer uso",
-      "Los archivos grandes pueden estar limitados por la memoria del navegador"
+      "Los archivos grandes pueden tardar más en procesarse"
     ],
     "howToUse": {
       "title": "Convertidor de video",
@@ -229,7 +230,7 @@
     "sharedArrayBufferError": "Su navegador no soporta SharedArrayBuffer. Use un navegador moderno o acceda por HTTPS.",
     "constraints": [
       "FFmpeg WASM (~30MB) se descarga en el primer uso",
-      "Los archivos grandes pueden estar limitados por la memoria del navegador"
+      "Los archivos grandes pueden tardar más en procesarse"
     ],
     "howToUse": {
       "title": "Conversor de Formato de Video",
@@ -260,7 +261,7 @@
     "sharedArrayBufferError": "Su navegador no soporta SharedArrayBuffer. Use un navegador moderno o acceda por HTTPS.",
     "constraints": [
       "FFmpeg WASM (~30MB) se descarga en el primer uso",
-      "Los archivos grandes pueden estar limitados por la memoria del navegador"
+      "Los archivos grandes pueden tardar más en procesarse"
     ],
     "howToUse": {
       "title": "Redimensionador de Video",

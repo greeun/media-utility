@@ -133,10 +133,12 @@
     "brightness": {
       "label": "Brightness",
       "luminanceLabel": "Luminance",
+      "contrastLabel": "Contrast",
+      "exposureLabel": "Exposure",
       "apply": "Apply",
       "reset": "Reset"
     },
-    "constraints": ["One image at a time", "Browser memory-based processing"],
+    "constraints": ["One image at a time"],
     "howToUse": {
       "title": "Image Editor",
       "description": "A free online image editor supporting crop, rotate, flip, resize, optimize, and brightness adjustment. All processing is done in your browser.",
@@ -193,7 +195,7 @@
     "preview": "Preview",
     "result": "Result",
     "extractedFrames": "Extracted Frames",
-    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may be limited by browser memory"],
+    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may take longer to process"],
     "howToUse": {
       "title": "Video Converter",
       "description": "Convert videos to GIF, GIF to MP4 video, or extract frames from videos. All processing is done in your browser using FFmpeg WebAssembly.",
@@ -214,7 +216,7 @@
     "currentFormat": "Current Format",
     "conversionError": "Error occurred during conversion",
     "sharedArrayBufferError": "Your browser does not support SharedArrayBuffer. Please use a modern browser or access via HTTPS.",
-    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may be limited by browser memory"],
+    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may take longer to process"],
     "howToUse": {
       "title": "Video Format Converter",
       "description": "Convert between various video formats including MP4, WebM, MOV, and AVI. All processing is done in your browser using FFmpeg WebAssembly.",
@@ -242,7 +244,7 @@
     "resizing": "Resizing...",
     "resizeError": "Error occurred during resizing",
     "sharedArrayBufferError": "Your browser does not support SharedArrayBuffer. Please use a modern browser or access via HTTPS.",
-    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may be limited by browser memory"],
+    "constraints": ["FFmpeg WASM (~30MB) downloaded on first use", "Large files may take longer to process"],
     "howToUse": {
       "title": "Video Resizer",
       "description": "Change video resolution to any size you need. Supports presets and custom dimensions with aspect ratio lock.",

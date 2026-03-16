@@ -137,12 +137,13 @@
     "brightness": {
       "label": "明るさ調整",
       "luminanceLabel": "輝度調整",
+      "contrastLabel": "コントラスト調整",
+      "exposureLabel": "露出調整",
       "apply": "適用",
       "reset": "リセット"
     },
     "constraints": [
-      "画像1枚ずつ編集",
-      "ブラウザメモリベースの処理"
+      "画像1枚ずつ編集"
     ],
     "howToUse": {
       "title": "画像エディタ",
@@ -205,7 +206,7 @@
     "extractedFrames": "抽出されたフレーム",
     "constraints": [
       "FFmpeg WASM(~30MB) 初回使用時にダウンロード",
-      "大容量ファイルはブラウザメモリの制限を受ける場合があります"
+      "大容量ファイルは処理に時間がかかる場合があります"
     ],
     "howToUse": {
       "title": "動画コンバーター",

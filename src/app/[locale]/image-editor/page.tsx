@@ -40,6 +40,10 @@ export default function ImageEditorPage() {
     setBrightness,
     luminance,
     setLuminance,
+    contrast,
+    setContrast,
+    exposure,
+    setExposure,
     isDragging,
     handleFileSelect,
     handleDragOver,
@@ -80,7 +84,7 @@ export default function ImageEditorPage() {
 
         {/* 제약사항 */}
         <ToolConstraints
-          constraints={[t('imageEditor.constraints.0'), t('imageEditor.constraints.1')]}
+          constraints={[t('imageEditor.constraints.0')]}
           accentColor="amber"
         />
 
@@ -250,11 +254,11 @@ export default function ImageEditorPage() {
               </div>
             )}
 
-            {/* 편집 패널 - 밝기·휘도 */}
+            {/* 편집 패널 - 명도 조절 */}
             {editMode === 'brightness' && (
               <div className="p-4 bg-white border-4 border-black">
-                <div className="flex flex-wrap items-end gap-6">
-                  <div className="flex-1 min-w-[180px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
                     <label className="block text-sm font-bold text-gray-600 uppercase tracking-wide mb-2">
                       {t('imageEditor.brightness.label')}:{' '}
                       <span style={{ color: ACCENT }}>{brightness}</span>
@@ -273,7 +277,7 @@ export default function ImageEditorPage() {
                       <span>+100</span>
                     </div>
                   </div>
-                  <div className="flex-1 min-w-[180px]">
+                  <div>
                     <label className="block text-sm font-bold text-gray-600 uppercase tracking-wide mb-2">
                       {t('imageEditor.brightness.luminanceLabel')}:{' '}
                       <span style={{ color: ACCENT }}>{luminance}</span>
@@ -292,22 +296,60 @@ export default function ImageEditorPage() {
                       <span>+100</span>
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => { setBrightness(0); setLuminance(0); }}
-                      className="px-4 py-2 border-4 border-black text-sm font-black uppercase tracking-wide bg-white text-black hover:bg-black hover:text-white transition-all"
-                    >
-                      {t('imageEditor.brightness.reset')}
-                    </button>
-                    <button
-                      onClick={handleBrightnessApply}
-                      disabled={isProcessing || (brightness === 0 && luminance === 0)}
-                      style={{ backgroundColor: ACCENT, borderColor: ACCENT }}
-                      className="px-4 py-2 border-4 text-sm font-black uppercase tracking-wide text-white transition-all hover:opacity-90 disabled:opacity-50"
-                    >
-                      {t('imageEditor.brightness.apply')}
-                    </button>
+                  <div>
+                    <label className="block text-sm font-bold text-gray-600 uppercase tracking-wide mb-2">
+                      {t('imageEditor.brightness.contrastLabel')}:{' '}
+                      <span style={{ color: ACCENT }}>{contrast}</span>
+                    </label>
+                    <input
+                      type="range"
+                      min={-100}
+                      max={100}
+                      value={contrast}
+                      onChange={(e) => setContrast(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-purple-500"
+                    />
+                    <div className="flex justify-between text-xs text-gray-400 mt-1 font-bold">
+                      <span>-100</span>
+                      <span>0</span>
+                      <span>+100</span>
+                    </div>
                   </div>
+                  <div>
+                    <label className="block text-sm font-bold text-gray-600 uppercase tracking-wide mb-2">
+                      {t('imageEditor.brightness.exposureLabel')}:{' '}
+                      <span style={{ color: ACCENT }}>{exposure}</span>
+                    </label>
+                    <input
+                      type="range"
+                      min={-100}
+                      max={100}
+                      value={exposure}
+                      onChange={(e) => setExposure(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-purple-500"
+                    />
+                    <div className="flex justify-between text-xs text-gray-400 mt-1 font-bold">
+                      <span>-100</span>
+                      <span>0</span>
+                      <span>+100</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-end gap-2 mt-4">
+                  <button
+                    onClick={() => { setBrightness(0); setLuminance(0); setContrast(0); setExposure(0); }}
+                    className="px-4 py-2 border-4 border-black text-sm font-black uppercase tracking-wide bg-white text-black hover:bg-black hover:text-white transition-all"
+                  >
+                    {t('imageEditor.brightness.reset')}
+                  </button>
+                  <button
+                    onClick={handleBrightnessApply}
+                    disabled={isProcessing || (brightness === 0 && luminance === 0 && contrast === 0 && exposure === 0)}
+                    style={{ backgroundColor: ACCENT, borderColor: ACCENT }}
+                    className="px-4 py-2 border-4 text-sm font-black uppercase tracking-wide text-white transition-all hover:opacity-90 disabled:opacity-50"
+                  >
+                    {t('imageEditor.brightness.apply')}
+                  </button>
                 </div>
               </div>
             )}
@@ -336,8 +378,8 @@ export default function ImageEditorPage() {
                     alt="Edit preview"
                     className="max-h-[600px] object-contain"
                     style={
-                      editMode === 'brightness' && (brightness !== 0 || luminance !== 0)
-                        ? { filter: `brightness(${(1 + brightness / 100) * (1 + luminance / 200)})` }
+                      editMode === 'brightness' && (brightness !== 0 || luminance !== 0 || contrast !== 0 || exposure !== 0)
+                        ? { filter: `brightness(${(1 + brightness / 100) * (1 + luminance / 200) * Math.pow(2, exposure / 100)}) contrast(${1 + contrast / 100})` }
                         : undefined
                     }
                   />
