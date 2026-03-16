@@ -132,6 +132,7 @@
     },
     "brightness": {
       "label": "Brightness",
+      "luminanceLabel": "Luminance",
       "apply": "Apply",
       "reset": "Reset"
     },

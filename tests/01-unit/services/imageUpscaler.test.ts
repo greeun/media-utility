@@ -258,16 +258,14 @@ describe('imageUpscaler', () => {
       expect(mockUpscaler.dispose).toHaveBeenCalledTimes(1);
     });
 
-    // 서비스 로직이 매번 새 인스턴스를 생성하도록 변경됨
-    it.skip('동일 스케일 재사용 시 인스턴스를 재사용해야 함', async () => {
-      // dispose를 리셋하여 이전 테스트 영향 제거
+    it('동일 스케일로 호출해도 매번 새 인스턴스를 생성해야 함', async () => {
       mockUpscaler.dispose.mockClear();
 
       await upscaleImage(mockFile, { scale: 2, format: 'png' });
       await upscaleImage(mockFile, { scale: 2, format: 'png' });
 
-      // 동일 스케일 재사용 시 dispose가 호출되지 않아야 함
-      expect(mockUpscaler.dispose).not.toHaveBeenCalled();
+      // 서비스 로직이 매번 새 인스턴스를 생성하므로 dispose가 호출됨
+      expect(mockUpscaler.dispose).toHaveBeenCalled();
     });
 
     it('quality 기본값을 적용해야 함', async () => {

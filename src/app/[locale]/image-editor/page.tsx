@@ -38,6 +38,8 @@ export default function ImageEditorPage() {
     setOptimizeQuality,
     brightness,
     setBrightness,
+    luminance,
+    setLuminance,
     isDragging,
     handleFileSelect,
     handleDragOver,
@@ -248,7 +250,7 @@ export default function ImageEditorPage() {
               </div>
             )}
 
-            {/* 편집 패널 - 밝기 */}
+            {/* 편집 패널 - 밝기·휘도 */}
             {editMode === 'brightness' && (
               <div className="p-4 bg-white border-4 border-black">
                 <div className="flex flex-wrap items-end gap-6">
@@ -271,16 +273,35 @@ export default function ImageEditorPage() {
                       <span>+100</span>
                     </div>
                   </div>
+                  <div className="flex-1 min-w-[180px]">
+                    <label className="block text-sm font-bold text-gray-600 uppercase tracking-wide mb-2">
+                      {t('imageEditor.brightness.luminanceLabel')}:{' '}
+                      <span style={{ color: ACCENT }}>{luminance}</span>
+                    </label>
+                    <input
+                      type="range"
+                      min={-100}
+                      max={100}
+                      value={luminance}
+                      onChange={(e) => setLuminance(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-purple-500"
+                    />
+                    <div className="flex justify-between text-xs text-gray-400 mt-1 font-bold">
+                      <span>-100</span>
+                      <span>0</span>
+                      <span>+100</span>
+                    </div>
+                  </div>
                   <div className="flex gap-2">
                     <button
-                      onClick={() => setBrightness(0)}
+                      onClick={() => { setBrightness(0); setLuminance(0); }}
                       className="px-4 py-2 border-4 border-black text-sm font-black uppercase tracking-wide bg-white text-black hover:bg-black hover:text-white transition-all"
                     >
                       {t('imageEditor.brightness.reset')}
                     </button>
                     <button
                       onClick={handleBrightnessApply}
-                      disabled={isProcessing || brightness === 0}
+                      disabled={isProcessing || (brightness === 0 && luminance === 0)}
                       style={{ backgroundColor: ACCENT, borderColor: ACCENT }}
                       className="px-4 py-2 border-4 text-sm font-black uppercase tracking-wide text-white transition-all hover:opacity-90 disabled:opacity-50"
                     >
@@ -315,8 +336,8 @@ export default function ImageEditorPage() {
                     alt="Edit preview"
                     className="max-h-[600px] object-contain"
                     style={
-                      editMode === 'brightness' && brightness !== 0
-                        ? { filter: `brightness(${1 + brightness / 100})` }
+                      editMode === 'brightness' && (brightness !== 0 || luminance !== 0)
+                        ? { filter: `brightness(${(1 + brightness / 100) * (1 + luminance / 200)})` }
                         : undefined
                     }
                   />

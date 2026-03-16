@@ -140,6 +140,7 @@
     },
     "brightness": {
       "label": "ضبط السطوع",
+      "luminanceLabel": "الإضاءة",
       "apply": "تطبيق",
       "reset": "إعادة تعيين"
     },

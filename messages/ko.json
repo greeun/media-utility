@@ -136,6 +136,7 @@
     },
     "brightness": {
       "label": "밝기 조절",
+      "luminanceLabel": "휘도 조절",
       "apply": "적용",
       "reset": "초기화"
     },

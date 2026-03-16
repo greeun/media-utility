@@ -136,6 +136,7 @@
     },
     "brightness": {
       "label": "Pengaturan Kecerahan",
+      "luminanceLabel": "Luminansi",
       "apply": "Terapkan",
       "reset": "Atur Ulang"
     },

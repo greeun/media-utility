@@ -136,6 +136,7 @@
     },
     "brightness": {
       "label": "Réglage de la luminosité",
+      "luminanceLabel": "Luminance",
       "apply": "Appliquer",
       "reset": "Réinitialiser"
     },

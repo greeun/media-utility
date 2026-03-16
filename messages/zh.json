@@ -136,6 +136,7 @@
     },
     "brightness": {
       "label": "亮度调整",
+      "luminanceLabel": "辉度调整",
       "apply": "应用",
       "reset": "重置"
     },

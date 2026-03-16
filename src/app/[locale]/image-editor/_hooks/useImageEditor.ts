@@ -40,8 +40,11 @@ export function useImageEditor() {
   const [optimizeQuality, setOptimizeQuality] = useState(80);
   const [maxSize, setMaxSize] = useState(1);
 
-  // 밝기 상태
+  // 명도 조절 상태
   const [brightness, setBrightness] = useState(0);
+  const [luminance, setLuminance] = useState(0);
+  const [contrast, setContrast] = useState(0);
+  const [exposure, setExposure] = useState(0);
 
   // 드래그 앤 드롭 상태
   const [isDragging, setIsDragging] = useState(false);
@@ -55,6 +58,9 @@ export function useImageEditor() {
       setEditMode(null);
       setCrop(undefined);
       setBrightness(0);
+      setLuminance(0);
+      setContrast(0);
+      setExposure(0);
 
       const img = new Image();
       img.onload = () => {
@@ -194,18 +200,21 @@ export function useImageEditor() {
     setIsProcessing(false);
   };
 
-  // 밝기 적용
+  // 명도 조절 적용
   const handleBrightnessApply = async () => {
-    if ((!file && !editedBlob) || brightness === 0) return;
+    if ((!file && !editedBlob) || (brightness === 0 && luminance === 0 && contrast === 0 && exposure === 0)) return;
     setIsProcessing(true);
     try {
-      const result = await adjustBrightness(getCurrentSource(), brightness);
+      const result = await adjustBrightness(getCurrentSource(), brightness, luminance, contrast, exposure);
       setEditedBlob(result);
       setPreview(URL.createObjectURL(result));
       setBrightness(0);
+      setLuminance(0);
+      setContrast(0);
+      setExposure(0);
       setEditMode(null);
     } catch (error) {
-      console.error('Brightness error:', error);
+      console.error('Brightness adjustment error:', error);
     }
     setIsProcessing(false);
   };
@@ -228,6 +237,9 @@ export function useImageEditor() {
       setEditMode(null);
       setCrop(undefined);
       setBrightness(0);
+      setLuminance(0);
+      setContrast(0);
+      setExposure(0);
     }
   };
 
@@ -264,6 +276,12 @@ export function useImageEditor() {
     maxSize,
     brightness,
     setBrightness,
+    luminance,
+    setLuminance,
+    contrast,
+    setContrast,
+    exposure,
+    setExposure,
     isDragging,
 
     // 핸들러

@@ -159,13 +159,26 @@ describe('gifGenerator', () => {
       expect(mockGifInstance.addFrame).toHaveBeenCalled();
     });
 
-    // jsdom 환경에서 prototype.getContext 모킹이 document.createElement의 결과에 적용되지 않음
-    it.skip('Canvas context 생성 실패 시 에러를 던져야 함', async () => {
-      HTMLCanvasElement.prototype.getContext = jest.fn(() => null) as never;
+    it('Canvas context 생성 실패 시 에러를 로그하고 이미지를 건너뛰어야 함', async () => {
+      // 서비스 로직: context 실패 시 catch에서 console.error 후 skip
+      const originalCreateElement = document.createElement.bind(document);
+      jest.spyOn(document, 'createElement').mockImplementation((tag: string) => {
+        const el = originalCreateElement(tag);
+        if (tag === 'canvas') {
+          (el as HTMLCanvasElement).getContext = jest.fn(() => null) as never;
+        }
+        return el;
+      });
 
-      await expect(createGifFromImages([mockFile1])).rejects.toThrow(
-        'Canvas context를 생성할 수 없습니다'
-      );
+      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+      // context 실패 시 에러 로그를 남기고 정상 종료 (GIF에 프레임 없이)
+      const result = await createGifFromImages([mockFile1]);
+      expect(result).toBeDefined();
+      expect(consoleSpy).toHaveBeenCalledWith('이미지 처리 오류:', expect.any(Error));
+
+      consoleSpy.mockRestore();
+      (document.createElement as jest.Mock).mockRestore();
     });
   });
 

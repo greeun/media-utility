@@ -136,6 +136,7 @@
     },
     "brightness": {
       "label": "明るさ調整",
+      "luminanceLabel": "輝度調整",
       "apply": "適用",
       "reset": "リセット"
     },

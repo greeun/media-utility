@@ -72,8 +72,18 @@ describe('faceBlur', () => {
       expect(global.URL.revokeObjectURL).toHaveBeenCalledWith('blob:mock-url');
     });
 
-    // MediaPipe 동적 import 모킹이 Jest에서 일관성 있게 작동하지 않음
-    it.skip('얼굴 감지 결과를 올바르게 변환해야 함', async () => {
+    it('얼굴 감지 결과를 올바르게 변환해야 함', async () => {
+      // 싱글턴 캐시를 리셋하기 위해 모듈을 새로 로드
+      jest.resetModules();
+      jest.mock('@mediapipe/tasks-vision', () => ({
+        FaceDetector: {
+          createFromOptions: jest.fn(),
+        },
+        FilesetResolver: {
+          forVisionTasks: jest.fn(),
+        },
+      }));
+
       const mockDetections = [
         {
           boundingBox: {
@@ -99,11 +109,15 @@ describe('faceBlur', () => {
         detect: jest.fn(() => ({ detections: mockDetections })),
       };
 
-      const { FaceDetector, FilesetResolver } = await import('@mediapipe/tasks-vision');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { FaceDetector, FilesetResolver } = require('@mediapipe/tasks-vision');
       (FilesetResolver.forVisionTasks as jest.Mock).mockResolvedValue({});
       (FaceDetector.createFromOptions as jest.Mock).mockResolvedValue(mockDetector);
 
-      const result = await detectFaces(mockFile);
+      // 모듈을 새로 로드하여 싱글턴 캐시가 없는 상태에서 테스트
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { detectFaces: freshDetectFaces } = require('@/services/faceBlur');
+      const result = await freshDetectFaces(mockFile);
 
       expect(result).toHaveLength(2);
       expect(result[0]).toEqual({
