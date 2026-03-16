@@ -214,9 +214,9 @@ export default function HomeV2() {
   ];
 
   return (
-    <div className="min-h-full bg-white">
+    <div className="min-h-full">
       {/* Hero Section - Exaggerated Minimalism */}
-      <section className="relative overflow-hidden border-b-4 border-black">
+      <section className="relative overflow-hidden border-b-4 border-black bg-white">
         {/* Subtle Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 

@@ -23,6 +23,8 @@ jest.mock('next-intl', () => ({
       'watermark.title': '워터마크',
       'memeGenerator.title': '밈 생성',
       'videoConverter.title': '비디오 변환',
+      'videoFormatConverter.title': '비디오 포맷 변환',
+      'videoResizer.title': '비디오 리사이저',
       'htmlToImage.title': 'HTML to 이미지',
       'urlGenerator.title': 'URL 생성',
     };
@@ -50,12 +52,21 @@ jest.mock('@/components/common/LanguageSelector', () => {
   };
 });
 
+// ThemeSelector mock
+jest.mock('@/components/common/ThemeSelector', () => {
+  return function MockThemeSelector() {
+    return <div data-testid="theme-selector">Theme</div>;
+  };
+});
+
 // FeatureIcons mock
 jest.mock('@/components/icons/FeatureIcons', () => ({
   ImageConverterIcon: () => <span data-testid="icon-image-converter">IC</span>,
   ImageEditorIcon: () => <span data-testid="icon-image-editor">IE</span>,
   GifMakerIcon: () => <span data-testid="icon-gif-maker">GM</span>,
   VideoConverterIcon: () => <span data-testid="icon-video-converter">VC</span>,
+  VideoFormatIcon: () => <span data-testid="icon-video-format">VF</span>,
+  VideoResizerIcon: () => <span data-testid="icon-video-resizer">VR</span>,
   UrlGeneratorIcon: () => <span data-testid="icon-url-generator">UG</span>,
   BackgroundRemoverIcon: () => <span data-testid="icon-bg-remover">BR</span>,
   ImageCompressorIcon: () => <span data-testid="icon-compressor">CP</span>,

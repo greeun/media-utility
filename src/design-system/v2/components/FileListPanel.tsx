@@ -21,14 +21,14 @@ export default function FileListPanel({
 }: FileListPanelProps) {
   return (
     <div className="mb-6 opacity-0 animate-fade-up" style={{ animationDelay: delay, animationFillMode: 'forwards' }}>
-      <div className="p-6 bg-white border-4 border-black">
+      <div className="ds-panel p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-black uppercase tracking-wide text-black">
-            {title} <span className="text-gray-800 font-normal">({count})</span>
+          <h3 className="text-lg font-black uppercase tracking-wide ds-text">
+            {title} <span className="ds-text-muted font-normal">({count})</span>
           </h3>
           <button
             onClick={onClearAll}
-            className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wide bg-white text-black border-4 border-black hover:bg-black hover:text-white transition-all duration-200"
+            className="ds-btn-outline flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wide"
           >
             <Trash2 className="w-4 h-4" strokeWidth={2.5} />
             {deleteAllLabel}

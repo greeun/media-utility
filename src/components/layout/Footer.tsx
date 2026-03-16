@@ -8,7 +8,7 @@ export default function Footer() {
   const version = process.env.NEXT_PUBLIC_VERSION;
 
   return (
-    <footer className="bg-black text-white border-t-4 border-black">
+    <footer style={{ background: 'var(--footer-bg)', color: 'var(--footer-text)', borderTop: 'var(--border-width) solid var(--border)' }}>
       <div className="mx-auto max-w-7xl px-6 lg:px-12 py-12">
         <div className="grid md:grid-cols-2 gap-8">
           <div>

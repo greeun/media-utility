@@ -13,7 +13,7 @@ const widthMap = {
 
 export default function ToolPageLayout({ maxWidth = 'lg', children }: ToolPageLayoutProps) {
   return (
-    <div className="min-h-full bg-white py-8 lg:py-12">
+    <div className="min-h-full py-8 lg:py-12">
       <div className={`mx-auto ${widthMap[maxWidth]} px-6 lg:px-12`}>
         {children}
       </div>

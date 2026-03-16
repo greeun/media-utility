@@ -36,7 +36,7 @@ export default function ActionButtonGroup({
         <button
           onClick={primaryAction.onClick}
           disabled={primaryAction.disabled || primaryAction.isLoading}
-          className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-black text-white font-black text-lg uppercase tracking-wide border-4 border-black hover:bg-white hover:text-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="ds-btn-primary group inline-flex items-center justify-center gap-3 px-8 py-4 font-black text-lg uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {primaryAction.isLoading ? (
             <>
@@ -54,7 +54,7 @@ export default function ActionButtonGroup({
       {downloadAction && (
         <button
           onClick={downloadAction.onClick}
-          className="inline-flex items-center justify-center gap-3 px-8 py-4 text-white font-black text-lg uppercase tracking-wide border-4 border-black hover:bg-black hover:text-white transition-all duration-200"
+          className="ds-btn-accent inline-flex items-center justify-center gap-3 px-8 py-4 font-black text-lg uppercase tracking-wide"
           style={{ backgroundColor: accentColor }}
         >
           <Download className="w-5 h-5" strokeWidth={2.5} />

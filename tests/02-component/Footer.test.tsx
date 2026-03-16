@@ -80,8 +80,9 @@ describe('Footer', () => {
     const { container } = render(<Footer />);
 
     const footer = container.querySelector('footer');
-    expect(footer).toHaveClass('bg-black');
-    expect(footer).toHaveClass('border-t-4', 'border-black');
+    // 테마 CSS 변수 기반 인라인 스타일 사용
+    expect(footer).toHaveAttribute('style');
+    expect(footer?.style.background).toBeTruthy();
   });
 
   it('반응형 레이아웃이 적용되어야 함', () => {

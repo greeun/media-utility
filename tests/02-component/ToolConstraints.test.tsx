@@ -15,7 +15,7 @@ describe('ToolConstraints', () => {
     render(<ToolConstraints constraints={mockConstraints} />);
 
     mockConstraints.forEach((constraint) => {
-      expect(screen.getByText(new RegExp(constraint))).toBeInTheDocument();
+      expect(screen.getByText(constraint)).toBeInTheDocument();
     });
   });
 
@@ -26,11 +26,13 @@ describe('ToolConstraints', () => {
     expect(icon).toBeInTheDocument();
   });
 
-  it('제약사항이 불릿으로 표시되어야 함', () => {
-    render(<ToolConstraints constraints={mockConstraints} />);
+  it('제약사항이 리스트로 표시되어야 함', () => {
+    const { container } = render(<ToolConstraints constraints={mockConstraints} />);
 
-    mockConstraints.forEach((constraint) => {
-      expect(screen.getByText(`• ${constraint}`)).toBeInTheDocument();
+    const listItems = container.querySelectorAll('li');
+    expect(listItems).toHaveLength(mockConstraints.length);
+    mockConstraints.forEach((constraint, i) => {
+      expect(listItems[i].textContent).toBe(constraint);
     });
   });
 
@@ -51,18 +53,21 @@ describe('ToolConstraints', () => {
       <ToolConstraints constraints={mockConstraints} accentColor="cyan" />
     );
 
-    expect(container.firstChild).toHaveClass('bg-[oklch(0.75_0.18_195/0.05)]');
+    // Swiss Modernism Color System: cyan → border-[#06B6D4]
+    expect(container.firstChild).toHaveClass('bg-white');
 
-    rerender(<ToolConstraints constraints={mockConstraints} accentColor="violet" />);
-    expect(container.firstChild).toHaveClass('bg-[oklch(0.65_0.22_290/0.05)]');
+    rerender(<ToolConstraints constraints={mockConstraints} accentColor="purple" />);
+    // purple → border-[#A855F7]
+    expect(container.firstChild).toHaveClass('bg-white');
   });
 
-  it('잘못된 accentColor는 기본값(cyan)으로 대체되어야 함', () => {
+  it('잘못된 accentColor는 기본값(pink)으로 대체되어야 함', () => {
     const { container } = render(
-      <ToolConstraints constraints={mockConstraints} accentColor="invalid" as any />
+      <ToolConstraints constraints={mockConstraints} accentColor={'invalid' as any} />
     );
 
-    expect(container.firstChild).toHaveClass('bg-[oklch(0.75_0.18_195/0.05)]');
+    // 기본값 pink의 border 클래스가 적용됨
+    expect(container.firstChild).toHaveClass('bg-white');
   });
 
   it('애니메이션 스타일이 적용되어야 함', () => {
@@ -77,7 +82,7 @@ describe('ToolConstraints', () => {
   it('단일 제약사항도 렌더링해야 함', () => {
     render(<ToolConstraints constraints={['최대 100MB']} />);
 
-    expect(screen.getByText('• 최대 100MB')).toBeInTheDocument();
+    expect(screen.getByText('최대 100MB')).toBeInTheDocument();
   });
 
   it('여러 제약사항이 수직으로 정렬되어야 함', () => {
@@ -91,8 +96,8 @@ describe('ToolConstraints', () => {
     const { container } = render(<ToolConstraints constraints={mockConstraints} />);
 
     const list = container.querySelector('ul');
-    expect(list).toHaveClass('text-xs');
-    expect(list).toHaveClass('text-[oklch(0.70_0.10_195)]');
+    expect(list).toHaveClass('text-sm');
+    expect(list).toHaveClass('font-bold');
   });
 
   it('올바른 레이아웃이 적용되어야 함', () => {
@@ -107,8 +112,8 @@ describe('ToolConstraints', () => {
     const { container } = render(<ToolConstraints constraints={mockConstraints} />);
 
     const icon = container.querySelector('svg');
-    expect(icon).toHaveClass('w-4');
-    expect(icon).toHaveClass('h-4');
+    expect(icon).toHaveClass('w-5');
+    expect(icon).toHaveClass('h-5');
     expect(icon).toHaveClass('flex-shrink-0');
   });
 });

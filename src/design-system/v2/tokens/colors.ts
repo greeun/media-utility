@@ -22,6 +22,8 @@ export const TOOL_ACCENT: Record<string, AccentColorKey> = {
   'meme-generator': 'orange',
   'html-to-image': 'yellow',
   'url-generator': 'pink',
+  'video-format-converter': 'cyan',
+  'video-resizer': 'purple',
 };
 
 export function getAccentColor(key: AccentColorKey): string {

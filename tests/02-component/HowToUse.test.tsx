@@ -89,15 +89,18 @@ describe('HowToUse', () => {
 
   it('accentColor에 따른 색상 클래스가 적용되어야 함', () => {
     const { rerender } = render(<HowToUse {...baseProps} accentColor="cyan" />);
-    expect(screen.getByText('이미지 변환 방법')).toHaveClass('text-[oklch(0.75_0.18_195)]');
+    // Swiss Modernism: cyan → text-[#06B6D4]
+    expect(screen.getByText('이미지 변환 방법')).toHaveClass('text-[#06B6D4]');
 
     rerender(<HowToUse {...baseProps} accentColor="violet" />);
-    expect(screen.getByText('이미지 변환 방법')).toHaveClass('text-[oklch(0.65_0.22_290)]');
+    // violet → text-[#A855F7]
+    expect(screen.getByText('이미지 변환 방법')).toHaveClass('text-[#A855F7]');
   });
 
-  it('잘못된 accentColor는 기본값(cyan)으로 대체되어야 함', () => {
-    render(<HowToUse {...baseProps} accentColor="invalid" as any />);
-    expect(screen.getByText('이미지 변환 방법')).toHaveClass('text-[oklch(0.75_0.18_195)]');
+  it('잘못된 accentColor는 기본값(pink)으로 대체되어야 함', () => {
+    render(<HowToUse {...baseProps} accentColor={'invalid' as any} />);
+    // fallback → pink → text-[#EC4899]
+    expect(screen.getByText('이미지 변환 방법')).toHaveClass('text-[#EC4899]');
   });
 
   it('빈 supportedFormats는 섹션을 렌더링하지 않아야 함', () => {

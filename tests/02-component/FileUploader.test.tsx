@@ -77,7 +77,7 @@ describe('FileUploader', () => {
 
     fireEvent.dragOver(dropZone)
 
-    expect(dropZone).toHaveClass('border-[oklch(0.75_0.18_195)]')
+    expect(dropZone).toHaveClass('border-[#EC4899]')
   })
 
   it('드래그 리브 시 스타일이 원래대로 돌아와야 함', () => {
@@ -88,6 +88,6 @@ describe('FileUploader', () => {
     fireEvent.dragOver(dropZone)
     fireEvent.dragLeave(dropZone)
 
-    expect(dropZone).not.toHaveClass('border-[oklch(0.75_0.18_195)]')
+    expect(dropZone).not.toHaveClass('border-[#EC4899]')
   })
 })

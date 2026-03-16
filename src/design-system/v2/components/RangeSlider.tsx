@@ -23,7 +23,7 @@ export default function RangeSlider({
 }: RangeSliderProps) {
   return (
     <div>
-      <label className="block text-sm font-bold uppercase tracking-wide text-gray-900 mb-3">
+      <label className="block text-sm font-bold uppercase tracking-wide ds-text mb-3">
         {label}: <span style={{ color: accentColor }}>{value}{unit}</span>
       </label>
       <input
@@ -33,23 +33,14 @@ export default function RangeSlider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full h-3 bg-gray-200 appearance-none cursor-pointer"
+        className="ds-range w-full h-3 appearance-none cursor-pointer"
         style={{
+          background: 'var(--muted)',
+          borderRadius: 'var(--radius)',
           // @ts-expect-error CSS custom property
           '--slider-color': accentColor,
         }}
       />
-      <style jsx>{`
-        input[type='range']::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 24px;
-          height: 24px;
-          background: var(--slider-color);
-          border: 2px solid black;
-          cursor: pointer;
-        }
-      `}</style>
     </div>
   );
 }

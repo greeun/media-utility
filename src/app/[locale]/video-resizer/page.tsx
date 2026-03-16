@@ -2,21 +2,31 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { Upload, Download, RefreshCw, Loader2, Sparkles, Link2, Link2Off } from 'lucide-react';
+import { Upload, Download, RefreshCw, Loader2, Link2, Link2Off } from 'lucide-react';
 import { VideoResizerIcon } from '@/components/icons/FeatureIcons';
 import { resizeVideo } from '@/services/videoProcessor';
 import { saveAs } from 'file-saver';
 import ToolConstraints from '@/components/common/ToolConstraints';
 import HowToUse from '@/components/common/HowToUse';
+import { ToolPageLayout } from '@/design-system/v2/layouts';
+import {
+  PageHeader,
+  SettingsPanel,
+  ActionButtonGroup,
+} from '@/design-system/v2/components';
+import { ACCENT_COLORS } from '@/design-system/v2/tokens';
 
 const PRESET_SIZES = [
-  { label: '4K (3840×2160)', width: 3840, height: 2160 },
-  { label: '1080p (1920×1080)', width: 1920, height: 1080 },
-  { label: '720p (1280×720)', width: 1280, height: 720 },
-  { label: '540p (960×540)', width: 960, height: 540 },
-  { label: '480p (854×480)', width: 854, height: 480 },
-  { label: '360p (640×360)', width: 640, height: 360 },
+  { label: '4K', width: 3840, height: 2160 },
+  { label: '1080p', width: 1920, height: 1080 },
+  { label: '720p', width: 1280, height: 720 },
+  { label: '540p', width: 960, height: 540 },
+  { label: '480p', width: 854, height: 480 },
+  { label: '360p', width: 640, height: 360 },
 ];
+
+// 액센트 컬러
+const ACCENT = ACCENT_COLORS.purple;
 
 export default function VideoResizerPage() {
   const t = useTranslations();
@@ -48,7 +58,6 @@ export default function VideoResizerPage() {
     }
   }, []);
 
-  // 비디오 메타데이터에서 원본 크기 가져오기
   useEffect(() => {
     if (!preview) return;
     const video = document.createElement('video');
@@ -147,271 +156,277 @@ export default function VideoResizerPage() {
     }
   };
 
+  const handleReset = () => {
+    if (preview) URL.revokeObjectURL(preview);
+    if (resultPreview) URL.revokeObjectURL(resultPreview);
+    setFile(null);
+    setPreview(null);
+    setResult(null);
+    setResultPreview(null);
+    setProgress(0);
+  };
+
   return (
-    <div className="min-h-full bg-white py-8 lg:py-12">
-      <div className="mx-auto max-w-5xl px-6 lg:px-12">
-        {/* Header */}
-        <div className="mb-10 opacity-0 animate-fade-up" style={{ animationFillMode: 'forwards' }}>
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-16 h-16 border-4 border-black bg-[#A855F7] flex items-center justify-center">
-              <VideoResizerIcon size={28} className="text-[oklch(0.08_0.01_240)]" />
-            </div>
-            <div>
-              <h1 className="text-4xl font-black uppercase tracking-tight text-black mb-2">{t('videoResizer.title')}</h1>
-              <p className="mt-1 text-lg font-bold text-gray-900">
-                {t('videoResizer.description')}
-              </p>
-            </div>
+    <ToolPageLayout maxWidth="xl">
+      {/* 헤더 */}
+      <PageHeader
+        icon={<VideoResizerIcon size={32} className="text-white" />}
+        iconBgColor={ACCENT}
+        title={t('videoResizer.title')}
+        description={t('videoResizer.description')}
+      />
+
+      {/* 제약사항 */}
+      <ToolConstraints
+        constraints={[t('videoResizer.constraints.0'), t('videoResizer.constraints.1')]}
+        accentColor="purple"
+      />
+
+      {/* 업로드 영역 */}
+      {!preview && (
+        <div
+          className="mb-6 opacity-0 animate-fade-up"
+          style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
+        >
+          <div className="p-8 bg-white border-4 border-black">
+            <label
+              onDragOver={handleDragOver}
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`
+                flex flex-col items-center justify-center w-full h-64 border-4 border-dashed cursor-pointer transition-all
+                ${isDragging
+                  ? 'border-[#A855F7] bg-[#A855F7]/5'
+                  : 'border-black hover:border-[#A855F7] hover:bg-gray-50'
+                }
+              `}
+            >
+              <div className={`p-6 border-4 border-current transition-colors ${isDragging ? 'text-[#A855F7]' : 'text-black'}`}>
+                <Upload className="w-10 h-10" strokeWidth={2.5} />
+              </div>
+              <span className={`mt-4 text-xl font-black uppercase tracking-wide ${isDragging ? 'text-[#A855F7]' : 'text-black'}`}>
+                {t('common.dragOrClick')}
+              </span>
+              <span className="text-sm font-bold text-gray-600 mt-2">MP4, WebM, MOV, AVI</span>
+              <input
+                type="file"
+                accept="video/*"
+                onChange={handleFileSelect}
+                className="hidden"
+              />
+            </label>
           </div>
         </div>
+      )}
 
-        {/* 제약사항 */}
-        <ToolConstraints
-          constraints={[t('videoResizer.constraints.0'), t('videoResizer.constraints.1')]}
-          accentColor="sky"
-        />
-
-        {/* Upload Area */}
-        {!preview && (
-          <div className="opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-            <div className="p-8 bg-white border-4 border-black">
-              <label
-                onDragOver={handleDragOver}
-                onDragEnter={handleDragEnter}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                className={`
-                  flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-xl cursor-pointer transition-all
-                  ${isDragging
-                    ? 'border-[oklch(0.70_0.20_290)] bg-[oklch(0.70_0.20_290/0.05)]'
-                    : 'border-[oklch(1_0_0/0.1)] hover:border-[oklch(0.70_0.20_290/0.5)] hover:bg-[oklch(0.70_0.20_290/0.02)]'
-                  }
-                `}
-              >
-                <Upload className={`w-12 h-12 mb-4 ${isDragging ? 'text-[oklch(0.70_0.20_290)]' : 'text-[oklch(0.40_0.02_240)]'}`} />
-                <span className={`text-lg font-medium ${isDragging ? 'text-[oklch(0.75_0.25_290)]' : 'text-[oklch(0.70_0.02_240)]'}`}>
-                  {t('common.dragOrClick')}
-                </span>
-                <span className="text-sm text-[oklch(0.50_0.02_240)] mt-2">MP4, WebM, MOV, AVI</span>
-                <input
-                  type="file"
-                  accept="video/*"
-                  onChange={handleFileSelect}
-                  className="hidden"
+      {/* 편집 영역 */}
+      {preview && (
+        <div className="grid lg:grid-cols-2 gap-6 mb-6">
+          {/* 좌측: 미리보기 & 옵션 */}
+          <div className="space-y-6">
+            {/* 미리보기 */}
+            <div
+              className="p-6 bg-white border-4 border-black opacity-0 animate-fade-up"
+              style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
+            >
+              <h3 className="text-lg font-black uppercase tracking-wide text-black mb-4">
+                {t('videoResizer.preview')}
+              </h3>
+              <div className="bg-black overflow-hidden">
+                <video
+                  ref={previewVideoRef}
+                  src={preview}
+                  controls
+                  className="w-full max-h-[280px]"
                 />
-              </label>
-            </div>
-          </div>
-        )}
-
-        {/* Editor */}
-        {preview && (
-          <div className="grid lg:grid-cols-2 gap-6">
-            {/* Left: Preview & Options */}
-            <div className="space-y-4">
-              {/* Preview */}
-              <div className="p-6 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
-                <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('videoResizer.preview')}</h3>
-                <div className="bg-[oklch(0.12_0.015_250)] rounded-xl overflow-hidden">
-                  <video
-                    ref={previewVideoRef}
-                    src={preview}
-                    controls
-                    className="w-full max-h-[280px]"
-                  />
-                </div>
-                <div className="mt-2 text-sm text-[oklch(0.50_0.02_240)]">
-                  {file?.name} ({((file?.size || 0) / (1024 * 1024)).toFixed(2)} MB)
-                </div>
-                {originalWidth > 0 && (
-                  <div className="mt-1 text-xs text-[oklch(0.50_0.02_240)]">
-                    {t('videoResizer.originalSize')}: <span className="font-bold">{originalWidth} × {originalHeight}</span>
-                  </div>
-                )}
               </div>
-
-              {/* Size Options */}
-              <div className="p-6 bg-white border-4 border-black opacity-0 animate-fade-up" style={{ animationDelay: '0.15s', animationFillMode: 'forwards' }}>
-                <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[oklch(0.70_0.20_290)]" />
-                  {t('videoResizer.sizeSettings')}
-                </h3>
-
-                {/* Presets */}
-                <div className="mb-4">
-                  <label className="block text-xs text-[oklch(0.60_0.02_240)] mb-2 uppercase tracking-wider font-bold">{t('videoResizer.presets')}</label>
-                  <div className="flex flex-wrap gap-2">
-                    {PRESET_SIZES.map((preset) => (
-                      <button
-                        key={preset.label}
-                        onClick={() => applyPreset(preset.width, preset.height)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                          outputWidth === preset.width && outputHeight === preset.height
-                            ? 'bg-[oklch(0.70_0.20_290)] text-white shadow-[0_0_15px_oklch(0.70_0.20_290/0.3)]'
-                            : 'bg-[oklch(0.16_0.02_245)] text-[oklch(0.70_0.02_240)] hover:bg-[oklch(0.20_0.025_240)]'
-                        }`}
-                      >
-                        {preset.label}
-                      </button>
-                    ))}
-                  </div>
+              <div className="mt-3 text-sm font-bold text-gray-900">
+                {file?.name} ({((file?.size || 0) / (1024 * 1024)).toFixed(2)} MB)
+              </div>
+              {originalWidth > 0 && (
+                <div className="mt-1 text-xs font-bold text-gray-600">
+                  {t('videoResizer.originalSize')}: <span style={{ color: ACCENT }}>{originalWidth} × {originalHeight}</span>
                 </div>
+              )}
+            </div>
 
-                {/* Custom Size */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1">
-                      <label className="block text-xs text-[oklch(0.60_0.02_240)] mb-1">{t('videoResizer.width')}</label>
-                      <input
-                        type="number"
-                        value={outputWidth}
-                        onChange={(e) => handleWidthChange(Number(e.target.value))}
-                        min="100"
-                        max="7680"
-                        className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.70_0.20_290)]"
-                      />
-                    </div>
+            {/* 크기 설정 */}
+            <SettingsPanel title={t('videoResizer.sizeSettings')} accentColor={ACCENT}>
+              {/* 프리셋 */}
+              <div className="mb-6">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-900 mb-3">
+                  {t('videoResizer.presets')}
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {PRESET_SIZES.map((preset) => (
                     <button
-                      onClick={() => setKeepAspectRatio(!keepAspectRatio)}
-                      className={`mt-5 p-2 rounded-lg transition-all ${
-                        keepAspectRatio
-                          ? 'bg-[oklch(0.70_0.20_290)] text-white'
-                          : 'bg-[oklch(0.16_0.02_245)] text-[oklch(0.50_0.02_240)]'
+                      key={preset.label}
+                      onClick={() => applyPreset(preset.width, preset.height)}
+                      className={`px-3 py-2 text-xs font-bold uppercase tracking-wide transition-all border-4 ${
+                        outputWidth === preset.width && outputHeight === preset.height
+                          ? 'text-white border-black'
+                          : 'bg-white text-black border-black hover:bg-black hover:text-white'
                       }`}
-                      title={keepAspectRatio ? t('videoResizer.aspectRatioLocked') : t('videoResizer.aspectRatioFree')}
+                      style={
+                        outputWidth === preset.width && outputHeight === preset.height
+                          ? { backgroundColor: ACCENT }
+                          : undefined
+                      }
                     >
-                      {keepAspectRatio ? <Link2 className="w-4 h-4" /> : <Link2Off className="w-4 h-4" />}
+                      {preset.label}
                     </button>
-                    <div className="flex-1">
-                      <label className="block text-xs text-[oklch(0.60_0.02_240)] mb-1">{t('videoResizer.height')}</label>
-                      <input
-                        type="number"
-                        value={outputHeight}
-                        onChange={(e) => handleHeightChange(Number(e.target.value))}
-                        min="100"
-                        max="4320"
-                        className="w-full px-3 py-2 bg-[oklch(0.16_0.02_245)] border border-[oklch(1_0_0/0.1)] rounded-lg text-[oklch(0.95_0.01_80)] focus:outline-none focus:border-[oklch(0.70_0.20_290)]"
-                      />
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Resize Button */}
-              <button
-                onClick={handleResize}
-                disabled={isProcessing}
-                className="w-full py-3 rounded-xl bg-[oklch(0.70_0.20_290)] text-white font-semibold flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed opacity-0 animate-fade-up"
-                style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
-              >
-                {isProcessing ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    {loadingFFmpeg ? t('common.ffmpegLoading') : `${t('videoResizer.resizing')} ${progress}%`}
-                  </>
-                ) : (
-                  <>
-                    <RefreshCw className="w-4 h-4" />
-                    {outputWidth} × {outputHeight} {t('videoResizer.resize')}
-                  </>
-                )}
-              </button>
-
-              {/* Progress */}
-              {isProcessing && !loadingFFmpeg && (
-                <div className="h-1.5 bg-[oklch(0.20_0.025_240)] rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-[oklch(0.70_0.20_290)] rounded-full transition-all duration-300"
-                    style={{ width: `${progress}%` }}
+              {/* 커스텀 크기 */}
+              <div className="flex items-end gap-3">
+                <div className="flex-1">
+                  <label className="block text-xs font-bold text-gray-900 mb-2">{t('videoResizer.width')}</label>
+                  <input
+                    type="number"
+                    value={outputWidth}
+                    onChange={(e) => handleWidthChange(Number(e.target.value))}
+                    min="100"
+                    max="7680"
+                    className="w-full px-3 py-2 bg-white text-black text-sm font-bold border-4 border-black focus:outline-none"
+                    style={{ borderColor: undefined }}
+                    onFocus={(e) => (e.target.style.borderColor = ACCENT)}
+                    onBlur={(e) => (e.target.style.borderColor = '#000')}
                   />
                 </div>
-              )}
-
-              {/* Download Button (좌측 패널) */}
-              {result && (
                 <button
-                  onClick={handleDownload}
-                  className="w-full py-3 rounded-xl bg-[oklch(0.70_0.20_290)] text-white font-semibold flex items-center justify-center gap-2 hover:shadow-[0_0_20px_oklch(0.70_0.20_290/0.4)] transition-all opacity-0 animate-fade-up"
-                  style={{ animationFillMode: 'forwards' }}
+                  onClick={() => setKeepAspectRatio(!keepAspectRatio)}
+                  className="mb-0.5 p-2 border-4 border-black transition-all"
+                  style={keepAspectRatio ? { backgroundColor: ACCENT, color: '#fff' } : { backgroundColor: '#fff', color: '#000' }}
+                  title={keepAspectRatio ? t('videoResizer.aspectRatioLocked') : t('videoResizer.aspectRatioFree')}
                 >
-                  <Download className="w-4 h-4" />
-                  {t('common.download')} ({((result.size) / (1024 * 1024)).toFixed(2)} MB)
+                  {keepAspectRatio ? <Link2 className="w-4 h-4" /> : <Link2Off className="w-4 h-4" />}
                 </button>
-              )}
-
-              {/* New File */}
-              <label className="block">
-                <div className="w-full py-2.5 rounded-xl border border-[oklch(1_0_0/0.1)] text-[oklch(0.70_0.02_240)] font-medium flex items-center justify-center gap-2 cursor-pointer hover:bg-[oklch(1_0_0/0.05)] hover:border-[oklch(1_0_0/0.2)] transition-all">
-                  <Upload className="w-4 h-4" />
-                  {t('common.upload')}
+                <div className="flex-1">
+                  <label className="block text-xs font-bold text-gray-900 mb-2">{t('videoResizer.height')}</label>
+                  <input
+                    type="number"
+                    value={outputHeight}
+                    onChange={(e) => handleHeightChange(Number(e.target.value))}
+                    min="100"
+                    max="4320"
+                    className="w-full px-3 py-2 bg-white text-black text-sm font-bold border-4 border-black focus:outline-none"
+                    onFocus={(e) => (e.target.style.borderColor = ACCENT)}
+                    onBlur={(e) => (e.target.style.borderColor = '#000')}
+                  />
                 </div>
-                <input
-                  type="file"
-                  accept="video/*"
-                  onChange={handleFileSelect}
-                  className="hidden"
+              </div>
+            </SettingsPanel>
+
+            {/* 진행률 표시 */}
+            {isProcessing && !loadingFFmpeg && (
+              <div className="h-2 bg-gray-200 overflow-hidden">
+                <div
+                  className="h-full transition-all duration-300"
+                  style={{ width: `${progress}%`, backgroundColor: ACCENT }}
                 />
-              </label>
-            </div>
+              </div>
+            )}
+          </div>
 
-            {/* Right: Result */}
-            <div className="space-y-4">
-              {resultPreview && result && (
-                <div className="p-6 bg-white border-4 border-black opacity-0 animate-scale-in" style={{ animationFillMode: 'forwards' }}>
-                  <h3 className="text-sm font-semibold text-[oklch(0.95_0.01_80)] mb-4">{t('videoResizer.result')}</h3>
-                  <div className="bg-[oklch(0.12_0.015_250)] rounded-xl overflow-hidden">
-                    <video ref={videoRef} src={resultPreview} controls className="w-full max-h-[280px]" />
-                  </div>
-                  <div className="mt-4 flex items-center justify-between">
-                    <div>
-                      <span className="text-sm text-[oklch(0.50_0.02_240)]">
-                        {((result.size) / (1024 * 1024)).toFixed(2)} MB
-                      </span>
-                      <span className="ml-2 text-xs font-bold text-[oklch(0.70_0.20_290)]">
-                        {outputWidth} × {outputHeight}
-                      </span>
-                    </div>
-                    <button
-                      onClick={handleDownload}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[oklch(0.70_0.20_290)] text-white font-semibold hover:shadow-[0_0_20px_oklch(0.70_0.20_290/0.4)] transition-all"
+          {/* 우측: 결과 */}
+          <div className="space-y-6">
+            {resultPreview && result && (
+              <div
+                className="p-6 bg-white border-4 border-black opacity-0 animate-scale-in"
+                style={{ animationFillMode: 'forwards' }}
+              >
+                <h3 className="text-lg font-black uppercase tracking-wide text-black mb-4">
+                  {t('videoResizer.result')}
+                </h3>
+                <div className="bg-black overflow-hidden">
+                  <video ref={videoRef} src={resultPreview} controls className="w-full max-h-[280px]" />
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                  <div>
+                    <span className="text-sm font-bold text-gray-900">
+                      {((result.size) / (1024 * 1024)).toFixed(2)} MB
+                    </span>
+                    <span
+                      className="ml-2 px-2 py-1 text-xs font-black uppercase text-white border-4 border-black"
+                      style={{ backgroundColor: ACCENT }}
                     >
-                      <Download className="w-4 h-4" />
-                      {t('common.download')}
-                    </button>
+                      {outputWidth} × {outputHeight}
+                    </span>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        )}
-
-        {/* How To Use */}
-        <div className="mt-12">
-          <HowToUse
-            title={t('videoResizer.howToUse.title')}
-            description={t('videoResizer.howToUse.description')}
-            accentColor="purple"
-            steps={[
-              {
-                number: 1,
-                title: t('videoResizer.howToUse.step1Title'),
-                description: t('videoResizer.howToUse.step1Desc'),
-              },
-              {
-                number: 2,
-                title: t('videoResizer.howToUse.step2Title'),
-                description: t('videoResizer.howToUse.step2Desc'),
-              },
-              {
-                number: 3,
-                title: t('videoResizer.howToUse.step3Title'),
-                description: t('videoResizer.howToUse.step3Desc'),
-              },
-            ]}
-            supportedFormats={['MP4', 'WebM', 'MOV', 'AVI']}
-          />
         </div>
+      )}
+
+      {/* 액션 버튼 */}
+      {preview && (
+        <ActionButtonGroup
+          accentColor={ACCENT}
+          primaryAction={
+            !result
+              ? {
+                  label: `${outputWidth} × ${outputHeight} ${t('videoResizer.resize')}`,
+                  loadingLabel: loadingFFmpeg ? t('common.ffmpegLoading') : `${t('videoResizer.resizing')} ${progress}%`,
+                  isLoading: isProcessing,
+                  onClick: handleResize,
+                }
+              : undefined
+          }
+          downloadAction={
+            result
+              ? {
+                  label: `${t('common.download')} (${((result.size) / (1024 * 1024)).toFixed(2)} MB)`,
+                  onClick: handleDownload,
+                }
+              : undefined
+          }
+        />
+      )}
+
+      {/* 새 파일 업로드 */}
+      {preview && (
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={handleReset}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold text-sm uppercase tracking-wide border-4 border-black hover:bg-black hover:text-white transition-all"
+          >
+            <Upload className="w-4 h-4" strokeWidth={2.5} />
+            {t('common.upload')}
+          </button>
+        </div>
+      )}
+
+      {/* 사용 방법 */}
+      <div className="mt-12">
+        <HowToUse
+          title={t('videoResizer.howToUse.title')}
+          description={t('videoResizer.howToUse.description')}
+          accentColor="purple"
+          steps={[
+            {
+              number: 1,
+              title: t('videoResizer.howToUse.step1Title'),
+              description: t('videoResizer.howToUse.step1Desc'),
+            },
+            {
+              number: 2,
+              title: t('videoResizer.howToUse.step2Title'),
+              description: t('videoResizer.howToUse.step2Desc'),
+            },
+            {
+              number: 3,
+              title: t('videoResizer.howToUse.step3Title'),
+              description: t('videoResizer.howToUse.step3Desc'),
+            },
+          ]}
+          supportedFormats={['MP4', 'WebM', 'MOV', 'AVI']}
+        />
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }
