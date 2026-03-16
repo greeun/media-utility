@@ -43,7 +43,7 @@ test.describe('이미지 편집기 - 휘도 조절', () => {
 
     // 휘도 슬라이더 확인 (두 번째 range input)
     const sliders = page.locator('input[type="range"]')
-    await expect(sliders).toHaveCount(2)
+    await expect(sliders).toHaveCount(4)
 
     // 휘도 라벨 확인
     await expect(page.getByText('휘도 조절')).toBeVisible()

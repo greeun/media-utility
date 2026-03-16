@@ -142,7 +142,7 @@ test.describe('이미지 편집기 - 밝기 조절', () => {
 
     // 밝기 슬라이더와 휘도 슬라이더 (2개)
     const sliders = page.locator('input[type="range"]')
-    await expect(sliders).toHaveCount(2)
+    await expect(sliders).toHaveCount(4)
   })
 
   test('밝기 슬라이더 조작 후 적용 버튼이 활성화되어야 함', async ({ page }) => {

@@ -371,7 +371,7 @@ describe('adjustBrightness - 휘도(Luminance) 기능', () => {
       }) as never;
 
       await expect(adjustBrightness(mockFile, 0, 50)).rejects.toThrow(
-        '이미지 밝기 조절에 실패했습니다'
+        '이미지 명도 조절에 실패했습니다'
       );
     });
   });
