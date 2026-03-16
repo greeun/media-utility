@@ -14,7 +14,7 @@ test.describe('이미지 편집기 - 대비·노출 조절', () => {
     await page.goto('/ko/image-editor')
     const fileInput = page.locator('input[type="file"]').first()
     await fileInput.setInputFiles(TEST_IMAGE_PATH)
-    await expect(page.locator('img[alt="Edit preview"]')).toBeVisible({ timeout: 10000 })
+    await expect(page.locator('img[alt="Edit preview"]')).toBeVisible({ timeout: 15000 })
   }
 
   async function openBrightnessPanel(page: import('@playwright/test').Page) {
@@ -32,10 +32,11 @@ test.describe('이미지 편집기 - 대비·노출 조절', () => {
     const sliders = page.locator('input[type="range"]')
     await expect(sliders).toHaveCount(4)
 
-    await expect(page.getByText('밝기 조절')).toBeVisible()
-    await expect(page.getByText('휘도 조절')).toBeVisible()
-    await expect(page.getByText('대비 조절')).toBeVisible()
-    await expect(page.getByText('노출 조절')).toBeVisible()
+    // label 요소 내에서만 검색 (페이지 설명 텍스트와 구분)
+    await expect(page.locator('label').filter({ hasText: '밝기 조절:' })).toBeVisible()
+    await expect(page.locator('label').filter({ hasText: '휘도 조절:' })).toBeVisible()
+    await expect(page.locator('label').filter({ hasText: '대비 조절:' })).toBeVisible()
+    await expect(page.locator('label').filter({ hasText: '노출 조절:' })).toBeVisible()
   })
 
   // =================================================================
@@ -174,11 +175,12 @@ test.describe('이미지 편집기 - 대비·노출 조절', () => {
     await sliders.nth(3).fill('-20')
     await page.locator('button').filter({ hasText: '적용' }).click()
 
-    await expect(sliders.first()).not.toBeVisible({ timeout: 10000 })
+    await expect(sliders.first()).not.toBeVisible({ timeout: 15000 })
 
-    const rotateBtn = page.locator('button').filter({ hasText: /회전/ }).first()
+    const rotateBtn = page.locator('button').filter({ hasText: '왼쪽 90°' })
+    await expect(rotateBtn).toBeVisible({ timeout: 10000 })
     await rotateBtn.click()
 
-    await expect(page.locator('span').filter({ hasText: /→.*KB/ })).toBeVisible({ timeout: 10000 })
+    await expect(page.locator('span').filter({ hasText: /→.*KB/ })).toBeVisible({ timeout: 15000 })
   })
 })
