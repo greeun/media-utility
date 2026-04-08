@@ -29,9 +29,9 @@ export default function ImageEditorPage() {
     setCrop,
     imgRef,
     resizeWidth,
-    setResizeWidth,
     resizeHeight,
-    setResizeHeight,
+    handleResizeWidthChange,
+    handleResizeHeightChange,
     maintainRatio,
     setMaintainRatio,
     optimizeQuality,
@@ -183,7 +183,7 @@ export default function ImageEditorPage() {
                     <input
                       type="number"
                       value={resizeWidth}
-                      onChange={(e) => setResizeWidth(Number(e.target.value))}
+                      onChange={(e) => handleResizeWidthChange(Number(e.target.value))}
                       className="w-full px-3 py-2 bg-white text-black border-4 border-black focus:outline-none"
                       style={{ borderColor: undefined }}
                       onFocus={(e) => { e.currentTarget.style.borderColor = ACCENT; }}
@@ -197,7 +197,7 @@ export default function ImageEditorPage() {
                     <input
                       type="number"
                       value={resizeHeight}
-                      onChange={(e) => setResizeHeight(Number(e.target.value))}
+                      onChange={(e) => handleResizeHeightChange(Number(e.target.value))}
                       className="w-full px-3 py-2 bg-white text-black border-4 border-black focus:outline-none"
                       onFocus={(e) => { e.currentTarget.style.borderColor = ACCENT; }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = '#000'; }}

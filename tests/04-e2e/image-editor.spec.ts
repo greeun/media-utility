@@ -197,6 +197,106 @@ test.describe('이미지 편집기 - 리사이즈', () => {
     const keepRatioCheckbox = page.locator('input[type="checkbox"]')
     await expect(keepRatioCheckbox).toBeVisible()
   })
+
+  test('E2E-IE-RS-001: 비율 유지 ON + 너비 수정 시 높이가 원본 비율로 자동 갱신된다', async ({ page }) => {
+    await uploadTestImage(page)
+    await page.locator('button').filter({ hasText: 'Resize' }).click()
+
+    const widthInput = page.locator('input[type="number"]').nth(0)
+    const heightInput = page.locator('input[type="number"]').nth(1)
+
+    // 원본 크기 캡처 (훅이 이미지 로드 시 주입)
+    const originalWidth = Number(await widthInput.inputValue())
+    const originalHeight = Number(await heightInput.inputValue())
+    expect(originalWidth).toBeGreaterThan(0)
+    expect(originalHeight).toBeGreaterThan(0)
+
+    // 비율 유지 체크박스가 기본 ON 상태임을 확인
+    const keepRatio = page.locator('input[type="checkbox"]')
+    await expect(keepRatio).toBeChecked()
+
+    // 너비를 원본의 절반으로 변경
+    const newWidth = Math.floor(originalWidth / 2)
+    await widthInput.fill(String(newWidth))
+    await widthInput.blur()
+
+    // 높이가 비율(originalWidth/originalHeight)에 맞춰 자동 계산되었는지 검증
+    const expectedHeight = Math.max(1, Math.round(newWidth / (originalWidth / originalHeight)))
+    await expect(heightInput).toHaveValue(String(expectedHeight))
+  })
+
+  test('E2E-IE-RS-002: 비율 유지 ON + 높이 수정 시 너비가 원본 비율로 자동 갱신된다', async ({ page }) => {
+    await uploadTestImage(page)
+    await page.locator('button').filter({ hasText: 'Resize' }).click()
+
+    const widthInput = page.locator('input[type="number"]').nth(0)
+    const heightInput = page.locator('input[type="number"]').nth(1)
+
+    const originalWidth = Number(await widthInput.inputValue())
+    const originalHeight = Number(await heightInput.inputValue())
+
+    // 높이를 원본의 1/4 로 변경
+    const newHeight = Math.max(1, Math.floor(originalHeight / 4))
+    await heightInput.fill(String(newHeight))
+    await heightInput.blur()
+
+    // 너비가 비율에 맞춰 자동 계산되었는지 검증
+    const expectedWidth = Math.max(1, Math.round(newHeight * (originalWidth / originalHeight)))
+    await expect(widthInput).toHaveValue(String(expectedWidth))
+  })
+
+  test('E2E-IE-RS-003: 비율 유지 OFF 상태에서는 너비 수정 시 높이가 변경되지 않는다', async ({ page }) => {
+    await uploadTestImage(page)
+    await page.locator('button').filter({ hasText: 'Resize' }).click()
+
+    const widthInput = page.locator('input[type="number"]').nth(0)
+    const heightInput = page.locator('input[type="number"]').nth(1)
+    const keepRatio = page.locator('input[type="checkbox"]')
+
+    // 비율 유지 해제
+    await keepRatio.uncheck()
+    await expect(keepRatio).not.toBeChecked()
+
+    const heightBefore = await heightInput.inputValue()
+
+    // 너비를 임의값으로 변경
+    await widthInput.fill('123')
+    await widthInput.blur()
+
+    // 높이는 변경되지 않아야 함
+    await expect(heightInput).toHaveValue(heightBefore)
+    await expect(widthInput).toHaveValue('123')
+  })
+
+  test('E2E-IE-RS-004: 비율 유지 OFF → ON 전환 이후부터 다시 자동 연동된다', async ({ page }) => {
+    await uploadTestImage(page)
+    await page.locator('button').filter({ hasText: 'Resize' }).click()
+
+    const widthInput = page.locator('input[type="number"]').nth(0)
+    const heightInput = page.locator('input[type="number"]').nth(1)
+    const keepRatio = page.locator('input[type="checkbox"]')
+
+    const originalWidth = Number(await widthInput.inputValue())
+    const originalHeight = Number(await heightInput.inputValue())
+    const ratio = originalWidth / originalHeight
+
+    // 1) OFF 상태에서 너비 변경 → 높이 유지
+    await keepRatio.uncheck()
+    await widthInput.fill('400')
+    await widthInput.blur()
+    await expect(heightInput).toHaveValue(String(originalHeight))
+
+    // 2) 다시 ON → 이후 수정부터 연동 재개
+    await keepRatio.check()
+    await expect(keepRatio).toBeChecked()
+
+    const newWidth = 200
+    await widthInput.fill(String(newWidth))
+    await widthInput.blur()
+
+    const expectedHeight = Math.max(1, Math.round(newWidth / ratio))
+    await expect(heightInput).toHaveValue(String(expectedHeight))
+  })
 })
 
 test.describe('이미지 편집기 - 다운로드 및 연속 편집', () => {
