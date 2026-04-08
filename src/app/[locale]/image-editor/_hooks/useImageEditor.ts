@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   RotateCw,
@@ -35,6 +35,7 @@ export function useImageEditor() {
   const [resizeWidth, setResizeWidth] = useState(800);
   const [resizeHeight, setResizeHeight] = useState(600);
   const [maintainRatio, setMaintainRatio] = useState(true);
+  const [aspectRatio, setAspectRatio] = useState(800 / 600);
 
   // 최적화 상태
   const [optimizeQuality, setOptimizeQuality] = useState(80);
@@ -66,10 +67,49 @@ export function useImageEditor() {
       img.onload = () => {
         setResizeWidth(img.width);
         setResizeHeight(img.height);
+        if (img.height > 0) {
+          setAspectRatio(img.width / img.height);
+        }
       };
       img.src = URL.createObjectURL(selectedFile);
     }
   }, []);
+
+  // 편집 결과(preview)가 바뀔 때마다 현재 이미지 크기/비율을 동기화
+  useEffect(() => {
+    if (!preview) return;
+    const img = new Image();
+    img.onload = () => {
+      setResizeWidth(img.width);
+      setResizeHeight(img.height);
+      if (img.height > 0) {
+        setAspectRatio(img.width / img.height);
+      }
+    };
+    img.src = preview;
+  }, [preview]);
+
+  // 너비 변경 - 비율 유지 시 높이 자동 계산
+  const handleResizeWidthChange = useCallback(
+    (width: number) => {
+      setResizeWidth(width);
+      if (maintainRatio && width > 0 && aspectRatio > 0) {
+        setResizeHeight(Math.max(1, Math.round(width / aspectRatio)));
+      }
+    },
+    [maintainRatio, aspectRatio],
+  );
+
+  // 높이 변경 - 비율 유지 시 너비 자동 계산
+  const handleResizeHeightChange = useCallback(
+    (height: number) => {
+      setResizeHeight(height);
+      if (maintainRatio && height > 0 && aspectRatio > 0) {
+        setResizeWidth(Math.max(1, Math.round(height * aspectRatio)));
+      }
+    },
+    [maintainRatio, aspectRatio],
+  );
 
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -269,6 +309,8 @@ export function useImageEditor() {
     setResizeWidth,
     resizeHeight,
     setResizeHeight,
+    handleResizeWidthChange,
+    handleResizeHeightChange,
     maintainRatio,
     setMaintainRatio,
     optimizeQuality,
